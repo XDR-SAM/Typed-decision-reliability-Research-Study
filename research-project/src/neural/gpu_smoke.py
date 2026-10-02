@@ -89,25 +89,37 @@ def main():
         scaler=torch.amp.GradScaler('cuda'); accumulation=64//(2*args.micro_batch)
         items=[encode_row(tok,r,labels,cfg['model_key']) for r in longest]
         torch.cuda.reset_peak_memory_stats();dist.barrier();torch.cuda.synchronize();start=time.perf_counter()
-        optim.zero_grad(set_to_none=True)
-        for i in range(accumulation):
-            offset=(i*2+rank)*args.micro_batch
-            batch=collate(items[offset:offset+args.micro_batch],tok.pad_token_id)
-            y=batch.pop('label').to(device);batch={k:v.to(device) for k,v in batch.items()}
-            with torch.autocast('cuda',dtype=torch.float16):z=ddp(**batch)
-            assert z.shape==(args.micro_batch,len(labels)) and torch.isfinite(z).all()
-            loss=rlcd_loss(z,y,0,4,cfg) if key=='laya_rlcd' else supervised_loss(z,y)
-            scaler.scale(loss/accumulation).backward()
-        scaler.unscale_(optim)
-        gradients={'encoder':[], 'head':[]}
-        for n,p in net.named_parameters():
-            if p.requires_grad and p.grad is not None:
-                assert torch.isfinite(p.grad).all(), 'Nonfinite gradient '+n
-                if p.grad.abs().sum().item()>0:gradients['encoder' if 'encoder.' in n else 'head'].append(n)
-        assert gradients['encoder'] and gradients['head'], 'Missing encoder/head gradients'
-        before_scale=scaler.get_scale();torch.nn.utils.clip_grad_norm_(net.parameters(),settings['gradient_clip'])
-        scaler.step(optim);scaler.update();scheduler.step()
-        assert scaler.get_scale()>=before_scale, 'GradScaler skipped smoke optimizer step'
+        # Initial fp16 overflow is handled by the frozen adaptive GradScaler,
+        # exactly as in the real trainer. It is not a persistent model failure.
+        successful=0; skipped=0
+        for attempt in range(12):
+            optim.zero_grad(set_to_none=True)
+            for i in range(accumulation):
+                offset=(i*2+rank)*args.micro_batch
+                batch=collate(items[offset:offset+args.micro_batch],tok.pad_token_id)
+                y=batch.pop('label').to(device);batch={k:v.to(device) for k,v in batch.items()}
+                with torch.autocast('cuda',dtype=torch.float16):z=ddp(**batch)
+                assert z.shape==(args.micro_batch,len(labels)) and torch.isfinite(z).all()
+                loss=rlcd_loss(z,y,0,4,cfg) if key=='laya_rlcd' else supervised_loss(z,y)
+                assert torch.isfinite(loss), 'Nonfinite unscaled loss'
+                scaler.scale(loss/accumulation).backward()
+            scaler.unscale_(optim)
+            finite=all(torch.isfinite(p.grad).all().item() for p in net.parameters() if p.grad is not None)
+            flag=torch.tensor(int(finite),device=device);dist.all_reduce(flag,op=dist.ReduceOp.MIN)
+            if not flag.item():
+                before_scale=scaler.get_scale();scaler.step(optim);scaler.update();skipped+=1
+                assert scaler.get_scale()<before_scale, 'GradScaler did not back off after overflow'
+                if rank==0:print('SCALER_BACKOFF',key,attempt,scaler.get_scale(),flush=True)
+                continue
+            gradients={'encoder':[], 'head':[]}
+            for n,p in net.named_parameters():
+                if p.requires_grad and p.grad is not None and p.grad.abs().sum().item()>0:
+                    gradients['encoder' if 'encoder.' in n else 'head'].append(n)
+            assert gradients['encoder'] and gradients['head'], 'Missing encoder/head gradients'
+            torch.nn.utils.clip_grad_norm_(net.parameters(),settings['gradient_clip'])
+            scaler.step(optim);scaler.update();scheduler.step();successful+=1
+            if successful==2:break
+        assert successful==2, 'Persistent nonfinite gradients after adaptive scaling'
         torch.cuda.synchronize();seconds=time.perf_counter()-start
         # Verify round-trip of model, optimizer, scaler, scheduler and per-rank RNG.
         net.eval()
@@ -129,10 +141,11 @@ def main():
         if rank==0:
             row={'model':cfg['model_key'],'passed':True,'initial_encoder_sha256':digest,'micro_batch':args.micro_batch,
                  'accumulation':accumulation,'effective_batch':64,'optimizer_step_seconds':seconds,
-                 'examples_per_second':64/seconds,'peak_allocated_bytes_by_rank':peaks,
+                 'examples_per_second_including_scaler_backoff':64*(successful+skipped)/seconds,'peak_allocated_bytes_by_rank':peaks,
                  'checkpoint_sha256':checksum,'checkpoint_resume_roundtrip':True,'gradient_parameters':gradients,
                  'source_rows':'train.jsonl.gz only','sequence_length':int(batch['input_ids'].shape[1]),
-                 'updates_discarded':True,'fp16_scaler':scaler.state_dict(),'nccl_all_reduce':True}
+                 'updates_discarded':True,'successful_optimizer_steps':successful,'scaler_skipped_steps':skipped,
+                 'fp16_scaler':scaler.state_dict(),'nccl_all_reduce':True}
             report.append(row);dump_json(out/'smoke_results.json',{'passed':len(report)==4,'models':report})
             print('SMOKE_RESULT',json.dumps(row),flush=True)
         del saved;dist.barrier()

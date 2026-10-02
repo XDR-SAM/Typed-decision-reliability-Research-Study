@@ -1,0 +1,37 @@
+temperature:
+  method: scalar_temperature_NLL_minimization
+  bounds: [0.05, 20.0]
+  fit_role: temperature_fit
+  minimum_rows: 100
+  minimum_classes: 2
+  fallback: temperature_1_with_failure_flag_no_silent_success
+  serialization: separate_float64_posthoc_artifact_no_laya_runtime_clamp
+gate:
+  target_accuracy: 0.90
+  minimum_coverage: 0.10
+  minimum_accepted_families: 200
+  candidate_grid: fixed_0.50_to_0.99_step_0.01_plus_0.995
+  selection: maximum_coverage_with_Bonferroni_one_sided_Clopper_Pearson_lower_bound_at_least_0.90
+  family_representatives_only: true
+  alpha: 0.05
+  verification: independent_December_no_reselection
+  unavailable_policy: null_threshold_no_certifiable_historical_gate_report_probability_endpoints
+  rolling_gate: keep_identical_numeric_threshold_change_temperature_only
+  subgroup_thresholds: prohibited_in_primary_or_secondary
+  diagnostic_thresholds: [0.50, 0.60, 0.70, 0.80, 0.90, 0.95]
+metrics:
+  ece_bins: 15
+  adaptive_ece_bins: 15
+  adaptive_ece: empirical_equal_mass_groups_keep_confidence_ties_together
+  brier: sum_over_classes_range_0_to_2
+  confidence: max_softmax_probability
+maintenance:
+  preceding_quarter_only: true
+  budgets: [100, 500, 2000]
+  draws: 20
+  sampling: uniform_record_sample_without_replacement_no_true_label_stratification
+  nested_budgets: true
+  sampling_seed: 20261002
+  full_preceding_quarter_arm: true
+  insufficient_rows: budget_unavailable_no_mislabelled_smaller_budget
+  interpretation: idealized_immediate_label_availability_actual_publication_delays_not_observed

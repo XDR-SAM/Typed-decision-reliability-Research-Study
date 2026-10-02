@@ -1,0 +1,28 @@
+primary_model_contrast: laya_ce_minus_matched_head_mean_future_quarter_NLL
+primary_gate_endpoint: per_quarter_accepted_risk_excess_over_0.10_with_coverage
+primary_horizon: [2025Q1, 2025Q2, 2025Q3, 2025Q4, 2026Q1]
+quarter_weighting: equal_quarter
+seeds: [17, 43, 101]
+seed_reporting: all_seeds_mean_range_no_best_seed_no_ensemble
+bootstrap_unit: global_template_family_shared_weights_across_quarters_models_and_seeds
+bootstrap_replicates: 2000
+gate_bootstrap_replicates: 10000
+bootstrap_seed: 20261002
+interval: percentile_95_percent
+paired_test: centered_cluster_bootstrap_two_sided
+primary_significance: 0.05
+secondary_planned_contrasts:
+  - laya_ce_vs_matched_head_macro_f1
+  - laya_ce_vs_modernbert_NLL
+  - laya_ce_rolling_full_vs_frozen_NLL
+  - laya_rlcd_vs_laya_ce_NLL_debt_only
+secondary_multiplicity: Holm_across_four_planned_contrasts_per_domain_missing_RLCD_replication_not_imputed
+quarter_gate_intervals: Bonferroni_95_percent_simultaneous_over_five_primary_quarters
+subgroup_intervals: pointwise_95_percent_descriptive_not_familywise_certification
+small_accepted_sets:
+  zero: null_accuracy_and_interval
+  fewer_than_30_families: counts_and_interval_only_no_headline_percentage
+  fewer_than_100_families: flag_insufficient_precision
+novel_family: no_family_observed_in_any_earlier_period_one_representative_per_period
+operational: full_stream_repetitions_preserved_cluster_uncertainty
+paired_alignment: exact_complaint_ID_and_label_order_required

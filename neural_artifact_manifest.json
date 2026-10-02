@@ -1,0 +1,45 @@
+{
+  "release_tag": "neural-protocol-2026-10-03",
+  "release_url": "https://github.com/XDR-SAM/Typed-decision-reliability-Research-Study/releases/tag/neural-protocol-2026-10-03",
+  "assets": [
+    {
+      "name": "neural-preparation-data.zip",
+      "bytes": 155189515,
+      "sha256": "dec38eaaf9b409600e491d37ae4fdd9c5ac018aecc2da03b640eabe1afe5cad8",
+      "files": [
+        {
+          "path": "research-project/outputs/neural_preparation/credit_card/rows.jsonl.gz",
+          "bytes": 52434094,
+          "sha256": "e4b180b0176c0711a4a0ffca63db653d7a660bced153d4d4c8c1fbaa88ac35c6"
+        },
+        {
+          "path": "research-project/outputs/neural_preparation/credit_card/train.jsonl.gz",
+          "bytes": 12227410,
+          "sha256": "96d94c1570d23605e095671f1e1bb002dad0ff520786d48ea252efa4b52938e1"
+        },
+        {
+          "path": "research-project/outputs/neural_preparation/credit_card/validation.jsonl.gz",
+          "bytes": 3882755,
+          "sha256": "d35cef291b98f5f1c4b19aad446e4dea12a9b55d171b751ca8bc384be0157088"
+        },
+        {
+          "path": "research-project/outputs/neural_preparation/debt_collection/rows.jsonl.gz",
+          "bytes": 69187970,
+          "sha256": "91dbf43c928165ffbdd2ddf37a66a42c94995be84711e0a4bcedc00490015df1"
+        },
+        {
+          "path": "research-project/outputs/neural_preparation/debt_collection/train.jsonl.gz",
+          "bytes": 12585002,
+          "sha256": "e034c7bf8ca540ef504e0559db47d49bf576a0bdff71dc4188e2d6886eecfbdc"
+        },
+        {
+          "path": "research-project/outputs/neural_preparation/debt_collection/validation.jsonl.gz",
+          "bytes": 4870926,
+          "sha256": "a8ab79249401aa49bb436fd4d49281290fb068a70e82108b7a3e0aa4be466654"
+        }
+      ]
+    }
+  ],
+  "pretrained_weights_downloaded": false,
+  "neural_training_executed": false
+}

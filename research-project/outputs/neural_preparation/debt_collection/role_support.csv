@@ -1,0 +1,85 @@
+role,issue,n,families,calibration_eligible
+2025Q1,Attempts to collect debt not owed,11390,7969,0
+2025Q1,Communication tactics,1348,1288,0
+2025Q1,Electronic communications,553,536,0
+2025Q1,False statements or representation,3590,2789,0
+2025Q1,Threatened to contact someone or share information improperly,321,306,0
+2025Q1,Took or threatened to take negative or legal action,1990,1861,0
+2025Q1,Written notification about debt,3767,2552,0
+2025Q2,Attempts to collect debt not owed,11686,7652,0
+2025Q2,Communication tactics,1277,1215,0
+2025Q2,Electronic communications,557,537,0
+2025Q2,False statements or representation,3279,2728,0
+2025Q2,Threatened to contact someone or share information improperly,344,325,0
+2025Q2,Took or threatened to take negative or legal action,1826,1706,0
+2025Q2,Written notification about debt,7879,3040,0
+2025Q3,Attempts to collect debt not owed,13919,9539,0
+2025Q3,Communication tactics,1368,1294,0
+2025Q3,Electronic communications,584,564,0
+2025Q3,False statements or representation,4076,3422,0
+2025Q3,Threatened to contact someone or share information improperly,363,350,0
+2025Q3,Took or threatened to take negative or legal action,2058,1823,0
+2025Q3,Written notification about debt,7734,3110,0
+2025Q4,Attempts to collect debt not owed,8777,6493,0
+2025Q4,Communication tactics,1028,989,0
+2025Q4,Electronic communications,526,508,0
+2025Q4,False statements or representation,3088,2642,0
+2025Q4,Threatened to contact someone or share information improperly,314,303,0
+2025Q4,Took or threatened to take negative or legal action,2159,1593,0
+2025Q4,Written notification about debt,4808,2740,0
+2026Q1,Attempts to collect debt not owed,10576,6069,0
+2026Q1,Communication tactics,897,859,0
+2026Q1,Electronic communications,474,463,0
+2026Q1,False statements or representation,2665,2295,0
+2026Q1,Threatened to contact someone or share information improperly,290,281,0
+2026Q1,Took or threatened to take negative or legal action,1767,1349,0
+2026Q1,Written notification about debt,3346,2184,0
+2026Q2_exploratory,Attempts to collect debt not owed,8574,5770,0
+2026Q2_exploratory,Communication tactics,862,834,0
+2026Q2_exploratory,Electronic communications,376,362,0
+2026Q2_exploratory,False statements or representation,2498,2244,0
+2026Q2_exploratory,Threatened to contact someone or share information improperly,229,219,0
+2026Q2_exploratory,Took or threatened to take negative or legal action,1742,1178,0
+2026Q2_exploratory,Written notification about debt,3182,1908,0
+excluded,Attempts to collect debt not owed,1250,928,0
+excluded,Communication tactics,137,131,0
+excluded,Electronic communications,72,72,0
+excluded,False statements or representation,359,326,0
+excluded,Threatened to contact someone or share information improperly,35,34,0
+excluded,Took or threatened to take negative or legal action,193,180,0
+excluded,Written notification about debt,681,374,0
+gate_selection,Attempts to collect debt not owed,2502,1776,1715
+gate_selection,Communication tactics,267,253,249
+gate_selection,Electronic communications,99,96,95
+gate_selection,False statements or representation,980,636,604
+gate_selection,Threatened to contact someone or share information improperly,63,57,55
+gate_selection,Took or threatened to take negative or legal action,493,450,440
+gate_selection,Written notification about debt,1112,621,595
+gate_verification,Attempts to collect debt not owed,3041,2104,2047
+gate_verification,Communication tactics,344,319,313
+gate_verification,Electronic communications,132,129,127
+gate_verification,False statements or representation,953,720,680
+gate_verification,Threatened to contact someone or share information improperly,79,77,74
+gate_verification,Took or threatened to take negative or legal action,571,515,509
+gate_verification,Written notification about debt,1070,641,623
+temperature_fit,Attempts to collect debt not owed,3105,1984,1929
+temperature_fit,Communication tactics,326,309,302
+temperature_fit,Electronic communications,114,109,104
+temperature_fit,False statements or representation,878,615,592
+temperature_fit,Threatened to contact someone or share information improperly,82,79,79
+temperature_fit,Took or threatened to take negative or legal action,631,470,458
+temperature_fit,Written notification about debt,1535,760,727
+train,Attempts to collect debt not owed,20389,14152,0
+train,Communication tactics,2522,2410,0
+train,Electronic communications,724,688,0
+train,False statements or representation,3047,2851,0
+train,Threatened to contact someone or share information improperly,617,576,0
+train,Took or threatened to take negative or legal action,3530,3295,0
+train,Written notification about debt,15664,6833,0
+validation,Attempts to collect debt not owed,8320,5213,0
+validation,Communication tactics,928,885,0
+validation,Electronic communications,298,284,0
+validation,False statements or representation,1469,1237,0
+validation,Threatened to contact someone or share information improperly,197,192,0
+validation,Took or threatened to take negative or legal action,1320,1191,0
+validation,Written notification about debt,4669,2127,0

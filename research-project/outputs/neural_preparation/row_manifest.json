@@ -1,0 +1,73 @@
+{
+  "debt_collection": {
+    "labels": [
+      "Attempts to collect debt not owed",
+      "Communication tactics",
+      "Electronic communications",
+      "False statements or representation",
+      "Threatened to contact someone or share information improperly",
+      "Took or threatened to take negative or legal action",
+      "Written notification about debt"
+    ],
+    "rows": 222885,
+    "training_rows": 34343,
+    "roles": {
+      "2025Q1": 22959,
+      "2025Q2": 26848,
+      "2025Q3": 30102,
+      "2025Q4": 20700,
+      "2026Q1": 20015,
+      "2026Q2_exploratory": 17463,
+      "excluded": 2727,
+      "gate_selection": 5516,
+      "gate_verification": 6190,
+      "temperature_fit": 6671,
+      "train": 46493,
+      "validation": 17201
+    },
+    "calibration_roles": {
+      "gate_selection": 3753,
+      "gate_verification": 4373,
+      "temperature_fit": 4191
+    },
+    "rows_sha256": "91dbf43c928165ffbdd2ddf37a66a42c94995be84711e0a4bcedc00490015df1"
+  },
+  "credit_card": {
+    "labels": [
+      "Advertising and marketing, including promotional offers",
+      "Closing your account",
+      "Fees or interest",
+      "Getting a credit card",
+      "Improper use of your report",
+      "Incorrect information on your report",
+      "Other features, terms, or problems",
+      "Problem when making payments",
+      "Problem with a company's investigation into an existing problem",
+      "Problem with a purchase shown on your statement",
+      "Struggling to pay your bill",
+      "Trouble using your card"
+    ],
+    "rows": 109519,
+    "training_rows": 25182,
+    "roles": {
+      "2025Q1": 9881,
+      "2025Q2": 9709,
+      "2025Q3": 11570,
+      "2025Q4": 10181,
+      "2026Q1": 9090,
+      "2026Q2_exploratory": 9437,
+      "excluded": 1815,
+      "gate_selection": 2618,
+      "gate_verification": 2885,
+      "temperature_fit": 2758,
+      "train": 31139,
+      "validation": 7972
+    },
+    "calibration_roles": {
+      "gate_selection": 2446,
+      "gate_verification": 2724,
+      "temperature_fit": 2620
+    },
+    "rows_sha256": "e4b180b0176c0711a4a0ffca63db653d7a660bced153d4d4c8c1fbaa88ac35c6"
+  }
+}

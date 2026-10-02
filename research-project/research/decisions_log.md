@@ -19,3 +19,13 @@
 - C=3.0 selected on historical validation only. No future tuning.
 - GO: 4/4 conditions; warnings: []. No scope expansion or neural/GPU work.
 - Plot checks and independent probability/NLL/accuracy recomputation completed. Added per-class selective diagnostics to expose minority-class failures; these did not change any model or threshold.
+
+## Full neural protocol preparation — 3 October 2026
+
+- User explicitly approved moving beyond CPU feasibility to protocol/preparation only. No neural/GPU training or neural CFPB inference is authorized in this step.
+- Reviewed repository/prior decisions, inspected pinned official Laya source/notebook/docs and checkpoint/tokenizer metadata. Hard one-hot outcomes are valid inputs; CE-only requires our labeled custom loop. Primary Laya-CE, exact encoder/input conventional control, generic ModernBERT-large and one Debt Collection RLCD+CE ablation are fixed.
+- Debt Collection is retrospective and pilot-exposed. Credit Card predictive outcomes remain uninspected. Its 12 labels follow the same >=200 training-count rule; it qualifies for aggregate secondary replication, with explicit sparse subgroup limits (minimum 56 future families).
+- Q4 roles fixed to October temperature, November gate, December verification, with disjoint families after historical exclusions. No gate is manufactured if 90% target/10% coverage/200 accepted families cannot be supported.
+- Fresh-label maintenance is previous-quarter-only, 100/500/2,000 uniform-record labels with 20 nested draws. Weights and numerical threshold remain fixed; actual publication/feedback delay is unknown.
+- Three fixed training seeds, identical historical rows/shared state slices, validation-only epoch selection. Global-family paired bootstrap, seed reporting and minority accepted-count rules fixed in YAML/full protocol.
+- New preparation datasets/tables have separate paths under outputs/neural_preparation. Original pilot models/predictions/metrics/figures/configs are preserved. Source snapshot/revisions and freeze hashes record the next-stage plan; it is not an external registry submission.

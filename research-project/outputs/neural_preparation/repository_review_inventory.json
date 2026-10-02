@@ -1,0 +1,1738 @@
+{
+  "review_scope": "Prior tracked study sources, decisions, reports, tests and artifact schemas; new preparation files tracked separately",
+  "base_commit": "7270c1c042124d4c1473b11df63af523951b4b7c",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 369,
+      "sha256": "2edf5f3f770001c5024e83ecf3ad4a668497a90709fb66965fa735c93b1a45a6"
+    },
+    {
+      "path": "ARTIFACTS.md",
+      "bytes": 1240,
+      "sha256": "7d56b297e84c4b900a641651ce0973177f5c9e9d4b24d2d98e5e31530b454218",
+      "lines": 14
+    },
+    {
+      "path": "README.md",
+      "bytes": 1855,
+      "sha256": "0342251940bb7235cb8ca55bad1d964be6dc3fd603a58139c31c0de774ab1e18",
+      "lines": 18
+    },
+    {
+      "path": "artifact_manifest.json",
+      "bytes": 14522,
+      "sha256": "bef11aef225df039948e3a6f19fec3e38bee743f4dc0ad5fc98c48a02a471641",
+      "lines": 329,
+      "top_level_fields": [
+        "release_tag",
+        "assets"
+      ]
+    },
+    {
+      "path": "laya-finetune-notebook-source.ipynb",
+      "bytes": 41289,
+      "sha256": "d97004a95c878e4d2d8158d0f91efa7922cdc854d7454d7a0ccda115444eccb0",
+      "lines": 916,
+      "notebook_cells": 19
+    },
+    {
+      "path": "laya-finetune-source.md",
+      "bytes": 8264,
+      "sha256": "24ccc1594911891b5b13044a9b7376a03d60893ecf47818837b0d40ab09dae76",
+      "lines": 145
+    },
+    {
+      "path": "openjev-rlcd-audit.html",
+      "bytes": 245828,
+      "sha256": "988dd05708638dd26dce6bbd9ba3cae8c432cacd91d365b4015a971eba781474"
+    },
+    {
+      "path": "package_artifacts.py",
+      "bytes": 1773,
+      "sha256": "72c7818f30309062ebbfbf80179c0baaab2c1c4f9a555e74636d4f6e26476d6b",
+      "lines": 41,
+      "functions": [
+        "sha"
+      ]
+    },
+    {
+      "path": "research-project/.gitignore",
+      "bytes": 98,
+      "sha256": "4901144ab39b29af212e58d6b77dce281f0ef7c8f0e8a4394cc231f050b3cac9"
+    },
+    {
+      "path": "research-project/README.md",
+      "bytes": 1834,
+      "sha256": "cc5722be5b5203dcfa6c979a16f1167b1626ccc31529e3b695792ffd5573f2ad",
+      "lines": 28
+    },
+    {
+      "path": "research-project/configs/data.yaml",
+      "bytes": 2842,
+      "sha256": "38b5856fda5577f6c1c21bad95b7565f5053a28c0b562eed4f5a6ed378fbce88",
+      "lines": 44
+    },
+    {
+      "path": "research-project/configs/debt_collection_issues.yaml",
+      "bytes": 2335,
+      "sha256": "296d3ca34584a64260a52ddf316139e998f9f42af2b280aa4059058e91eaeab8",
+      "lines": 107
+    },
+    {
+      "path": "research-project/configs/keyword_ablation.yaml",
+      "bytes": 371,
+      "sha256": "67dfd7eb16574baf85c3afa4dce59cfcbfeaa7ecea117b7ff845c750a5f279c3",
+      "lines": 13
+    },
+    {
+      "path": "research-project/data/README.md",
+      "bytes": 2609,
+      "sha256": "a41db39f4f099ce5547a5b230dcc39350b5dc6aae8698e7cbdc344ac7d45ff36",
+      "lines": 15
+    },
+    {
+      "path": "research-project/data/audit_cfpb.py",
+      "bytes": 4107,
+      "sha256": "5b7e1eaac85fc5966c0c69845fe6adae1bc27380b40db4db22202cb5b2473a5e",
+      "lines": 60,
+      "functions": [
+        "main",
+        "ct"
+      ]
+    },
+    {
+      "path": "research-project/data/complete_audit.py",
+      "bytes": 3863,
+      "sha256": "e401fbaeea76812c34af918ddc3cd589c7447e86a7ce4f42c9b28fc6ae7cc87b",
+      "lines": 41,
+      "functions": [
+        "main"
+      ]
+    },
+    {
+      "path": "research-project/data/deduplicate.py",
+      "bytes": 4785,
+      "sha256": "056c61e0543fe252975417d61349281ed5f49e16b109f844d8c991512e0015a3",
+      "lines": 77,
+      "functions": [
+        "tokens",
+        "shingles",
+        "main",
+        "find",
+        "union",
+        "get_shingles"
+      ]
+    },
+    {
+      "path": "research-project/data/download_cfpb.py",
+      "bytes": 2317,
+      "sha256": "01daa7c2f5ed1caa8139189490856c2d216ad40e5268c9962aaada5517ab1715",
+      "lines": 41,
+      "functions": [
+        "download",
+        "main"
+      ]
+    },
+    {
+      "path": "research-project/data/make_splits.py",
+      "bytes": 810,
+      "sha256": "7819d4dc24e55c8c3d39e7ac2c2fd367eb0bffa7eea007a722b1279dfd8d2fa1",
+      "lines": 16,
+      "functions": [
+        "main"
+      ]
+    },
+    {
+      "path": "research-project/data/preprocess.py",
+      "bytes": 4408,
+      "sha256": "b1bc65fbe719577155847ad835c1a3e223b7d8e7eaa2bf00d1f6bb94d835e071",
+      "lines": 54,
+      "functions": [
+        "main"
+      ]
+    },
+    {
+      "path": "research-project/data/source_manifest.json",
+      "bytes": 8642,
+      "sha256": "834f89572fc72ffc1309a618e9a22c5a3e8d672628416b0f5e663762e2e0cf39",
+      "lines": 173,
+      "top_level_fields": "list"
+    },
+    {
+      "path": "research-project/outputs/audits/audit_complete.json",
+      "bytes": 602,
+      "sha256": "d9e569a24897ae6dc7eb4a393a828e72345dce6bb4c25cf9fb4f0527aa731a6c",
+      "lines": 20,
+      "top_level_fields": [
+        "complete",
+        "stage",
+        "records",
+        "availability",
+        "required_audits"
+      ]
+    },
+    {
+      "path": "research-project/outputs/audits/availability_daily.csv",
+      "bytes": 82356,
+      "sha256": "fa6f47a9854e90be575be8f902ebf6d42f43d99c62dc91d111d8a8a3e8c14690",
+      "columns": [
+        "date",
+        "total_records",
+        "nonempty_narratives",
+        "debt_records",
+        "debt_narratives",
+        "credit_card_records",
+        "credit_card_narratives",
+        "narrative_fraction",
+        "debt_narrative_fraction"
+      ],
+      "data_rows": 1096
+    },
+    {
+      "path": "research-project/outputs/audits/availability_decision.json",
+      "bytes": 289,
+      "sha256": "017c1ba36f8bb5bbfda322749213c795d412c3897cdeab66083f6a8117c84150",
+      "lines": 7,
+      "top_level_fields": [
+        "reference_median_fraction",
+        "q2_eligible_exploratory",
+        "july_eligible_exploratory",
+        "august_eligible",
+        "note"
+      ]
+    },
+    {
+      "path": "research-project/outputs/audits/availability_monthly.csv",
+      "bytes": 3093,
+      "sha256": "d1f8f68397bfeae25c6f0eaace3f2494f825d8c2a109e4edd482cfbf4f07f8b8",
+      "columns": [
+        "month",
+        "total_records",
+        "nonempty_narratives",
+        "debt_records",
+        "debt_narratives",
+        "credit_card_records",
+        "credit_card_narratives",
+        "narrative_fraction",
+        "debt_narrative_fraction"
+      ],
+      "data_rows": 36
+    },
+    {
+      "path": "research-project/outputs/audits/availability_quarterly.csv",
+      "bytes": 1254,
+      "sha256": "7c31f59b25090aea009f4be894a5eb2bb44401689249747b693131b1227e26e7",
+      "columns": [
+        "quarter",
+        "total_records",
+        "nonempty_narratives",
+        "debt_records",
+        "debt_narratives",
+        "credit_card_records",
+        "credit_card_narratives",
+        "narrative_fraction",
+        "debt_narrative_fraction"
+      ],
+      "data_rows": 13
+    },
+    {
+      "path": "research-project/outputs/audits/debt_issue_counts.csv",
+      "bytes": 681,
+      "sha256": "21f412ab1ac478c2e12305bfac8a359075030f1591a4348dcc969ef917856922",
+      "columns": [
+        "period",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 10
+    },
+    {
+      "path": "research-project/outputs/audits/debt_issue_proportions.csv",
+      "bytes": 1759,
+      "sha256": "b5a6519d0610abec06521e0f34c2985e9cd161f09c5d9bd7a182321c3609e806",
+      "columns": [
+        "period",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 10
+    },
+    {
+      "path": "research-project/outputs/audits/debt_metadata.csv.gz",
+      "bytes": 17117566,
+      "sha256": "979d35a502515a06ef04127a7a3aaa3ba60f82ad8a0763b889fece2302b546e6"
+    },
+    {
+      "path": "research-project/outputs/audits/debt_period_summary.csv",
+      "bytes": 1798,
+      "sha256": "973c3e9f72ff1e73221f9f34e9cda0c267b4873efa99e45a042dc5d9975a39d8",
+      "columns": [
+        "period",
+        "n",
+        "included",
+        "unknown_or_excluded_fraction",
+        "label_entropy_bits",
+        "exact_unique",
+        "exact_within_repeats",
+        "exact_prior_period",
+        "characters_mean",
+        "characters_median",
+        "characters_p05",
+        "characters_p95",
+        "characters_max",
+        "words_mean",
+        "words_median",
+        "words_p05",
+        "words_p95",
+        "words_max"
+      ],
+      "data_rows": 10
+    },
+    {
+      "path": "research-project/outputs/audits/dedup_summary.json",
+      "bytes": 601,
+      "sha256": "c562199653fb64389a91a21dae5d942fd6e90150cbf0c637c70bc8b976edfd94",
+      "lines": 16,
+      "top_level_fields": [
+        "records",
+        "exact_unique",
+        "normalized_unique",
+        "families",
+        "repeated_families",
+        "cross_period_families",
+        "rows_in_cross_period_families",
+        "conflicting_label_families",
+        "canonical_duplicate_links",
+        "verified_near_links",
+        "lsh_candidates",
+        "short_texts_not_lsh",
+        "elapsed_seconds",
+        "limitations"
+      ]
+    },
+    {
+      "path": "research-project/outputs/audits/duplicates_by_period.csv",
+      "bytes": 675,
+      "sha256": "6f3e95643bf09d5337a48151e112f078122bacd69634a4aa2d62250af5ec4d6a",
+      "columns": [
+        "period",
+        "n",
+        "families",
+        "family_prior_period",
+        "seen_historical_fraction",
+        "novel_records",
+        "novel_families",
+        "largest_family"
+      ],
+      "data_rows": 10
+    },
+    {
+      "path": "research-project/outputs/audits/exact_duplicate_groups.csv",
+      "bytes": 562108,
+      "sha256": "def1a30e28ace9d9fe4be53f0c8bf9173154eac86309298d4a9c2fe07840b5f0",
+      "columns": [
+        "exact_hash",
+        "n",
+        "labels",
+        "periods",
+        "first_date",
+        "last_date"
+      ],
+      "data_rows": 5975
+    },
+    {
+      "path": "research-project/outputs/audits/independent_counts_by_class.csv",
+      "bytes": 4184,
+      "sha256": "545008bc842adf01c48e7905ce9bd5ec38958b11a8dd8415188c2e5c10519782",
+      "columns": [
+        "period",
+        "issue",
+        "n",
+        "families",
+        "novel_families"
+      ],
+      "data_rows": 70
+    },
+    {
+      "path": "research-project/outputs/audits/ingestion_summary.json",
+      "bytes": 6616,
+      "sha256": "19b89fce028d5e5698c9d94ff1ba7d5d1d51385ddb12b24f3060690b3d6b6821",
+      "lines": 213,
+      "top_level_fields": [
+        "unique_records",
+        "duplicate_ids",
+        "invalid_dates",
+        "debt_narratives",
+        "credit_card_narratives",
+        "files"
+      ]
+    },
+    {
+      "path": "research-project/outputs/audits/issue_counts_long.csv",
+      "bytes": 32818,
+      "sha256": "adca8f9c4fa0be8db34c17804312ff7e5edd847c3b94a96f2adbf61b604273c1",
+      "columns": [
+        "product",
+        "period",
+        "issue",
+        "population",
+        "n"
+      ],
+      "data_rows": 462
+    },
+    {
+      "path": "research-project/outputs/audits/label_prior_drift.csv",
+      "bytes": 300,
+      "sha256": "bb9869ec0a4fc5f730f1b153eda6c99f7a1d4effa062c720f5e2178567e1ad38",
+      "columns": [
+        "period",
+        "label_prior_js_bits"
+      ],
+      "data_rows": 10
+    },
+    {
+      "path": "research-project/outputs/audits/label_status.json",
+      "bytes": 747,
+      "sha256": "3542a5eed6766691c1bb9fbc78543494085e555efe2dd4fca66e45d463d1e16b",
+      "lines": 26,
+      "top_level_fields": [
+        "included",
+        "new_after_training",
+        "absent_by_period",
+        "renaming",
+        "exact_groups_with_conflicting_labels"
+      ]
+    },
+    {
+      "path": "research-project/outputs/audits/output_verification.json",
+      "bytes": 1447,
+      "sha256": "4f73d7a45cd0da5a90ac8ab0654416484a1c84a0eff257e8757cc561c59af4f4",
+      "lines": 63,
+      "top_level_fields": [
+        "prediction_checks",
+        "manifest_files",
+        "source_sizes_verified",
+        "all_checks_passed"
+      ]
+    },
+    {
+      "path": "research-project/outputs/audits/product_counts_monthly.csv",
+      "bytes": 16437,
+      "sha256": "0ae85aad82300a8feef7ad1d3b84b54522582c5e421903f3443823b1ddd55351",
+      "columns": [
+        "month",
+        "product",
+        "n"
+      ],
+      "data_rows": 396
+    },
+    {
+      "path": "research-project/outputs/audits/split_manifest.csv.gz",
+      "bytes": 1534975,
+      "sha256": "92538e34b845056673527428c70aa0634f51401b0af173d628fc6c01807b0ead"
+    },
+    {
+      "path": "research-project/outputs/audits/taxonomy_text.txt",
+      "bytes": 73720,
+      "sha256": "1cdfd0fef77789a256531510f2e22240725a39ad4da0f9ef2cedce939f812591",
+      "lines": 1313
+    },
+    {
+      "path": "research-project/outputs/audits/template_families.csv",
+      "bytes": 389582,
+      "sha256": "12e3be37f3e5d0db75e28f4e0899769a032bed75302821b2eecb4104f2f587cb",
+      "columns": [
+        "family",
+        "n",
+        "labels",
+        "periods",
+        "first_date",
+        "last_date"
+      ],
+      "data_rows": 10977
+    },
+    {
+      "path": "research-project/outputs/audits/verified_near_duplicate_edges.csv",
+      "bytes": 701118,
+      "sha256": "0c5f771723da7c4361f58227e1f3f37c2d47406aefd63a1e8139c3200badd44c",
+      "columns": [
+        "row_a",
+        "row_b",
+        "jaccard",
+        "id_a",
+        "id_b"
+      ],
+      "data_rows": 14236
+    },
+    {
+      "path": "research-project/outputs/figures/availability.png",
+      "bytes": 171802,
+      "sha256": "781940c3d74e29fe33bb1bab069e61ce96e1936efbf3021ee2363e41e018d9cd"
+    },
+    {
+      "path": "research-project/outputs/figures/class_distribution.png",
+      "bytes": 74628,
+      "sha256": "57550ecb9461a0f31ca0d0792e1e35e45a190f2d1ba63fb643a198c0cea43677"
+    },
+    {
+      "path": "research-project/outputs/figures/confusion_2026Q1.png",
+      "bytes": 159855,
+      "sha256": "ddcce25bb9f28f242d68ebbdc9768aa4a94f9bae68686c209bf4d3c9f469a277"
+    },
+    {
+      "path": "research-project/outputs/figures/duplicate_exposure.png",
+      "bytes": 39673,
+      "sha256": "3d1c6c6dd7fdde6f65b3a007622bc4fa10b5195b25645cd987bbe93e176f752f"
+    },
+    {
+      "path": "research-project/outputs/figures/reliability.png",
+      "bytes": 106128,
+      "sha256": "22c6fa9cbe79b9f307849f2a036e0ac9e42d1b4a8b5a4a4c34af719ef50ca228"
+    },
+    {
+      "path": "research-project/outputs/figures/risk_coverage.png",
+      "bytes": 243754,
+      "sha256": "4a86661934c33851fded80bbed7786223359f89385b099719bbe2486427e865f"
+    },
+    {
+      "path": "research-project/outputs/figures/temporal_metrics.png",
+      "bytes": 275243,
+      "sha256": "eb3e2c2d955dba35fd565b34ac0df63bbbd38871701d41bcc90ceaddd6d24311"
+    },
+    {
+      "path": "research-project/outputs/figures/threshold_transfer.png",
+      "bytes": 222183,
+      "sha256": "f330cff8ed6590454188a3d97629a910bfe66d7f7d7fe781262c99c27d40ff81"
+    },
+    {
+      "path": "research-project/outputs/metrics/accuracy_family_bootstrap.csv",
+      "bytes": 592,
+      "sha256": "9032765f85642f15cdc00eaf2a157427d9010da6b4c1056ab6324a52a5a75a95",
+      "columns": [
+        "period",
+        "accuracy_low",
+        "accuracy_high",
+        "bootstrap_replicates",
+        "unit"
+      ],
+      "data_rows": 8
+    },
+    {
+      "path": "research-project/outputs/metrics/classification_probability.csv",
+      "bytes": 10032,
+      "sha256": "d04c48ae14699832cf39233de6223558181c56fb218a1841812208aaeb62b44f",
+      "columns": [
+        "model",
+        "period",
+        "subset",
+        "n",
+        "accuracy",
+        "macro_f1",
+        "balanced_accuracy",
+        "correctness_auc",
+        "nll",
+        "brier",
+        "ece",
+        "mean_confidence",
+        "confidence_minus_accuracy"
+      ],
+      "data_rows": 47
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_keyword_mask_frozen_2024Q4_operational.csv",
+      "bytes": 692,
+      "sha256": "6edc123e8be72bf03a487c1c6950f62cbbf475691266ace78323554ede05c089",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_keyword_mask_frozen_2025Q1_operational.csv",
+      "bytes": 697,
+      "sha256": "596c83ad92e4138e1bcfefbc9ce3c6f62e8b505115350d175a5d2043654ab164",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_keyword_mask_frozen_2025Q2_operational.csv",
+      "bytes": 698,
+      "sha256": "ffdb4cd005ae799dd212f953458caf0daf91f4e83ed4ccf43ce104b8268f1f95",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_keyword_mask_frozen_2025Q3_operational.csv",
+      "bytes": 703,
+      "sha256": "8e7a3c98778a8dcf0c5997aedae8786d3833a78e822ba18cf4a805619570c734",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_keyword_mask_frozen_2025Q4_operational.csv",
+      "bytes": 699,
+      "sha256": "016327f38fc76bb3f812052a595feefe96288f8c76f24408573632ce333c242a",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_keyword_mask_frozen_2026Q1_operational.csv",
+      "bytes": 693,
+      "sha256": "bfea67f6f4ee96700c9a359ea1e18c5e4a409753bb2db65143c017c38bb65640",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_keyword_mask_frozen_2026Q2_operational.csv",
+      "bytes": 693,
+      "sha256": "50e07c1d823003d291eeecaee909870e3ce4ae2a984e8cdfdd74a4d7b71ca20d",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_keyword_mask_frozen_validation_operational.csv",
+      "bytes": 687,
+      "sha256": "ec3672c409045d19333cde45d5616bb62b348d1c595ca4076037e883ef199e3f",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_keyword_mask_refit_2024Q4_operational.csv",
+      "bytes": 691,
+      "sha256": "4446ca1756a573afd683b6190aad4de5db2cc8892d0f47b7d7635a30518e10ea",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_keyword_mask_refit_2025Q1_operational.csv",
+      "bytes": 697,
+      "sha256": "069a13b933a7d3f49961e218b92be92b75acea65c0b6fb4bc476ba635f82796d",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_keyword_mask_refit_2025Q2_operational.csv",
+      "bytes": 697,
+      "sha256": "61c4639da3cdefebba5c6fdd2565a7befb5e9e9c8171165f4198515a4e50dc4f",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_keyword_mask_refit_2025Q3_operational.csv",
+      "bytes": 703,
+      "sha256": "b5e10291f03dc3d40413f57640db5e31bc70884bb5d33c06c1181831422d258e",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_keyword_mask_refit_2025Q4_operational.csv",
+      "bytes": 699,
+      "sha256": "2a2facd1fd603b436ae05134e85bd5b88ad3cea97d53da2b434ff17d6c0d4ecc",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_keyword_mask_refit_2026Q1_operational.csv",
+      "bytes": 694,
+      "sha256": "457fdd40cadcd2cd086f277262e264cbc3f3d8294f8a32f3ba3d964ad9af3c5a",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_keyword_mask_refit_2026Q2_operational.csv",
+      "bytes": 692,
+      "sha256": "45b3d2b8412d3a443a0978e14cf94304c66874031d5ffb417f0912235e0a7e23",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_keyword_mask_refit_validation_operational.csv",
+      "bytes": 687,
+      "sha256": "b1644da28841cd2ab64c42562428fcd2a60ff79c5d730a4bfb6fd1683598e137",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_majority_prior_2024Q4_operational.csv",
+      "bytes": 651,
+      "sha256": "6e3b53f14d75dff3332059066fdedf98f7a427eb3218ac5c47b9aa1e71e6c60a",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_majority_prior_2025Q1_operational.csv",
+      "bytes": 653,
+      "sha256": "f2eb2e6e85fed4a281e1d7347d16f338d9b205e82bbccd2d2301ed69e4012bee",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_majority_prior_2025Q2_operational.csv",
+      "bytes": 653,
+      "sha256": "b67f77dfb85dd5fd6efd2d9e624359e339d05106e1bc52c8cf4b60a78b495dbb",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_majority_prior_2025Q3_operational.csv",
+      "bytes": 653,
+      "sha256": "038a076c158222f7e8a271467238001a5fb467e053011fa46b819b802dee6bf5",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_majority_prior_2025Q4_operational.csv",
+      "bytes": 652,
+      "sha256": "db642bed868ba0e4e0434bffa6cc9ebbf611c9c843585edacc54c5709012e159",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_majority_prior_2026Q1_operational.csv",
+      "bytes": 652,
+      "sha256": "e39df8b0f0278463384b0403c4c7dba537942eccfd65ecaf89ecbeb032b2d0d5",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_majority_prior_2026Q2_operational.csv",
+      "bytes": 651,
+      "sha256": "47efbdac3ec12f8735419119b04af2fa7010fc5682905c4bd58f7ab78a350e55",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_majority_prior_validation_operational.csv",
+      "bytes": 651,
+      "sha256": "6d528fea6721a1143a62bbb05b3e6d0b850eaf9c551a304719e94d05cf33ba12",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2024Q4_novel_family.csv",
+      "bytes": 687,
+      "sha256": "b74342af4fee622a3ae78c6f0e4d07082be2ff1a6d3966a44f2038d76ff70f02",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2024Q4_operational.csv",
+      "bytes": 692,
+      "sha256": "5d20af7312702652e010d4dbd2ef14a005abada73afe856b980156ed7bbd1806",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2024Q4_unique_family.csv",
+      "bytes": 687,
+      "sha256": "5763b955c4dca60b07418e7a3ecdadcefa7a26c1940b462a8f97c8549e149036",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2025Q1_novel_family.csv",
+      "bytes": 694,
+      "sha256": "8fed5e626c6d42e56d0f735e7f54b5b5b284783873ce0f9f9bf48b0097efed25",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2025Q1_operational.csv",
+      "bytes": 697,
+      "sha256": "bdc8c4016c74ff748aee7b73ab9a9ab0138942aee44ee10cbc1b021b4d72ac01",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2025Q1_unique_family.csv",
+      "bytes": 694,
+      "sha256": "48952e56994d4d508d3dec02afbcaaf05437c8524e64a168275af266107dac6c",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2025Q2_novel_family.csv",
+      "bytes": 697,
+      "sha256": "013cb22aacfa4e77435cf4ac57f562fa06f3c29f645593dbc67fa52d0942c1cd",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2025Q2_operational.csv",
+      "bytes": 698,
+      "sha256": "63f9e8617af5966a5bd50fe328a76988a1408a4f98ea3cebcc437b3c15ece314",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2025Q2_unique_family.csv",
+      "bytes": 697,
+      "sha256": "43c06ceef30065387a236396d350aea3a0806c3e64bfac430cd6ac5a8b792394",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2025Q3_novel_family.csv",
+      "bytes": 699,
+      "sha256": "f953473a1f8ca2c5be9c8120a0138b00359acd16c7d548496bf354c03d8a0565",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2025Q3_operational.csv",
+      "bytes": 703,
+      "sha256": "11b3960bca71ce932712483563e525af7ae9b8c2a4a2daf028f99a7d79702f38",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2025Q3_unique_family.csv",
+      "bytes": 699,
+      "sha256": "646d7a347bb31e468ea016774ac7f3b318de52ebad946a64409d58b5bdb7c857",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2025Q4_novel_family.csv",
+      "bytes": 697,
+      "sha256": "19daab0bbd9906020eadffdeca47b7a610703d1241e19d4862eac659626e49c4",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2025Q4_operational.csv",
+      "bytes": 699,
+      "sha256": "84bbe83feeef2c823d2bc2d256a57fa678eddc12979f9c6bca96a0b72408b72e",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2025Q4_unique_family.csv",
+      "bytes": 697,
+      "sha256": "125f55181e542f4495f580f0dbf6eddbe00708cef2e7d7b4fb3768b157a3e823",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2026Q1_novel_family.csv",
+      "bytes": 690,
+      "sha256": "0a32a848179318b4287cb3dda1ab905f05b703b127d423be2eddde9457e5c56f",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2026Q1_operational.csv",
+      "bytes": 693,
+      "sha256": "f2bc44a920b424ab1cae6b3df86490ed3213ee49e4a3485c38f98da5769e842c",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2026Q1_unique_family.csv",
+      "bytes": 690,
+      "sha256": "2a935b63be9037729390f3c923192dbae3a2db93d13f8c32103b433d48a6afe8",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2026Q2_novel_family.csv",
+      "bytes": 689,
+      "sha256": "2c0652cd8b72c455d96228dd99a5e77f6551e0c9f1a248dbf08ba4c0ffe7ddb2",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2026Q2_operational.csv",
+      "bytes": 693,
+      "sha256": "c426589d5e2877f6d2db03a02aedab8bbf33a4c3c1b939fbac154873f6cf1235",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_2026Q2_unique_family.csv",
+      "bytes": 689,
+      "sha256": "7beff0e51bd6210783d268cf57874eed729b4a6d59f535d4afbe4a9edfb3471e",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_validation_operational.csv",
+      "bytes": 687,
+      "sha256": "e2e2636a3c4bb8e655fb2afe076d67150f2e0f9cdbdc8d98fcae374309d613ff",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/confusion_normal_validation_unique_family.csv",
+      "bytes": 683,
+      "sha256": "f60635475a5b528592b276a037c79ea2ee01fe82987937512b867d276fcaac50",
+      "columns": [
+        "",
+        "Attempts to collect debt not owed",
+        "Communication tactics",
+        "Electronic communications",
+        "False statements or representation",
+        "Threatened to contact someone or share information improperly",
+        "Took or threatened to take negative or legal action",
+        "Written notification about debt"
+      ],
+      "data_rows": 7
+    },
+    {
+      "path": "research-project/outputs/metrics/per_class.csv",
+      "bytes": 41501,
+      "sha256": "d4806c4acd626fcbcc5ef8501bb338e8175249b12ee2bfb10c823f3d65c05120",
+      "columns": [
+        "model",
+        "period",
+        "subset",
+        "issue",
+        "precision",
+        "recall",
+        "f1",
+        "support"
+      ],
+      "data_rows": 329
+    },
+    {
+      "path": "research-project/outputs/metrics/reliability_bins.csv",
+      "bytes": 38777,
+      "sha256": "28c1d381ec5f262a8935f4bb6412b06ca9f191470df8605d793414a3935cbcc3",
+      "columns": [
+        "model",
+        "period",
+        "subset",
+        "bin",
+        "n",
+        "accuracy",
+        "mean_confidence"
+      ],
+      "data_rows": 500
+    },
+    {
+      "path": "research-project/outputs/metrics/risk_coverage.csv",
+      "bytes": 1770809,
+      "sha256": "da18ef6d3b831f4ff0f09609f22fd7b5b8f531be1f92f554e337fb2c8c2b0115",
+      "columns": [
+        "model",
+        "period",
+        "subset",
+        "coverage",
+        "risk",
+        "threshold"
+      ],
+      "data_rows": 19508
+    },
+    {
+      "path": "research-project/outputs/metrics/selective.csv",
+      "bytes": 25793,
+      "sha256": "d5a4677da72292c7e671ee854b5fe3e36d5989b540154926f2e0a4e6175a780a",
+      "columns": [
+        "model",
+        "period",
+        "subset",
+        "threshold",
+        "accepted",
+        "coverage",
+        "accepted_accuracy",
+        "risk"
+      ],
+      "data_rows": 282
+    },
+    {
+      "path": "research-project/outputs/metrics/selective_by_class.csv",
+      "bytes": 32326,
+      "sha256": "3f7961adf7a235dacb46d37c87631c374daa78e00d7bc033aad087899be183c4",
+      "columns": [
+        "period",
+        "threshold",
+        "issue",
+        "support",
+        "accepted",
+        "coverage",
+        "accepted_accuracy"
+      ],
+      "data_rows": 336
+    },
+    {
+      "path": "research-project/outputs/tables/ablation_fit.json",
+      "bytes": 57,
+      "sha256": "d37ec4d0fbb5b18e53801e18fbff6792c9a59c9703ea2aefb3695107ea72a51d",
+      "lines": 5,
+      "top_level_fields": [
+        "C",
+        "iterations",
+        "warnings"
+      ]
+    },
+    {
+      "path": "research-project/outputs/tables/go_no_go.json",
+      "bytes": 399,
+      "sha256": "c210a5a5198d2bb06440a1f9507c2413ce897c66a97ca6b3d4dca910774bc8dd",
+      "lines": 20,
+      "top_level_fields": [
+        "verdict",
+        "numerical_rule_result",
+        "passed",
+        "conditions",
+        "special_warnings",
+        "confidence_useful_windows",
+        "ranges"
+      ]
+    },
+    {
+      "path": "research-project/outputs/tables/go_no_go_conditions.csv",
+      "bytes": 521,
+      "sha256": "6c173a8c9f7990c9422e395751706bec0a6192b37f74ccb47c35d8ad02913b17",
+      "columns": [
+        "Condition",
+        "Result",
+        "Evidence"
+      ],
+      "data_rows": 4
+    },
+    {
+      "path": "research-project/outputs/tables/headline_results.csv",
+      "bytes": 1759,
+      "sha256": "14799e483fb1d4632c3bdd80a876e92cce44e04207e35a152478e2cbd9b3131e",
+      "columns": [
+        "model",
+        "period",
+        "subset",
+        "n",
+        "accuracy",
+        "macro_f1",
+        "balanced_accuracy",
+        "correctness_auc",
+        "nll",
+        "brier",
+        "ece",
+        "mean_confidence",
+        "confidence_minus_accuracy"
+      ],
+      "data_rows": 8
+    },
+    {
+      "path": "research-project/outputs/tables/historical_tuning.csv",
+      "bytes": 128,
+      "sha256": "ed9619ec6a059b84995d15feea7032dd162550808719c75709fcaccaa1277a23",
+      "columns": [
+        "C",
+        "validation_macro_f1",
+        "iterations",
+        "warnings"
+      ],
+      "data_rows": 3
+    },
+    {
+      "path": "research-project/outputs/tables/keyword_mask_counts.csv",
+      "bytes": 169,
+      "sha256": "cfebce8628017d62dd83d2fe9a5dc55f2b535e834060285915812cbeefbccbd5",
+      "columns": [
+        "period",
+        "n",
+        "n_affected"
+      ],
+      "data_rows": 8
+    },
+    {
+      "path": "research-project/outputs/tables/literal_rule.csv",
+      "bytes": 643,
+      "sha256": "1b3954b4c89b06320810e0c9fbd164710d3fb08d50ad7653194c178fe849b3b9",
+      "columns": [
+        "period",
+        "n",
+        "any_phrase_fraction",
+        "accuracy",
+        "macro_f1"
+      ],
+      "data_rows": 8
+    },
+    {
+      "path": "research-project/outputs/tables/normal_thresholds.csv",
+      "bytes": 6433,
+      "sha256": "efdff0c52e6750a9c5f7a2ddac22a135e65dd42cbc8a4861ae7dda5b2762633b",
+      "columns": [
+        "model",
+        "period",
+        "subset",
+        "threshold",
+        "accepted",
+        "coverage",
+        "accepted_accuracy",
+        "risk",
+        "accuracy",
+        "improvement"
+      ],
+      "data_rows": 48
+    },
+    {
+      "path": "research-project/outputs/tables/top_features.csv",
+      "bytes": 11523,
+      "sha256": "1e4811e0a399390e3210cbedbe925d2fdf50bb5a400a36dea1c7c5f494d0af57",
+      "columns": [
+        "issue",
+        "feature",
+        "coefficient"
+      ],
+      "data_rows": 175
+    },
+    {
+      "path": "research-project/pytest.ini",
+      "bytes": 42,
+      "sha256": "b160d82f7811555051f8966d8e02750a985227c1d022208c784e606946f2eada"
+    },
+    {
+      "path": "research-project/requirements-lock.txt",
+      "bytes": 436,
+      "sha256": "e26badc0294ecccd8e0a4192904fd42ee269ad510b13d44df2a20fcec37ffdd1",
+      "lines": 25
+    },
+    {
+      "path": "research-project/research/build_report.py",
+      "bytes": 27035,
+      "sha256": "0bb121606129e81202c079778b2dea0aa803159d27c7ca7b80503277ab033200",
+      "lines": 266,
+      "functions": [
+        "md",
+        "main",
+        "fmt"
+      ]
+    },
+    {
+      "path": "research-project/research/decisions_log.md",
+      "bytes": 4292,
+      "sha256": "fa10b1779a05173182f9154d29fec728d8eeb3f741214f190280130effa9e022",
+      "lines": 31
+    },
+    {
+      "path": "research-project/research/go_no_go.md",
+      "bytes": 1676,
+      "sha256": "a058aaa369a56be335a8998f0d4d4b0d99efc03543a2e4d7aef8472a94c510c7",
+      "lines": 18
+    },
+    {
+      "path": "research-project/research/novelty_update.md",
+      "bytes": 10607,
+      "sha256": "622cf5f89285dc16f72edded20fca7df954bd9c3bb4d4d7595d1c4e29c944d4f",
+      "lines": 64
+    },
+    {
+      "path": "research-project/research/pilot_report.md",
+      "bytes": 19338,
+      "sha256": "2f1d483a46dd504e37b56f33c1627db6fa3cddb9a87b51f0a9d7d6e3972b198a",
+      "lines": 259
+    },
+    {
+      "path": "research-project/research/verify_outputs.py",
+      "bytes": 2005,
+      "sha256": "72e185c4e12f1b0089e07e7b0b26e7381ad2390eedb19573dd65dcb20295855e",
+      "lines": 28,
+      "functions": [
+        "main"
+      ]
+    },
+    {
+      "path": "research-project/src/calibration_metrics.py",
+      "bytes": 761,
+      "sha256": "e76f569fb7f874522c98f20c4d05c89923fe019afeeca84215c92ade85e7e32f",
+      "lines": 15,
+      "functions": [
+        "probability_metrics"
+      ]
+    },
+    {
+      "path": "research-project/src/evaluate.py",
+      "bytes": 1129,
+      "sha256": "226d4ad7b7a2ffdc929ac5c3bdecbc0a703e2ae0399c4576a38fb2536e6ac54a",
+      "lines": 15,
+      "functions": [
+        "evaluate"
+      ]
+    },
+    {
+      "path": "research-project/src/selective_metrics.py",
+      "bytes": 768,
+      "sha256": "8487074dcff0be39a353cfd987b61f636dce3542c59127c4f4510225a810a45d",
+      "lines": 11,
+      "functions": [
+        "selective"
+      ]
+    },
+    {
+      "path": "research-project/src/tfidf_baseline.py",
+      "bytes": 8171,
+      "sha256": "d776cea04ecef7ccbddc484023f52ff226a944d4ef848f3190ec440a43ef1cd5",
+      "lines": 100,
+      "functions": [
+        "text_inputs",
+        "main",
+        "vectorizer"
+      ]
+    },
+    {
+      "path": "research-project/src/utils.py",
+      "bytes": 1069,
+      "sha256": "0824d6254b7cf10fe3d4a9dd22592a4a52f1e34b4162606121574c278c5ab5e4",
+      "lines": 24,
+      "functions": [
+        "config",
+        "dump_json",
+        "save_csv",
+        "period",
+        "quarter",
+        "sha"
+      ]
+    },
+    {
+      "path": "research-project/tests/test_duplicate_leakage.py",
+      "bytes": 585,
+      "sha256": "2d43996ac0b46fbd8e217df1be6fef224783da8de4201f539bd1867dfe89fc83",
+      "lines": 12,
+      "functions": [
+        "test_template_normalization",
+        "test_clean_training_and_novel_sensitivity"
+      ]
+    },
+    {
+      "path": "research-project/tests/test_metrics.py",
+      "bytes": 648,
+      "sha256": "03f4a258c1b08ad0258d1bdea87f6b268e04bae37940c4eb44f51fb87a98599c",
+      "lines": 12,
+      "functions": [
+        "test_probability_definitions",
+        "test_empty_acceptance_is_unavailable_not_perfect"
+      ]
+    },
+    {
+      "path": "research-project/tests/test_no_target_leakage.py",
+      "bytes": 818,
+      "sha256": "87f2efac1d66c21ff08b55170862e4c865fb352b2684e3de3525113206c64aaf",
+      "lines": 14,
+      "functions": [
+        "test_metadata_cannot_change_features",
+        "test_label_policy_is_historical_only"
+      ]
+    },
+    {
+      "path": "research-project/tests/test_splits.py",
+      "bytes": 585,
+      "sha256": "ac99ecd53a97f6b385f73902640d11ad17abed36efa2494c4b3b846519bb19b1",
+      "lines": 13,
+      "functions": [
+        "test_boundaries",
+        "test_actual_chronology_and_ids"
+      ]
+    },
+    {
+      "path": "tdm-audit-source.html",
+      "bytes": 410323,
+      "sha256": "acad1c97dfc43a177ad2928ca2065442b538d35d824b49a7d7e6ba1bc3fd7508"
+    },
+    {
+      "path": "tdm-literature-review/REVIEW.md",
+      "bytes": 27816,
+      "sha256": "a9bb6e5d065dff9aaedb5be9234d55ecfbcc4b1f277bec342a6af9f1a98f8008",
+      "lines": 131
+    },
+    {
+      "path": "tdm-literature-review/archive-audit.json",
+      "bytes": 6524,
+      "sha256": "def9311a2eae3b2ad3336646c91153d863fe1fd8347567e6a0605d958c865044",
+      "lines": 170,
+      "top_level_fields": "list"
+    },
+    {
+      "path": "tdm-literature-review/audit_archive.py",
+      "bytes": 2047,
+      "sha256": "851cbbc5157eaafd54870532db89702cf6c6f0b35e6d796188610e1655ef830f",
+      "lines": 36,
+      "functions": []
+    },
+    {
+      "path": "tdm-literature-review/extract_sources.py",
+      "bytes": 458,
+      "sha256": "6d5417f0aaff9dac574d0bd48ceb869a69f7df9eb3d192d4958254193725e668",
+      "lines": 12,
+      "functions": []
+    },
+    {
+      "path": "tdm-literature-review/sources/2609.24052v1.html",
+      "bytes": 1122006,
+      "sha256": "7f611732de7469d069b1d9cc94189f30555d2b794f7cdf0c6aa152eb095d4570"
+    },
+    {
+      "path": "tdm-literature-review/sources/2609.24052v1.txt",
+      "bytes": 241920,
+      "sha256": "2a1dfb71854b130ebed18fd726f98604559a1aa50031e52e531b5b7c128661a3",
+      "lines": 8482
+    },
+    {
+      "path": "tdm-literature-review/sources/2609.32160v1.html",
+      "bytes": 410323,
+      "sha256": "acad1c97dfc43a177ad2928ca2065442b538d35d824b49a7d7e6ba1bc3fd7508"
+    },
+    {
+      "path": "tdm-literature-review/sources/2609.32160v1.txt",
+      "bytes": 95289,
+      "sha256": "d8b4181ec600376ef9bc9e41f88fd3996a7e8817e358d47b064d25797b2e0886",
+      "lines": 4120
+    },
+    {
+      "path": "tdm-literature-review/sources/2609.33843v1.html",
+      "bytes": 451088,
+      "sha256": "20b807b64ac43462ea1b6968275f378c956c200b4ad70838269948e25f56e1bd"
+    },
+    {
+      "path": "tdm-literature-review/sources/2609.33843v1.txt",
+      "bytes": 118475,
+      "sha256": "7c634015dc9e94488135a2ea5417dfb83e2d7dc1905c5ae17fbe137137b9e46f",
+      "lines": 2929
+    },
+    {
+      "path": "tdm-literature-review/sources/2609.38850v1.html",
+      "bytes": 245828,
+      "sha256": "988dd05708638dd26dce6bbd9ba3cae8c432cacd91d365b4015a971eba781474"
+    },
+    {
+      "path": "tdm-literature-review/sources/2609.38850v1.txt",
+      "bytes": 46143,
+      "sha256": "72330ffc6bf2f40d3e8491ef52c05dd427c3f4b1b61821c325f53ab5f6e6534b",
+      "lines": 1545
+    },
+    {
+      "path": "tdm-literature-review/sources/cfpb-archive.html",
+      "bytes": 143381,
+      "sha256": "c3b71a8227e34460734a6d710e26239be3f3e5977eed45beb4ac323e4d31da29"
+    },
+    {
+      "path": "tdm-literature-review/sources/laya-finetune.md",
+      "bytes": 8264,
+      "sha256": "24ccc1594911891b5b13044a9b7376a03d60893ecf47818837b0d40ab09dae76",
+      "lines": 145
+    }
+  ]
+}

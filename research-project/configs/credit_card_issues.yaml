@@ -1,0 +1,228 @@
+selection_basis: Original strings; >=200 training narratives; no future-performance
+  selection or merging
+labels:
+- original_label: Advertising and marketing, including promotional offers
+  included: true
+  training_count: 1453
+  exclusion_reason: null
+  period_counts:
+    2024Q4: 423
+    2025Q1: 480
+    2025Q2: 473
+    2025Q3: 534
+    2025Q4: 501
+    2026-07: 110
+    2026Q1: 462
+    2026Q2: 518
+    train: 1453
+    validation: 409
+- original_label: Closing your account
+  included: true
+  training_count: 1890
+  exclusion_reason: null
+  period_counts:
+    2024Q4: 668
+    2025Q1: 837
+    2025Q2: 946
+    2025Q3: 909
+    2025Q4: 851
+    2026-07: 139
+    2026Q1: 641
+    2026Q2: 708
+    train: 1890
+    validation: 651
+- original_label: Credit monitoring or identity theft protection services
+  included: false
+  training_count: 86
+  exclusion_reason: Fewer than 200 original training-period narratives
+  period_counts:
+    2024Q4: 20
+    2025Q1: 33
+    2025Q2: 24
+    2025Q3: 32
+    2025Q4: 17
+    2026-07: 4
+    2026Q1: 23
+    2026Q2: 27
+    train: 86
+    validation: 21
+- original_label: Fees or interest
+  included: true
+  training_count: 2764
+  exclusion_reason: null
+  period_counts:
+    2024Q4: 1034
+    2025Q1: 1378
+    2025Q2: 1177
+    2025Q3: 1124
+    2025Q4: 1146
+    2026-07: 226
+    2026Q1: 1163
+    2026Q2: 1062
+    train: 2764
+    validation: 1029
+- original_label: Getting a credit card
+  included: true
+  training_count: 3300
+  exclusion_reason: null
+  period_counts:
+    2024Q4: 1084
+    2025Q1: 1206
+    2025Q2: 1177
+    2025Q3: 1365
+    2025Q4: 1056
+    2026-07: 188
+    2026Q1: 864
+    2026Q2: 935
+    train: 3300
+    validation: 1172
+- original_label: Improper use of your report
+  included: true
+  training_count: 341
+  exclusion_reason: null
+  period_counts:
+    2024Q4: 78
+    2025Q1: 112
+    2025Q2: 100
+    2025Q3: 82
+    2025Q4: 80
+    2026-07: 13
+    2026Q1: 57
+    2026Q2: 43
+    train: 341
+    validation: 82
+- original_label: Incorrect information on your report
+  included: true
+  training_count: 2669
+  exclusion_reason: null
+  period_counts:
+    2024Q4: 345
+    2025Q1: 371
+    2025Q2: 465
+    2025Q3: 1064
+    2025Q4: 952
+    2026-07: 47
+    2026Q1: 400
+    2026Q2: 337
+    train: 2669
+    validation: 476
+- original_label: Other features, terms, or problems
+  included: true
+  training_count: 3204
+  exclusion_reason: null
+  period_counts:
+    2024Q4: 1027
+    2025Q1: 1216
+    2025Q2: 1188
+    2025Q3: 1315
+    2025Q4: 1205
+    2026-07: 232
+    2026Q1: 1148
+    2026Q2: 1192
+    train: 3204
+    validation: 949
+- original_label: Problem when making payments
+  included: true
+  training_count: 1664
+  exclusion_reason: null
+  period_counts:
+    2024Q4: 585
+    2025Q1: 680
+    2025Q2: 627
+    2025Q3: 607
+    2025Q4: 513
+    2026-07: 111
+    2026Q1: 493
+    2026Q2: 511
+    train: 1664
+    validation: 541
+- original_label: Problem with a company's investigation into an existing problem
+  included: true
+  training_count: 5848
+  exclusion_reason: null
+  period_counts:
+    2024Q4: 345
+    2025Q1: 640
+    2025Q2: 236
+    2025Q3: 838
+    2025Q4: 320
+    2026-07: 45
+    2026Q1: 207
+    2026Q2: 230
+    train: 5848
+    validation: 165
+- original_label: Problem with a purchase shown on your statement
+  included: true
+  training_count: 6622
+  exclusion_reason: null
+  period_counts:
+    2024Q4: 2176
+    2025Q1: 2417
+    2025Q2: 2698
+    2025Q3: 3043
+    2025Q4: 2944
+    2026-07: 585
+    2026Q1: 3151
+    2026Q2: 3351
+    train: 6622
+    validation: 2001
+- original_label: Problem with fraud alerts or security freezes
+  included: false
+  training_count: 31
+  exclusion_reason: Fewer than 200 original training-period narratives
+  period_counts:
+    2024Q4: 9
+    2025Q1: 7
+    2025Q2: 8
+    2025Q3: 17
+    2025Q4: 12
+    2026-07: 2
+    2026Q1: 15
+    2026Q2: 15
+    train: 31
+    validation: 10
+- original_label: Struggling to pay your bill
+  included: true
+  training_count: 296
+  exclusion_reason: null
+  period_counts:
+    2024Q4: 124
+    2025Q1: 132
+    2025Q2: 136
+    2025Q3: 180
+    2025Q4: 145
+    2026-07: 20
+    2026Q1: 113
+    2026Q2: 112
+    train: 296
+    validation: 117
+- original_label: Trouble using your card
+  included: true
+  training_count: 1088
+  exclusion_reason: null
+  period_counts:
+    2024Q4: 372
+    2025Q1: 412
+    2025Q2: 486
+    2025Q3: 509
+    2025Q4: 468
+    2026-07: 99
+    2026Q1: 391
+    2026Q2: 438
+    train: 1088
+    validation: 380
+- original_label: Unable to get your credit report or credit score
+  included: false
+  training_count: 10
+  exclusion_reason: Fewer than 200 original training-period narratives
+  period_counts:
+    2024Q4: 5
+    2025Q1: 8
+    2025Q2: 6
+    2025Q3: 4
+    2025Q4: 7
+    2026-07: 1
+    2026Q1: 5
+    2026Q2: 1
+    train: 10
+    validation: 4

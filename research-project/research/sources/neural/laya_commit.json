@@ -1,0 +1,137 @@
+{
+  "sha": "fa9a2a7070b1789912a49ae24603bbfb1a78b001",
+  "node_id": "C_kwDOUfqq7doAKGZhOWEyYTcwNzBiMTc4OTkxMmE0OWFlMjQ2MDNiYmZiMWE3OGIwMDE",
+  "commit": {
+    "author": {
+      "name": "Nandakishor",
+      "email": "nandumpilicode@gmail.com",
+      "date": "2026-10-02T16:49:27Z"
+    },
+    "committer": {
+      "name": "Nandakishor",
+      "email": "nandumpilicode@gmail.com",
+      "date": "2026-10-02T16:49:27Z"
+    },
+    "message": "chore: bump version to 0.3.24\n\nCo-Authored-By: Claude Opus 5 <noreply@anthropic.com>",
+    "tree": {
+      "sha": "19a8d34b0d45e1573c887d058911e12145f4dcb0",
+      "url": "https://api.github.com/repos/NandhaKishorM/laya/git/trees/19a8d34b0d45e1573c887d058911e12145f4dcb0"
+    },
+    "url": "https://api.github.com/repos/NandhaKishorM/laya/git/commits/fa9a2a7070b1789912a49ae24603bbfb1a78b001",
+    "comment_count": 0,
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "url": "https://api.github.com/repos/NandhaKishorM/laya/commits/fa9a2a7070b1789912a49ae24603bbfb1a78b001",
+  "html_url": "https://github.com/NandhaKishorM/laya/commit/fa9a2a7070b1789912a49ae24603bbfb1a78b001",
+  "comments_url": "https://api.github.com/repos/NandhaKishorM/laya/commits/fa9a2a7070b1789912a49ae24603bbfb1a78b001/comments",
+  "author": {
+    "login": "NandhaKishorM",
+    "id": 48623612,
+    "node_id": "MDQ6VXNlcjQ4NjIzNjEy",
+    "avatar_url": "https://avatars.githubusercontent.com/u/48623612?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/NandhaKishorM",
+    "html_url": "https://github.com/NandhaKishorM",
+    "followers_url": "https://api.github.com/users/NandhaKishorM/followers",
+    "following_url": "https://api.github.com/users/NandhaKishorM/following{/other_user}",
+    "gists_url": "https://api.github.com/users/NandhaKishorM/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/NandhaKishorM/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/NandhaKishorM/subscriptions",
+    "organizations_url": "https://api.github.com/users/NandhaKishorM/orgs",
+    "repos_url": "https://api.github.com/users/NandhaKishorM/repos",
+    "events_url": "https://api.github.com/users/NandhaKishorM/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/NandhaKishorM/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "NandhaKishorM",
+    "id": 48623612,
+    "node_id": "MDQ6VXNlcjQ4NjIzNjEy",
+    "avatar_url": "https://avatars.githubusercontent.com/u/48623612?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/NandhaKishorM",
+    "html_url": "https://github.com/NandhaKishorM",
+    "followers_url": "https://api.github.com/users/NandhaKishorM/followers",
+    "following_url": "https://api.github.com/users/NandhaKishorM/following{/other_user}",
+    "gists_url": "https://api.github.com/users/NandhaKishorM/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/NandhaKishorM/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/NandhaKishorM/subscriptions",
+    "organizations_url": "https://api.github.com/users/NandhaKishorM/orgs",
+    "repos_url": "https://api.github.com/users/NandhaKishorM/repos",
+    "events_url": "https://api.github.com/users/NandhaKishorM/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/NandhaKishorM/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "98ebcbb755186bb44cd393d062de81493b6b48e2",
+      "url": "https://api.github.com/repos/NandhaKishorM/laya/commits/98ebcbb755186bb44cd393d062de81493b6b48e2",
+      "html_url": "https://github.com/NandhaKishorM/laya/commit/98ebcbb755186bb44cd393d062de81493b6b48e2"
+    }
+  ],
+  "stats": {
+    "total": 22,
+    "additions": 19,
+    "deletions": 3
+  },
+  "files": [
+    {
+      "sha": "af65dae7803c8b18c42174c392f059eeb233478d",
+      "filename": "README.md",
+      "status": "modified",
+      "additions": 16,
+      "deletions": 0,
+      "changes": 16,
+      "blob_url": "https://github.com/NandhaKishorM/laya/blob/fa9a2a7070b1789912a49ae24603bbfb1a78b001/README.md",
+      "raw_url": "https://github.com/NandhaKishorM/laya/raw/fa9a2a7070b1789912a49ae24603bbfb1a78b001/README.md",
+      "contents_url": "https://api.github.com/repos/NandhaKishorM/laya/contents/README.md?ref=fa9a2a7070b1789912a49ae24603bbfb1a78b001",
+      "patch": "@@ -94,6 +94,22 @@ The shipped checkpoints work zero-shot, but fine-tuning on decisions from your o\n \n **[nandhakishorm.github.io/laya](https://nandhakishorm.github.io/laya/)**: guides for [prediction hooks](https://nandhakishorm.github.io/laya/hooks/), [schema-driven decisions](https://nandhakishorm.github.io/laya/structured/), [Docker](https://nandhakishorm.github.io/laya/docker/) and [LangChain and LangGraph](https://nandhakishorm.github.io/laya/langchain/), plus a full [API reference](https://nandhakishorm.github.io/laya/reference/).\n \n+## What's new in 0.3.24\n+\n+* **Concurrency.** `Router.load` builds a checkpoint outside the lifecycle lock, so a cold build no longer blocks calls for a checkpoint that is already resident, and `unload` is synchronized per checkpoint rather than globally (#848). `predict_long` holds the tokenizer lock like every other encode, so scanning a document next to ordinary predictions no longer raises `Already borrowed` (#825).\n+* **Calibration.** Per-option-count abstention thresholds, because one `min_confidence` does not transfer across option counts (#394): `fit_abstention_thresholds` fits one cut per bucket, keyed like `temperature_by_options`, and fails closed on a bucket too unreliable to accept anything. Histogram binning (`fit_binning_map`, `apply_binning_map`) recalibrates a bucket whose reliability curve temperature scaling cannot reach. `save_calibration` writes atomically, and `records_from_labeled` works on a loaded agent (#826).\n+* **Evals.** Selective-classification metrics (Brier, AURC, selective accuracy) from the same pairs ECE already uses, so the abstention gate has a yardstick. A NaN metric, limit or tolerance can no longer pass a gate (#830).\n+* **Stricter inputs.** A non-finite `hooks_timeout` (#828), a non-scalar `choice` label, a batch item's untyped `lang_guess`, and an unvalidated `min_confidence` or `hooks_timeout` on `laya_predict_batch` are all refused where they are read. `hooks_installed` accepts a sequence, as documented (#829). A `null` score level is a 422 instead of a response no Jev client can parse.\n+* **laya-serve.** `LAYA_JEV_STRICT` projects the response onto the strict Jev wire contract for clients that reject unknown fields. `/v1/systemone/batch` sums `output_tokens` instead of reporting zero, and refuses an unpaired surrogate like the single endpoint.\n+* **Fallback notes are warnings, not prints.** Eight device- and inference-fallback notes went to stdout, which corrupted `laya --json` output; they are `warnings.warn` now, so they are filterable.\n+* **One test list.** CI and the release gate run the same shared suite list (`scripts/test_suites.py`). They had drifted to 80 suites against 47, so a regression in any of the 33 CI-only suites could reach PyPI.\n+* **TypeScript.** The SDK types and validates the whole `usage` report, the four confidence fields, and the routing detection's `mixed_segment`. `laya-ts` reports collapsed options like `laya.common` and keeps bytecode out of the npm tarball.\n+* **Docs and examples.** Nine example and page corrections where the prose contradicted the code, each with a test that holds the page to the source. The PyPI README links absolutely, so its 31 relative links no longer 404 on the project page.\n+\n+56 pull requests from 16 contributors.\n+\n+---\n+\n ## What's new in 0.3.23\n \n * **Security.** `GET /health` no longer answers deployment internals to an unauthenticated caller on a server that set `LAYA_API_KEY` (#812): liveness stays open so every shipped probe keeps working, while the resident checkpoint names, revision SHAs, device state and fallback reasons need the bearer. A deployment with no key set is unchanged. `SECURITY.md` now documents private vulnerability reporting."
+    },
+    {
+      "sha": "fadf28616da76274c9b08d8a520556dc65e49151",
+      "filename": "laya/__init__.py",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/NandhaKishorM/laya/blob/fa9a2a7070b1789912a49ae24603bbfb1a78b001/laya%2F__init__.py",
+      "raw_url": "https://github.com/NandhaKishorM/laya/raw/fa9a2a7070b1789912a49ae24603bbfb1a78b001/laya%2F__init__.py",
+      "contents_url": "https://api.github.com/repos/NandhaKishorM/laya/contents/laya%2F__init__.py?ref=fa9a2a7070b1789912a49ae24603bbfb1a78b001",
+      "patch": "@@ -14,7 +14,7 @@\n from .router import DEFAULT_MODELS, RouteDecision, Router\n from .structured import DecisionResult, decide, decide_batch\n \n-__version__ = \"0.3.23\"\n+__version__ = \"0.3.24\"\n \n # Routing, language detection and email cleaning are pure Python. The torch-backed names are\n # resolved lazily so that `import laya` -- and therefore `from laya import Router` or"
+    },
+    {
+      "sha": "6677e032a4d9b5ececd2b9820c2b3ebf2b1777da",
+      "filename": "nix/package.nix",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/NandhaKishorM/laya/blob/fa9a2a7070b1789912a49ae24603bbfb1a78b001/nix%2Fpackage.nix",
+      "raw_url": "https://github.com/NandhaKishorM/laya/raw/fa9a2a7070b1789912a49ae24603bbfb1a78b001/nix%2Fpackage.nix",
+      "contents_url": "https://api.github.com/repos/NandhaKishorM/laya/contents/nix%2Fpackage.nix?ref=fa9a2a7070b1789912a49ae24603bbfb1a78b001",
+      "patch": "@@ -12,7 +12,7 @@ let\n     # side, where tests/test_packaging.py compares all three declarations (this one,\n     # pyproject.toml and laya.__version__) and fails CI when they diverge. Nothing\n     # did, which is how this sat at 0.3.4 while the package reached 0.3.20.\n-    version = \"0.3.23\";\n+    version = \"0.3.24\";\n     src = ../.;\n     format = \"setuptools\";\n     propagatedBuildInputs = with python3Packages; ["
+    },
+    {
+      "sha": "4124b586f4118442bbe65ac03b4e2501658f5495",
+      "filename": "pyproject.toml",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/NandhaKishorM/laya/blob/fa9a2a7070b1789912a49ae24603bbfb1a78b001/pyproject.toml",
+      "raw_url": "https://github.com/NandhaKishorM/laya/raw/fa9a2a7070b1789912a49ae24603bbfb1a78b001/pyproject.toml",
+      "contents_url": "https://api.github.com/repos/NandhaKishorM/laya/contents/pyproject.toml?ref=fa9a2a7070b1789912a49ae24603bbfb1a78b001",
+      "patch": "@@ -4,7 +4,7 @@ build-backend = \"setuptools.build_meta\"\n \n [project]\n name = \"laya\"\n-version = \"0.3.23\"\n+version = \"0.3.24\"\n description = \"Fast, non-autoregressive System 1 decision engine with calibrated probabilities\"\n readme = \"README.md\"\n requires-python = \">=3.10\""
+    }
+  ]
+}

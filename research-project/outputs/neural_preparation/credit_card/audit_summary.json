@@ -1,0 +1,31 @@
+{
+  "records": 109519,
+  "labels": [
+    "Advertising and marketing, including promotional offers",
+    "Closing your account",
+    "Fees or interest",
+    "Getting a credit card",
+    "Improper use of your report",
+    "Incorrect information on your report",
+    "Other features, terms, or problems",
+    "Problem when making payments",
+    "Problem with a company's investigation into an existing problem",
+    "Problem with a purchase shown on your statement",
+    "Struggling to pay your bill",
+    "Trouble using your card"
+  ],
+  "training_exact_unique": 25182,
+  "exact_unique": 100633,
+  "families": 98968,
+  "cross_period_families": 121,
+  "rows_in_cross_period_families": 2496,
+  "conflicting_label_families": 203,
+  "cross_domain_exact_texts": 119,
+  "cross_domain_rows": 486,
+  "short_texts_not_lsh": 2197,
+  "lsh_candidates": 29786,
+  "new_labels_after_training": [],
+  "training_label_rule": ">=200 original training narratives; no merging",
+  "predictive_results_inspected": false,
+  "elapsed_seconds": 75.30397439002991
+}

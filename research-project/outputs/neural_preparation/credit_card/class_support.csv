@@ -1,0 +1,121 @@
+period,issue,n,families,novel_families
+train,"Advertising and marketing, including promotional offers",1453,1231,0
+train,Closing your account,1890,1868,0
+train,Fees or interest,2764,2756,0
+train,Getting a credit card,3300,3201,0
+train,Improper use of your report,341,321,0
+train,Incorrect information on your report,2669,1066,0
+train,"Other features, terms, or problems",3204,3162,0
+train,Problem when making payments,1664,1645,0
+train,Problem with a company's investigation into an existing problem,5848,1729,0
+train,Problem with a purchase shown on your statement,6622,6573,0
+train,Struggling to pay your bill,296,293,0
+train,Trouble using your card,1088,1074,0
+validation,"Advertising and marketing, including promotional offers",409,409,0
+validation,Closing your account,651,646,0
+validation,Fees or interest,1029,1026,0
+validation,Getting a credit card,1172,994,0
+validation,Improper use of your report,82,74,0
+validation,Incorrect information on your report,476,295,0
+validation,"Other features, terms, or problems",949,939,0
+validation,Problem when making payments,541,536,0
+validation,Problem with a company's investigation into an existing problem,165,143,0
+validation,Problem with a purchase shown on your statement,2001,1990,0
+validation,Struggling to pay your bill,117,111,0
+validation,Trouble using your card,380,377,0
+2024Q4,"Advertising and marketing, including promotional offers",423,423,422
+2024Q4,Closing your account,668,657,656
+2024Q4,Fees or interest,1034,1023,1023
+2024Q4,Getting a credit card,1084,926,919
+2024Q4,Improper use of your report,78,78,78
+2024Q4,Incorrect information on your report,345,313,308
+2024Q4,"Other features, terms, or problems",1027,1019,1018
+2024Q4,Problem when making payments,585,580,580
+2024Q4,Problem with a company's investigation into an existing problem,345,152,147
+2024Q4,Problem with a purchase shown on your statement,2176,2164,2162
+2024Q4,Struggling to pay your bill,124,118,117
+2024Q4,Trouble using your card,372,372,372
+2025Q1,"Advertising and marketing, including promotional offers",480,478,478
+2025Q1,Closing your account,837,813,813
+2025Q1,Fees or interest,1378,1363,1363
+2025Q1,Getting a credit card,1206,1054,1051
+2025Q1,Improper use of your report,112,102,100
+2025Q1,Incorrect information on your report,371,357,353
+2025Q1,"Other features, terms, or problems",1216,1209,1209
+2025Q1,Problem when making payments,680,614,614
+2025Q1,Problem with a company's investigation into an existing problem,640,224,223
+2025Q1,Problem with a purchase shown on your statement,2417,2403,2402
+2025Q1,Struggling to pay your bill,132,132,132
+2025Q1,Trouble using your card,412,392,392
+2025Q2,"Advertising and marketing, including promotional offers",473,473,473
+2025Q2,Closing your account,946,929,929
+2025Q2,Fees or interest,1177,1165,1165
+2025Q2,Getting a credit card,1177,1052,1050
+2025Q2,Improper use of your report,100,79,79
+2025Q2,Incorrect information on your report,465,409,407
+2025Q2,"Other features, terms, or problems",1188,1184,1184
+2025Q2,Problem when making payments,627,626,626
+2025Q2,Problem with a company's investigation into an existing problem,236,202,190
+2025Q2,Problem with a purchase shown on your statement,2698,2690,2690
+2025Q2,Struggling to pay your bill,136,133,133
+2025Q2,Trouble using your card,486,485,485
+2025Q3,"Advertising and marketing, including promotional offers",534,534,534
+2025Q3,Closing your account,909,900,900
+2025Q3,Fees or interest,1124,1123,1123
+2025Q3,Getting a credit card,1365,1163,1161
+2025Q3,Improper use of your report,82,82,82
+2025Q3,Incorrect information on your report,1064,658,654
+2025Q3,"Other features, terms, or problems",1315,1305,1305
+2025Q3,Problem when making payments,607,605,605
+2025Q3,Problem with a company's investigation into an existing problem,838,273,257
+2025Q3,Problem with a purchase shown on your statement,3043,3030,3030
+2025Q3,Struggling to pay your bill,180,179,179
+2025Q3,Trouble using your card,509,508,508
+2025Q4,"Advertising and marketing, including promotional offers",501,497,497
+2025Q4,Closing your account,851,838,838
+2025Q4,Fees or interest,1146,1145,1145
+2025Q4,Getting a credit card,1056,915,913
+2025Q4,Improper use of your report,80,80,80
+2025Q4,Incorrect information on your report,952,616,616
+2025Q4,"Other features, terms, or problems",1205,1201,1201
+2025Q4,Problem when making payments,513,510,510
+2025Q4,Problem with a company's investigation into an existing problem,320,279,272
+2025Q4,Problem with a purchase shown on your statement,2944,2933,2933
+2025Q4,Struggling to pay your bill,145,141,140
+2025Q4,Trouble using your card,468,466,466
+2026Q1,"Advertising and marketing, including promotional offers",462,458,458
+2026Q1,Closing your account,641,639,639
+2026Q1,Fees or interest,1163,1159,1159
+2026Q1,Getting a credit card,864,801,799
+2026Q1,Improper use of your report,57,56,56
+2026Q1,Incorrect information on your report,400,397,397
+2026Q1,"Other features, terms, or problems",1148,1146,1146
+2026Q1,Problem when making payments,493,493,493
+2026Q1,Problem with a company's investigation into an existing problem,207,201,197
+2026Q1,Problem with a purchase shown on your statement,3151,3146,3146
+2026Q1,Struggling to pay your bill,113,113,113
+2026Q1,Trouble using your card,391,390,390
+2026Q2,"Advertising and marketing, including promotional offers",518,500,500
+2026Q2,Closing your account,708,700,700
+2026Q2,Fees or interest,1062,1062,1062
+2026Q2,Getting a credit card,935,826,823
+2026Q2,Improper use of your report,43,42,42
+2026Q2,Incorrect information on your report,337,332,332
+2026Q2,"Other features, terms, or problems",1192,1191,1191
+2026Q2,Problem when making payments,511,508,508
+2026Q2,Problem with a company's investigation into an existing problem,230,221,217
+2026Q2,Problem with a purchase shown on your statement,3351,3339,3339
+2026Q2,Struggling to pay your bill,112,107,107
+2026Q2,Trouble using your card,438,434,434
+2026-07,"Advertising and marketing, including promotional offers",110,110,110
+2026-07,Closing your account,139,139,139
+2026-07,Fees or interest,226,226,226
+2026-07,Getting a credit card,188,177,175
+2026-07,Improper use of your report,13,12,11
+2026-07,Incorrect information on your report,47,47,47
+2026-07,"Other features, terms, or problems",232,231,231
+2026-07,Problem when making payments,111,110,110
+2026-07,Problem with a company's investigation into an existing problem,45,45,44
+2026-07,Problem with a purchase shown on your statement,585,581,581
+2026-07,Struggling to pay your bill,20,20,20
+2026-07,Trouble using your card,99,99,99

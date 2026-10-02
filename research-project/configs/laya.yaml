@@ -1,0 +1,11 @@
+model_key: laya_ce
+family: typed
+objective: ce
+model_id: convaiinnovations/laya
+revision: 55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851
+laya_git_sha: fa9a2a7070b1789912a49ae24603bbfb1a78b001
+checkpoint_subfolder: ''
+initialization: full_original_english_checkpoint
+act_head: frozen_unused
+inherited_temperature: bypass_raw_logits
+training_mode: custom_hard_label_CE_on_official_DecisionModel

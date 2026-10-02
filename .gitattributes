@@ -1,0 +1,2 @@
+# Preserve exact bytes so frozen protocol SHA256 checks survive Git checkout.
+* -text whitespace=cr-at-eol

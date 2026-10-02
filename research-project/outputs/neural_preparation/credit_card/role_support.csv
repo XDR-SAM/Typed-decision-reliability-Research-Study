@@ -1,0 +1,145 @@
+role,issue,n,families,calibration_eligible
+2025Q1,"Advertising and marketing, including promotional offers",480,478,0
+2025Q1,Closing your account,837,813,0
+2025Q1,Fees or interest,1378,1363,0
+2025Q1,Getting a credit card,1206,1054,0
+2025Q1,Improper use of your report,112,102,0
+2025Q1,Incorrect information on your report,371,357,0
+2025Q1,"Other features, terms, or problems",1216,1209,0
+2025Q1,Problem when making payments,680,614,0
+2025Q1,Problem with a company's investigation into an existing problem,640,224,0
+2025Q1,Problem with a purchase shown on your statement,2417,2403,0
+2025Q1,Struggling to pay your bill,132,132,0
+2025Q1,Trouble using your card,412,392,0
+2025Q2,"Advertising and marketing, including promotional offers",473,473,0
+2025Q2,Closing your account,946,929,0
+2025Q2,Fees or interest,1177,1165,0
+2025Q2,Getting a credit card,1177,1052,0
+2025Q2,Improper use of your report,100,79,0
+2025Q2,Incorrect information on your report,465,409,0
+2025Q2,"Other features, terms, or problems",1188,1184,0
+2025Q2,Problem when making payments,627,626,0
+2025Q2,Problem with a company's investigation into an existing problem,236,202,0
+2025Q2,Problem with a purchase shown on your statement,2698,2690,0
+2025Q2,Struggling to pay your bill,136,133,0
+2025Q2,Trouble using your card,486,485,0
+2025Q3,"Advertising and marketing, including promotional offers",534,534,0
+2025Q3,Closing your account,909,900,0
+2025Q3,Fees or interest,1124,1123,0
+2025Q3,Getting a credit card,1365,1163,0
+2025Q3,Improper use of your report,82,82,0
+2025Q3,Incorrect information on your report,1064,658,0
+2025Q3,"Other features, terms, or problems",1315,1305,0
+2025Q3,Problem when making payments,607,605,0
+2025Q3,Problem with a company's investigation into an existing problem,838,273,0
+2025Q3,Problem with a purchase shown on your statement,3043,3030,0
+2025Q3,Struggling to pay your bill,180,179,0
+2025Q3,Trouble using your card,509,508,0
+2025Q4,"Advertising and marketing, including promotional offers",501,497,0
+2025Q4,Closing your account,851,838,0
+2025Q4,Fees or interest,1146,1145,0
+2025Q4,Getting a credit card,1056,915,0
+2025Q4,Improper use of your report,80,80,0
+2025Q4,Incorrect information on your report,952,616,0
+2025Q4,"Other features, terms, or problems",1205,1201,0
+2025Q4,Problem when making payments,513,510,0
+2025Q4,Problem with a company's investigation into an existing problem,320,279,0
+2025Q4,Problem with a purchase shown on your statement,2944,2933,0
+2025Q4,Struggling to pay your bill,145,141,0
+2025Q4,Trouble using your card,468,466,0
+2026Q1,"Advertising and marketing, including promotional offers",462,458,0
+2026Q1,Closing your account,641,639,0
+2026Q1,Fees or interest,1163,1159,0
+2026Q1,Getting a credit card,864,801,0
+2026Q1,Improper use of your report,57,56,0
+2026Q1,Incorrect information on your report,400,397,0
+2026Q1,"Other features, terms, or problems",1148,1146,0
+2026Q1,Problem when making payments,493,493,0
+2026Q1,Problem with a company's investigation into an existing problem,207,201,0
+2026Q1,Problem with a purchase shown on your statement,3151,3146,0
+2026Q1,Struggling to pay your bill,113,113,0
+2026Q1,Trouble using your card,391,390,0
+2026Q2_exploratory,"Advertising and marketing, including promotional offers",518,500,0
+2026Q2_exploratory,Closing your account,708,700,0
+2026Q2_exploratory,Fees or interest,1062,1062,0
+2026Q2_exploratory,Getting a credit card,935,826,0
+2026Q2_exploratory,Improper use of your report,43,42,0
+2026Q2_exploratory,Incorrect information on your report,337,332,0
+2026Q2_exploratory,"Other features, terms, or problems",1192,1191,0
+2026Q2_exploratory,Problem when making payments,511,508,0
+2026Q2_exploratory,Problem with a company's investigation into an existing problem,230,221,0
+2026Q2_exploratory,Problem with a purchase shown on your statement,3351,3339,0
+2026Q2_exploratory,Struggling to pay your bill,112,107,0
+2026Q2_exploratory,Trouble using your card,438,434,0
+excluded,"Advertising and marketing, including promotional offers",110,110,0
+excluded,Closing your account,139,139,0
+excluded,Fees or interest,226,226,0
+excluded,Getting a credit card,188,177,0
+excluded,Improper use of your report,13,12,0
+excluded,Incorrect information on your report,47,47,0
+excluded,"Other features, terms, or problems",232,231,0
+excluded,Problem when making payments,111,110,0
+excluded,Problem with a company's investigation into an existing problem,45,45,0
+excluded,Problem with a purchase shown on your statement,585,581,0
+excluded,Struggling to pay your bill,20,20,0
+excluded,Trouble using your card,99,99,0
+gate_selection,"Advertising and marketing, including promotional offers",131,131,131
+gate_selection,Closing your account,218,213,211
+gate_selection,Fees or interest,337,329,328
+gate_selection,Getting a credit card,330,292,291
+gate_selection,Improper use of your report,19,19,19
+gate_selection,Incorrect information on your report,108,98,95
+gate_selection,"Other features, terms, or problems",323,322,322
+gate_selection,Problem when making payments,168,168,168
+gate_selection,Problem with a company's investigation into an existing problem,142,50,46
+gate_selection,Problem with a purchase shown on your statement,683,682,681
+gate_selection,Struggling to pay your bill,43,39,38
+gate_selection,Trouble using your card,116,116,116
+gate_verification,"Advertising and marketing, including promotional offers",151,151,151
+gate_verification,Closing your account,238,234,234
+gate_verification,Fees or interest,360,358,358
+gate_verification,Getting a credit card,370,312,308
+gate_verification,Improper use of your report,24,24,24
+gate_verification,Incorrect information on your report,96,93,89
+gate_verification,"Other features, terms, or problems",357,353,351
+gate_verification,Problem when making payments,216,213,211
+gate_verification,Problem with a company's investigation into an existing problem,112,51,45
+gate_verification,Problem with a purchase shown on your statement,790,784,783
+gate_verification,Struggling to pay your bill,37,36,36
+gate_verification,Trouble using your card,134,134,134
+temperature_fit,"Advertising and marketing, including promotional offers",141,141,140
+temperature_fit,Closing your account,212,210,210
+temperature_fit,Fees or interest,337,336,336
+temperature_fit,Getting a credit card,384,324,320
+temperature_fit,Improper use of your report,35,35,35
+temperature_fit,Incorrect information on your report,141,125,120
+temperature_fit,"Other features, terms, or problems",347,345,344
+temperature_fit,Problem when making payments,201,199,199
+temperature_fit,Problem with a company's investigation into an existing problem,91,60,54
+temperature_fit,Problem with a purchase shown on your statement,703,698,697
+temperature_fit,Struggling to pay your bill,44,43,43
+temperature_fit,Trouble using your card,122,122,122
+train,"Advertising and marketing, including promotional offers",1453,1231,0
+train,Closing your account,1890,1868,0
+train,Fees or interest,2764,2756,0
+train,Getting a credit card,3300,3201,0
+train,Improper use of your report,341,321,0
+train,Incorrect information on your report,2669,1066,0
+train,"Other features, terms, or problems",3204,3162,0
+train,Problem when making payments,1664,1645,0
+train,Problem with a company's investigation into an existing problem,5848,1729,0
+train,Problem with a purchase shown on your statement,6622,6573,0
+train,Struggling to pay your bill,296,293,0
+train,Trouble using your card,1088,1074,0
+validation,"Advertising and marketing, including promotional offers",409,409,0
+validation,Closing your account,651,646,0
+validation,Fees or interest,1029,1026,0
+validation,Getting a credit card,1172,994,0
+validation,Improper use of your report,82,74,0
+validation,Incorrect information on your report,476,295,0
+validation,"Other features, terms, or problems",949,939,0
+validation,Problem when making payments,541,536,0
+validation,Problem with a company's investigation into an existing problem,165,143,0
+validation,Problem with a purchase shown on your statement,2001,1990,0
+validation,Struggling to pay your bill,117,111,0
+validation,Trouble using your card,380,377,0

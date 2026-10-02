@@ -1,0 +1,60 @@
+{
+  "recorded_at_utc": "2026-10-02T18:34:07.400994+00:00",
+  "model_weights_downloaded": false,
+  "sources": [
+    {
+      "url": "https://api.github.com/repos/NandhaKishorM/laya/commits/fa9a2a7070b1789912a49ae24603bbfb1a78b001",
+      "file": "laya_commit.json",
+      "bytes": 11278,
+      "sha256": "b8120f12549ae321fe9c46115fa9498842276c4115c74bc69830661958de5b34"
+    },
+    {
+      "url": "https://api.github.com/repos/NandhaKishorM/laya/zipball/fa9a2a7070b1789912a49ae24603bbfb1a78b001",
+      "file": "laya_source.zip",
+      "bytes": 5490312,
+      "sha256": "9012b06bbf7e90f3a5573043c90a1917a9e9e7775c71cddbb322ec78778ecfd0"
+    },
+    {
+      "url": "https://huggingface.co/api/models/convaiinnovations/laya",
+      "file": "laya_hf.json",
+      "bytes": 4354,
+      "sha256": "22bd993d6bd967b41c305bb8286526573f1f4700db2a0c119e58ee16b7bdc9b3"
+    },
+    {
+      "url": "https://huggingface.co/api/models/answerdotai/ModernBERT-large",
+      "file": "modernbert_hf.json",
+      "bytes": 2611,
+      "sha256": "569789f3bc78db094b487feafeecead5dc967a561c7a960d04012e67a81be9a4"
+    },
+    {
+      "url": "https://huggingface.co/convaiinnovations/laya/resolve/55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/rl_agent_config.json",
+      "file": "laya_agent_config.json",
+      "bytes": 745,
+      "sha256": "ae287b56bbcf5f8c4f4541ae9dfd00c914c4c48b940b8398c3058af37ba92bbd"
+    },
+    {
+      "url": "https://huggingface.co/convaiinnovations/laya/resolve/55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/encoder/config.json",
+      "file": "laya_encoder_config.json",
+      "bytes": 2083,
+      "sha256": "bf3ab80598fdccf414855a2ce80f22859e4492d06ca8a62ddd1cfb63972f8979"
+    },
+    {
+      "url": "https://huggingface.co/convaiinnovations/laya/resolve/55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/tokenizer/tokenizer.json",
+      "file": "laya_tokenizer.json",
+      "bytes": 3583228,
+      "sha256": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30"
+    },
+    {
+      "url": "https://huggingface.co/answerdotai/ModernBERT-large/resolve/45bb4654a4d5aaff24dd11d4781fa46d39bf8c13/config.json",
+      "file": "modernbert_config.json",
+      "bytes": 1194,
+      "sha256": "55dca68059e98f0debf8eb63ab355c451c65b1f5d90fdca4754113fdaadd2cca"
+    },
+    {
+      "url": "https://huggingface.co/answerdotai/ModernBERT-large/resolve/45bb4654a4d5aaff24dd11d4781fa46d39bf8c13/tokenizer.json",
+      "file": "modernbert_tokenizer.json",
+      "bytes": 2132967,
+      "sha256": "9fd55248d51d33976b324fc11592e28071da7d41e0e9401dfb7082e30574b7b1"
+    }
+  ]
+}

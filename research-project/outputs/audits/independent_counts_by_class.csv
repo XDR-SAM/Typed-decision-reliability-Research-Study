@@ -1,0 +1,71 @@
+period,issue,n,families,novel_families
+train,Attempts to collect debt not owed,20389,14152,0
+train,Communication tactics,2522,2410,0
+train,Electronic communications,724,688,0
+train,False statements or representation,3047,2851,0
+train,Threatened to contact someone or share information improperly,617,576,0
+train,Took or threatened to take negative or legal action,3530,3295,0
+train,Written notification about debt,15664,6833,0
+validation,Attempts to collect debt not owed,8320,5213,0
+validation,Communication tactics,928,885,0
+validation,Electronic communications,298,284,0
+validation,False statements or representation,1469,1237,0
+validation,Threatened to contact someone or share information improperly,197,192,0
+validation,Took or threatened to take negative or legal action,1320,1191,0
+validation,Written notification about debt,4669,2127,0
+2024Q4,Attempts to collect debt not owed,8648,5810,5716
+2024Q4,Communication tactics,937,879,870
+2024Q4,Electronic communications,345,334,328
+2024Q4,False statements or representation,2811,1928,1887
+2024Q4,Threatened to contact someone or share information improperly,224,212,210
+2024Q4,Took or threatened to take negative or legal action,1695,1428,1413
+2024Q4,Written notification about debt,3717,2005,1964
+2025Q1,Attempts to collect debt not owed,11390,7969,7896
+2025Q1,Communication tactics,1348,1288,1286
+2025Q1,Electronic communications,553,536,536
+2025Q1,False statements or representation,3590,2789,2760
+2025Q1,Threatened to contact someone or share information improperly,321,306,304
+2025Q1,Took or threatened to take negative or legal action,1990,1861,1854
+2025Q1,Written notification about debt,3767,2552,2535
+2025Q2,Attempts to collect debt not owed,11686,7652,7604
+2025Q2,Communication tactics,1277,1215,1214
+2025Q2,Electronic communications,557,537,537
+2025Q2,False statements or representation,3279,2728,2708
+2025Q2,Threatened to contact someone or share information improperly,344,325,322
+2025Q2,Took or threatened to take negative or legal action,1826,1706,1699
+2025Q2,Written notification about debt,7879,3040,3024
+2025Q3,Attempts to collect debt not owed,13919,9539,9509
+2025Q3,Communication tactics,1368,1294,1292
+2025Q3,Electronic communications,584,564,564
+2025Q3,False statements or representation,4076,3422,3397
+2025Q3,Threatened to contact someone or share information improperly,363,350,349
+2025Q3,Took or threatened to take negative or legal action,2058,1823,1821
+2025Q3,Written notification about debt,7734,3110,3102
+2025Q4,Attempts to collect debt not owed,8777,6493,6475
+2025Q4,Communication tactics,1028,989,986
+2025Q4,Electronic communications,526,508,506
+2025Q4,False statements or representation,3088,2642,2630
+2025Q4,Threatened to contact someone or share information improperly,314,303,302
+2025Q4,Took or threatened to take negative or legal action,2159,1593,1592
+2025Q4,Written notification about debt,4808,2740,2736
+2026Q1,Attempts to collect debt not owed,10576,6069,6053
+2026Q1,Communication tactics,897,859,857
+2026Q1,Electronic communications,474,463,463
+2026Q1,False statements or representation,2665,2295,2286
+2026Q1,Threatened to contact someone or share information improperly,290,281,281
+2026Q1,Took or threatened to take negative or legal action,1767,1349,1347
+2026Q1,Written notification about debt,3346,2184,2182
+2026Q2,Attempts to collect debt not owed,8574,5770,5749
+2026Q2,Communication tactics,862,834,834
+2026Q2,Electronic communications,376,362,362
+2026Q2,False statements or representation,2498,2244,2236
+2026Q2,Threatened to contact someone or share information improperly,229,219,219
+2026Q2,Took or threatened to take negative or legal action,1742,1178,1174
+2026Q2,Written notification about debt,3182,1908,1906
+2026-07,Attempts to collect debt not owed,1250,928,922
+2026-07,Communication tactics,137,131,131
+2026-07,Electronic communications,72,72,72
+2026-07,False statements or representation,359,326,325
+2026-07,Threatened to contact someone or share information improperly,35,34,34
+2026-07,Took or threatened to take negative or legal action,193,180,179
+2026-07,Written notification about debt,681,374,372

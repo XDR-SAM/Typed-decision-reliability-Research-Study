@@ -1,0 +1,329 @@
+{
+  "release_tag": "pilot-2026-10-02",
+  "assets": [
+    {
+      "name": "official-cfpb-sources.zip",
+      "bytes": 914134132,
+      "sha256": "a7efe8a9c3f6825091af1b6324e27085cef3a5d2590a5120cd287b6e57c8e8ba",
+      "files": [
+        {
+          "path": "research-project/data/raw/CCDB_Export_10_March_2025_through_April_2025.zip",
+          "bytes": 68866998,
+          "sha256": "356822a5e9f295398f2e75bfff25b4760365845432c31e87e689be2c2c0c88ef"
+        },
+        {
+          "path": "research-project/data/raw/CCDB_Export_11_May_2025_through_June_2025.zip",
+          "bytes": 74546009,
+          "sha256": "b7c8475a183e5a01f72aec794d6bc9d8a12a98cce272b3b406d9a0b067479adb"
+        },
+        {
+          "path": "research-project/data/raw/CCDB_Export_12_July_2025_through_August_2025.zip",
+          "bytes": 84153614,
+          "sha256": "dcc75521581b124f13d6d4b62c2947ccd06a017a09b1dfa7ddeb2d73548554fa"
+        },
+        {
+          "path": "research-project/data/raw/CCDB_Export_13_September_2025_through_October_2025.zip",
+          "bytes": 67340083,
+          "sha256": "4a48c4e32ab78d8b1c3c910c4e14a62cd9fb50355e60708c1f85e5601858bc9f"
+        },
+        {
+          "path": "research-project/data/raw/CCDB_Export_14_November_2025_through_December_2025.zip",
+          "bytes": 63867562,
+          "sha256": "44fd05c01c9e90ae1abd6e0659898ec7362e7a6a53740e6b18a8d0a0ff3749e7"
+        },
+        {
+          "path": "research-project/data/raw/CCDB_Export_15_January_2026_through_February_2026.zip",
+          "bytes": 36832036,
+          "sha256": "437eee7adcc3e4342d1eafd8d716c4ef149e29c6a68c5ce3c379d1dc82c14b22"
+        },
+        {
+          "path": "research-project/data/raw/CCDB_Export_16_March_2026.zip",
+          "bytes": 22053643,
+          "sha256": "0d337dac973d1fdf874c1d9cd5909502bb29a71334543572f0b1aedcd5a58d24"
+        },
+        {
+          "path": "research-project/data/raw/CCDB_Export_17_April_2026.zip",
+          "bytes": 22963936,
+          "sha256": "6f2ef5624c1bd76abcf2d39f693a0571c91fc8c08edf4dd7338516a3f913b30c"
+        },
+        {
+          "path": "research-project/data/raw/CCDB_Export_18_May_2026.zip",
+          "bytes": 21033928,
+          "sha256": "311fe537afac63230d52f41529bb91361ce5a9844d7450866538bb0456bceade"
+        },
+        {
+          "path": "research-project/data/raw/CCDB_Export_19_June_2026.zip",
+          "bytes": 19624767,
+          "sha256": "3021c8af9eeed4971a92f15be21c7ce08cf3c1337151de255e5b12bf782049df"
+        },
+        {
+          "path": "research-project/data/raw/CCDB_Export_20_July_2026.zip",
+          "bytes": 16958404,
+          "sha256": "aafebbaaf0962c3d29532411ac2133c01bae830b7ea6ed1931a6e42278437d18"
+        },
+        {
+          "path": "research-project/data/raw/CCDB_Export_21_August_2026.zip",
+          "bytes": 10501839,
+          "sha256": "c64b8147b499d6236d7d591bfdbe8db45af80694a1afb6bd6a739f2789b8b2b1"
+        },
+        {
+          "path": "research-project/data/raw/CCDB_Export_5_September_2023_through_March_2024.zip",
+          "bytes": 100880669,
+          "sha256": "993747363e52239e4762b804662d7f604f976a139de4f729f613329d3d8c7206"
+        },
+        {
+          "path": "research-project/data/raw/CCDB_Export_6_April_2024_through_July_2024.zip",
+          "bytes": 77142558,
+          "sha256": "c8a6fb0d98287958e2c19b47e1a4211c4e43225d27123a3ca08d730a2b4ae0a5"
+        },
+        {
+          "path": "research-project/data/raw/CCDB_Export_7_August_2024_through_October_2024.zip",
+          "bytes": 71365591,
+          "sha256": "f053000c342bfd08bc6f8f382290f623e34b166cb56760c0726ed15e296a6d74"
+        },
+        {
+          "path": "research-project/data/raw/CCDB_Export_8_November_2024_through_December_2024.zip",
+          "bytes": 52563546,
+          "sha256": "24b3326a954c0edeff33318b157d12eef5a59547f6f274f9236f1ceaba988a74"
+        },
+        {
+          "path": "research-project/data/raw/CCDB_Export_9_January_2025_through_February_2025.zip",
+          "bytes": 75475199,
+          "sha256": "11c18bb0973eed8f5e4f66e2979346af0671a3aefcb5a6b9eec73009d53cff64"
+        },
+        {
+          "path": "research-project/data/raw/cfpb_archive.html",
+          "bytes": 143381,
+          "sha256": "c3b71a8227e34460734a6d710e26239be3f3e5977eed45beb4ac323e4d31da29"
+        },
+        {
+          "path": "research-project/data/raw/taxonomy_august_2023.pdf",
+          "bytes": 676542,
+          "sha256": "6827dc88463217507e103fb0ec0eb7583dc203eb608ff6efd152bebc18655535"
+        },
+        {
+          "path": "tdm-literature-review/sources/CCDB_Export_20_July_2026.zip",
+          "bytes": 16958404,
+          "sha256": "aafebbaaf0962c3d29532411ac2133c01bae830b7ea6ed1931a6e42278437d18"
+        },
+        {
+          "path": "tdm-literature-review/sources/CCDB_Export_21_August_2026.zip",
+          "bytes": 10501839,
+          "sha256": "c64b8147b499d6236d7d591bfdbe8db45af80694a1afb6bd6a739f2789b8b2b1"
+        }
+      ]
+    },
+    {
+      "name": "pilot-data-models-predictions.zip",
+      "bytes": 379781063,
+      "sha256": "425cafb6bdf4abe7717c75b6476a21dba5320eac8ff7f787c6a0b69967a7350d",
+      "files": [
+        {
+          "path": "research-project/data/processed/credit_card.jsonl.gz",
+          "bytes": 51021208,
+          "sha256": "43d118dbb2c64e3b38402b24158d83046f780fdec9524f29cc48053d14979620"
+        },
+        {
+          "path": "research-project/data/processed/debt_collection.jsonl.gz",
+          "bytes": 66145796,
+          "sha256": "206c3afcf348a5586ba7d140154d54963a5aa634ed2e6df937ee0a267e33a81a"
+        },
+        {
+          "path": "research-project/data/processed/debt_deduplicated.pkl",
+          "bytes": 285319706,
+          "sha256": "c1fc3524147d5f8eac9561e7510d873e62c1d4819b53d0a33bbf817f5b748dc2"
+        },
+        {
+          "path": "research-project/data/processed/debt_prepared.pkl",
+          "bytes": 282198343,
+          "sha256": "734cf64f43ab590607022476aaea08a5f49da08b4d74dd298bcadec876341ba1"
+        },
+        {
+          "path": "research-project/data/processed/pilot.pkl",
+          "bytes": 285988688,
+          "sha256": "366db1bac8b6864822de90823ae182d2ca2d683d89fb37b96314625e472561ba"
+        },
+        {
+          "path": "research-project/outputs/models/environment_freeze.txt",
+          "bytes": 3713,
+          "sha256": "85385facac99261efe7ccb999cbbe5e6a8ccc13ee01dcd99fc564d340d147a8b"
+        },
+        {
+          "path": "research-project/outputs/models/run_manifest.json",
+          "bytes": 1060,
+          "sha256": "3be86c36383b93b0fe5557caedc3ec8db634406f2ba035bad38f552d8fe4988b"
+        },
+        {
+          "path": "research-project/outputs/models/tfidf_ablated.joblib",
+          "bytes": 9730300,
+          "sha256": "1429f1352547d46f0065fcd2aa27876ccf78671588d8c2706453a8e1e1f3bb2f"
+        },
+        {
+          "path": "research-project/outputs/models/tfidf_normal.joblib",
+          "bytes": 9730924,
+          "sha256": "57e01c4136aba2eb575fa13a42c24a0065eeeac622e0d7ff060ae9f9421f6fe3"
+        },
+        {
+          "path": "research-project/outputs/predictions/keyword_mask_frozen_2024Q4.csv.gz",
+          "bytes": 1233206,
+          "sha256": "81138997fdff9ac2d485db9a1d4224c1e0a2c39f5ca799c262f3dbe34b0c8807"
+        },
+        {
+          "path": "research-project/outputs/predictions/keyword_mask_frozen_2025Q1.csv.gz",
+          "bytes": 1625729,
+          "sha256": "023b4eddf95f5593aaa9263ad94b76784eb5217af8aa8935bb5bf901b533d286"
+        },
+        {
+          "path": "research-project/outputs/predictions/keyword_mask_frozen_2025Q2.csv.gz",
+          "bytes": 1716343,
+          "sha256": "1b75fe50e9c108b50c10a1dd5ac95e6373e40116c24b275fb447866b8dd8a333"
+        },
+        {
+          "path": "research-project/outputs/predictions/keyword_mask_frozen_2025Q3.csv.gz",
+          "bytes": 1982085,
+          "sha256": "0039f75b6ccb5f72e9cb2d3939cbbc408fcdc106b32fd896485f9185d836e3a7"
+        },
+        {
+          "path": "research-project/outputs/predictions/keyword_mask_frozen_2025Q4.csv.gz",
+          "bytes": 1486824,
+          "sha256": "4dc5735b2d278feb3313653ce9096362b7329442309349d24431477ae5986cff"
+        },
+        {
+          "path": "research-project/outputs/predictions/keyword_mask_frozen_2026Q1.csv.gz",
+          "bytes": 1415569,
+          "sha256": "91eba1947cf097084c5408ea503b7f3cfa2d8ecfc13b892369784083c33dac6c"
+        },
+        {
+          "path": "research-project/outputs/predictions/keyword_mask_frozen_2026Q2.csv.gz",
+          "bytes": 1244995,
+          "sha256": "810014286d3c6ee8f746f2810dabac4c4ed26bdcebc86e89667e68d3e7e16d39"
+        },
+        {
+          "path": "research-project/outputs/predictions/keyword_mask_frozen_validation.csv.gz",
+          "bytes": 1087673,
+          "sha256": "46bcb10dee339fc913753bba311f0b045012e16a8174627dfad4425799bcaf9a"
+        },
+        {
+          "path": "research-project/outputs/predictions/keyword_mask_refit_2024Q4.csv.gz",
+          "bytes": 1233258,
+          "sha256": "8d9b27ca457139dcc92a7ab41b68351fb6d18fb31539a77e1975ec6ee8969535"
+        },
+        {
+          "path": "research-project/outputs/predictions/keyword_mask_refit_2025Q1.csv.gz",
+          "bytes": 1625130,
+          "sha256": "4a08fcdf2fc6ba0b592cd4f4623dc80890a123198ac948eed117800307bc415c"
+        },
+        {
+          "path": "research-project/outputs/predictions/keyword_mask_refit_2025Q2.csv.gz",
+          "bytes": 1716876,
+          "sha256": "2ab58382107d94b8625c8b340e6c6d4eb46491df0c667f064d6322221e5b9b05"
+        },
+        {
+          "path": "research-project/outputs/predictions/keyword_mask_refit_2025Q3.csv.gz",
+          "bytes": 1982394,
+          "sha256": "e2e4c302c96c3fbe6a507d3689ac41f58f6409e667d27155d3b1abc0204ec983"
+        },
+        {
+          "path": "research-project/outputs/predictions/keyword_mask_refit_2025Q4.csv.gz",
+          "bytes": 1486629,
+          "sha256": "6790ba4cdf2fba068a3842f0f35b26e427da87fd4f93fb11c922b9caeebf4598"
+        },
+        {
+          "path": "research-project/outputs/predictions/keyword_mask_refit_2026Q1.csv.gz",
+          "bytes": 1414957,
+          "sha256": "7665122d672df1b2799ae6a9bb798c2ab1a585f7d25e15859ac6db4d63ebae0b"
+        },
+        {
+          "path": "research-project/outputs/predictions/keyword_mask_refit_2026Q2.csv.gz",
+          "bytes": 1245827,
+          "sha256": "9d895bd02fe8f3b986c04834843d18d2d5635ba8674086ce731de2340d90abd9"
+        },
+        {
+          "path": "research-project/outputs/predictions/keyword_mask_refit_validation.csv.gz",
+          "bytes": 1087223,
+          "sha256": "7ec99247bae823d83a1006ad643388f38c0328da97df0f1b29b5c09f271f34fd"
+        },
+        {
+          "path": "research-project/outputs/predictions/majority_prior_2024Q4.csv.gz",
+          "bytes": 144844,
+          "sha256": "7ed0ec85480c038f15b5bdfab06b7df6e0ede61ae776701ccaca138d06d8af43"
+        },
+        {
+          "path": "research-project/outputs/predictions/majority_prior_2025Q1.csv.gz",
+          "bytes": 182929,
+          "sha256": "7db5325261d00f170ccbe57829f439d86ec2aea8843cb5addd8dc72b0726af70"
+        },
+        {
+          "path": "research-project/outputs/predictions/majority_prior_2025Q2.csv.gz",
+          "bytes": 210113,
+          "sha256": "61fdad867dca9d4120905344de0471af7d58be5e2f2984d44563951996bb50cb"
+        },
+        {
+          "path": "research-project/outputs/predictions/majority_prior_2025Q3.csv.gz",
+          "bytes": 237059,
+          "sha256": "8d3adfc8f9be24c64fd508ddecfec6c9b1a8751fb4f81db4661cf0ee1e614cad"
+        },
+        {
+          "path": "research-project/outputs/predictions/majority_prior_2025Q4.csv.gz",
+          "bytes": 171505,
+          "sha256": "3482953205989cec2dd2d7159ba064186ecff9a2ace2129a3ff39c75a6a13d7f"
+        },
+        {
+          "path": "research-project/outputs/predictions/majority_prior_2026Q1.csv.gz",
+          "bytes": 160805,
+          "sha256": "78992a5105795bda12a0e11488d64d14e3446b7f57fa7a29cd6f4c597697b2a4"
+        },
+        {
+          "path": "research-project/outputs/predictions/majority_prior_2026Q2.csv.gz",
+          "bytes": 144244,
+          "sha256": "c87b1f4a39a66bd91aa2e5fbc53d80940b997cc2d9798df32833401a6db9cb90"
+        },
+        {
+          "path": "research-project/outputs/predictions/majority_prior_validation.csv.gz",
+          "bytes": 132781,
+          "sha256": "4780fbae9976e47ff1dd1e3b4ce6772a46840812d6faa78297f3ecc7897477be"
+        },
+        {
+          "path": "research-project/outputs/predictions/normal_2024Q4.csv.gz",
+          "bytes": 1233257,
+          "sha256": "3b4fe354ebfa6e140b5e81f5811c8bf7fb7504cc13fd51385b10af60928bf16b"
+        },
+        {
+          "path": "research-project/outputs/predictions/normal_2025Q1.csv.gz",
+          "bytes": 1625652,
+          "sha256": "d84062dc2b12ad625ad9e8a4c09d5b07ca181b980b22ef21db66d59ae341105b"
+        },
+        {
+          "path": "research-project/outputs/predictions/normal_2025Q2.csv.gz",
+          "bytes": 1716389,
+          "sha256": "8c971da98535ec19768d80db58fe377f226ae22dc0326866fc8489060e9e4ca3"
+        },
+        {
+          "path": "research-project/outputs/predictions/normal_2025Q3.csv.gz",
+          "bytes": 1982036,
+          "sha256": "0dadbf8bda9d57e6c94b3360dd3033c17685e227452b6ff92752d6887065357e"
+        },
+        {
+          "path": "research-project/outputs/predictions/normal_2025Q4.csv.gz",
+          "bytes": 1486765,
+          "sha256": "4fc0f95ebd5b72f0ce6ab5667c5110911b3639335c964708b5bf535b089be11c"
+        },
+        {
+          "path": "research-project/outputs/predictions/normal_2026Q1.csv.gz",
+          "bytes": 1415519,
+          "sha256": "27471559f42038f0ec9b49b831491c1b2536679ad4cf425eb857bc8e9d74cc13"
+        },
+        {
+          "path": "research-project/outputs/predictions/normal_2026Q2.csv.gz",
+          "bytes": 1244949,
+          "sha256": "d834760192b70d8485ef899271914eda6e01ea78d510b18d755465b6a62e48a9"
+        },
+        {
+          "path": "research-project/outputs/predictions/normal_validation.csv.gz",
+          "bytes": 1087613,
+          "sha256": "b9449fe7085665c171278533b61695c8e71b69b649cde03aea925f6e122c2185"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,330 @@
+model,period,subset,issue,precision,recall,f1,support
+normal,validation,operational,Attempts to collect debt not owed,0.6922333848531684,0.8612980769230769,0.767566409597258,8320
+normal,validation,operational,Communication tactics,0.6373056994818653,0.5301724137931034,0.5788235294117647,928
+normal,validation,operational,Electronic communications,0.6,0.18120805369127516,0.27835051546391754,298
+normal,validation,operational,False statements or representation,0.4881720430107527,0.15452688904016337,0.23474663908996898,1469
+normal,validation,operational,Threatened to contact someone or share information improperly,0.5161290322580645,0.08121827411167512,0.14035087719298245,197
+normal,validation,operational,Took or threatened to take negative or legal action,0.5304232804232805,0.3037878787878788,0.38631984585741813,1320
+normal,validation,operational,Written notification about debt,0.7224920802534319,0.7327050760334118,0.7275627392598895,4669
+normal,validation,unique_family,Attempts to collect debt not owed,0.6073514745690269,0.8217039321511179,0.6984517080363726,5188
+normal,validation,unique_family,Communication tactics,0.6390374331550802,0.5431818181818182,0.5872235872235873,880
+normal,validation,unique_family,Electronic communications,0.5930232558139535,0.18345323741007194,0.2802197802197802,278
+normal,validation,unique_family,False statements or representation,0.48,0.16776315789473684,0.24862888482632542,1216
+normal,validation,unique_family,Threatened to contact someone or share information improperly,0.5517241379310345,0.0855614973262032,0.14814814814814814,187
+normal,validation,unique_family,Took or threatened to take negative or legal action,0.5409604519774012,0.3237531699070161,0.405076679005817,1183
+normal,validation,unique_family,Written notification about debt,0.48838358872960946,0.4691358024691358,0.4785662387987406,2106
+keyword_mask_refit,validation,operational,Attempts to collect debt not owed,0.6921519475510991,0.8628605769230769,0.7681361010057779,8320
+keyword_mask_refit,validation,operational,Communication tactics,0.6441558441558441,0.5344827586206896,0.5842167255594818,928
+keyword_mask_refit,validation,operational,Electronic communications,0.5888888888888889,0.17785234899328858,0.27319587628865977,298
+keyword_mask_refit,validation,operational,False statements or representation,0.4860813704496788,0.15452688904016337,0.23450413223140495,1469
+keyword_mask_refit,validation,operational,Threatened to contact someone or share information improperly,0.5161290322580645,0.08121827411167512,0.14035087719298245,197
+keyword_mask_refit,validation,operational,Took or threatened to take negative or legal action,0.5394912985274432,0.3053030303030303,0.389937106918239,1320
+keyword_mask_refit,validation,operational,Written notification about debt,0.7231160033869602,0.7316341829085458,0.7273501543702757,4669
+keyword_mask_frozen,validation,operational,Attempts to collect debt not owed,0.6913282531108325,0.8614182692307693,0.767057312570236,8320
+keyword_mask_frozen,validation,operational,Communication tactics,0.6377749029754204,0.53125,0.5796590241034686,928
+keyword_mask_frozen,validation,operational,Electronic communications,0.5955056179775281,0.17785234899328858,0.2739018087855297,298
+keyword_mask_frozen,validation,operational,False statements or representation,0.48812095032397407,0.15384615384615385,0.23395445134575568,1469
+keyword_mask_frozen,validation,operational,Threatened to contact someone or share information improperly,0.5161290322580645,0.08121827411167512,0.14035087719298245,197
+keyword_mask_frozen,validation,operational,Took or threatened to take negative or legal action,0.5311258278145695,0.3037878787878788,0.38650602409638557,1320
+keyword_mask_frozen,validation,operational,Written notification about debt,0.7226339191192039,0.7309916470336261,0.7267887563884157,4669
+majority_prior,validation,operational,Attempts to collect debt not owed,0.483692808557642,1.0,0.652012068492614,8320
+majority_prior,validation,operational,Communication tactics,0.0,0.0,0.0,928
+majority_prior,validation,operational,Electronic communications,0.0,0.0,0.0,298
+majority_prior,validation,operational,False statements or representation,0.0,0.0,0.0,1469
+majority_prior,validation,operational,Threatened to contact someone or share information improperly,0.0,0.0,0.0,197
+majority_prior,validation,operational,Took or threatened to take negative or legal action,0.0,0.0,0.0,1320
+majority_prior,validation,operational,Written notification about debt,0.0,0.0,0.0,4669
+normal,2024Q4,operational,Attempts to collect debt not owed,0.6050034626038782,0.808163737280296,0.6919801980198019,8648
+normal,2024Q4,operational,Communication tactics,0.5955497382198953,0.4855923159018143,0.5349794238683128,937
+normal,2024Q4,operational,Electronic communications,0.5217391304347826,0.1391304347826087,0.21967963386727687,345
+normal,2024Q4,operational,False statements or representation,0.42650103519668736,0.07328352899324084,0.12507589556769885,2811
+normal,2024Q4,operational,Threatened to contact someone or share information improperly,0.44680851063829785,0.09375,0.15498154981549817,224
+normal,2024Q4,operational,Took or threatened to take negative or legal action,0.49812734082397003,0.23539823008849559,0.31971153846153844,1695
+normal,2024Q4,operational,Written notification about debt,0.5344976282880552,0.6669357008340059,0.5934171154997008,3717
+normal,2024Q4,novel_family,Attempts to collect debt not owed,0.5694061638687046,0.7986294148655773,0.6648138667446793,5691
+normal,2024Q4,novel_family,Communication tactics,0.5910987482614742,0.49189814814814814,0.5369551484523057,864
+normal,2024Q4,novel_family,Electronic communications,0.5333333333333333,0.147239263803681,0.23076923076923078,326
+normal,2024Q4,novel_family,False statements or representation,0.4107142857142857,0.09808102345415778,0.15834767641996558,1876
+normal,2024Q4,novel_family,Threatened to contact someone or share information improperly,0.46511627906976744,0.09615384615384616,0.1593625498007968,208
+normal,2024Q4,novel_family,Took or threatened to take negative or legal action,0.5053475935828877,0.26865671641791045,0.35081206496519723,1407
+normal,2024Q4,novel_family,Written notification about debt,0.36729339746392653,0.4318766066838046,0.39697542533081287,1945
+normal,2024Q4,unique_family,Attempts to collect debt not owed,0.5695388799604401,0.7987170596393898,0.664934690048351,5768
+normal,2024Q4,unique_family,Communication tactics,0.5914127423822715,0.49136939010356734,0.5367693274670019,869
+normal,2024Q4,unique_family,Electronic communications,0.5333333333333333,0.1458966565349544,0.22911694510739858,329
+normal,2024Q4,unique_family,False statements or representation,0.4124168514412417,0.09763779527559055,0.15789473684210525,1905
+normal,2024Q4,unique_family,Threatened to contact someone or share information improperly,0.46511627906976744,0.09615384615384616,0.1593625498007968,208
+normal,2024Q4,unique_family,Took or threatened to take negative or legal action,0.5046604527296937,0.2674664784756528,0.3496309963099631,1417
+normal,2024Q4,unique_family,Written notification about debt,0.36952789699570815,0.4348484848484849,0.39953596287703014,1980
+keyword_mask_refit,2024Q4,operational,Attempts to collect debt not owed,0.6053885471714459,0.8080481036077706,0.6921895894210291,8648
+keyword_mask_refit,2024Q4,operational,Communication tactics,0.6010568031704095,0.4855923159018143,0.5371900826446281,937
+keyword_mask_refit,2024Q4,operational,Electronic communications,0.5376344086021505,0.14492753623188406,0.228310502283105,345
+keyword_mask_refit,2024Q4,operational,False statements or representation,0.4214876033057851,0.07257203842049093,0.12382397572078907,2811
+keyword_mask_refit,2024Q4,operational,Threatened to contact someone or share information improperly,0.42857142857142855,0.09375,0.15384615384615385,224
+keyword_mask_refit,2024Q4,operational,Took or threatened to take negative or legal action,0.49382716049382713,0.2359882005899705,0.3193612774451098,1695
+keyword_mask_refit,2024Q4,operational,Written notification about debt,0.5341521223874165,0.6669357008340059,0.5932041158171811,3717
+keyword_mask_frozen,2024Q4,operational,Attempts to collect debt not owed,0.6050034626038782,0.808163737280296,0.6919801980198019,8648
+keyword_mask_frozen,2024Q4,operational,Communication tactics,0.5963302752293578,0.4855923159018143,0.5352941176470588,937
+keyword_mask_frozen,2024Q4,operational,Electronic communications,0.5268817204301075,0.14202898550724638,0.2237442922374429,345
+keyword_mask_frozen,2024Q4,operational,False statements or representation,0.4270833333333333,0.07292778370686588,0.12458219386204801,2811
+keyword_mask_frozen,2024Q4,operational,Threatened to contact someone or share information improperly,0.44680851063829785,0.09375,0.15498154981549817,224
+keyword_mask_frozen,2024Q4,operational,Took or threatened to take negative or legal action,0.4975124378109453,0.2359882005899705,0.3201280512204882,1695
+keyword_mask_frozen,2024Q4,operational,Written notification about debt,0.5344976282880552,0.6669357008340059,0.5934171154997008,3717
+majority_prior,2024Q4,operational,Attempts to collect debt not owed,0.47058823529411764,1.0,0.64,8648
+majority_prior,2024Q4,operational,Communication tactics,0.0,0.0,0.0,937
+majority_prior,2024Q4,operational,Electronic communications,0.0,0.0,0.0,345
+majority_prior,2024Q4,operational,False statements or representation,0.0,0.0,0.0,2811
+majority_prior,2024Q4,operational,Threatened to contact someone or share information improperly,0.0,0.0,0.0,224
+majority_prior,2024Q4,operational,Took or threatened to take negative or legal action,0.0,0.0,0.0,1695
+majority_prior,2024Q4,operational,Written notification about debt,0.0,0.0,0.0,3717
+normal,2025Q1,operational,Attempts to collect debt not owed,0.6151644255092531,0.8113257243195786,0.6997576859003484,11390
+normal,2025Q1,operational,Communication tactics,0.6299283154121864,0.521513353115727,0.5706168831168831,1348
+normal,2025Q1,operational,Electronic communications,0.640625,0.14828209764918626,0.24082232011747431,553
+normal,2025Q1,operational,False statements or representation,0.39589442815249265,0.07520891364902507,0.12640449438202248,3590
+normal,2025Q1,operational,Threatened to contact someone or share information improperly,0.5625,0.14018691588785046,0.22443890274314215,321
+normal,2025Q1,operational,Took or threatened to take negative or legal action,0.4904580152671756,0.25829145728643216,0.33838051349572085,1990
+normal,2025Q1,operational,Written notification about debt,0.4116321933237764,0.533581099017786,0.4647398843930636,3767
+normal,2025Q1,novel_family,Attempts to collect debt not owed,0.5742373479104215,0.8289423444062619,0.6784728371269337,7857
+normal,2025Q1,novel_family,Communication tactics,0.6397748592870544,0.5344827586206896,0.5824081981212639,1276
+normal,2025Q1,novel_family,Electronic communications,0.6341463414634146,0.14689265536723164,0.23853211009174313,531
+normal,2025Q1,novel_family,False statements or representation,0.39692307692307693,0.09429824561403509,0.15239220318960425,2736
+normal,2025Q1,novel_family,Threatened to contact someone or share information improperly,0.5616438356164384,0.13486842105263158,0.21750663129973474,304
+normal,2025Q1,novel_family,Took or threatened to take negative or legal action,0.4945164506480558,0.26956521739130435,0.3489271895884629,1840
+normal,2025Q1,novel_family,Written notification about debt,0.33856022808268,0.3771337832473204,0.3568075117370892,2519
+normal,2025Q1,unique_family,Attempts to collect debt not owed,0.5749037451872594,0.8296502083596413,0.6791750659016902,7919
+normal,2025Q1,unique_family,Communication tactics,0.6385767790262172,0.5340642129992169,0.5816631130063966,1277
+normal,2025Q1,unique_family,Electronic communications,0.6341463414634146,0.14689265536723164,0.23853211009174313,531
+normal,2025Q1,unique_family,False statements or representation,0.39723926380368096,0.0937726285300507,0.15172817809021674,2762
+normal,2025Q1,unique_family,Threatened to contact someone or share information improperly,0.5616438356164384,0.13442622950819672,0.21693121693121692,305
+normal,2025Q1,unique_family,Took or threatened to take negative or legal action,0.4945164506480558,0.26883468834688345,0.34831460674157305,1845
+normal,2025Q1,unique_family,Written notification about debt,0.3398230088495575,0.378997236478484,0.3583426651735722,2533
+keyword_mask_refit,2025Q1,operational,Attempts to collect debt not owed,0.6160458452722063,0.8116769095697981,0.7004583854225859,11390
+keyword_mask_refit,2025Q1,operational,Communication tactics,0.6278026905829597,0.5192878338278932,0.5684125050751117,1348
+keyword_mask_refit,2025Q1,operational,Electronic communications,0.6384615384615384,0.15009041591320071,0.2430453879941435,553
+keyword_mask_refit,2025Q1,operational,False statements or representation,0.3944281524926686,0.07493036211699164,0.12593632958801498,3590
+keyword_mask_refit,2025Q1,operational,Threatened to contact someone or share information improperly,0.5625,0.14018691588785046,0.22443890274314215,321
+keyword_mask_refit,2025Q1,operational,Took or threatened to take negative or legal action,0.4847328244274809,0.2552763819095477,0.3344305464121132,1990
+keyword_mask_refit,2025Q1,operational,Written notification about debt,0.4108637941596896,0.5341120254844705,0.4644506001846722,3767
+keyword_mask_frozen,2025Q1,operational,Attempts to collect debt not owed,0.6148473358611055,0.8115013169446883,0.6996177572569352,11390
+keyword_mask_frozen,2025Q1,operational,Communication tactics,0.6290322580645161,0.5207715133531158,0.5698051948051948,1348
+keyword_mask_frozen,2025Q1,operational,Electronic communications,0.640625,0.14828209764918626,0.24082232011747431,553
+keyword_mask_frozen,2025Q1,operational,False statements or representation,0.3952802359882006,0.07465181058495822,0.12558575445173384,3590
+keyword_mask_frozen,2025Q1,operational,Threatened to contact someone or share information improperly,0.5625,0.14018691588785046,0.22443890274314215,321
+keyword_mask_frozen,2025Q1,operational,Took or threatened to take negative or legal action,0.4904214559386973,0.25728643216080405,0.3375082399472643,1990
+keyword_mask_frozen,2025Q1,operational,Written notification about debt,0.41065573770491803,0.531988319617733,0.46351335723372267,3767
+majority_prior,2025Q1,operational,Attempts to collect debt not owed,0.4961017465917505,1.0,0.6631925237998195,11390
+majority_prior,2025Q1,operational,Communication tactics,0.0,0.0,0.0,1348
+majority_prior,2025Q1,operational,Electronic communications,0.0,0.0,0.0,553
+majority_prior,2025Q1,operational,False statements or representation,0.0,0.0,0.0,3590
+majority_prior,2025Q1,operational,Threatened to contact someone or share information improperly,0.0,0.0,0.0,321
+majority_prior,2025Q1,operational,Took or threatened to take negative or legal action,0.0,0.0,0.0,1990
+majority_prior,2025Q1,operational,Written notification about debt,0.0,0.0,0.0,3767
+normal,2025Q2,operational,Attempts to collect debt not owed,0.553401587205428,0.7817046037994181,0.6480331997304295,11686
+normal,2025Q2,operational,Communication tactics,0.623069936421435,0.5371965544244323,0.5769554247266611,1277
+normal,2025Q2,operational,Electronic communications,0.5864197530864198,0.17055655296229802,0.26425591098748263,557
+normal,2025Q2,operational,False statements or representation,0.42084942084942084,0.09972552607502287,0.16124260355029585,3279
+normal,2025Q2,operational,Threatened to contact someone or share information improperly,0.6410256410256411,0.14534883720930233,0.23696682464454977,344
+normal,2025Q2,operational,Took or threatened to take negative or legal action,0.4813753581661891,0.276013143483023,0.3508527671423599,1826
+normal,2025Q2,operational,Written notification about debt,0.5484949832775919,0.4995557811905064,0.5228827632015941,7879
+normal,2025Q2,novel_family,Attempts to collect debt not owed,0.5808639108221086,0.8258055995773904,0.6820090527349075,7572
+normal,2025Q2,novel_family,Communication tactics,0.6233140655105973,0.536039768019884,0.5763919821826281,1207
+normal,2025Q2,novel_family,Electronic communications,0.58125,0.17350746268656717,0.2672413793103448,536
+normal,2025Q2,novel_family,False statements or representation,0.4228650137741047,0.11412639405204461,0.1797423887587822,2690
+normal,2025Q2,novel_family,Threatened to contact someone or share information improperly,0.6486486486486487,0.15047021943573669,0.24427480916030533,319
+normal,2025Q2,novel_family,Took or threatened to take negative or legal action,0.4794383149448345,0.2818396226415094,0.35499443000371333,1696
+normal,2025Q2,novel_family,Written notification about debt,0.44105070250458156,0.47909754479097544,0.4592875318066158,3014
+normal,2025Q2,unique_family,Attempts to collect debt not owed,0.5811784263021795,0.8263952724885095,0.682426937049287,7615
+normal,2025Q2,unique_family,Communication tactics,0.6230769230769231,0.5364238410596026,0.5765124555160143,1208
+normal,2025Q2,unique_family,Electronic communications,0.58125,0.17350746268656717,0.2672413793103448,536
+normal,2025Q2,unique_family,False statements or representation,0.4228650137741047,0.11349353049907579,0.17895657242786359,2705
+normal,2025Q2,unique_family,Threatened to contact someone or share information improperly,0.6486486486486487,0.14906832298136646,0.24242424242424243,322
+normal,2025Q2,unique_family,Took or threatened to take negative or legal action,0.47995991983967934,0.28159905937683716,0.35494627639866616,1701
+normal,2025Q2,unique_family,Written notification about debt,0.4420444174018862,0.48017184401850627,0.4603199746554728,3026
+keyword_mask_refit,2025Q2,operational,Attempts to collect debt not owed,0.5526283914728682,0.7808488790005135,0.647209021916448,11686
+keyword_mask_refit,2025Q2,operational,Communication tactics,0.6251145737855178,0.5340642129992169,0.5760135135135135,1277
+keyword_mask_refit,2025Q2,operational,Electronic communications,0.5818181818181818,0.17235188509874327,0.2659279778393352,557
+keyword_mask_refit,2025Q2,operational,False statements or representation,0.42010309278350516,0.09942055504727051,0.16078914919852033,3279
+keyword_mask_refit,2025Q2,operational,Threatened to contact someone or share information improperly,0.6363636363636364,0.14244186046511628,0.2327790973871734,344
+keyword_mask_refit,2025Q2,operational,Took or threatened to take negative or legal action,0.4815165876777251,0.2782037239868565,0.35265532801110727,1826
+keyword_mask_refit,2025Q2,operational,Written notification about debt,0.549079754601227,0.49980962051021705,0.5232874892033752,7879
+keyword_mask_frozen,2025Q2,operational,Attempts to collect debt not owed,0.5531927783836181,0.7813623138798562,0.647772417707151,11686
+keyword_mask_frozen,2025Q2,operational,Communication tactics,0.6225045372050817,0.5371965544244323,0.5767129045817571,1277
+keyword_mask_frozen,2025Q2,operational,Electronic communications,0.5864197530864198,0.17055655296229802,0.26425591098748263,557
+keyword_mask_frozen,2025Q2,operational,False statements or representation,0.42282749675745784,0.09942055504727051,0.16098765432098766,3279
+keyword_mask_frozen,2025Q2,operational,Threatened to contact someone or share information improperly,0.6410256410256411,0.14534883720930233,0.23696682464454977,344
+keyword_mask_frozen,2025Q2,operational,Took or threatened to take negative or legal action,0.4804575786463298,0.276013143483023,0.3506086956521739,1826
+keyword_mask_frozen,2025Q2,operational,Written notification about debt,0.5480501392757661,0.4994288615306511,0.5226110631516037,7879
+majority_prior,2025Q2,operational,Attempts to collect debt not owed,0.4352651966626937,1.0,0.6065292988010588,11686
+majority_prior,2025Q2,operational,Communication tactics,0.0,0.0,0.0,1277
+majority_prior,2025Q2,operational,Electronic communications,0.0,0.0,0.0,557
+majority_prior,2025Q2,operational,False statements or representation,0.0,0.0,0.0,3279
+majority_prior,2025Q2,operational,Threatened to contact someone or share information improperly,0.0,0.0,0.0,344
+majority_prior,2025Q2,operational,Took or threatened to take negative or legal action,0.0,0.0,0.0,1826
+majority_prior,2025Q2,operational,Written notification about debt,0.0,0.0,0.0,7879
+normal,2025Q3,operational,Attempts to collect debt not owed,0.5433090143465701,0.7971837057259861,0.6462058121250946,13919
+normal,2025Q3,operational,Communication tactics,0.6025641025641025,0.5153508771929824,0.5555555555555556,1368
+normal,2025Q3,operational,Electronic communications,0.6149732620320856,0.1969178082191781,0.29831387808041504,584
+normal,2025Q3,operational,False statements or representation,0.4642857142857143,0.09568204121687929,0.15866558177379983,4076
+normal,2025Q3,operational,Threatened to contact someone or share information improperly,0.5688073394495413,0.17079889807162535,0.2627118644067797,363
+normal,2025Q3,operational,Took or threatened to take negative or legal action,0.48202764976958523,0.2541302235179786,0.3328030544066179,2058
+normal,2025Q3,operational,Written notification about debt,0.4128498727735369,0.3356607189035428,0.3702752817001854,7734
+normal,2025Q3,novel_family,Attempts to collect debt not owed,0.5968340528667727,0.8310483020459819,0.6947322018955256,9482
+normal,2025Q3,novel_family,Communication tactics,0.5977859778597786,0.5038880248833593,0.5468354430379747,1286
+normal,2025Q3,novel_family,Electronic communications,0.6132596685082873,0.1992818671454219,0.3008130081300813,557
+normal,2025Q3,novel_family,False statements or representation,0.45828144458281445,0.10881135422826729,0.17586618876941457,3382
+normal,2025Q3,novel_family,Threatened to contact someone or share information improperly,0.5673076923076923,0.16954022988505746,0.2610619469026549,348
+normal,2025Q3,novel_family,Took or threatened to take negative or legal action,0.47766990291262135,0.27107438016528923,0.3458699472759227,1815
+normal,2025Q3,novel_family,Written notification about debt,0.3641472323686429,0.4188752424046542,0.38959867728844133,3094
+normal,2025Q3,unique_family,Attempts to collect debt not owed,0.5963628131602777,0.8312822131061324,0.6944944856979657,9507
+normal,2025Q3,unique_family,Communication tactics,0.5970561177552898,0.5042735042735043,0.5467565290648694,1287
+normal,2025Q3,unique_family,Electronic communications,0.6132596685082873,0.1992818671454219,0.3008130081300813,557
+normal,2025Q3,unique_family,False statements or representation,0.45828144458281445,0.1080446271285966,0.17486338797814208,3406
+normal,2025Q3,unique_family,Threatened to contact someone or share information improperly,0.5673076923076923,0.16905444126074498,0.26048565121412803,349
+normal,2025Q3,unique_family,Took or threatened to take negative or legal action,0.47766990291262135,0.27077600440286187,0.34562697576396206,1817
+normal,2025Q3,unique_family,Written notification about debt,0.3643758765778401,0.4191674733785092,0.38985594237695076,3099
+keyword_mask_refit,2025Q3,operational,Attempts to collect debt not owed,0.5430001963479285,0.7947410015087291,0.6451838674870958,13919
+keyword_mask_refit,2025Q3,operational,Communication tactics,0.6054888507718696,0.5160818713450293,0.5572217837411207,1368
+keyword_mask_refit,2025Q3,operational,Electronic communications,0.6190476190476191,0.20034246575342465,0.3027166882276843,584
+keyword_mask_refit,2025Q3,operational,False statements or representation,0.46318289786223277,0.09568204121687929,0.15860105734038227,4076
+keyword_mask_refit,2025Q3,operational,Threatened to contact someone or share information improperly,0.5585585585585585,0.17079889807162535,0.2616033755274262,363
+keyword_mask_refit,2025Q3,operational,Took or threatened to take negative or legal action,0.4757548032936871,0.25267249757045673,0.33005395112662644,2058
+keyword_mask_refit,2025Q3,operational,Written notification about debt,0.41112340022120397,0.33643651409361264,0.37004906492213613,7734
+keyword_mask_frozen,2025Q3,operational,Attempts to collect debt not owed,0.5431409974061567,0.7973273942093542,0.646134140661388,13919
+keyword_mask_frozen,2025Q3,operational,Communication tactics,0.6029035012809565,0.5160818713450293,0.5561244584482079,1368
+keyword_mask_frozen,2025Q3,operational,Electronic communications,0.6149732620320856,0.1969178082191781,0.29831387808041504,584
+keyword_mask_frozen,2025Q3,operational,False statements or representation,0.46402877697841727,0.09494602551521099,0.15763747454175153,4076
+keyword_mask_frozen,2025Q3,operational,Threatened to contact someone or share information improperly,0.5636363636363636,0.17079889807162535,0.26215644820295986,363
+keyword_mask_frozen,2025Q3,operational,Took or threatened to take negative or legal action,0.48250460405156537,0.25461613216715256,0.3333333333333333,2058
+keyword_mask_frozen,2025Q3,operational,Written notification about debt,0.412673141219551,0.3351435221101629,0.36988940420977523,7734
+majority_prior,2025Q3,operational,Attempts to collect debt not owed,0.46239452528071223,1.0,0.6323800004543286,13919
+majority_prior,2025Q3,operational,Communication tactics,0.0,0.0,0.0,1368
+majority_prior,2025Q3,operational,Electronic communications,0.0,0.0,0.0,584
+majority_prior,2025Q3,operational,False statements or representation,0.0,0.0,0.0,4076
+majority_prior,2025Q3,operational,Threatened to contact someone or share information improperly,0.0,0.0,0.0,363
+majority_prior,2025Q3,operational,Took or threatened to take negative or legal action,0.0,0.0,0.0,2058
+majority_prior,2025Q3,operational,Written notification about debt,0.0,0.0,0.0,7734
+normal,2025Q4,operational,Attempts to collect debt not owed,0.5069053708439898,0.7903611712430215,0.6176653904371828,8777
+normal,2025Q4,operational,Communication tactics,0.5853658536585366,0.5369649805447471,0.5601217656012176,1028
+normal,2025Q4,operational,Electronic communications,0.5666666666666667,0.16159695817490494,0.2514792899408284,526
+normal,2025Q4,operational,False statements or representation,0.40941176470588236,0.11269430051813471,0.17673946165566276,3088
+normal,2025Q4,operational,Threatened to contact someone or share information improperly,0.5212765957446809,0.15605095541401273,0.24019607843137256,314
+normal,2025Q4,operational,Took or threatened to take negative or legal action,0.49352179034157834,0.19407132931912924,0.2785904255319149,2159
+normal,2025Q4,operational,Written notification about debt,0.34681520949382416,0.2978369384359401,0.3204654805863265,4808
+normal,2025Q4,novel_family,Attempts to collect debt not owed,0.5472715736040609,0.8014557844200093,0.650411613146484,6457
+normal,2025Q4,novel_family,Communication tactics,0.6063708759954494,0.5416666666666666,0.5721953837895867,984
+normal,2025Q4,novel_family,Electronic communications,0.5664335664335665,0.16167664670658682,0.2515527950310559,501
+normal,2025Q4,novel_family,False statements or representation,0.4065934065934066,0.1275373420145538,0.19416909620991255,2611
+normal,2025Q4,novel_family,Threatened to contact someone or share information improperly,0.5164835164835165,0.15932203389830507,0.24352331606217617,295
+normal,2025Q4,novel_family,Took or threatened to take negative or legal action,0.4932349323493235,0.2526780088216761,0.33416666666666667,1587
+normal,2025Q4,novel_family,Written notification about debt,0.38407019912251095,0.41700256504214,0.39985945186226285,2729
+normal,2025Q4,unique_family,Attempts to collect debt not owed,0.5472274931477967,0.8018226753166512,0.6505012531328321,6474
+normal,2025Q4,unique_family,Communication tactics,0.6068181818181818,0.5415821501014199,0.572347266881029,986
+normal,2025Q4,unique_family,Electronic communications,0.5664335664335665,0.16167664670658682,0.2515527950310559,501
+normal,2025Q4,unique_family,False statements or representation,0.4065934065934066,0.12695386961494473,0.19349215572341663,2623
+normal,2025Q4,unique_family,Threatened to contact someone or share information improperly,0.5164835164835165,0.15932203389830507,0.24352331606217617,295
+normal,2025Q4,unique_family,Took or threatened to take negative or legal action,0.4926289926289926,0.25251889168765745,0.33388842631140714,1588
+normal,2025Q4,unique_family,Written notification about debt,0.38368172623061364,0.41654465592972184,0.3994383994383994,2732
+keyword_mask_refit,2025Q4,operational,Attempts to collect debt not owed,0.5073981834163492,0.7892218297823858,0.6176824646662803,8777
+keyword_mask_refit,2025Q4,operational,Communication tactics,0.5844017094017094,0.5321011673151751,0.5570264765784114,1028
+keyword_mask_refit,2025Q4,operational,Electronic communications,0.5490196078431373,0.1596958174904943,0.24742268041237114,526
+keyword_mask_refit,2025Q4,operational,False statements or representation,0.40639810426540285,0.11107512953367876,0.17446592065106817,3088
+keyword_mask_refit,2025Q4,operational,Threatened to contact someone or share information improperly,0.5263157894736842,0.1592356687898089,0.24449877750611246,314
+keyword_mask_refit,2025Q4,operational,Took or threatened to take negative or legal action,0.4899645808736718,0.19221861973135712,0.2761144377910845,2159
+keyword_mask_refit,2025Q4,operational,Written notification about debt,0.34675293553798225,0.3009567387687188,0.3222358311991983,4808
+keyword_mask_frozen,2025Q4,operational,Attempts to collect debt not owed,0.5067912954578647,0.7907029736812122,0.6176850162431579,8777
+keyword_mask_frozen,2025Q4,operational,Communication tactics,0.5816649104320337,0.5369649805447471,0.5584218512898331,1028
+keyword_mask_frozen,2025Q4,operational,Electronic communications,0.5637583892617449,0.1596958174904943,0.24888888888888888,526
+keyword_mask_frozen,2025Q4,operational,False statements or representation,0.4064362336114422,0.11042746113989638,0.17366946778711484,3088
+keyword_mask_frozen,2025Q4,operational,Threatened to contact someone or share information improperly,0.5268817204301075,0.15605095541401273,0.24078624078624078,314
+keyword_mask_frozen,2025Q4,operational,Took or threatened to take negative or legal action,0.4923258559622196,0.19314497452524318,0.2774451097804391,2159
+keyword_mask_frozen,2025Q4,operational,Written notification about debt,0.3463308307096149,0.2974209650582363,0.3200179030994741,4808
+majority_prior,2025Q4,operational,Attempts to collect debt not owed,0.4240096618357488,1.0,0.59551514740306,8777
+majority_prior,2025Q4,operational,Communication tactics,0.0,0.0,0.0,1028
+majority_prior,2025Q4,operational,Electronic communications,0.0,0.0,0.0,526
+majority_prior,2025Q4,operational,False statements or representation,0.0,0.0,0.0,3088
+majority_prior,2025Q4,operational,Threatened to contact someone or share information improperly,0.0,0.0,0.0,314
+majority_prior,2025Q4,operational,Took or threatened to take negative or legal action,0.0,0.0,0.0,2159
+majority_prior,2025Q4,operational,Written notification about debt,0.0,0.0,0.0,4808
+normal,2026Q1,operational,Attempts to collect debt not owed,0.6013030351183855,0.7155824508320726,0.6534841550815992,10576
+normal,2026Q1,operational,Communication tactics,0.5817490494296578,0.5117056856187291,0.5444839857651246,897
+normal,2026Q1,operational,Electronic communications,0.5774647887323944,0.1729957805907173,0.2662337662337662,474
+normal,2026Q1,operational,False statements or representation,0.46987951807228917,0.13170731707317074,0.20574443141852286,2665
+normal,2026Q1,operational,Threatened to contact someone or share information improperly,0.6395348837209303,0.1896551724137931,0.2925531914893617,290
+normal,2026Q1,operational,Took or threatened to take negative or legal action,0.47690014903129657,0.18109790605546122,0.26251025430680885,1767
+normal,2026Q1,operational,Written notification about debt,0.2342811373648378,0.3496712492528392,0.2805755395683453,3346
+normal,2026Q1,novel_family,Attempts to collect debt not owed,0.5823461091753774,0.8306825712392313,0.6846920660931313,6036
+normal,2026Q1,novel_family,Communication tactics,0.6019151846785226,0.5146198830409356,0.5548549810844893,855
+normal,2026Q1,novel_family,Electronic communications,0.5808823529411765,0.17173913043478262,0.2651006711409396,460
+normal,2026Q1,novel_family,False statements or representation,0.4641873278236915,0.1477422183252959,0.22414366478217493,2281
+normal,2026Q1,novel_family,Threatened to contact someone or share information improperly,0.6385542168674698,0.18928571428571428,0.29201101928374656,280
+normal,2026Q1,novel_family,Took or threatened to take negative or legal action,0.4802527646129542,0.22720478325859492,0.3084728564180619,1338
+normal,2026Q1,novel_family,Written notification about debt,0.3818254284575528,0.4398530762167126,0.40879027096223597,2178
+normal,2026Q1,unique_family,Attempts to collect debt not owed,0.5823195458231955,0.8310185185185185,0.6847877920839294,6048
+normal,2026Q1,unique_family,Communication tactics,0.6024590163934426,0.5151869158878505,0.5554156171284634,856
+normal,2026Q1,unique_family,Electronic communications,0.5808823529411765,0.17173913043478262,0.2651006711409396,460
+normal,2026Q1,unique_family,False statements or representation,0.4641873278236915,0.1472902097902098,0.22362309223623092,2288
+normal,2026Q1,unique_family,Threatened to contact someone or share information improperly,0.6385542168674698,0.18928571428571428,0.29201101928374656,280
+normal,2026Q1,unique_family,Took or threatened to take negative or legal action,0.4802527646129542,0.22686567164179106,0.30816016218955905,1340
+normal,2026Q1,unique_family,Written notification about debt,0.38152130625248903,0.43944954128440367,0.4084416968663398,2180
+keyword_mask_refit,2026Q1,operational,Attempts to collect debt not owed,0.6020221319958602,0.7150151285930408,0.6536716082465315,10576
+keyword_mask_refit,2026Q1,operational,Communication tactics,0.5869565217391305,0.5117056856187291,0.5467540202501489,897
+keyword_mask_refit,2026Q1,operational,Electronic communications,0.5724137931034483,0.1751054852320675,0.2681744749596123,474
+keyword_mask_refit,2026Q1,operational,False statements or representation,0.4702774108322325,0.13358348968105066,0.20806545879602573,2665
+keyword_mask_refit,2026Q1,operational,Threatened to contact someone or share information improperly,0.6477272727272727,0.19655172413793104,0.30158730158730157,290
+keyword_mask_refit,2026Q1,operational,Took or threatened to take negative or legal action,0.48333333333333334,0.18053197509903793,0.26287597857437167,1767
+keyword_mask_refit,2026Q1,operational,Written notification about debt,0.23357228195937874,0.3505678421996414,0.28035372848948376,3346
+keyword_mask_frozen,2026Q1,operational,Attempts to collect debt not owed,0.6009531374106434,0.715393343419062,0.6531986531986532,10576
+keyword_mask_frozen,2026Q1,operational,Communication tactics,0.5824873096446701,0.5117056856187291,0.5448071216617211,897
+keyword_mask_frozen,2026Q1,operational,Electronic communications,0.5774647887323944,0.1729957805907173,0.2662337662337662,474
+keyword_mask_frozen,2026Q1,operational,False statements or representation,0.47114093959731546,0.13170731707317074,0.2058651026392962,2665
+keyword_mask_frozen,2026Q1,operational,Threatened to contact someone or share information improperly,0.6436781609195402,0.19310344827586207,0.29708222811671087,290
+keyword_mask_frozen,2026Q1,operational,Took or threatened to take negative or legal action,0.4766917293233083,0.17940011318619128,0.26069078947368424,1767
+keyword_mask_frozen,2026Q1,operational,Written notification about debt,0.2338935574229692,0.3493723849372385,0.2802013422818792,3346
+majority_prior,2026Q1,operational,Attempts to collect debt not owed,0.5284036972270797,1.0,0.6914451962995652,10576
+majority_prior,2026Q1,operational,Communication tactics,0.0,0.0,0.0,897
+majority_prior,2026Q1,operational,Electronic communications,0.0,0.0,0.0,474
+majority_prior,2026Q1,operational,False statements or representation,0.0,0.0,0.0,2665
+majority_prior,2026Q1,operational,Threatened to contact someone or share information improperly,0.0,0.0,0.0,290
+majority_prior,2026Q1,operational,Took or threatened to take negative or legal action,0.0,0.0,0.0,1767
+majority_prior,2026Q1,operational,Written notification about debt,0.0,0.0,0.0,3346
+normal,2026Q2,operational,Attempts to collect debt not owed,0.5996209624258405,0.8487287147189176,0.7027522935779816,8574
+normal,2026Q2,operational,Communication tactics,0.6591251885369532,0.5069605568445475,0.5731147540983607,862
+normal,2026Q2,operational,Electronic communications,0.5178571428571429,0.15425531914893617,0.23770491803278687,376
+normal,2026Q2,operational,False statements or representation,0.48726851851851855,0.16853482786228982,0.25044616299821537,2498
+normal,2026Q2,operational,Threatened to contact someone or share information improperly,0.5802469135802469,0.2052401746724891,0.3032258064516129,229
+normal,2026Q2,operational,Took or threatened to take negative or legal action,0.4539363484087102,0.1555683122847302,0.231722958529286,1742
+normal,2026Q2,operational,Written notification about debt,0.36578073089700996,0.3460087994971716,0.3556201550387597,3182
+normal,2026Q2,novel_family,Attempts to collect debt not owed,0.5911790724124858,0.8162624323852731,0.6857226619759601,5731
+normal,2026Q2,novel_family,Communication tactics,0.66875,0.5156626506024097,0.582312925170068,830
+normal,2026Q2,novel_family,Electronic communications,0.5384615384615384,0.15469613259668508,0.24034334763948498,362
+normal,2026Q2,novel_family,False statements or representation,0.4873341375150784,0.18108471537427162,0.26405228758169935,2231
+normal,2026Q2,novel_family,Threatened to contact someone or share information improperly,0.5897435897435898,0.2100456621004566,0.30976430976430974,219
+normal,2026Q2,novel_family,Took or threatened to take negative or legal action,0.45709281961471104,0.223267750213858,0.3,1169
+normal,2026Q2,novel_family,Written notification about debt,0.33954900260190807,0.41232227488151657,0.3724137931034483,1899
+normal,2026Q2,unique_family,Attempts to collect debt not owed,0.5915333249338541,0.8165217391304348,0.6860524585372981,5750
+normal,2026Q2,unique_family,Communication tactics,0.6677067082683308,0.5156626506024097,0.5819170632222977,830
+normal,2026Q2,unique_family,Electronic communications,0.5384615384615384,0.15469613259668508,0.24034334763948498,362
+normal,2026Q2,unique_family,False statements or representation,0.4873341375150784,0.1805183199285076,0.2634496250407564,2238
+normal,2026Q2,unique_family,Threatened to contact someone or share information improperly,0.5897435897435898,0.2100456621004566,0.30976430976430974,219
+normal,2026Q2,unique_family,Took or threatened to take negative or legal action,0.45709281961471104,0.2228864218616567,0.29965556831228474,1171
+normal,2026Q2,unique_family,Written notification about debt,0.3388143660752921,0.4118884797475013,0.3717948717948718,1901
+keyword_mask_refit,2026Q2,operational,Attempts to collect debt not owed,0.5996201800016514,0.8469792395614649,0.7021513173797438,8574
+keyword_mask_refit,2026Q2,operational,Communication tactics,0.6550680786686838,0.5023201856148491,0.5686145764937623,862
+keyword_mask_refit,2026Q2,operational,Electronic communications,0.5132743362831859,0.15425531914893617,0.23721881390593047,376
+keyword_mask_refit,2026Q2,operational,False statements or representation,0.4868270332187858,0.1701361088871097,0.2521506971225156,2498
+keyword_mask_refit,2026Q2,operational,Threatened to contact someone or share information improperly,0.573170731707317,0.2052401746724891,0.3022508038585209,229
+keyword_mask_refit,2026Q2,operational,Took or threatened to take negative or legal action,0.4504950495049505,0.15671641791044777,0.23253833049403747,1742
+keyword_mask_refit,2026Q2,operational,Written notification about debt,0.36327477626781574,0.3444374607165305,0.3536054202290692,3182
+keyword_mask_frozen,2026Q2,operational,Attempts to collect debt not owed,0.5993906455862977,0.8489619780732447,0.7026740032821701,8574
+keyword_mask_frozen,2026Q2,operational,Communication tactics,0.6571428571428571,0.5069605568445475,0.5723641126391618,862
+keyword_mask_frozen,2026Q2,operational,Electronic communications,0.5135135135135135,0.15159574468085107,0.23408624229979466,376
+keyword_mask_frozen,2026Q2,operational,False statements or representation,0.4889406286379511,0.16813450760608487,0.25022341376228774,2498
+keyword_mask_frozen,2026Q2,operational,Threatened to contact someone or share information improperly,0.575,0.20087336244541484,0.2977346278317152,229
+keyword_mask_frozen,2026Q2,operational,Took or threatened to take negative or legal action,0.4539363484087102,0.1555683122847302,0.231722958529286,1742
+keyword_mask_frozen,2026Q2,operational,Written notification about debt,0.3651479880279348,0.3450659962287869,0.3548230731943771,3182
+majority_prior,2026Q2,operational,Attempts to collect debt not owed,0.4909809311114929,1.0,0.6586012213388639,8574
+majority_prior,2026Q2,operational,Communication tactics,0.0,0.0,0.0,862
+majority_prior,2026Q2,operational,Electronic communications,0.0,0.0,0.0,376
+majority_prior,2026Q2,operational,False statements or representation,0.0,0.0,0.0,2498
+majority_prior,2026Q2,operational,Threatened to contact someone or share information improperly,0.0,0.0,0.0,229
+majority_prior,2026Q2,operational,Took or threatened to take negative or legal action,0.0,0.0,0.0,1742
+majority_prior,2026Q2,operational,Written notification about debt,0.0,0.0,0.0,3182

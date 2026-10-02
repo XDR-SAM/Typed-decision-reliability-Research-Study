@@ -1,0 +1,4120 @@
+ 
+ 
+ 
+ Typed Decision Models: An Early Evidence Audit and Evaluation Checklist 
+ 
+ 
+ 
+ 
+ 
+ 
+ // Restore the saved color scheme preference, or
+ // enact the browser preference if "automatic", 
+ // without expecting DOM load to have completed.
+ //
+ // Also restore any saved readingmode and ToC display preferences.
+ function initializeReadingPreferences() {
+ let saved_theme = localStorage.getItem("ar5iv_theme") || "automatic";
+ if (saved_theme === "automatic") {
+ if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+ saved_theme = "dark";
+ }
+ }
+ if (saved_theme == "dark") {
+ document.documentElement.setAttribute("data-theme", "dark");
+ } else {
+ document.documentElement.setAttribute("data-theme", "light");
+ }
+
+ const tocDisplay = localStorage.getItem('arxiv_html_paper_toc_display');
+ if (tocDisplay) {
+ document.documentElement.setAttribute("data-toc-display", tocDisplay);
+ }
+ const readingMode = localStorage.getItem('arxiv_html_paper_reading_mode');
+ if (readingMode) {
+ document.documentElement.setAttribute("data-reading-mode", readingMode);
+ }
+ // Pre-apply spinout-banner dismissal here, before the banner paints, so it
+ // never flashes in only to be hidden later by the deferred arxiv-header.js.
+ // Key matches arxiv-header.js: "arxiv-banner-dismissed:" + data-banner-name.
+ if (localStorage.getItem('arxiv-banner-dismissed:spinout-nonprofit')) {
+ document.documentElement.setAttribute("data-banner-dismissed", "");
+ }
+ }
+ // Run as soon as JS starts, to minimize repainting
+ initializeReadingPreferences();
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /* Banner pre-dismissal (set above before paint -> no flash-then-hide) and
+ reading-mode chrome hiding. */
+ html[data-banner-dismissed] .ds-announcement { display: none; }
+ html[data-reading-mode="enabled"] .ds-announcement,
+ html[data-reading-mode="enabled"] .ds-site-footer { display: none; }
+ /* Keep the announcement text dark on the Open-Blue band in both colour themes
+ (otherwise it inherits the paper's warm-wash text in dark mode and washes out). */
+ .ds-announcement-text { color: var(--arxiv-ink, #1c1a17); }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Report GitHub Issue 
+ × 
+ 
+
+ 
+ Title: 
+ 
+
+ Content selection saved. Describe the issue below: 
+
+ Description: 
+ 
+ 
+
+ 
+ Submit without GitHub 
+ Submit in GitHub 
+ 
+ 
+ 
+ 
+ arXiv is now an independent nonprofit! 
+ Learn more 
+ × 
+ 
+
+ 
+ 
+ 
+ Back to arXiv 
+ 
+ 
+ 
+ 
+ Why HTML? 
+ 
+ 
+ 
+ 
+ Report Issue 
+ 
+ 
+ 
+ 
+ 
+ 
+ Back to Abstract 
+ 
+ 
+ 
+ 
+ 
+ 
+ Download PDF 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Abstract 
+ 1 Introduction 
+ 2 Definition and Lineage 
+ 
+ 2.1 What we mean by a typed decision model 
+ 2.2 Ancestors 
+ 
+ 3 Models and Readouts 
+ 
+ 3.1 Jev: what is public 
+ 3.2 Open TDMs 
+ 3.3 Readout geometries and serving 
+ 3.4 Training objectives 
+ 3.5 Open questions about the models 
+ 
+ 4 Where the Decision Sits 
+ 
+ Step replacement. 
+ Controller. 
+ Judge or screener. 
+ Measurement instrument. 
+ 
+ 5 What the Evidence Shows 
+ 
+ Corpus construction. 
+ Extraction and coding. 
+ Finding 1: the typed readout has not yet shown an independent accuracy advantage. 
+ Finding 2: reported parity often occurs on saturated tests. 
+ Finding 3: latency and cost gains are substantial but context-dependent. 
+ Finding 4: calibration must be evaluated per model and workload. 
+ Finding 5: confidence-based escalation is a recurring deployment pattern. 
+ Finding 6: reporting and evaluation practices vary substantially across the corpus. 
+ 
+ 6 An Evaluation Checklist for Typed Decision Models 
+ 7 Open Problems 
+ 
+ Attributing Jev’s gains. 
+ Decisions that need computation. 
+ Faithfulness to option semantics. 
+ Calibration under deployment shift. 
+ When does a TDM cascade beat a generative cascade? 
+ 
+ 8 Limitations 
+ 9 Conclusion 
+ References 
+ A Corpus Versions 
+ B Checklist Coding 
+ 
+ 
+ 
+ 
+ 
+ License: CC BY 4.0
+ 
+ 
+arXiv:2609.32160v1 [cs.CL] 26 Sep 2026 
+ 
+ 
+ Typed Decision Models: An Early Evidence Audit and Evaluation Checklist 
+ 
+ 
+ Lijuan Tang
+ 
+    
+ Yuemeng Zheng
+ 
+ Affiliation:  Northeastern University
+ 
+ September 2026 
+
+ Abstract 
+ 
+ Typed decision models (TDMs) return probability distributions over caller-defined options without generating text. TypeSafe released Jev, a commercial typed decision model, on 15 September 2026, and a small body of evaluation and replication work appeared within days. We review 28 papers posted between 19 and 24 September and relate their findings to earlier work on label-probability classification, constrained decoding, reranking, calibration, and model cascades. In this early literature, the typed readout itself has not shown an independent accuracy advantage over comparable label-probability readouts. Jev’s clearest gains are in latency and cost, while accuracy gaps remain on harder tasks. In practical deployments, confidence is often used to decide when to defer to a stronger model or a human. We use recurring weaknesses in these studies to derive a 14-item evaluation checklist for future TDM work. Because the evidence covers only the first nine days after the release of one hosted model, the review should be read as an early evidence map rather than a settled assessment of the model class. 
+ 
+ 
+ 
+ 1 Introduction 
+
+ 
+ Many uses of models inside software are not conversational. A program may need to decide which queue a ticket belongs in, whether a retrieved passage answers a question, or whether a command is safe to run. In such settings, the desired output is often one of a few known values together with a score that downstream code can threshold. 
+ 
+ 
+ Language models usually express these decisions as text. Structured prompting and constrained decoding can make the output easier to parse, but both still rely on token generation. Typed decision models (TDMs) expose a different interface: the caller supplies a state and one or more questions with finite option sets, and the model returns a probability distribution over exactly those options without producing free-form text. TypeSafe AI released Jev, a commercial TDM, on 15 September 2026 and presented it as a new class of “System One” model for fast, inexpensive decisions  [ 3 ] , a name taken from Kahneman’s distinction between fast and slow thinking  [ 32 ] . 
+ 
+ 
+ The release prompted a rapid burst of research. Between 19 and 24 September 2026, our searches found 29 arXiv papers that mentioned or evaluated typed decision models; one was excluded because Jev appeared only in a renamed model-collection URL. The resulting 28-paper corpus spans service orchestration, agent control, memory, judging, clinical report evaluation, social-science annotation, video quality, game playing, security, robustness to context and injection, and open replications. 
+ 
+ 
+ This paper asks two questions: what is technically new about the TDM interface, and what does the first week of evidence support? We read the 28 papers in full and recorded their comparators, headline accuracy, latency and cost results, calibration analyses, use of label log-probability baselines, statistical treatment, and handling of uncertainty. We also trace the main components of the interface to earlier work. 
+ 
+ 
+ We treat this corpus as an early map of a fast-moving area rather than a mature survey of an established field. We define the interface and its lineage, document the public evidence on Jev and open TDMs, organize applications by the role the decision plays in the surrounding system, synthesize six recurring empirical patterns, and derive an evaluation checklist from failures already visible in the corpus. Jev’s internals remain closed, so claims about mechanism apply only to open systems; hosted Jev is compared here at the level of its input-output contract. 
+ 
+ 
+ Two concurrent working drafts, released on GitHub while this paper was in preparation, also review Jev and related models. Luo [43] maintains an evidence survey of the early studies organized around calibration, selective control and open implementations, and Anonymous Authors [4] place Jev within a broader history of machine-native decision models, from classical classifiers through structured prediction and learning to defer. Our scope is deliberately narrower. We audit the first wave of empirical TDM studies, ask which reported gains can be attributed to the typed readout itself, and derive an evaluation checklist, with corpus-level compliance counts, from recurring comparison and reporting failures. 
+ 
+ 
+ 
+ 2 Definition and Lineage 
+
+ 
+ 2.1 What we mean by a typed decision model 
+
+ 
+ A typed decision model takes a state s, which may be free text or a serialized data structure, and a set of questions Q = q1, …, qK. Each question carries an instruction and a finite option set declared by the caller at request time, optionally with a rubric that defines what each option means. For every question, the model returns a probability distribution over the declared options and may also expose a scalar confidence. It returns no free-form text. 
+ 
+ 
+ Three properties distinguish the interface from neighboring designs. First, support is closed at request time: the output distribution covers exactly the options supplied in the call. Unlike a conventional classifier, however, the label set need not be fixed at training time. Second, the interface is designed to answer multiple isolated questions about the same state in one forward execution, with each question evaluated without seeing the answers to the others  [ 12 , 66 ] . Third, the probability distribution is itself the product: downstream code is expected to threshold, rank, route, or defer on it rather than merely consume the argmax. 
+ 
+ 
+ TypeSafe exposes this contract through Choice, Score, and Noul primitives  [ 66 ] . The open replications in our corpus primarily implement Choice, sometimes with Boolean or ordinal variants. We use “TDM” for systems that satisfy the three properties above and reserve “Jev” for TypeSafe’s hosted model. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ TDM component 
+ 
+ 
+ 
+ Ancestor 
+ 
+ 
+ 
+ What TDMs change 
+ 
+ 
+ 
+ 
+ 
+ 
+ Scoring a label set by LM probability 
+ 
+ 
+ 
+ Cloze/verbalizer classification [ 20 , 57 ] ; likelihood scoring [ 10 ] 
+ 
+ 
+ 
+ Options declared per request rather than fixed verbalizers 
+ 
+ 
+ 
+ 
+ Option-label readout 
+ 
+ 
+ 
+ Multiple-choice symbol binding [ 55 ] 
+ 
+ 
+ 
+ Named options may include rubrics rather than letters 
+ 
+ 
+ 
+ 
+ Guaranteed valid output 
+ 
+ 
+ 
+ Grammar-constrained decoding [ 22 , 69 ] 
+ 
+ 
+ 
+ Returns a renormalized distribution without token generation 
+ 
+ 
+ 
+ 
+ Fine-tuned label-token head 
+ 
+ 
+ 
+ Yes/no rerankers [ 48 , 82 ] ; generative verifiers [ 81 ] 
+ 
+ 
+ 
+ Arbitrary option sets; many questions per call 
+ 
+ 
+ 
+ 
+ Runtime labels in small encoders 
+ 
+ 
+ 
+ NLI zero-shot classifiers [ 35 , 75 ] ; GLiClass [ 60 ] 
+ 
+ 
+ 
+ Presented as a general decision interface 
+ 
+ 
+ 
+ 
+ Rubric-conditioned judging 
+ 
+ 
+ 
+ Prometheus [ 34 ] ; G-Eval [ 41 ] 
+ 
+ 
+ 
+ Rubric attached to each option 
+ 
+ 
+ 
+ 
+ Confidence-based escalation 
+ 
+ 
+ 
+ Reject option [ 13 ] ; LLM cascades [ 2 , 11 ] 
+ 
+ 
+ 
+ Cheap first stage with a native probability 
+ 
+ 
+ 
+ 
+ Calibration training 
+ 
+ 
+ 
+ RL with proper scoring rewards [ 6 , 15 ] 
+ 
+ 
+ 
+ Calibration is part of the product objective (RLCD) 
+ 
+ 
+ 
+ Table 1: Components of a TDM and their closest ancestors. 
+ 
+ 
+ 
+ 2.2 Ancestors 
+
+ 
+ The interface draws directly on several earlier lines of work. Table  1 summarizes the closest predecessors; the most relevant are label-probability classification, constrained output, discriminative judging, and confidence-based deferral. 
+ 
+ 
+ Label-probability classification is the closest readout ancestor. Pattern-exploiting training recast classification as predicting one of a small set of verbalizer tokens  [ 57 , 58 ] , LM-BFF searched for suitable labels and templates  [ 20 ] , and GPT-3 popularized likelihood-based scoring without task-specific training  [ 10 ] . That literature also documented biases that matter directly for TDMs: probability mass can depend on label wording, option order, recency, and surface form  [ 26 , 46 , 51 , 83 , 84 , 85 ] . In instruction-tuned models, first-token option probabilities can also disagree with the answer the model would generate  [ 68 ] . The option-name polarity failure measured by Sun et al. [61] is therefore best understood as a new instance of a known family of label-sensitivity problems rather than as a failure unique to typed interfaces. 
+ 
+ 
+ Constrained decoding provides a second lineage. Finite-state and grammar-constrained decoders already guarantee outputs that satisfy a schema  [ 17 , 22 , 59 , 69 ] . A choice among n declared options is the simplest possible constrained grammar. TDMs differ mainly in returning a renormalized distribution directly rather than generating an allowed token sequence. Prior work also shows that masking can alter a model’s probability distribution  [ 8 , 50 ] and that answer-only restrictions can reduce performance on tasks that benefit from explicit intermediate computation  [ 5 , 62 ] . 
+ 
+ 
+ The discriminative lineage is equally direct. Pointwise rerankers such as monoT5 score “true” versus “false”  [ 48 ] , Qwen3-Reranker reads a yes/no softmax  [ 82 ] , reward models attach discriminative heads to language models  [ 49 ] , often trained with pairwise objectives related to Bradley–Terry models  [ 9 ] , generative verifiers use answer-token probabilities  [ 81 ] , and rubric-conditioned judges such as G-Eval and Prometheus score outputs against explicit criteria  [ 34 , 41 ] . Small encoders that score labels supplied at inference time also predate TDMs  [ 35 , 60 , 78 ] . These systems show that a non-generative decision interface can be useful without implying that the underlying mechanism is novel. 
+ 
+ 
+ TDM deployment also closely resembles selective classification and model cascading. Reject options, learning to defer, and confidence-based language-model cascades all predate Jev  [ 2 , 11 , 13 , 21 , 25 , 30 , 33 , 45 , 47 , 67 ] . Temperature scaling and isotonic regression provide standard post-hoc calibration tools  [ 23 , 77 ] , while recent work has trained language models directly for calibrated confidence using proper scoring rewards  [ 6 , 15 ] . At the observable interface level, TDMs primarily package caller-defined options, a type-level output guarantee, shared processing across multiple questions, and a probability intended for direct use by downstream software. 
+ 
+ 
+ 
+ 
+ 3 Models and Readouts 
+
+ 
+ 3.1 Jev: what is public 
+
+ 
+ Jev entered early access on 15 September 2026  [ 3 ] . Every hosted-Jev paper in our corpus that names a version uses 1.13 ( jev-1.13.0 ); two record the snapshot jev-1.13-20260917   [ 28 , 36 ] . TypeSafe describes a new architecture, a parallel sampler, and a training method called Reinforcement Learning for Calibrated Decisions (RLCD), and states that Jev is “neither small nor an LLM”  [ 3 ] . Architecture, training data, and reward are not public  [ 28 ] . 
+ 
+ 
+ The published price is $0.042 per million input tokens with no output charge, and the vendor reports end-to-end response times of 70–500 ms  [ 3 ] . Options per question are capped at 255, and for high-cardinality choices the vendor describes a two-stage procedure that first scores options independently and then makes an explicit choice  [ 3 ] . TypeSafe does not publish results on public benchmarks and instead reports workflow evaluations against the average answer of two frontier models  [ 3 ] . 
+ 
+ 
+ Independent studies add several observable properties. Jev is not deterministic: 4 of 510 labels changed on an identical repeat  [ 79 ] , and Sun et al. [61] report that at most 1.33% of decisions change between two identical runs on 300 questions. Its probabilities lie on a two-decimal grid from 0.01 to 1.00, with no zero observed in 2.4 million answers  [ 52 ] . On one population-experiment workload, asking for one Noul probability per option and renormalizing was much better calibrated than asking for a relative Choice distribution  [ 38 ] . Because the internals are closed, the evidence reviewed here cannot confirm or refute the vendor’s architectural claims. 
+ 
+ 
+ 
+ 3.2 Open TDMs 
+
+ 
+ The corpus names at least fifteen open systems that expose a similar interface, although only a subset documents the readout. Table  2 lists the systems for which the mapping from hidden representations or logits to option probabilities is described. The label “Open-Jev” is used for different artifacts across papers; here it refers only to the third-party DeBERTa-v3-large checkpoint evaluated by Sun et al. [61] , who also use the name for a separate dataset. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Model 
+ 
+ 
+ 
+ Backbone 
+ 
+ 
+ 
+ Readout 
+ 
+ 
+ 
+ Training 
+ 
+ 
+ 
+ 
+ 
+ 
+ this-that-model-1.0 [ 12 ] 
+ 
+ 
+ 
+ 1.88B hybrid linear-attention decoder 
+ 
+ 
+ 
+ Answer-slot hidden state scored against output-embedding rows of single-token option labels; restricted softmax 
+ 
+ 
+ 
+ Full fine-tune; cross-entropy + Brier 
+ 
+ 
+ 
+ 
+ JevLite [ 54 ] 
+ 
+ 
+ 
+ Qwen3-4B, LoRA 
+ 
+ 
+ 
+ Softmax over allowed label-token logits 
+ 
+ 
+ 
+ Cross-entropy + Brier; temperature scaling 
+ 
+ 
+ 
+ 
+ Visual Jev [ 76 ] 
+ 
+ 
+ 
+ Qwen3-VL-4B/8B, LoRA 
+ 
+ 
+ 
+ LM-head logits of option letters, renormalized over candidates 
+ 
+ 
+ 
+ Answer SFT; dedicated typed head tried and dropped 
+ 
+ 
+ 
+ 
+ SemIf-4B [ 28 ] 
+ 
+ 
+ 
+ Qwen3.5-4B, frozen 
+ 
+ 
+ 
+ Option-letter logits 
+ 
+ 
+ 
+ None 
+ 
+ 
+ 
+ 
+ Qwen3-0.6B-RLCD [ 28 ] 
+ 
+ 
+ 
+ Qwen3-0.6B-Base 
+ 
+ 
+ 
+ Letter-token readout 
+ 
+ 
+ 
+ RL for calibrated decisions (third-party replication) 
+ 
+ 
+ 
+ 
+ PixelJev [ 86 ] 
+ 
+ 
+ 
+ Qwen3.5-2B/4B, optional LoRA 
+ 
+ 
+ 
+ Option-letter logits at the first answer position, restricted to the candidate slots 
+ 
+ 
+ 
+ Few-shot LoRA; temperature fitted on held-out data 
+ 
+ 
+ 
+ 
+ Laya [ 61 ] 
+ 
+ 
+ 
+ ModernBERT-large 
+ 
+ 
+ 
+ Contextual embedding of a mask marker placed at each option 
+ 
+ 
+ 
+ n.r. 
+ 
+ 
+ 
+ 
+ Open-Jev [ 61 ] 
+ 
+ 
+ 
+ DeBERTa-v3-large 
+ 
+ 
+ 
+ Mean representation over option name and definition 
+ 
+ 
+ 
+ n.r. 
+ 
+ 
+ 
+ Table 2: Open TDMs with documented readouts. n.r.: not reported in the corpus. 
+ 
+ 
+ 
+ 3.3 Readout geometries and serving 
+
+ 
+ The documented readouts fall into three broad geometries. Decoder models restrict the language-model softmax to allowed answer tokens at a chosen answer position. Laya scores a marker token associated with each option. Open-Jev pools representations over the option name and definition before scoring. So far, these differences are more evident in robustness than in headline accuracy. 
+ 
+ 
+ Two comparisons are especially informative. Yu and Yao [76] find that a dedicated typed head does not improve macro accuracy over the ordinary LM-head readout when backbone, data, and training budget are matched; a fixed-slot head trained on at most four options also degrades sharply on eight. For yes/no option names, Sun et al. [61] find that a DeBERTa model pooling over the full option text flips about four times less often than a ModernBERT model scoring a single marker token (their Table 6: 19.5% vs. 76.9%); the authors suggest, without isolating it, that pooling may explain part of the gap. Readout design may therefore affect sensitivity to labels even when average accuracy is unchanged. 
+ 
+ 
+ Observed speed advantages can partly reflect serving design rather than the readout alone. Shared encoding of a common state can amortize work across many questions. In Visual Jev, sharing the image prefix and batching the question suffixes cuts amortized time per question 8.9-fold relative to serial execution and 3.4-fold relative to batching without prefix reuse at 32 questions per image, at the cost of higher peak memory; a single question is slower  [ 76 ] . For hosted Jev, requesting all 17 labels of a contract at once rather than one raises median latency only from 1.15 to 1.22 s, although the authors caution that network and serving overhead may explain this  [ 79 ] . In principle, the same systems-level optimization could be applied to other label-probability readouts. 
+ 
+ 
+ 
+ 3.4 Training objectives 
+
+ 
+ The open models use several training objectives rather than a single recipe. Two combine cross-entropy with a Brier term  [ 12 , 54 ] , one uses ordinary supervised fine-tuning on answers  [ 76 ] , and Ibrahim and Zaki [28] evaluate a third-party 0.6B replication of an RLCD-style objective. That replication improves macro-F1 by about eight points over its untrained base, but the gain is smaller than the gap to larger untrained backbones in the same comparison. 
+ 
+ 
+ The most controlled comparison comes from Ren et al. [54] : a Qwen3-4B model fine-tuned to generate its answer and then read through label-token probabilities reaches AUROC .950, against .972 for a matched single-seed typed-readout model, with the same calibration error (ECE .050) after temperature scaling; against the three-seed typed ensemble (.974) the difference is not significant. Taken together with Yu and Yao [76] , the current evidence suggests that task training and backbone quality matter more for accuracy than the choice between a typed head and a conventional label-probability readout. 
+ 
+ 
+ 
+ 3.5 Open questions about the models 
+
+ 
+ Several model-level questions remain unresolved. Public evidence cannot separate the effects of Jev’s scale, data, RLCD objective, and architecture. Every hosted study covers essentially the same model version within one week, so cross-version stability is unknown. No corpus paper tests the two-stage procedure the vendor describes for high-cardinality choices, leaving its effect on ranking and calibration unmeasured. 
+ 
+ 
+ 
+ 
+ 4 Where the Decision Sits 
+
+ 
+ The same decision interface plays different roles in different systems. We organize applications by what the TDM controls and by what happens when confidence is low (Table  3 ). This distinction matters because an error in a one-shot pipeline step, a repeated controller decision, a judge verdict, and a measurement instrument can have very different consequences. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Role 
+ 
+ 
+ 
+ Papers 
+ 
+ 
+ 
+ Where low confidence goes 
+ 
+ 
+ 
+ 
+ Step replacement 
+ 
+ 
+ 
+ Edge/6G orchestration [ 36 , 37 ] ; scientific choices [ 16 ] ; contract inference [ 79 ] ; video quality [ 56 ] ; standalone visual and grid-world questions [ 76 , 86 , 12 ] ; numerical decoding [ 74 ] ; mobile GUI actions [ 80 ] ; edge triage [ 14 ] 
+ 
+ 
+ 
+ Planner when the TDM selects a done/blocked option [ 80 ] ; not reported in the other studies 
+ 
+ 
+ 
+ 
+ Controller 
+ 
+ 
+ 
+ Tool-using agent [ 71 ] ; memory control [ 29 ] ; game control [ 44 ] ; coding-agent routing [ 1 ] 
+ 
+ 
+ 
+ Strong LLM by confidence [ 1 , 71 ] ; planner by schedule [ 44 ] ; not reported in the other studies 
+ 
+ 
+ 
+ 
+ Judge or screener 
+ 
+ 
+ 
+ Preference/factuality judging [ 39 ] ; rubric judging [ 53 ] ; radiology reports [ 27 ] ; scam calls [ 54 ] ; alignment-failure detection [ 24 ] ; security findings [ 18 ] 
+ 
+ 
+ 
+ Stronger judge by confidence [ 39 ] ; LLM judge by confidence, replayed [ 53 ] ; human review of needs-review findings by design, not exercised in the evaluation [ 18 ] ; not reported in the other studies 
+ 
+ 
+ 
+ 
+ Measurement instrument 
+ 
+ 
+ 
+ Social-science annotation [ 28 ] ; crash narratives [ 52 ] ; population simulation [ 38 ] 
+ 
+ 
+ 
+ LLM [ 28 ] or human [ 52 ] by confidence; flagship model on fixed sample [ 38 ] 
+ 
+ 
+ 
+ 
+ Diagnostic 
+ 
+ 
+ 
+ Option-name polarity [ 61 ] ; context flipping [ 73 ] ; prompt injection [ 70 ] 
+ 
+ 
+ 
+ – 
+ 
+ 
+ 
+ 
+ Ecosystem 
+ 
+ 
+ 
+ Public GitHub projects [ 40 ] 
+ 
+ 
+ 
+ – 
+ 
+ 
+ 
+ Table 3: Corpus papers by the role of the TDM and where low-confidence decisions go. 
+ 
+ 
+ Step replacement. 
+
+ 
+ In these systems, the TDM replaces one model call inside an otherwise fixed pipeline: an intent field, a semantic relation, or a quality score. The central question is whether it preserves task performance while reducing latency or cost. Several parity claims come from this group, but the corresponding tests are often near ceiling  [ 16 , 37 ] , as is the first of two studies in Li et al. [36] , and some reported gains shrink or disappear once decisions are cached  [ 36 , 37 ] . 
+ 
+ 
+ 
+ Controller. 
+
+ 
+ Here a sequence of TDM decisions changes state: whether to retrieve again, which tool to call, or which game action to take. Errors can compound, so per-step accuracy is a weak proxy for end-to-end success. In the corpus, deciding whether to act is substantially harder than choosing among actions  [ 71 ] , and in one full game a per-step chooser without a planner never saved resources for a later expansion, although this was not a controlled ablation  [ 44 ] . 
+ 
+ 
+ 
+ Judge or screener. 
+
+ 
+ A TDM can cheaply screen outputs produced elsewhere, making escalation attractive: routine preference and grounded-factuality cases can be handled cheaply, while difficult cases are passed to a stronger judge. The difficulty is that confidence becomes less informative precisely on adversarial and reference-free examples  [ 39 ] , and that the fallback judge may repeat the TDM’s confident errors, leaving little for escalation to recover  [ 53 ] . 
+ 
+ 
+ 
+ Measurement instrument. 
+
+ 
+ Here TDM outputs become data for downstream analysis, as in crash coding, social-science annotation, or population simulation. Aggregate accuracy alone is insufficient; systematic error, prevalence-specific calibration, run-to-run stability, and downstream robustness also matter  [ 7 , 19 ] . The strongest measurement papers in the corpus explicitly audit calibration, preregister analyses, or derive human-review budgets  [ 28 , 38 , 52 ] . 
+ 
+ 
+ Across these roles, the treatment of uncertainty distinguishes ordinary classification from deployments that make explicit use of confidence. If low-confidence cases go nowhere, the TDM should be compared with a conventional classifier. If they go to a stronger model, the relevant baseline is a cheap generative cascade. If they go to humans, the evaluation should report held-out calibration and an explicit review budget. 
+ 
+ 
+ 
+ 
+ 5 What the Evidence Shows 
+
+ 
+ Corpus construction. 
+
+ 
+ We searched arXiv on 24 September 2026 and repeated the search on 25 September, using the API query all:jev and abstract searches for “typed decision model”, “decision model”, “System One model” and “TypeSafe”. By 25 September the all:jev query returned 28 records, one of them an unrelated 2024 economics paper by an author named Jev; the abstract searches added two papers whose searchable metadata mention Jev only inside the compound “JevBench” or not at all  [ 14 , 28 ] . We included papers that evaluate hosted Jev or build or evaluate a model with the typed-decision interface defined in Section  2 , and excluded papers that mention Jev only incidentally. This removed one reranker report whose only reference to Jev is a renamed model-collection URL, leaving 28 papers. Blog posts, leaderboards and model cards were used only as sources of vendor facts, not as corpus items. All quantitative claims were extracted from the latest arXiv version available at extraction (24 September for the first 17 papers, 25 September for the remaining 11); versions are listed in Appendix  A . New papers continued to appear at several per day during the review, so the corpus is a snapshot. 
+ 
+ 
+ 
+ Extraction and coding. 
+
+ 
+ Each paper was read in full and coded against a fixed extraction schema covering comparators, headline accuracy, latency and cost with their source locations, calibration, label-probability baselines, escalation, statistics, and validity threats. Extraction was assisted by LLM-based tools. A second pass, run without access to the first, re-checked every quantitative claim used in the tables and findings against the source full text; it led to wording corrections and two factual corrections, one of attribution and one of a denominator, all of which were applied. Checklist items were coded in two steps, applicability and then compliance, using the criteria in Appendix  B ; cases that could not be determined from the text are marked unclear, and five items that concern disclosures we could not score reliably are left unscored. The authors reviewed the resulting coding and the verification results. 
+ 
+ 
+ Our corpus contains 28 papers posted between 19 and 24 September 2026: 22 evaluate hosted Jev, five build open or alternative TDMs, one of them without reference to TypeSafe  [ 76 ] , and one analyzes public GitHub projects that use Jev  [ 40 ] . Tables  4 and  5 summarize the headline comparisons; the ecosystem study has none and is omitted. Six patterns recur across the corpus. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Paper 
+ 
+ 
+ 
+ Comparator / control 
+ 
+ 
+ 
+ Accuracy (TDM vs. comparator) 
+ 
+ 
+ 
+ Latency 
+ 
+ 
+ 
+ Cost 
+ 
+ 
+ 
+ Calib. 
+ 
+ 
+ 
+ LP 
+ 
+ 
+ 
+ Stats 
+ 
+ 
+ Open and alternative TDMs 
+ 
+ 
+ 
+ Cheng et al. [12] 
+ 
+ 
+ 
+ GPT-5.6 
+ 
+ 
+ 
+ 0.844 vs. 0.897 (own bench); 0.941 vs. Jev 0.765 (68 items) 
+ 
+ 
+ 
+ 30.9 ms local 
+ 
+ 
+ 
+ local (electricity) 
+ 
+ 
+ 
+ Yes 
+ 
+ 
+ 
+ ? 
+ 
+ 
+ 
+ none 
+ 
+ 
+ 
+ 
+ Ren et al. [54] 
+ 
+ 
+ 
+ same backbone, label token 
+ 
+ 
+ 
+ AUROC .974 vs. .950 (n.s.) 
+ 
+ 
+ 
+ 64.5 ms 
+ 
+ 
+ 
+ n.r. 
+ 
+ 
+ 
+ Yes 
+ 
+ 
+ 
+ Yes 
+ 
+ 
+ 
+ bootstrap, 3 seeds 
+ 
+ 
+ 
+ 
+ Yu and Yao [76] 
+ 
+ 
+ 
+ typed-head control (default: LM head) 
+ 
+ 
+ 
+ macro acc. .761 vs. .761 
+ 
+ 
+ 
+ 8.9 × \times faster ∗ 
+ 
+ 
+ 
+ n.r. 
+ 
+ 
+ 
+ appendix 
+ 
+ 
+ 
+ Yes 
+ 
+ 
+ 
+ 3 seeds (SD); bootstrap described, CIs not reported 
+ 
+ 
+ 
+ 
+ Zhou et al. [86] 
+ 
+ 
+ 
+ same backbone, greedy generation 
+ 
+ 
+ 
+ readout = generation when valid; +1.88 pp (adapted, ScienceQA) only from invalid generations 
+ 
+ 
+ 
+ 1.3–1.4 × \times faster than gen. (1.03 × \times vs. one-token constrained gen.) 
+ 
+ 
+ 
+ n.r. 
+ 
+ 
+ 
+ Yes 
+ 
+ 
+ 
+ Yes 
+ 
+ 
+ 
+ group bootstrap, 3 seeds 
+ 
+ 
+ 
+ 
+ Dağlı et al. [14] 
+ 
+ 
+ 
+ internal ablations; random 
+ 
+ 
+ 
+ JevBench 55.4% vs. 31.8% random (v2, self-reported) 
+ 
+ 
+ 
+ ≈ \approx 2–9 ms (inconsistent) 
+ 
+ 
+ 
+ estimates only 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ CIs on in-house tests only 
+ 
+ 
+ Step replacement 
+ 
+ 
+ 
+ Li et al. [36] 
+ 
+ 
+ 
+ DeepSeek V4.1 Flash 
+ 
+ 
+ 
+ 212–214 vs. 215–216 of 216 
+ 
+ 
+ 
+ 16–27% lower ∗∗ 
+ 
+ 
+ 
+ 69–73% lower 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ none 
+ 
+ 
+ 
+ 
+ Li et al. [37] 
+ 
+ 
+ 
+ DeepSeek, Gemini 
+ 
+ 
+ 
+ 63/63 vs. 63/63 (ceiling) 
+ 
+ 
+ 
+ 22% / 62% lower 
+ 
+ 
+ 
+ 1.7 × \times more (DeepSeek); 4.6 × \times less (Gemini) 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ none 
+ 
+ 
+ 
+ 
+ Deng et al. [16] 
+ 
+ 
+ 
+ eleven LLM configurations (five tie) 
+ 
+ 
+ 
+ 100/100 vs. 100/100 (20 items) 
+ 
+ 
+ 
+ 0.34 vs. 1.39 s (GPT-5.6 Sol) 
+ 
+ 
+ 
+ ≈ \approx 50 × \times less (vs. GPT-5.6 Sol) 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ 5 repeats 
+ 
+ 
+ 
+ 
+ Robitza [56] 
+ 
+ 
+ 
+ ITU-T P.1204.1 
+ 
+ 
+ 
+ PLCC .737 vs. .733 (metadata); bitstream .797 vs. trained ≈ \approx .96 
+ 
+ 
+ 
+ n.r. per call 
+ 
+ 
+ 
+ $4 total 
+ 
+ 
+ 
+ partial 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ none 
+ 
+ 
+ 
+ 
+ Zhang et al. [79] 
+ 
+ 
+ 
+ Gemini 3.1 Pro 
+ 
+ 
+ 
+ 77.4% vs. 83.2% 
+ 
+ 
+ 
+ 1.24 s 
+ 
+ 
+ 
+ ≈ \approx 37 × \times less 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ contract bootstrap 
+ 
+ 
+ 
+ 
+ Ye et al. [74] 
+ 
+ 
+ 
+ direct 100-way choice (same Jev) 
+ 
+ 
+ 
+ MAPE 19.7 vs. 21.7 (n.s.); range-normalized error 1.84 vs. 5.18 
+ 
+ 
+ 
+ n.r. 
+ 
+ 
+ 
+ $0.29 fixed-grid evaluation 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ family bootstrap 
+ 
+ 
+ 
+ 
+ Zhang [80] 
+ 
+ 
+ 
+ step-wise VLM 
+ 
+ 
+ 
+ success .79 vs. .84 
+ 
+ 
+ 
+ 133 vs. 197 s per success 
+ 
+ 
+ 
+ 73% lower per success 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ none 
+ 
+ 
+ Controllers 
+ 
+ 
+ 
+ Jiang et al. [29] 
+ 
+ 
+ 
+ MAGMA 
+ 
+ 
+ 
+ judge score .777 vs. .700 
+ 
+ 
+ 
+ 0.93 vs. 1.47 s 
+ 
+ 
+ 
+ n.r. 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ none 
+ 
+ 
+ 
+ 
+ Ma et al. [44] 
+ 
+ 
+ 
+ Jev-only controller (not matched) 
+ 
+ 
+ 
+ 4/4 wins (Lv5–7) vs. 0/1 (Lv2, time limit) 
+ 
+ 
+ 
+ 0.42 s 
+ 
+ 
+ 
+ $0.15 of $3.71/game 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ none 
+ 
+ 
+ 
+ 
+ Wu and Lim [71] 
+ 
+ 
+ 
+ cheap generative cascade 
+ 
+ 
+ 
+ τ 2 \tau^{2} : .850 vs. .917 (n.s.) 
+ 
+ 
+ 
+ n.r. 
+ 
+ 
+ 
+ $0.057 vs. $0.041 
+ 
+ 
+ 
+ Yes 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ bootstrap, 1 run 
+ 
+ 
+ 
+ 
+ Abbasi et al. [1] 
+ 
+ 
+ 
+ no routing; oracle labels 
+ 
+ 
+ 
+ labels 63–82% vs. author tags ( n ≈ 109 n\approx 109 ) 
+ 
+ 
+ 
+ not measured 
+ 
+ 
+ 
+ 13.8% lower (simulated) 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ none 
+ 
+ 
+ 
+ Table 4: The TDM corpus, part 1: open and alternative TDMs, step replacement and controllers (arXiv, 19–24 Sept. 2026). Calib. : TDM probabilities evaluated for calibration. LP : at least one baseline reads label log-probabilities from an ordinary or same-backbone LM; ?: unclear. n.r.: not reported. ∗ Amortized time per question at 32 questions per image versus serial execution. ∗∗ Median decision latency; the median paired gap falls below 1 ms once repeated requests are cached. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Paper 
+ 
+ 
+ 
+ Comparator / control 
+ 
+ 
+ 
+ Accuracy (TDM vs. comparator) 
+ 
+ 
+ 
+ Latency 
+ 
+ 
+ 
+ Cost 
+ 
+ 
+ 
+ Calib. 
+ 
+ 
+ 
+ LP 
+ 
+ 
+ 
+ Stats 
+ 
+ 
+ Judges and screeners 
+ 
+ 
+ 
+ Li et al. [39] 
+ 
+ 
+ 
+ GPT-6 Astra 
+ 
+ 
+ 
+ RewardBench − - 1.3; JudgeBench − - 14.6; RM-Bench hard − - 19.8 
+ 
+ 
+ 
+ 0.15 vs. 1.89 s 
+ 
+ 
+ 
+ 0.36% of fee 
+ 
+ 
+ 
+ Yes 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ cluster bootstrap 
+ 
+ 
+ 
+ 
+ Rao and Callison-Burch [53] 
+ 
+ 
+ 
+ three flash-tier LLM judges 
+ 
+ 
+ 
+ differs in 8/27 comparisons (4 ahead, 4 behind; graded up to − - 16.4) 
+ 
+ 
+ 
+ 0.18–0.20 s 
+ 
+ 
+ 
+ 29–325 × \times less 
+ 
+ 
+ 
+ Yes 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ bootstrap, Holm 
+ 
+ 
+ 
+ 
+ Huang et al. [27] 
+ 
+ 
+ 
+ RadMatch (local) 
+ 
+ 
+ 
+ τ b \tau_{b} .573 vs. .580; sig. errors − - .145; 200-pair RadEvalExpert subset .322 vs. .453 
+ 
+ 
+ 
+ 434 ms/req. (median, Full) 
+ 
+ 
+ 
+ 2.3–2.6 cents/100 pairs 
+ 
+ 
+ 
+ Yes 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ bootstrap; 5-run repeatability on 50 pairs 
+ 
+ 
+ 
+ 
+ Guo et al. [24] 
+ 
+ 
+ 
+ in-domain TF-IDF classifier (accuracy); LLM judges (cost) 
+ 
+ 
+ 
+ median AUROC .886 vs. .754 
+ 
+ 
+ 
+ 0.31 s 
+ 
+ 
+ 
+ 63 × \times less at list prices; 6 × \times under repricing 
+ 
+ 
+ 
+ Yes 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ bootstrap 
+ 
+ 
+ 
+ 
+ dos Santos Barbosa [18] 
+ 
+ 
+ 
+ same harness without TDM 
+ 
+ 
+ 
+ 9/13 vs. 10/13 scenarios (1 run each) 
+ 
+ 
+ 
+ 26.9 vs. 32.2 min/run 
+ 
+ 
+ 
+ < < $5 TypeSafe API 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ none ( n = 1 n=1 per arm) 
+ 
+ 
+ Measurement instruments 
+ 
+ 
+ 
+ Ibrahim and Zaki [28] 
+ 
+ 
+ 
+ per-task best of 19 LLMs 
+ 
+ 
+ 
+ macro-F1 − - 11.6 median; behind on 14/15 
+ 
+ 
+ 
+ n.r. 
+ 
+ 
+ 
+ 44 × \times less 
+ 
+ 
+ 
+ Yes 
+ 
+ 
+ 
+ open only 
+ 
+ 
+ 
+ prereg., BH-FDR 
+ 
+ 
+ 
+ 
+ Rafe and Das [52] 
+ 
+ 
+ 
+ Claude Fable 5.1 
+ 
+ 
+ 
+ F1 .908 vs. .967 (sig.) 
+ 
+ 
+ 
+ 0.20 s 
+ 
+ 
+ 
+ 26–129 × \times less ∗∗∗ 
+ 
+ 
+ 
+ Yes 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ cluster bootstrap 
+ 
+ 
+ 
+ 
+ Li [38] 
+ 
+ 
+ 
+ GPT-6 Astra 
+ 
+ 
+ 
+ decision gain .272 vs. .336 (n.s.) 
+ 
+ 
+ 
+ 213 ms 
+ 
+ 
+ 
+ 312–455 × \times less 
+ 
+ 
+ 
+ Yes 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ bootstrap, prereg. 
+ 
+ 
+ Diagnostics 
+ 
+ 
+ 
+ Sun et al. [61] 
+ 
+ 
+ 
+ neutral-name reassignment; Laya, Open-Jev 
+ 
+ 
+ 
+ AUC .815 → \to .581 under polarity swap 
+ 
+ 
+ 
+ – 
+ 
+ 
+ 
+ – 
+ 
+ 
+ 
+ – 
+ 
+ 
+ 
+ – 
+ 
+ 
+ 
+ bootstrap 
+ 
+ 
+ 
+ 
+ Xu [73] 
+ 
+ 
+ 
+ open TDMs; same-backbone label scorer 
+ 
+ 
+ 
+ context flips 61.4% of correct decisions 
+ 
+ 
+ 
+ n.r. 
+ 
+ 
+ 
+ n.r. 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ Yes 
+ 
+ 
+ 
+ Wilson CIs, bootstrap 
+ 
+ 
+ 
+ 
+ Wu and Lim [70] 
+ 
+ 
+ 
+ attack variants (no model baseline) 
+ 
+ 
+ 
+ attack success 1.8% → \to 3.5% (adaptive) 
+ 
+ 
+ 
+ n.r. 
+ 
+ 
+ 
+ n.r. 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ No 
+ 
+ 
+ 
+ bootstrap, registered hypotheses (DH-2/3) 
+ 
+ 
+ 
+ Table 5: The TDM corpus, part 2: judges and screeners, measurement instruments and diagnostics. Calib. : TDM probabilities evaluated for calibration. LP : at least one baseline reads label log-probabilities from an ordinary or same-backbone LM. n.r.: not reported. ∗∗∗ Against list-price scenarios for frontier models, which were not metered. 
+ 
+ 
+ 
+ Finding 1: the typed readout has not yet shown an independent accuracy advantage. 
+
+ 
+ Twenty-one of the 27 papers that evaluate a model include no label-probability baseline, and one more is unclear because it scores hosted models’ token probabilities without stating how they were extracted  [ 12 ] ; where they compare against other models at all, those models generate their answer, usually as a JSON label or a verbalized probability. This mirrors the vendor’s own comparison adapter, which asks LLMs to state probabilities rather than exposing token log-probabilities  [ 65 ] . The five papers that do examine label probabilities from an ordinary or same-backbone model point in the same direction. Ren et al. [54] report AUROC .950 for the label-token readout of a generative fine-tune against .974 for a three-seed typed ensemble, a difference that is not significant; a matched single-seed typed model reaches .972. Yu and Yao [76] obtain the same rounded .761 macro accuracy (overlapping seed ranges) from a dedicated typed head and the ordinary LM head. Zhou et al. [86] find that, with weights fixed, restricted option-logit readout matches greedy generation exactly whenever the generated answer is valid, so its only gain comes from invalid generations. Xu [73] compare a Jev-style open decision interface with a plain label-probability scorer on the same frozen weights: the typed interface is not more robust to answer-preserving context (flip rates 72.6% vs. 64.9%, measured on different item sets), and its clean-accuracy advantage is concentrated in tool routing. Ibrahim and Zaki [28] find that an untrained 4B model read through option-letter logits is the open decision system with the highest median macro-F1 in their comparison. These results do not establish that all readouts are equivalent, but they show why accuracy gains cannot be attributed to the typed interface without a matched label-probability baseline. 
+ 
+ 
+ 
+ Finding 2: reported parity often occurs on saturated tests. 
+
+ 
+ Hosted Jev trails stronger hosted models on several discriminating evaluations: by a median 11.6 macro-F1 points in social-science annotation on the benchmark of Ziems et al. [87]   [ 28 ] , 5.8 accuracy points on ContractNLI  [ 79 ] , 14.6 points on JudgeBench  [ 63 ] and 19.8 on hard RM-Bench  [ 42 ] pairs  [ 39 ] , 0.059 F1 on crash-narrative coding  [ 52 ] , and up to 16.4 points on graded rubric criteria, although it is never significantly behind flash-tier LLM judges on binary criteria  [ 53 ] . By contrast, reported parity often occurs where nearly every strong model is at ceiling: 100/100 answers on 20 scientific choices  [ 16 ] , 63/63 contract checks  [ 37 ] , or 212–216 of 216 requests with all intent fields correct  [ 36 ] . These ceiling-level results do not establish model equivalence. The same corpus also shows weaknesses on multi-step arithmetic  [ 12 ] , deciding whether to call a tool  [ 71 ] , long-horizon control (in a single game, confounded by an affordability filter)  [ 44 ] , and simulated interventions  [ 38 ] . One possible explanation is that the TDM interface provides no explicit iterative or generated intermediate computation, a setting in which earlier work has also found answer-only restrictions costly  [ 62 ] . Decisions are also sensitive to context: optimized answer-preserving additions redirect 61.4% of Jev’s initially correct decisions, against 16.9% for a single target-aware addition and 2.2% for a neutral one  [ 73 ] , and score-guided prompt injection raises attack success from 1.8% to 3.5%  [ 70 ] . 
+ 
+ 
+ 
+ Finding 3: latency and cost gains are substantial but context-dependent. 
+
+ 
+ Most reported median response times for single hosted-Jev requests fall between about 0.15 and 0.45 seconds  [ 39 , 44 , 52 ] , and several studies report fees tens to hundreds of times below frontier models  [ 28 , 38 , 39 ] . Later studies repeat this pattern with qualifications: rubric judging runs 30–220 times faster and 29–325 times cheaper than flash-tier LLM judges  [ 53 ] ; a mobile agent’s 73% cost reduction is attributed to its delegated workflow (fewer VLM decisions), while the TDM’s own charges are negligible and its contribution is not isolated  [ 80 ] ; and one routing study’s 13.8% saving is simulated at list prices, with latency taken from vendor figures  [ 1 ] . In edge orchestration, however, repeated-request caching shrinks the median paired latency difference to under a millisecond  [ 36 ] . In the 6G study, most of the completion gain comes from caching interpretation and delegating placement to a numerical scheduler (Jev rises from 43% to 96% completion), which dwarfs the 3.5–8.4-point gap between models  [ 37 ] . The same research group reports Jev as 70% cheaper than DeepSeek in one paper and 1.7 times more expensive per call in another, on different workloads  [ 36 , 37 ] . Seven papers that evaluate a model report no latency at all. 
+ 
+ 
+ 
+ Finding 4: calibration must be evaluated per model and workload. 
+
+ 
+ Jev’s probabilities often rank examples usefully, but raw calibration is inconsistent. Against 2,416 human judgments in a crash-coding study, probabilities overstate prevalence (4.8% vs. 2.7%) and have a calibration slope of 1.63; a two-decimal output grid also limits resolution for labels rarer than 1%  [ 52 ] . Held-out recalibration reduces calibration error by a factor of 3.3 in that study. Ibrahim and Zaki [28] find Jev better calibrated than most LLMs’ verbalized confidence but worse than the best three, while a single temperature parameter is enough for some cheap LLMs to overtake it. Temperatures fitted on small pilot sets transfer unevenly even to held-out items of the same judging workload, and the fitted values differ widely across workloads  [ 39 ] . High confidence also does not eliminate serious errors: on one empathy task, Jev is highly confident while performing near base rate  [ 28 ] , and wrong tool calls on BFCL have mean confidence .778  [ 71 ] . On alignment-failure detection, pooled ECE is 0.047 but median per-benchmark ECE is 0.168, because the mean probability misses each benchmark’s base rate  [ 24 ] ; in rubric judging, confidence ranks errors only weakly on graded panels (AUROC 0.57–0.70) and at chance on one  [ 53 ] ; and in an exploratory numerical-decoding experiment, Jev’s threshold probabilities are non-monotone in 25 of 48 query groups  [ 74 ] . These patterns are consistent with earlier findings on token-level and verbalized confidence in language models  [ 31 , 64 , 72 ] . 
+ 
+ 
+ 
+ Finding 5: confidence-based escalation is a recurring deployment pattern. 
+
+ 
+ Across judging, annotation, agent control, and data coding, the recurring design is to accept a TDM answer above a threshold and send the remainder to a stronger model or a human. The reported savings are often meaningful: a frozen judge cascade reaches 92.5 versus GPT-6’s 93.1 at 57% of the fee  [ 39 ] ; annotation cascades match the LLM alone at 27–56% of its cost  [ 28 ] ; an agent cascade makes 72.7% fewer strong-model calls  [ 71 ] ; and a pooled review budget of 0.8% of flagged crash records reaches 90% precision against human labels, although per-variable budgets range up to 72%  [ 52 ] . The pattern also has clear limits. Thresholds chosen on a selection set do not hold up on held-out items for every fallback model  [ 39 ] , confidence is much less informative on adversarial or reference-free inputs  [ 39 ] , when the stronger model shares the TDM’s errors escalation recovers little (in rubric judging, LLM judges repeat Jev’s wrong answer in 96% of their verdicts on its 12 most confident errors per graded panel (84 pairs), and a replayed cross-fitted cascade gains at most 1.5 points on average over the best single judge, 2.0 with oracle thresholds  [ 53 ] ), and in the one study that compares against a cheap generative cascade, the TDM cascade wins on the authors’ own benchmark but is more expensive, and not more accurate, on the external τ 2 \tau^{2} -bench, where the authors retire their superiority claim  [ 71 ] . The benefit of escalation therefore depends on how complementary the errors of the two stages are. 
+ 
+ 
+ 
+ Finding 6: reporting and evaluation practices vary substantially across the corpus. 
+
+ 
+ Twelve of the 27 papers that evaluate a model fail our R2 criterion of reporting confidence intervals or significance tests on headline results. At least seven make post-evaluation design, recipe, metric, or threshold choices  [ 14 , 38 , 53 , 54 , 56 , 73 , 74 ] , including a sequence of input redesigns that moves video-quality PLCC from .576 to .797  [ 56 ] and a headline metric added after the original evaluation  [ 74 ] ; separately, three add comparators after seeing results  [ 14 , 39 , 79 ] . At least seven use synthetic data in at least part of their evaluation  [ 1 , 12 , 36 , 54 , 70 , 71 , 74 ] , including one setting in which an agent generates both text and gold labels  [ 36 ] . The hosted model is also nondeterministic  [ 53 , 61 , 70 , 79 ] . In the versions we reviewed, at least three papers contain internal numerical inconsistencies  [ 12 , 14 , 29 ] , and two sibling papers report opposite cost directions for the same comparator on different workloads  [ 36 , 37 ] . The thinnest evidence comes from a single run per condition  [ 18 ] and from results self-reported on the authors’ own infrastructure, where, in the paper’s second version, 100% output-format compliance sits alongside 55.4% accuracy  [ 14 ] . Given the compressed publication window, these issues should not be read as unique to TDM research; instead, they motivate concrete reporting requirements and caution against broad claims about the model class. 
+ 
+ 
+ 
+ 
+ 6 An Evaluation Checklist for Typed Decision Models 
+
+ 
+ Table  6 turns the recurring failures above into a compact checklist. For each scored item we report compliance among the papers to which the item applies rather than among all 28, so that non-compliance, non-applicability and insufficient reporting stay distinct; Appendix  B gives the criteria and the per-paper coding. The aim is not to propose a new evaluation theory but to make comparisons easier to interpret and reproduce. Several of the most important items are also inexpensive: include a label log-probability baseline when weights or logprobs are available; report the spread of performance across models so ceiling effects are visible; repeat hosted-model runs; evaluate calibration on held-out data; and freeze cascade thresholds before testing transfer. 
+ 
+ 
+ 
+ 
+ 
+ ID 
+ 
+ 
+ Report 
+ 
+ 
+ 
+ Why it matters / failure observed 
+ 
+ 
+ 
+ Count 
+ 
+ 
+ Baselines 
+ 
+ B1 
+ 
+ 
+ A baseline that reads label log-probabilities from an ordinary or same-backbone LM. 
+ 
+ 
+ 
+ Otherwise interface gains cannot be separated from model gains; the same backbone is the most informative choice; where tested, the readout added little accuracy (Finding 1). 
+ 
+ 
+ 
+ 5/26; 1 unclear 
+ 
+ 
+ B2 
+ 
+ 
+ Where a confidence threshold passes decisions to another model: a cheap generative cascade as a baseline. 
+ 
+ 
+ 
+ On external τ 2 \tau^{2} -bench a cheap generative cascade was cheaper than the TDM cascade and not less accurate  [ 71 ] ; two of six open-weight LLMs in Jev’s price range had higher median macro-F1  [ 28 ] . 
+ 
+ 
+ 
+ 1/5 
+ 
+ 
+ B3 
+ 
+ 
+ Where labeled data suffice to train one: a task-specific model (encoder, classical classifier, reward model or probe) as a baseline. 
+ 
+ 
+ 
+ Fine-tuned encoders were not significantly worse than an open TDM in ranking and had nominally lower ECE (but higher Brier) and were faster  [ 54 ] ; trained quality models stayed well ahead  [ 56 ] . 
+ 
+ 
+ 
+ 7/13; 3 unclear 
+ 
+ 
+ Test design 
+ 
+ T1 
+ 
+ 
+ Spread between models on the test; avoid parity claims on saturated tests. 
+ 
+ 
+ 
+ Several parity results come from tests on which strong models are at or near ceiling (Finding 2). 
+ 
+ 
+ 
+ – 
+ 
+ 
+ T2 
+ 
+ 
+ Correctness or agreement of individual decisions across repeated, reordered or reworded requests, not only aggregate accuracy. 
+ 
+ 
+ 
+ Equal aggregate scores hid different decisions  [ 79 ] ; correct final labels hid wrong intermediate choices  [ 16 ] . 
+ 
+ 
+ 
+ 17/26; 1 unclear 
+ 
+ 
+ T3 
+ 
+ 
+ Option-name invariance test: swap names across rubrics or compare neutral with semantic names. 
+ 
+ 
+ 
+ Swapping no/yes across rubrics moved Jev AUC from .815 to .581 with zero type errors  [ 61 ] ; asking through Score instead of Choice moved graded accuracy by up to 10.5 points  [ 53 ] . 
+ 
+ 
+ 
+ 1/27 
+ 
+ 
+ T4 
+ 
+ 
+ Data provenance: synthetic or real, gold-label source, and whether a public benchmark predates the model. 
+ 
+ 
+ 
+ The corpus includes agent-generated texts with agent-generated labels  [ 36 ] and unresolved contamination concerns  [ 28 , 79 ] . 
+ 
+ 
+ 
+ – 
+ 
+ 
+ Reproducibility and statistics 
+ 
+ R1 
+ 
+ 
+ Exact model version and run date. 
+ 
+ 
+ 
+ Hosted TDMs are closed and may change under a stable name; several papers provide neither. 
+ 
+ 
+ 
+ – 
+ 
+ 
+ R2 
+ 
+ 
+ Confidence intervals or significance tests on headline results. 
+ 
+ 
+ 
+ Twelve of the 27 report neither for their headline results. Because the hosted model is not deterministic  [ 61 , 79 ] , repeated-run stability should also be reported where feasible. 
+ 
+ 
+ 
+ 15/27 
+ 
+ 
+ R3 
+ 
+ 
+ Disclose prompts, recipes, baselines, or thresholds chosen after seeing test data. 
+ 
+ 
+ 
+ At least seven papers make such choices; one series of redesigns moves the headline metric from .576 to .797  [ 56 ] . 
+ 
+ 
+ 
+ – 
+ 
+ 
+ Confidence and deployment 
+ 
+ C1 
+ 
+ 
+ Where the TDM’s probabilities are used or described as calibrated: calibration measured with ECE, Brier score, reliability analysis or an equivalent metric. 
+ 
+ 
+ 
+ Held-out data, a metric suited to label prevalence, and results before and after any recalibration are preferable. Raw probabilities are miscalibrated in some workloads; recalibration reduces error by 3.3 × \times , while a 0.01 grid limits rare-label resolution  [ 52 ] . 
+ 
+ 
+ 
+ 13/17; 1 unclear 
+ 
+ 
+ C2 
+ 
+ 
+ Accuracy among the highest-confidence examples, by task. 
+ 
+ 
+ 
+ The corpus contains high confidence at near-base-rate accuracy  [ 28 ] and wrong tool calls with mean confidence .778  [ 71 ] ; under optimized answer-preserving context, 45% of Jev’s initially correct decisions (73% of those redirected) end with probability ≥ \geq 0.7 on the wrong option  [ 73 ] . 
+ 
+ 
+ 
+ – 
+ 
+ 
+ C3 
+ 
+ 
+ Where confidence thresholds gate acceptance or escalation: thresholds fitted on data separate from the evaluation set, or fixed before evaluation and not tuned on it. 
+ 
+ 
+ 
+ Frozen thresholds should also be tested for transfer across workloads or fallback models, since thresholds fitted on a selection set did not hold on held-out items for every fallback, and fitted temperatures differ across workloads  [ 39 ] ; some fixed thresholds are applied to scores the authors explicitly do not assume to be calibrated  [ 29 ] . 
+ 
+ 
+ 
+ 7/7; 3 unclear 
+ 
+ 
+ C4 
+ 
+ 
+ Where TDM latency is reported or a latency advantage is claimed: latency both with and without caching. 
+ 
+ 
+ 
+ Serving location, concurrency and measured cost per correct outcome should also be stated. Caching removes one reported latency advantage  [ 36 ] ; two sibling papers report opposite cost directions on different workloads  [ 36 , 37 ] . 
+ 
+ 
+ 
+ 3/20; 1 unclear 
+ 
+ 
+ 
+ Table 6: Evaluation checklist for TDMs. Count : compliant papers over papers to which the item applies, among the 27 papers that evaluate a model (criteria in Appendix  B ); papers coded as unclear are excluded from both counts; “–” marks disclosures not reliably scorable from the text. 
+ 
+ 
+ The checklist also implies a minimal reporting card for future TDM results: exact model version and run date; test difficulty or model spread; one ordinary-LM readout baseline; one cheap generative baseline; intervals from repeated runs; held-out calibration; and, when a cascade is used, a frozen threshold evaluated on a new workload or fallback model. 
+ 
+ 
+ 
+ 7 Open Problems 
+
+ 
+ Attributing Jev’s gains. 
+
+ 
+ Direct comparisons between Jev and open systems do not produce a consistent ordering. Jev leads the best open decision system on social-science annotation  [ 28 ] , while an open 2B model outperforms it on the grid-world decisions for which that model was trained  [ 12 ] . A useful ablation would compare matched-cost open backbones under three conditions: no task training, task fine-tuning with ordinary label probabilities, and calibration-oriented decision training. 
+ 
+ 
+ 
+ Decisions that need computation. 
+
+ 
+ The current interface provides no explicit iterative computation or generated intermediate reasoning. The corpus suggests that this limitation matters on multi-step arithmetic and derivation checking  [ 12 , 39 ] , while the one long-horizon study, a single game confounded by an affordability filter, pairs the TDM with an external planner whose contribution was not isolated  [ 44 ] . Decomposing a hard decision into atomic questions may help  [ 66 ] , but the resulting error propagation and cost trade-off have not been measured systematically. 
+ 
+ 
+ 
+ Faithfulness to option semantics. 
+
+ 
+ Sun et al. [61] show that a TDM can follow an option name rather than the rubric bound to it, and answer-preserving context or a change of primitive can move decisions as well  [ 53 , 73 ] . Future work should test invariance to option renaming and ordering and distinguish genuine rubric following from surface matching. 
+ 
+ 
+ 
+ Calibration under deployment shift. 
+
+ 
+ A useful confidence signal should remain meaningful when prevalence, workload, fallback model, or hosted-model version changes. Existing studies show failures along several of these axes  [ 28 , 39 , 52 ] . Longitudinal evaluation across Jev versions would be particularly valuable because all current hosted studies cover essentially the same release window. 
+ 
+ 
+ 
+ When does a TDM cascade beat a generative cascade? 
+
+ 
+ Confidence-based deferral is a recurring pattern in the corpus, but the one study that compares against a cheap generative cascade finds the TDM cascade ahead only on its own benchmark; on the external τ 2 \tau^{2} -bench the generative cascade is cheaper with no significant accuracy difference  [ 71 ] . Correlated errors between stages can also cap what escalation recovers  [ 53 ] . Relevant variables likely include option cardinality, the number of questions sharing a state, latency budget, the share of easy examples, and fallback cost. A shared, non-saturated benchmark that varies these conditions would make the comparison more informative. 
+ 
+ 
+ 
+ 
+ 8 Limitations 
+
+ 
+ This review covers a small and unusually young corpus: 28 papers written within about nine days of a product release, most of them evaluating the same hosted version. New papers appeared at several per day while we worked, so the corpus is a snapshot as of 25 September 2026. Many are preprints and may change. Our search focused on arXiv and used blogs, documentation, and model cards only for vendor facts, so industrial experience is underrepresented. The keyword-based search may miss systems that expose similar interfaces without using Jev or typed-decision terminology. Several checklist items require judgment, and we leave items unscored where the text does not support a reliable decision. Finally, because Jev’s internals are closed, conclusions about mechanism come from open TDMs and need not describe the hosted model. 
+ 
+ 
+ 
+ 9 Conclusion 
+
+ 
+ Typed decision models make a familiar idea — scoring a small set of labels — available as a software-facing decision interface with caller-defined options, guaranteed output support, shared processing across multiple questions, and probabilities intended for routing. The first week of evidence supports clear efficiency gains in some workloads, but not a general accuracy advantage for the typed readout itself. Calibration remains workload-dependent, and several of the strongest deployment results use the TDM as an inexpensive first stage of a cascade rather than as a universal replacement for generative models. The evaluation checklist is intended to make the next round of evidence easier to compare, reproduce, and trust. 
+ 
+ 
+ 
+ Use of AI Tools 
+
+ 
+ LLM-based tools were used to assist with literature organization, data extraction, reference verification, and manuscript preparation. All quantitative results and references were checked against the original sources. The authors reviewed and edited the manuscript and take full responsibility for its content and conclusions. 
+ 
+ 
+ 
+ References 
+
+ 
+ 
+ [1] 
+ 
+Arian Abbasi, Alan Aqrawi, and Ted Kwartler.
+
+ 
+ Control the Harness, Control the Cost: Routing and Governing AI
+Coding Agents in the Enterprise.
+
+ 
+ arXiv preprint arXiv:2609.28919, 2026.
+
+ 
+ 
+ [2] 
+ 
+Pranjal Aggarwal, Aman Madaan, Ankit Anand, Srividya Pranavi Potharaju, Swaroop
+Mishra, Pei Zhou, Aditya Gupta, Dheeraj Rajagopal, Karthik Kappaganthu,
+Yiming Yang, Shyam Upadhyay, Manaal Faruqui, and Mausam.
+
+ 
+ AutoMix: Automatically Mixing Language Models.
+
+ 
+ In Advances in Neural Information Processing Systems , 2024.
+
+ 
+ 
+ [3] 
+ 
+Diogo Almeida.
+
+ 
+ Introducing System One Models & Jev.
+
+ 
+ TypeSafe AI blog,
+ https://typesafe.ai/blog/introducing-system-one-models-and-jev ,
+September 2026.
+
+ 
+ Accessed 2026-09-24.
+
+ 
+ 
+ [4] 
+ 
+Anonymous Authors.
+
+ 
+ Decisions, Not Tokens: A Survey of Typed, Calibrated, and
+Machine-Native Decision Models from Classical Classifiers to Jev.
+
+ 
+ https://github.com/youzizzz1028/Awesome-Jev , 2026.
+
+ 
+ Full working draft, 21 September 2026. Accessed 2026-09-25.
+
+ 
+ 
+ [5] 
+ 
+Debangshu Banerjee, Tarun Suresh, Shubham Ugare, Sasa Misailovic, and Gagandeep
+Singh.
+
+ 
+ CRANE: Reasoning with constrained LLM generation.
+
+ 
+ In International Conference on Machine Learning (ICML) , 2025.
+
+ 
+ 
+ [6] 
+ 
+David Bani-Harouni, Chantal Pellegrini, Paul Stangel, Ege Özsoy, Kamilia
+Zaripova, Nassir Navab, and Matthias Keicher.
+
+ 
+ Rewarding Doubt: A Reinforcement Learning Approach to Calibrated
+Confidence Expression of Large Language Models.
+
+ 
+ In International Conference on Learning Representations
+(ICLR) , 2026.
+
+ 
+ 
+ [7] 
+ 
+Joachim Baumann, Paul Röttger, Aleksandra Urman, Albert Wendsjö, Flor Miriam
+Plaza-del-Arco, Johannes B. Gruber, and Dirk Hovy.
+
+ 
+ Large Language Model Hacking: Quantifying the Hidden Risks of Using
+LLMs for Text Annotation.
+
+ 
+ arXiv preprint arXiv:2509.08825, 2025.
+
+ 
+ 
+ [8] 
+ 
+Luca Beurer-Kellner, Marc Fischer, and Martin Vechev.
+
+ 
+ Guiding LLMs The Right Way: Fast, Non-Invasive Constrained
+Generation.
+
+ 
+ In International Conference on Machine Learning (ICML) , pages
+3658–3673, 2024.
+
+ 
+ 
+ [9] 
+ 
+Ralph Allan Bradley and Milton E. Terry.
+
+ 
+ Rank Analysis of Incomplete Block Designs: I. The Method of Paired
+Comparisons.
+
+ 
+ Biometrika , 39(3/4):324–345, 1952.
+
+ 
+ doi: 10.2307/2334029 .
+
+ 
+ 
+ [10] 
+ 
+Tom B. Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan,
+Prafulla Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda
+Askell, Sandhini Agarwal, Ariel Herbert-Voss, Gretchen Krueger, Tom Henighan,
+Rewon Child, Aditya Ramesh, Daniel M. Ziegler, Jeffrey Wu, Clemens Winter,
+Christopher Hesse, Mark Chen, Eric Sigler, Mateusz Litwin, Scott Gray,
+Benjamin Chess, Jack Clark, Christopher Berner, Sam McCandlish, Alec Radford,
+Ilya Sutskever, and Dario Amodei.
+
+ 
+ Language Models are Few-Shot Learners.
+
+ 
+ In Advances in Neural Information Processing Systems , 2020.
+
+ 
+ 
+ [11] 
+ 
+Lingjiao Chen, Matei Zaharia, and James Zou.
+
+ 
+ FrugalGPT: How to Use Large Language Models While Reducing Cost and
+Improving Performance.
+
+ 
+ Transactions on Machine Learning Research , 2024.
+
+ 
+ 
+ [12] 
+ 
+Zehua Cheng, Wei Dai, and Jiahao Sun.
+
+ 
+ this-that-model-1.0: A typed decision model that decides in 30 ms,
+for a millionth of a cent.
+
+ 
+ arXiv preprint arXiv:2609.23886, 2026.
+
+ 
+ 
+ [13] 
+ 
+C.-K. Chow.
+
+ 
+ On Optimum Recognition Error and Reject Tradeoff.
+
+ 
+ IEEE Transactions on Information Theory , 16(1):41–46, 1970.
+
+ 
+ doi: 10.1109/TIT.1970.1054406 .
+
+ 
+ 
+ [14] 
+ 
+Volkan Dağlı, Zerrin Dağlı, and Dağhan Dağlı.
+
+ 
+ Universal Fractal Natural Language Decision Map: Real-Time Edge
+Triage Across Heterogeneous Domains.
+
+ 
+ arXiv preprint arXiv:2609.25498, 2026.
+
+ 
+ 
+ [15] 
+ 
+Mehul Damani, Isha Puri, Stewart Slocum, Idan Shenfeld, Leshem Choshen, Yoon
+Kim, and Jacob Andreas.
+
+ 
+ Beyond Binary Rewards: Training LMs to Reason About Their
+Uncertainty.
+
+ 
+ In International Conference on Learning Representations
+(ICLR) , 2026.
+
+ 
+ 
+ [16] 
+ 
+Boyuan Deng, Shuyi Fan, Hongyang Zhang, and Xinhong Xie.
+
+ 
+ Jev for Scientific Decisions: Evaluating Semantic Choices and Their
+Consequences.
+
+ 
+ arXiv preprint arXiv:2609.24965, 2026.
+
+ 
+ Version 2, 23 September 2026.
+
+ 
+ 
+ [17] 
+ 
+Yixin Dong, Charlie F. Ruan, Yaxing Cai, Ziyi Xu, Yilong Zhao, Ruihang Lai, and
+Tianqi Chen.
+
+ 
+ XGrammar: Flexible and Efficient Structured Generation Engine for
+Large Language Models.
+
+ 
+ In Proceedings of Machine Learning and Systems (MLSys) , 2025.
+
+ 
+ 
+ [18] 
+ 
+Joas Antonio dos Santos Barbosa.
+
+ 
+ Calibrated Decision Models for Autonomous Penetration-Testing
+Harnesses: JEV and Laya as System One Decision Layers for LLM-Driven Pentest
+Agents.
+
+ 
+ arXiv preprint arXiv:2609.28940, 2026.
+
+ 
+ 
+ [19] 
+ 
+Naoki Egami, Musashi Hinck, Brandon M. Stewart, and Hanying Wei.
+
+ 
+ Using Imperfect Surrogates for Downstream Inference: Design-based
+Supervised Learning for Social Science Applications of Large Language
+Models.
+
+ 
+ In Advances in Neural Information Processing Systems ,
+volume 36, 2023.
+
+ 
+ 
+ [20] 
+ 
+Tianyu Gao, Adam Fisch, and Danqi Chen.
+
+ 
+ Making pre-trained language models better few-shot learners.
+
+ 
+ In Chengqing Zong, Fei Xia, Wenjie Li, and Roberto Navigli, editors,
+ Proceedings of the 59th Annual Meeting of the Association for
+Computational Linguistics and the 11th International Joint Conference on
+Natural Language Processing (Volume 1: Long Papers) , pages 3816–3830,
+Online, August 2021. Association for Computational Linguistics.
+
+ 
+ doi: 10.18653/v1/2021.acl-long.295 .
+
+ 
+ URL https://aclanthology.org/2021.acl-long.295/ .
+
+ 
+ 
+ [21] 
+ 
+Yonatan Geifman and Ran El-Yaniv.
+
+ 
+ Selective Classification for Deep Neural Networks.
+
+ 
+ In Advances in Neural Information Processing Systems , 2017.
+
+ 
+ 
+ [22] 
+ 
+Saibo Geng, Martin Josifoski, Maxime Peyrard, and Robert West.
+
+ 
+ Grammar-constrained decoding for structured NLP tasks without
+finetuning.
+
+ 
+ In Houda Bouamor, Juan Pino, and Kalika Bali, editors,
+ Proceedings of the 2023 Conference on Empirical Methods in Natural
+Language Processing , pages 10932–10952, Singapore, December 2023.
+Association for Computational Linguistics.
+
+ 
+ doi: 10.18653/v1/2023.emnlp-main.674 .
+
+ 
+ URL https://aclanthology.org/2023.emnlp-main.674/ .
+
+ 
+ 
+ [23] 
+ 
+Chuan Guo, Geoff Pleiss, Yu Sun, and Kilian Q. Weinberger.
+
+ 
+ On Calibration of Modern Neural Networks.
+
+ 
+ In International Conference on Machine Learning (ICML) , 2017.
+
+ 
+ 
+ [24] 
+ 
+Ruoqi Guo, Yi Liu, Gelei Deng, Yuekang Li, Lida Zhao, Yutao Wu, Simin Chen,
+Ying Zhang, and Leo Yu Zhang.
+
+ 
+ Just Ask Jev: Reinforcement Learning for Calibrated Decisions as a
+Zero-Shot Detector of AI Alignment Failures.
+
+ 
+ arXiv preprint arXiv:2609.29429, 2026.
+
+ 
+ 
+ [25] 
+ 
+Neha Gupta, Harikrishna Narasimhan, Wittawat Jitkrittum, Ankit Singh Rawat,
+Aditya Krishna Menon, and Sanjiv Kumar.
+
+ 
+ Language Model Cascades: Token-level uncertainty and beyond.
+
+ 
+ In International Conference on Learning Representations
+(ICLR) , 2024.
+
+ 
+ 
+ [26] 
+ 
+Ari Holtzman, Peter West, Vered Shwartz, Yejin Choi, and Luke Zettlemoyer.
+
+ 
+ Surface form competition: Why the highest probability answer isn’t
+always right.
+
+ 
+ In Marie-Francine Moens, Xuanjing Huang, Lucia Specia, and Scott
+Wen-tau Yih, editors, Proceedings of the 2021 Conference on Empirical
+Methods in Natural Language Processing , pages 7038–7051, Online and Punta
+Cana, Dominican Republic, November 2021. Association for Computational
+Linguistics.
+
+ 
+ doi: 10.18653/v1/2021.emnlp-main.564 .
+
+ 
+ URL https://aclanthology.org/2021.emnlp-main.564/ .
+
+ 
+ 
+ [27] 
+ 
+Jiaju Huang, Hao Yang, Xinyu Ma, Xinglong Liang, Kunyan Cai, Junqiang Ma,
+Shaobin Chen, Yue Sun, and Tao Tan.
+
+ 
+ Can Jev Judge Radiology Reports? Evaluating a System One Model for
+Clinical Factuality.
+
+ 
+ arXiv preprint arXiv:2609.27607, 2026.
+
+ 
+ 
+ [28] 
+ 
+Hazem Ibrahim and Yasir Zaki.
+
+ 
+ Evaluating Decision Models for Text Annotation in Computational
+Social Science.
+
+ 
+ arXiv preprint arXiv:2609.24574, 2026.
+
+ 
+ Version 2, 23 September 2026.
+
+ 
+ 
+ [29] 
+ 
+Dongming Jiang, Yi Li, and Bingzhe Li.
+
+ 
+ Jev-Mem: System-One-Controlled Agentic Memory for Efficient AI
+Agents.
+
+ 
+ arXiv preprint arXiv:2609.23986, 2026.
+
+ 
+ 
+ [30] 
+ 
+Wittawat Jitkrittum, Neha Gupta, Aditya Krishna Menon, Harikrishna Narasimhan,
+Ankit Singh Rawat, and Sanjiv Kumar.
+
+ 
+ When Does Confidence-Based Cascade Deferral Suffice?
+
+ 
+ In Advances in Neural Information Processing Systems , 2023.
+
+ 
+ 
+ [31] 
+ 
+Saurav Kadavath, Tom Conerly, Amanda Askell, Tom Henighan, Dawn Drain, Ethan
+Perez, Nicholas Schiefer, Zac Hatfield-Dodds, Nova DasSarma, Eli
+Tran-Johnson, Scott Johnston, Sheer El-Showk, Andy Jones, Nelson Elhage,
+Tristan Hume, Anna Chen, Yuntao Bai, Sam Bowman, Stanislav Fort, Deep
+Ganguli, Danny Hernandez, Josh Jacobson, Jackson Kernion, Shauna Kravec,
+Liane Lovitt, Kamal Ndousse, Catherine Olsson, Sam Ringer, Dario Amodei, Tom
+Brown, Jack Clark, Nicholas Joseph, Ben Mann, Sam McCandlish, Chris Olah, and
+Jared Kaplan.
+
+ 
+ Language Models (Mostly) Know What They Know.
+
+ 
+ arXiv preprint arXiv:2207.05221, 2022.
+
+ 
+ 
+ [32] 
+ 
+Daniel Kahneman.
+
+ 
+ Thinking, Fast and Slow .
+
+ 
+ Farrar, Straus and Giroux, New York, 2011.
+
+ 
+ 
+ [33] 
+ 
+Amita Kamath, Robin Jia, and Percy Liang.
+
+ 
+ Selective question answering under domain shift.
+
+ 
+ In Dan Jurafsky, Joyce Chai, Natalie Schluter, and Joel Tetreault,
+editors, Proceedings of the 58th Annual Meeting of the Association for
+Computational Linguistics , pages 5684–5696, Online, July 2020. Association
+for Computational Linguistics.
+
+ 
+ doi: 10.18653/v1/2020.acl-main.503 .
+
+ 
+ URL https://aclanthology.org/2020.acl-main.503/ .
+
+ 
+ 
+ [34] 
+ 
+Seungone Kim, Jamin Shin, Yejin Cho, Joel Jang, Shayne Longpre, Hwaran Lee,
+Sangdoo Yun, Seongjin Shin, Sungdong Kim, James Thorne, and Minjoon Seo.
+
+ 
+ Prometheus: Inducing Fine-grained Evaluation Capability in Language
+Models.
+
+ 
+ In International Conference on Learning Representations
+(ICLR) , 2024.
+
+ 
+ 
+ [35] 
+ 
+Moritz Laurer, Wouter van Atteveldt, Andreu Casas, and Kasper Welbers.
+
+ 
+ Building Efficient Universal Classifiers with Natural Language
+Inference.
+
+ 
+ arXiv preprint arXiv:2312.17543, 2023.
+
+ 
+ 
+ [36] 
+ 
+Delong Li, Xu Wang, Haochen Gong, Rui Lang, and Guangsheng Yu.
+
+ 
+ Replacing Large Language Models with Jev Decision Models for
+Low-Latency Edge Service Orchestration.
+
+ 
+ arXiv preprint arXiv:2609.22753, 2026a.
+
+ 
+ 
+ [37] 
+ 
+Delong Li, Xu Wang, Haochen Gong, Rui Lang, and Guangsheng Yu.
+
+ 
+ Fast Intent-Driven Service Orchestration with Jev for 6G Edge
+Networks.
+
+ 
+ arXiv preprint arXiv:2609.23136, 2026b.
+
+ 
+ 
+ [38] 
+ 
+Hengyu Li.
+
+ 
+ KITE: Scaling Jev Population Experiments with Sparse Flagship
+Calibration.
+
+ 
+ arXiv preprint arXiv:2609.27535, 2026.
+
+ 
+ 
+ [39] 
+ 
+Yubo Li, Yidi Miao, Ramayya Krishnan, and Rema Padman.
+
+ 
+ JEV-as-a-Judge: Accept When Confident, Escalate When Unsure.
+
+ 
+ arXiv preprint arXiv:2609.26550, 2026c.
+
+ 
+ 
+ [40] 
+ 
+Guoming Ling, Muen Xue, and Zijian Ye.
+
+ 
+ Jev in the Wild: A Data-Driven Analysis of the Jev Model’s
+Functionality, Applications and Ecosystem.
+
+ 
+ arXiv preprint arXiv:2609.30216, 2026.
+
+ 
+ 
+ [41] 
+ 
+Yang Liu, Dan Iter, Yichong Xu, Shuohang Wang, Ruochen Xu, and Chenguang Zhu.
+
+ 
+ G-eval: NLG evaluation using gpt-4 with better human alignment.
+
+ 
+ In Houda Bouamor, Juan Pino, and Kalika Bali, editors,
+ Proceedings of the 2023 Conference on Empirical Methods in Natural
+Language Processing , pages 2511–2522, Singapore, December 2023. Association
+for Computational Linguistics.
+
+ 
+ doi: 10.18653/v1/2023.emnlp-main.153 .
+
+ 
+ URL https://aclanthology.org/2023.emnlp-main.153/ .
+
+ 
+ 
+ [42] 
+ 
+Yantao Liu, Zijun Yao, Rui Min, Yixin Cao, Lei Hou, and Juanzi Li.
+
+ 
+ RM-Bench: Benchmarking Reward Models of Language Models with
+Subtlety and Style.
+
+ 
+ In International Conference on Learning Representations
+(ICLR) , 2025.
+
+ 
+ 
+ [43] 
+ 
+Meng Luo.
+
+ 
+ Jev and Typed Decision Models: An Empirical Survey of Calibration,
+Selective Control, and Open Implementations.
+
+ 
+ https://github.com/Eurekaleo/awesome-jev-survey , 2026.
+
+ 
+ Working draft, version 0.2.0, data cutoff 24 September 2026. Accessed
+2026-09-25.
+
+ 
+ 
+ [44] 
+ 
+Weiyu Ma, Liangbing Zhao, Yongcheng Zeng, and Jian Zhao.
+
+ 
+ JEV-Star: Fast, Low-Cost StarCraft II Control with Language-Model
+Planning.
+
+ 
+ arXiv preprint arXiv:2609.27331, 2026.
+
+ 
+ 
+ [45] 
+ 
+David Madras, Toniann Pitassi, and Richard Zemel.
+
+ 
+ Predict Responsibly: Improving Fairness and Accuracy by Learning to
+Defer.
+
+ 
+ In Advances in Neural Information Processing Systems , pages
+6150–6160, 2018.
+
+ 
+ 
+ [46] 
+ 
+Sewon Min, Mike Lewis, Hannaneh Hajishirzi, and Luke Zettlemoyer.
+
+ 
+ Noisy channel language model prompting for few-shot text
+classification.
+
+ 
+ In Smaranda Muresan, Preslav Nakov, and Aline Villavicencio, editors,
+ Proceedings of the 60th Annual Meeting of the Association for
+Computational Linguistics (Volume 1: Long Papers) , pages 5316–5330, Dublin,
+Ireland, May 2022. Association for Computational Linguistics.
+
+ 
+ doi: 10.18653/v1/2022.acl-long.365 .
+
+ 
+ URL https://aclanthology.org/2022.acl-long.365/ .
+
+ 
+ 
+ [47] 
+ 
+Hussein Mozannar and David Sontag.
+
+ 
+ Consistent Estimators for Learning to Defer to an Expert.
+
+ 
+ In International Conference on Machine Learning (ICML) , pages
+7076–7087, 2020.
+
+ 
+ 
+ [48] 
+ 
+Rodrigo Nogueira, Zhiying Jiang, Ronak Pradeep, and Jimmy Lin.
+
+ 
+ Document ranking with a pretrained sequence-to-sequence model.
+
+ 
+ In Trevor Cohn, Yulan He, and Yang Liu, editors, Findings of
+the Association for Computational Linguistics: EMNLP 2020 , pages 708–718,
+Online, November 2020. Association for Computational Linguistics.
+
+ 
+ doi: 10.18653/v1/2020.findings-emnlp.63 .
+
+ 
+ URL https://aclanthology.org/2020.findings-emnlp.63/ .
+
+ 
+ 
+ [49] 
+ 
+Long Ouyang, Jeff Wu, Xu Jiang, Diogo Almeida, Carroll L. Wainwright, Pamela
+Mishkin, Chong Zhang, Sandhini Agarwal, Katarina Slama, Alex Ray, John
+Schulman, Jacob Hilton, Fraser Kelton, Luke Miller, Maddie Simens, Amanda
+Askell, Peter Welinder, Paul Christiano, Jan Leike, and Ryan Lowe.
+
+ 
+ Training language models to follow instructions with human
+feedback.
+
+ 
+ In Advances in Neural Information Processing Systems , 2022.
+
+ 
+ 
+ [50] 
+ 
+Kanghee Park, Jiayu Wang, Taylor Berg-Kirkpatrick, Nadia Polikarpova, and Loris
+D’Antoni.
+
+ 
+ Grammar-Aligned Decoding.
+
+ 
+ In Advances in Neural Information Processing Systems , 2024.
+
+ 
+ 
+ [51] 
+ 
+Pouya Pezeshkpour and Estevam Hruschka.
+
+ 
+ Large language models sensitivity to the order of options in
+multiple-choice questions.
+
+ 
+ In Kevin Duh, Helena Gomez, and Steven Bethard, editors,
+ Findings of the Association for Computational Linguistics: NAACL 2024 ,
+pages 2006–2017, Mexico City, Mexico, June 2024. Association for
+Computational Linguistics.
+
+ 
+ doi: 10.18653/v1/2024.findings-naacl.130 .
+
+ 
+ URL https://aclanthology.org/2024.findings-naacl.130/ .
+
+ 
+ 
+ [52] 
+ 
+Amir Rafe and Subasish Das.
+
+ 
+ Calibrated Decisions at Scale: Converting Police Crash Narratives
+into Probabilistic Crash Variables with a System One Model (Jev).
+
+ 
+ arXiv preprint arXiv:2609.24052, 2026.
+
+ 
+ 
+ [53] 
+ 
+Delip Rao and Chris Callison-Burch.
+
+ 
+ JEV vs. LLMs as Rubric Judges: Cheaper, Faster, and Wrong in the
+Same Places.
+
+ 
+ arXiv preprint arXiv:2609.29769, 2026.
+
+ 
+ 
+ [54] 
+ 
+Simiao Ren, Kidus Zewde, Xingyu Shen, Yuchen Zhou, Dennis Ng, Ankit Raj, Tommy
+Duong, Yuxin Zhang, and Neo Tiangratanakul.
+
+ 
+ Open-Jev Judgments on CallScreenBench: Calibrated One-Pass Scam
+Screening with a Small Language Model.
+
+ 
+ arXiv preprint arXiv:2609.23959, 2026.
+
+ 
+ 
+ [55] 
+ 
+Joshua Robinson and David Wingate.
+
+ 
+ Leveraging Large Language Models for Multiple Choice Question
+Answering.
+
+ 
+ In International Conference on Learning Representations
+(ICLR) , 2023.
+
+ 
+ 
+ [56] 
+ 
+Werner Robitza.
+
+ 
+ JEVQA - Video Quality from Metadata, Bitstream, and Pixel Features
+with a General-Purpose Decision Model.
+
+ 
+ arXiv preprint arXiv:2609.24395, 2026.
+
+ 
+ 
+ [57] 
+ 
+Timo Schick and Hinrich Schütze.
+
+ 
+ Exploiting cloze-questions for few-shot text classification and
+natural language inference.
+
+ 
+ In Paola Merlo, Jorg Tiedemann, and Reut Tsarfaty, editors,
+ Proceedings of the 16th Conference of the European Chapter of the
+Association for Computational Linguistics: Main Volume , pages 255–269,
+Online, April 2021a. Association for Computational Linguistics.
+
+ 
+ doi: 10.18653/v1/2021.eacl-main.20 .
+
+ 
+ URL https://aclanthology.org/2021.eacl-main.20/ .
+
+ 
+ 
+ [58] 
+ 
+Timo Schick and Hinrich Schütze.
+
+ 
+ It’s not just size that matters: Small language models are also
+few-shot learners.
+
+ 
+ In Kristina Toutanova, Anna Rumshisky, Luke Zettlemoyer, Dilek
+Hakkani-Tur, Iz Beltagy, Steven Bethard, Ryan Cotterell, Tanmoy Chakraborty,
+and Yichao Zhou, editors, Proceedings of the 2021 Conference of the
+North American Chapter of the Association for Computational Linguistics:
+Human Language Technologies , pages 2339–2352, Online, June
+2021b. Association for Computational Linguistics.
+
+ 
+ doi: 10.18653/v1/2021.naacl-main.185 .
+
+ 
+ URL https://aclanthology.org/2021.naacl-main.185/ .
+
+ 
+ 
+ [59] 
+ 
+Torsten Scholak, Nathan Schucher, and Dzmitry Bahdanau.
+
+ 
+ PICARD: Parsing incrementally for constrained auto-regressive
+decoding from language models.
+
+ 
+ In Marie-Francine Moens, Xuanjing Huang, Lucia Specia, and Scott
+Wen-tau Yih, editors, Proceedings of the 2021 Conference on Empirical
+Methods in Natural Language Processing , pages 9895–9901, Online and Punta
+Cana, Dominican Republic, November 2021. Association for Computational
+Linguistics.
+
+ 
+ doi: 10.18653/v1/2021.emnlp-main.779 .
+
+ 
+ URL https://aclanthology.org/2021.emnlp-main.779/ .
+
+ 
+ 
+ [60] 
+ 
+Ihor Stepanov, Mykhailo Shtopko, Dmytro Vodianytskyi, Oleksandr Lukashov,
+Alexander Yavorskyi, and Mykyta Yaroshenko.
+
+ 
+ GLiClass: Generalist Lightweight Model for Sequence Classification
+Tasks.
+
+ 
+ arXiv preprint arXiv:2508.07662, 2025.
+
+ 
+ 
+ [61] 
+ 
+Yu Sun, Junhao Xu, Jiajia Shi, and Zijin Yang.
+
+ 
+ Type-Safe Is Not Error-Free: A Constrained Decision Head Follows the
+Option Name, Not the Rubric Bound to It.
+
+ 
+ arXiv preprint arXiv:2609.26758, 2026.
+
+ 
+ Version 2, 23 September 2026.
+
+ 
+ 
+ [62] 
+ 
+Zhi Rui Tam, Cheng-Kuang Wu, Yi-Lin Tsai, Chieh-Yen Lin, Hung-yi Lee, and
+Yun-Nung Chen.
+
+ 
+ Let me speak freely? a study on the impact of format restrictions on
+large language model performance.
+
+ 
+ In Franck Dernoncourt, Daniel Preoţiuc-Pietro, and Anastasia
+Shimorina, editors, Proceedings of the 2024 Conference on Empirical
+Methods in Natural Language Processing: Industry Track , pages 1218–1236,
+Miami, Florida, US, November 2024. Association for Computational Linguistics.
+
+ 
+ doi: 10.18653/v1/2024.emnlp-industry.91 .
+
+ 
+ URL https://aclanthology.org/2024.emnlp-industry.91/ .
+
+ 
+ 
+ [63] 
+ 
+Sijun Tan, Siyuan Zhuang, Kyle Montgomery, William Y. Tang, Alejandro Cuadron,
+Chenguang Wang, Raluca Ada Popa, and Ion Stoica.
+
+ 
+ JudgeBench: A Benchmark for Evaluating LLM-based Judges.
+
+ 
+ In International Conference on Learning Representations
+(ICLR) , 2025.
+
+ 
+ 
+ [64] 
+ 
+Katherine Tian, Eric Mitchell, Allan Zhou, Archit Sharma, Rafael Rafailov,
+Huaxiu Yao, Chelsea Finn, and Christopher Manning.
+
+ 
+ Just ask for calibration: Strategies for eliciting calibrated
+confidence scores from language models fine-tuned with human feedback.
+
+ 
+ In Houda Bouamor, Juan Pino, and Kalika Bali, editors,
+ Proceedings of the 2023 Conference on Empirical Methods in Natural
+Language Processing , pages 5433–5442, Singapore, December 2023. Association
+for Computational Linguistics.
+
+ 
+ doi: 10.18653/v1/2023.emnlp-main.330 .
+
+ 
+ URL https://aclanthology.org/2023.emnlp-main.330/ .
+
+ 
+ 
+ [65] 
+ 
+TypeSafe AI.
+
+ 
+ System One Adapter (Python).
+
+ 
+ https://github.com/typesafe-ai/system-one-adapter-python ,
+2026a.
+
+ 
+ Accessed 2026-09-24.
+
+ 
+ 
+ [66] 
+ 
+TypeSafe AI.
+
+ 
+ TypeSafe AI Documentation.
+
+ 
+ https://docs.typesafe.ai/introduction , 2026b.
+
+ 
+ Accessed 2026-09-24.
+
+ 
+ 
+ [67] 
+ 
+Neeraj Varshney and Chitta Baral.
+
+ 
+ Model cascading: Towards jointly improving efficiency and accuracy of
+NLP systems.
+
+ 
+ In Yoav Goldberg, Zornitsa Kozareva, and Yue Zhang, editors,
+ Proceedings of the 2022 Conference on Empirical Methods in Natural
+Language Processing , pages 11007–11021, Abu Dhabi, United Arab Emirates,
+December 2022. Association for Computational Linguistics.
+
+ 
+ doi: 10.18653/v1/2022.emnlp-main.756 .
+
+ 
+ URL https://aclanthology.org/2022.emnlp-main.756/ .
+
+ 
+ 
+ [68] 
+ 
+Xinpeng Wang, Bolei Ma, Chengzhi Hu, Leon Weber-Genzel, Paul Röttger,
+Frauke Kreuter, Dirk Hovy, and Barbara Plank.
+
+ 
+ “my answer is C”: First-token probabilities do not match text
+answers in instruction-tuned language models.
+
+ 
+ In Lun-Wei Ku, Andre Martins, and Vivek Srikumar, editors,
+ Findings of the Association for Computational Linguistics: ACL 2024 ,
+pages 7407–7416, Bangkok, Thailand, August 2024. Association for
+Computational Linguistics.
+
+ 
+ doi: 10.18653/v1/2024.findings-acl.441 .
+
+ 
+ URL https://aclanthology.org/2024.findings-acl.441/ .
+
+ 
+ 
+ [69] 
+ 
+Brandon T. Willard and Rémi Louf.
+
+ 
+ Efficient Guided Generation for Large Language Models.
+
+ 
+ arXiv preprint arXiv:2307.09702, 2023.
+
+ 
+ 
+ [70] 
+ 
+Tiantong Wu and Wei Yang Bryan Lim.
+
+ 
+ Decision Hijacking: Prompt Injection Attacks on Jev’s Typed
+Probabilistic Decisions.
+
+ 
+ arXiv preprint arXiv:2609.28613, 2026a.
+
+ 
+ 
+ [71] 
+ 
+Tiantong Wu and Wei Yang Bryan Lim.
+
+ 
+ REFLEX with Jev for Efficient Selective Control in LLM Agents.
+
+ 
+ arXiv preprint arXiv:2609.26532, 2026b.
+
+ 
+ 
+ [72] 
+ 
+Miao Xiong, Zhiyuan Hu, Xinyang Lu, Yifei Li, Jie Fu, Junxian He, and Bryan
+Hooi.
+
+ 
+ Can LLMs Express Their Uncertainty? An Empirical Evaluation of
+Confidence Elicitation in LLMs.
+
+ 
+ In International Conference on Learning Representations
+(ICLR) , 2024.
+
+ 
+ 
+ [73] 
+ 
+Zixiang Xu.
+
+ 
+ JevOut: Natural Context Can Flip Decision Models.
+
+ 
+ arXiv preprint arXiv:2609.30243, 2026.
+
+ 
+ 
+ [74] 
+ 
+Weiwei Ye, Hangchen Liu, and Renhe Jiang.
+
+ 
+ NumericJev: Jev-like LLM Numerical Decoding with Multiway Decision
+Trees.
+
+ 
+ arXiv preprint arXiv:2609.28587, 2026.
+
+ 
+ 
+ [75] 
+ 
+Wenpeng Yin, Jamaal Hay, and Dan Roth.
+
+ 
+ Benchmarking zero-shot text classification: Datasets, evaluation and
+entailment approach.
+
+ 
+ In Kentaro Inui, Jing Jiang, Vincent Ng, and Xiaojun Wan, editors,
+ Proceedings of the 2019 Conference on Empirical Methods in Natural
+Language Processing and the 9th International Joint Conference on Natural
+Language Processing (EMNLP-IJCNLP) , pages 3914–3923, Hong Kong, China,
+November 2019. Association for Computational Linguistics.
+
+ 
+ doi: 10.18653/v1/D19-1404 .
+
+ 
+ URL https://aclanthology.org/D19-1404/ .
+
+ 
+ 
+ [76] 
+ 
+Guanxu Yu and Yuhang Yao.
+
+ 
+ Visual Jev: Accurate and Efficient Decisions from Shared Visual
+Context.
+
+ 
+ arXiv preprint arXiv:2609.25845, 2026.
+
+ 
+ 
+ [77] 
+ 
+Bianca Zadrozny and Charles Elkan.
+
+ 
+ Transforming Classifier Scores into Accurate Multiclass Probability
+Estimates.
+
+ 
+ In Proceedings of the Eighth ACM SIGKDD International
+Conference on Knowledge Discovery and Data Mining , pages 694–699, 2002.
+
+ 
+ doi: 10.1145/775047.775151 .
+
+ 
+ 
+ [78] 
+ 
+Urchade Zaratiana, Nadi Tomeh, Pierre Holat, and Thierry Charnois.
+
+ 
+ GLiNER: Generalist model for named entity recognition using
+bidirectional transformer.
+
+ 
+ In Kevin Duh, Helena Gomez, and Steven Bethard, editors,
+ Proceedings of the 2024 Conference of the North American Chapter of the
+Association for Computational Linguistics: Human Language Technologies
+(Volume 1: Long Papers) , pages 5364–5376, Mexico City, Mexico, June 2024.
+Association for Computational Linguistics.
+
+ 
+ doi: 10.18653/v1/2024.naacl-long.300 .
+
+ 
+ URL https://aclanthology.org/2024.naacl-long.300/ .
+
+ 
+ 
+ [79] 
+ 
+Fan Zhang, Yankai Chen, Zhuohan Xie, Yixi Zhou, Sijia Peng, Lei Fan, Xinhua Ji,
+Cunyuan Zheng, Huangyong Shan, Philip S. Yu, Xue Liu, Yu Chen, Preslav Nakov,
+and Songwei He.
+
+ 
+ Same Scores, Different Decisions: Evaluating JEV and Language Models
+for Legal Document Understanding.
+
+ 
+ arXiv preprint arXiv:2609.27678, 2026.
+
+ 
+ 
+ [80] 
+ 
+Linghua Zhang.
+
+ 
+ Jev-Mobile: Jev as an Executor for Mobile GUI Agents.
+
+ 
+ arXiv preprint arXiv:2609.30186, 2026.
+
+ 
+ 
+ [81] 
+ 
+Lunjun Zhang, Arian Hosseini, Hritik Bansal, Mehran Kazemi, Aviral Kumar, and
+Rishabh Agarwal.
+
+ 
+ Generative Verifiers: Reward Modeling as Next-Token Prediction.
+
+ 
+ In International Conference on Learning Representations
+(ICLR) , 2025a.
+
+ 
+ 
+ [82] 
+ 
+Yanzhao Zhang, Mingxin Li, Dingkun Long, Xin Zhang, Huan Lin, Baosong Yang,
+Pengjun Xie, An Yang, Dayiheng Liu, Junyang Lin, Fei Huang, and Jingren Zhou.
+
+ 
+ Qwen3 Embedding: Advancing Text Embedding and Reranking Through
+Foundation Models.
+
+ 
+ arXiv preprint arXiv:2506.05176, 2025b.
+
+ 
+ 
+ [83] 
+ 
+Tony Z. Zhao, Eric Wallace, Shi Feng, Dan Klein, and Sameer Singh.
+
+ 
+ Calibrate Before Use: Improving Few-Shot Performance of Language
+Models.
+
+ 
+ In International Conference on Machine Learning (ICML) , pages
+12697–12706, 2021.
+
+ 
+ 
+ [84] 
+ 
+Chujie Zheng, Hao Zhou, Fandong Meng, Jie Zhou, and Minlie Huang.
+
+ 
+ Large Language Models Are Not Robust Multiple Choice Selectors.
+
+ 
+ In International Conference on Learning Representations
+(ICLR) , 2024.
+
+ 
+ 
+ [85] 
+ 
+Han Zhou, Xingchen Wan, Lev Proleev, Diana Mincu, Jilin Chen, Katherine Heller,
+and Subhrajit Roy.
+
+ 
+ Batch Calibration: Rethinking Calibration for In-Context Learning
+and Prompt Engineering.
+
+ 
+ In International Conference on Learning Representations
+(ICLR) , 2024.
+
+ 
+ 
+ [86] 
+ 
+Xunlan Zhou, Xianliang Yang, and Li Zhao.
+
+ 
+ From Text Decisions to Pixels: An Study of Jev-Style Visual Choice
+Model.
+
+ 
+ arXiv preprint arXiv:2609.29283, 2026.
+
+ 
+ 
+ [87] 
+ 
+Caleb Ziems, William Held, Omar Shaikh, Jiaao Chen, Zhehao Zhang, and Diyi
+Yang.
+
+ 
+ Can large language models transform computational social science?
+
+ 
+ Computational Linguistics , 50(1):237–291,
+March 2024.
+
+ 
+ doi: 10.1162/coli_a_00502 .
+
+ 
+ URL https://aclanthology.org/2024.cl-1.8/ .
+
+ 
+ 
+ 
+ 
+ 
+ Appendix A Corpus Versions 
+
+ 
+ Table  7 lists the arXiv version of each corpus paper from which we extracted results. The first 17 papers were accessed on 24 September 2026 and rechecked on 25 September; the remaining 11 were accessed on 25 September. 
+ 
+ 
+ 
+ 
+ 
+ Paper 
+ arXiv ID 
+ Version 
+ Version date 
+ 
+ 
+ 
+ Li et al. [36] 
+ 2609.22753 
+ v1 
+ 19 Sep 2026 
+ 
+ Li et al. [37] 
+ 2609.23136 
+ v1 
+ 19 Sep 2026 
+ 
+ Cheng et al. [12] 
+ 2609.23886 
+ v1 
+ 20 Sep 2026 
+ 
+ Ren et al. [54] 
+ 2609.23959 
+ v1 
+ 21 Sep 2026 
+ 
+ Jiang et al. [29] 
+ 2609.23986 
+ v1 
+ 21 Sep 2026 
+ 
+ Rafe and Das [52] 
+ 2609.24052 
+ v1 
+ 21 Sep 2026 
+ 
+ Robitza [56] 
+ 2609.24395 
+ v1 
+ 21 Sep 2026 
+ 
+ Ibrahim and Zaki [28] 
+ 2609.24574 
+ v2 
+ 23 Sep 2026 
+ 
+ Deng et al. [16] 
+ 2609.24965 
+ v2 
+ 23 Sep 2026 
+ 
+ Dağlı et al. [14] 
+ 2609.25498 
+ v2 
+ 24 Sep 2026 
+ 
+ Yu and Yao [76] 
+ 2609.25845 
+ v1 
+ 22 Sep 2026 
+ 
+ Wu and Lim [71] 
+ 2609.26532 
+ v1 
+ 22 Sep 2026 
+ 
+ Li et al. [39] 
+ 2609.26550 
+ v1 
+ 22 Sep 2026 
+ 
+ Sun et al. [61] 
+ 2609.26758 
+ v2 
+ 23 Sep 2026 
+ 
+ Ma et al. [44] 
+ 2609.27331 
+ v1 
+ 23 Sep 2026 
+ 
+ Li [38] 
+ 2609.27535 
+ v1 
+ 23 Sep 2026 
+ 
+ Huang et al. [27] 
+ 2609.27607 
+ v1 
+ 23 Sep 2026 
+ 
+ Zhang et al. [79] 
+ 2609.27678 
+ v1 
+ 23 Sep 2026 
+ 
+ Ye et al. [74] 
+ 2609.28587 
+ v1 
+ 23 Sep 2026 
+ 
+ Wu and Lim [70] 
+ 2609.28613 
+ v1 
+ 23 Sep 2026 
+ 
+ Abbasi et al. [1] 
+ 2609.28919 
+ v1 
+ 24 Sep 2026 
+ 
+ dos Santos Barbosa [18] 
+ 2609.28940 
+ v1 
+ 24 Sep 2026 
+ 
+ Zhou et al. [86] 
+ 2609.29283 
+ v1 
+ 24 Sep 2026 
+ 
+ Guo et al. [24] 
+ 2609.29429 
+ v1 
+ 24 Sep 2026 
+ 
+ Rao and Callison-Burch [53] 
+ 2609.29769 
+ v1 
+ 24 Sep 2026 
+ 
+ Zhang [80] 
+ 2609.30186 
+ v1 
+ 24 Sep 2026 
+ 
+ Ling et al. [40] 
+ 2609.30216 
+ v1 
+ 24 Sep 2026 
+ 
+ Xu [73] 
+ 2609.30243 
+ v1 
+ 24 Sep 2026 
+ 
+ 
+ Table 7: arXiv versions of the 28 corpus papers used in this review. 
+ 
+ 
+ 
+ Appendix B Checklist Coding 
+
+ 
+ We scored nine checklist items for the 27 corpus papers that evaluate a model; the ecosystem study  [ 40 ] is not scored. Each item was coded in two steps, applicability and then compliance. Cases that could not be determined from the paper are marked unclear and excluded from both counts. 
+ 
+ 
+ 
+ B1 
+ 
+ 
+ Applies to all 27. Compliant if any baseline reads label log-probabilities from an ordinary or same-backbone LM. 
+ 
+ B2 
+ 
+ 
+ Applies only to papers that pass decisions to another model according to a confidence threshold, including routing that keeps low-confidence decisions on a stronger model; hand-offs on a fixed sample, on a schedule, or through an explicit option such as done/blocked do not count. Compliant if a cheap generative cascade is evaluated as a baseline. 
+ 
+ B3 
+ 
+ 
+ Applies to papers that evaluate a fixed decision task on a labeled dataset large enough to train a task-specific model. Compliant if such a model (encoder, classical classifier, reward model or linear probe) is compared. 
+ 
+ T2 
+ 
+ 
+ Applies to all 27. Compliant if the correctness or agreement of individual decisions across repeated, reordered or reworded requests is reported. 
+ 
+ T3 
+ 
+ 
+ Applies to all 27. Compliant if option names are swapped across rubrics, or neutral and semantic names are compared. 
+ 
+ R2 
+ 
+ 
+ Applies to all 27. Compliant if headline results carry confidence intervals or significance tests. 
+ 
+ C1 
+ 
+ 
+ Applies to papers that use the TDM’s probabilities or confidence in decisions, or describe them as calibrated. Compliant if calibration is measured (ECE, Brier score, reliability analysis or equivalent). 
+ 
+ C3 
+ 
+ 
+ Applies to papers that set confidence thresholds for acceptance or escalation. Compliant if the thresholds were fitted on data separate from the evaluation set, or fixed before evaluation and not tuned on it. 
+ 
+ C4 
+ 
+ 
+ Applies to papers that report TDM latency or claim a latency advantage for it. Compliant if latency is reported both with and without caching. 
+ 
+ 
+ 
+ 
+ Items T1, T4, R1, R3 and C2 are disclosures that we could not score reliably from the text and are left unscored. For Finding 6, a paper counts as making choices after seeing evaluation data if it states, or its version history shows, that a design, recipe, metric or threshold was chosen after evaluation results were known; analyses disclosed as exploratory are not counted. Separately, a paper counts as adding comparators after seeing results if it states that a baseline or comparator was added once results were known; describing a comparison only as a follow-up is not enough. An internal numerical inconsistency is the same quantity reported with conflicting values within one version, excluding rounding. 
+ 
+ 
+ 
+ 
+ 
+ Paper 
+ B1 
+ B2 
+ B3 
+ T2 
+ T3 
+ R2 
+ C1 
+ C3 
+ C4 
+ 
+ 
+ 
+ Cheng et al. [12] 
+ ? 
+ – 
+ ✗ 
+ ✗ 
+ ✗ 
+ ✗ 
+ ✓ 
+ – 
+ ✗ 
+ 
+ Ren et al. [54] 
+ ✓ 
+ – 
+ ✓ 
+ ✓ 
+ ✗ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ 
+ Yu and Yao [76] 
+ ✓ 
+ – 
+ ✗ 
+ ✓ 
+ ✗ 
+ ✗ 
+ ✓ 
+ ✓ 
+ ✓ 
+ 
+ Zhou et al. [86] 
+ ✓ 
+ – 
+ ✓ 
+ ✓ 
+ ✗ 
+ ✓ 
+ ✓ 
+ – 
+ ✗ 
+ 
+ Dağlı et al. [14] 
+ ✗ 
+ – 
+ ✓ 
+ ✓ 
+ ✗ 
+ ✗ 
+ ✗ 
+ – 
+ ✗ 
+ 
+ Li et al. [36] 
+ ✗ 
+ – 
+ ? 
+ ✓ 
+ ✗ 
+ ✗ 
+ – 
+ – 
+ ✓ 
+ 
+ Li et al. [37] 
+ ✗ 
+ – 
+ – 
+ ✓ 
+ ✗ 
+ ✗ 
+ – 
+ – 
+ ✗ 
+ 
+ Deng et al. [16] 
+ ✗ 
+ – 
+ – 
+ ✓ 
+ ✗ 
+ ✗ 
+ – 
+ – 
+ ✗ 
+ 
+ Robitza [56] 
+ ✗ 
+ – 
+ ✓ 
+ ✗ 
+ ✗ 
+ ✗ 
+ ✓ 
+ – 
+ ✗ 
+ 
+ Zhang et al. [79] 
+ ✗ 
+ – 
+ ✗ 
+ ✓ 
+ ✗ 
+ ✓ 
+ – 
+ – 
+ ✗ 
+ 
+ Ye et al. [74] 
+ ✗ 
+ – 
+ ? 
+ ✓ 
+ ✗ 
+ ✓ 
+ ✗ 
+ – 
+ – 
+ 
+ Zhang [80] 
+ ✗ 
+ – 
+ – 
+ ✗ 
+ ✗ 
+ ✗ 
+ – 
+ – 
+ ✗ 
+ 
+ Jiang et al. [29] 
+ ✗ 
+ – 
+ – 
+ ✗ 
+ ✗ 
+ ✗ 
+ ✗ 
+ ? 
+ ✗ 
+ 
+ Ma et al. [44] 
+ ✗ 
+ – 
+ – 
+ ✗ 
+ ✗ 
+ ✗ 
+ – 
+ – 
+ ✗ 
+ 
+ Wu and Lim [71] 
+ ✗ 
+ ✓ 
+ – 
+ ? 
+ ✗ 
+ ✓ 
+ ✓ 
+ ? 
+ – 
+ 
+ Abbasi et al. [1] 
+ ✗ 
+ ✗ 
+ – 
+ ✗ 
+ ✗ 
+ ✗ 
+ ✗ 
+ ✓ 
+ ✗ 
+ 
+ Li et al. [39] 
+ ✗ 
+ ✗ 
+ ✓ 
+ ✓ 
+ ✗ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✗ 
+ 
+ Rao and Callison-Burch [53] 
+ ✗ 
+ ✗ 
+ ✗ 
+ ✓ 
+ ✗ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✗ 
+ 
+ Huang et al. [27] 
+ ✗ 
+ – 
+ ✗ 
+ ✓ 
+ ✗ 
+ ✓ 
+ ✓ 
+ – 
+ ✗ 
+ 
+ Guo et al. [24] 
+ ✗ 
+ – 
+ ✓ 
+ ✓ 
+ ✗ 
+ ✓ 
+ ✓ 
+ – 
+ ✗ 
+ 
+ dos Santos Barbosa [18] 
+ ✗ 
+ – 
+ – 
+ ✗ 
+ ✗ 
+ ✗ 
+ ? 
+ ? 
+ ✗ 
+ 
+ Ibrahim and Zaki [28] 
+ ✓ 
+ ✗ 
+ ✓ 
+ ✗ 
+ ✗ 
+ ✓ 
+ ✓ 
+ ✓ 
+ – 
+ 
+ Rafe and Das [52] 
+ ✗ 
+ – 
+ ✗ 
+ ✓ 
+ ✗ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✗ 
+ 
+ Li [38] 
+ ✗ 
+ – 
+ ? 
+ ✗ 
+ ✗ 
+ ✓ 
+ ✓ 
+ – 
+ ? 
+ 
+ Sun et al. [61] 
+ ✗ 
+ – 
+ – 
+ ✓ 
+ ✓ 
+ ✓ 
+ – 
+ – 
+ – 
+ 
+ Xu [73] 
+ ✓ 
+ – 
+ – 
+ ✓ 
+ ✗ 
+ ✓ 
+ – 
+ – 
+ – 
+ 
+ Wu and Lim [70] 
+ ✗ 
+ – 
+ – 
+ ✓ 
+ ✗ 
+ ✓ 
+ – 
+ – 
+ – 
+ 
+ Compliant / applicable 
+ 5/26 
+ 1/5 
+ 7/13 
+ 17/26 
+ 1/27 
+ 15/27 
+ 13/17 
+ 7/7 
+ 3/20 
+ 
+ 
+ Table 8: Per-paper checklist coding. ✓: compliant; ✗: applicable but not compliant; ?: unclear; –: not applicable. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Experimental support, please
+ view the build logs 
+ for errors. Generated by
+ 
+ 
+ L
+ A 
+ T
+ E 
+ 
+ xml 
+ 
+ .
+ 
+ 
+ Instructions for reporting errors 
+ We are continuing to improve HTML versions of papers, and your feedback helps enhance accessibility and mobile
+ support. To report errors in the HTML that will help us improve conversion and rendering, choose any of the
+ methods listed below: 
+ 
+ Click the "Report Issue" ( 
+ 
+ ) button, located in the page header. 
+ 
+ Tip: You can select the relevant text first, to include it in your report. 
+ Our team has already identified the following issues . We appreciate your time reviewing and reporting rendering errors we
+ may not have found yet. Your efforts will help us improve the HTML versions for all readers, because disability
+ should not be a barrier to accessing research. Thank you for your continued support in championing open access for
+ all. 
+ Have a free development cycle? Help support accessibility at arXiv! Our collaborators at LaTeXML maintain a list of packages that need conversion , and welcome developer contributions . 
+ 
+ 
+ 
+ 
+ 
+ We gratefully acknowledge support from
+ our major funders ,
+ member institutions , ,
+ and all contributors.
+ 
+ 
+ About 
+ · 
+ Help 
+ · 
+ Contact 
+ · 
+ Subscribe 
+ · 
+ Copyright 
+ · 
+ Privacy 
+ · 
+ Accessibility 
+ · 
+ Operational Status (opens in new tab) 
+ 
+ 
+
+ 
+ Major funding support from 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

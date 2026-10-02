@@ -1,0 +1,107 @@
+selection_basis: training counts only; exact labels, no merges
+labels:
+- original_label: Attempts to collect debt not owed
+  included: true
+  training_count: 20389
+  exclusion_reason: null
+  period_counts:
+    2024Q4: 8648
+    2025Q1: 11390
+    2025Q2: 11686
+    2025Q3: 13919
+    2025Q4: 8777
+    2026-07: 1250
+    2026Q1: 10576
+    2026Q2: 8574
+    train: 20389
+    validation: 8320
+- original_label: Communication tactics
+  included: true
+  training_count: 2522
+  exclusion_reason: null
+  period_counts:
+    2024Q4: 937
+    2025Q1: 1348
+    2025Q2: 1277
+    2025Q3: 1368
+    2025Q4: 1028
+    2026-07: 137
+    2026Q1: 897
+    2026Q2: 862
+    train: 2522
+    validation: 928
+- original_label: Electronic communications
+  included: true
+  training_count: 724
+  exclusion_reason: null
+  period_counts:
+    2024Q4: 345
+    2025Q1: 553
+    2025Q2: 557
+    2025Q3: 584
+    2025Q4: 526
+    2026-07: 72
+    2026Q1: 474
+    2026Q2: 376
+    train: 724
+    validation: 298
+- original_label: False statements or representation
+  included: true
+  training_count: 3047
+  exclusion_reason: null
+  period_counts:
+    2024Q4: 2811
+    2025Q1: 3590
+    2025Q2: 3279
+    2025Q3: 4076
+    2025Q4: 3088
+    2026-07: 359
+    2026Q1: 2665
+    2026Q2: 2498
+    train: 3047
+    validation: 1469
+- original_label: Threatened to contact someone or share information improperly
+  included: true
+  training_count: 617
+  exclusion_reason: null
+  period_counts:
+    2024Q4: 224
+    2025Q1: 321
+    2025Q2: 344
+    2025Q3: 363
+    2025Q4: 314
+    2026-07: 35
+    2026Q1: 290
+    2026Q2: 229
+    train: 617
+    validation: 197
+- original_label: Took or threatened to take negative or legal action
+  included: true
+  training_count: 3530
+  exclusion_reason: null
+  period_counts:
+    2024Q4: 1695
+    2025Q1: 1990
+    2025Q2: 1826
+    2025Q3: 2058
+    2025Q4: 2159
+    2026-07: 193
+    2026Q1: 1767
+    2026Q2: 1742
+    train: 3530
+    validation: 1320
+- original_label: Written notification about debt
+  included: true
+  training_count: 15664
+  exclusion_reason: null
+  period_counts:
+    2024Q4: 3717
+    2025Q1: 3767
+    2025Q2: 7879
+    2025Q3: 7734
+    2025Q4: 4808
+    2026-07: 681
+    2026Q1: 3346
+    2026Q2: 3182
+    train: 15664
+    validation: 4669

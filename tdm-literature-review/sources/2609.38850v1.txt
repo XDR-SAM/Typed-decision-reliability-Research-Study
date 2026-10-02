@@ -1,0 +1,1545 @@
+ 
+ 
+ 
+ OpenJev-RLCD: A Working RLCD Implementation 
+ 
+ 
+ 
+ 
+ 
+ // Restore the saved color scheme preference, or
+ // enact the browser preference if "automatic", 
+ // without expecting DOM load to have completed.
+ //
+ // Also restore any saved readingmode and ToC display preferences.
+ function initializeReadingPreferences() {
+ let saved_theme = localStorage.getItem("ar5iv_theme") || "automatic";
+ if (saved_theme === "automatic") {
+ if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+ saved_theme = "dark";
+ }
+ }
+ if (saved_theme == "dark") {
+ document.documentElement.setAttribute("data-theme", "dark");
+ } else {
+ document.documentElement.setAttribute("data-theme", "light");
+ }
+
+ const tocDisplay = localStorage.getItem('arxiv_html_paper_toc_display');
+ if (tocDisplay) {
+ document.documentElement.setAttribute("data-toc-display", tocDisplay);
+ }
+ const readingMode = localStorage.getItem('arxiv_html_paper_reading_mode');
+ if (readingMode) {
+ document.documentElement.setAttribute("data-reading-mode", readingMode);
+ }
+ // Pre-apply spinout-banner dismissal here, before the banner paints, so it
+ // never flashes in only to be hidden later by the deferred arxiv-header.js.
+ // Key matches arxiv-header.js: "arxiv-banner-dismissed:" + data-banner-name.
+ if (localStorage.getItem('arxiv-banner-dismissed:spinout-nonprofit')) {
+ document.documentElement.setAttribute("data-banner-dismissed", "");
+ }
+ }
+ // Run as soon as JS starts, to minimize repainting
+ initializeReadingPreferences();
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /* Banner pre-dismissal (set above before paint -> no flash-then-hide) and
+ reading-mode chrome hiding. */
+ html[data-banner-dismissed] .ds-announcement { display: none; }
+ html[data-reading-mode="enabled"] .ds-announcement,
+ html[data-reading-mode="enabled"] .ds-site-footer { display: none; }
+ /* Keep the announcement text dark on the Open-Blue band in both colour themes
+ (otherwise it inherits the paper's warm-wash text in dark mode and washes out). */
+ .ds-announcement-text { color: var(--arxiv-ink, #1c1a17); }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Report GitHub Issue 
+ × 
+ 
+
+ 
+ Title: 
+ 
+
+ Content selection saved. Describe the issue below: 
+
+ Description: 
+ 
+ 
+
+ 
+ Submit without GitHub 
+ Submit in GitHub 
+ 
+ 
+ 
+ 
+ arXiv is now an independent nonprofit! 
+ Learn more 
+ × 
+ 
+
+ 
+ 
+ 
+ Back to arXiv 
+ 
+ 
+ 
+ 
+ Why HTML? 
+ 
+ 
+ 
+ 
+ Report Issue 
+ 
+ 
+ 
+ 
+ 
+ 
+ Back to Abstract 
+ 
+ 
+ 
+ 
+ 
+ 
+ Download PDF 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Abstract 
+ 1 Introduction 
+ 
+ Contributions. 
+ 
+ 2 Setting 
+ 3 Method 
+ 
+ 3.1 What to score: the mixture or each rationale 
+ 
+ Estimator. 
+ 
+ 3.2 Two ways the per-rationale objective fails 
+ 
+ It switches reasoning off. 
+ It is drowned by the policy gradient. 
+ 
+ 3.3 The recipe: calibrate, then reinforce 
+ 
+ 4 Experimental setup 
+ 
+ Tasks. 
+ Model and methods. 
+ Metrics and statistics. 
+ 
+ 5 Results 
+ 
+ 5.1 Main comparison 
+ 5.2 What reinforcing the reasoning adds 
+ 5.3 Aleatoric uncertainty: when RL cannot help 
+ 5.4 Ablations 
+ 
+ Score-function weight. 
+ Readout warm-up alone is not enough. 
+ Who scores the rationale. 
+ No KL anchor in stage 2. 
+ Explicit-probability RLCD. 
+ 
+ 
+ 6 Related work 
+ 
+ Calibration of language models. 
+ RL for reasoning and calibration. 
+ Rationales as latent variables. 
+ 
+ 7 Limitations 
+ 8 Conclusion 
+ References 
+ A Estimators and their exact checks 
+ 
+ Per-rationale objective with shaping. 
+ Mixture objective. 
+ Checks. 
+ 
+ B Hyperparameters 
+ C Mixture readout 
+ 
+ 
+ 
+ 
+ 
+ License: CC BY 4.0
+ 
+ 
+arXiv:2609.38850v1 [cs.AI] 30 Sep 2026 
+ 
+ 
+ OpenJev-RLCD: A Working RLCD Implementation 
+ 
+ 
+ Zhimin Gao
+ 
+    
+ Pichao Wang
+ 
+ Affiliation:  zhimingao113@gmail.com; pichaowang@gmail.com 
+ 
+
+ Abstract 
+ 
+ Decision models such as Jev answer questions about an agent’s state with probabilities, and those probabilities are
+only useful if they are calibrated: a system that automates the decisions it is confident about must be right when it
+says it is. The open-source reproductions of this idea are trained by supervised fine-tuning and repaired with temperature
+scaling, while standard reinforcement learning from verifiable rewards makes reasoning models sharply overconfident.
+We describe a working implementation of reinforcement learning for calibrated decisions (RLCD) for reasoning
+models and the analysis that led to it. The model samples a rationale and we read the answer distribution it
+commits to afterwards; every rationale is scored by a strictly proper scoring rule of that distribution. A one-line
+variance identity explains why the popular alternative—scoring the mixture of several samples—rewards rationales
+for disagreeing and degenerates the reasoning, and shows that RLVR is exactly the mixture objective without its diversity
+term. The per-rationale objective has a calibrated optimum, but optimized naively it either switches reasoning off or is
+drowned out by high-variance policy gradients. The resulting recipe is calibrate, then reinforce : first train
+the post-rationale decision with a proper score on the model’s own rationales, then optimize the reasoning with the
+same proper score as reward. With Qwen3-1.7B on two real reasoning tasks (3 seeds, paired tests), RLCD matches or beats
+SFT, RFT/STaR and GRPO—each followed by temperature scaling—in accuracy and beats all of them in selective
+prediction (area under the risk–coverage curve); on GSM8K answer verification a single RLCD query can decide 81% of the items at
+ ≤ \leq 5% error, versus 19% for GRPO. On a task whose uncertainty is annotator disagreement, the same
+objective provably cannot beat cross-entropy and, left alone, discovers that it should stop reasoning. We release code,
+all run logs and an API-compatible server. Codes are available at: https://github.com/ZimmyGao/openjev-rlcd. 
+ 
+ 
+ 
+ 1 Introduction 
+
+ 
+ A calibrated decision model returns, for a question about a state (“will this plan succeed?”, “is this answer
+correct?”, “which option is right?”), a probability distribution over answers whose confidence matches its
+accuracy. The value of such a model lies less in its accuracy than in what calibration enables: a downstream agent can
+automate the decisions the model is sure about and escalate the rest, and it can do so from the model’s own confidence,
+without labels. TypeSafe AI’s Jev  [ 17 ] markets exactly this capability under the name reinforcement
+learning for calibrated decisions (RLCD), without disclosing a training algorithm. The open-source ecosystem that
+followed (several hundred repositories within weeks) trains scorers by supervised fine-tuning (SFT) and fixes their
+confidence post hoc with temperature scaling (TS)  [ 8 ] . 
+ 
+ 
+ Reinforcement learning is the natural tool for decisions whose outcomes are only observed after the fact, and it is
+how reasoning models are trained today  [ 15 ] . But the reward used for reasoning—1 if the answer
+is correct—is not a proper scoring rule of anything the model reports, and RL with it produces models that are
+confidently wrong. A number of recent works therefore reward sets of samples (duplicate penalties, collision
+terms, group calibration rewards). This paper asks what a working RLCD for reasoning models is, and answers it with
+an analysis, a recipe and a controlled empirical study. 
+ 
+ 
+ Contributions. 
+
+ 
+ 
+ • 
+ 
+ A readout formulation and a variance identity (§ 3 ). We score the answer distribution
+ u ⁡ ( r ) u(r) that a reasoning model commits to after its own rationale r r . For the Brier score,
+ J ⁡ ( 𝔼 r ​ u ) = 𝔼 r ​ J ​ ( u ) + Var r ​ ( u ) J(\mathbb{E}_{r}u)=\mathbb{E}_{r}J(u)+\mathrm{Var}_{r}(u) : scoring the mixture of samples pays a bonus for rationales that disagree, whether
+or not the disagreement is grounded. With one-hot answers the same identity writes the calibrated group reward as RLVR
+plus a Gini-diversity bonus whose coefficient must be exactly one. Scoring each rationale’s own distribution removes
+the bonus and has the calibrated optimum u ⁡ ( r ) = q ⁡ ( x ) u(r)=q(x) for every rationale, so a single query is calibrated. 
+ 
+ • 
+ 
+ Two failure modes and the recipe that avoids them (§ 3.2 ). Optimized end to end, the
+per-rationale objective either abandons reasoning (the “System-One” collapse; prevented by a KL anchor) or is
+drowned by the policy-gradient term, whose gradient is 7–12 × \times larger than the readout’s and dominates the
+optimizer. Calibrate, then reinforce : train the readout first, then reinforce the reasoning with the proper score
+as reward, anchored at the calibrated model. 
+ 
+ • 
+ 
+ A controlled comparison on real tasks (§ 5 ). On MMLU-Pro and on GSM8K answer
+verification, with three seeds and paired tests on every test item, RLCD matches or beats SFT+TS, RFT/STaR+TS
+(with and without KL) and GRPO+TS in accuracy and Brier score, and beats all of them in area under the risk–coverage
+curve. Forked-checkpoint controls
+show when reinforcing the reasoning helps (when reasoning is computation) and why its reward must be proper (a
+correctness reward undoes the calibrated readout). 
+ 
+ • 
+ 
+ Where RL cannot help (§ 5.3 ). When the uncertainty is annotator disagreement (ChaosNLI),
+reasoning cannot reduce it; the per-rationale objective discovers this and turns reasoning off, and no RL variant beats
+cross-entropy on the same labels. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 2 Setting 
+
+ 
+ A question x x has K K answer options and an outcome Y ∼ q ( ⋅ ∣ x ) Y\sim q(\cdot\mid x) ; q q is one-hot when there is a right
+answer (epistemic uncertainty) and spread when humans disagree (aleatoric uncertainty). A reasoning model with
+parameters θ \theta samples a rationale r ∼ π θ ( ⋅ ∣ x ) r\sim\pi_{\theta}(\cdot\mid x) , which ends in the marker Answer: ; we
+then read its next-token distribution over the K K option tokens, 
+ 
+
+ 
+ 
+ u θ ​ ( x , r ) = softmax ⁡ ( logits θ ​ ( x , r ) ​ [ option tokens ] ) ∈ Δ K , u_{\theta}(x,r)=\mathrm{softmax}\big(\text{logits}_{\theta}(x,r)[\text{option tokens}]\big)\in\Delta_{K}, 
+ 
+ 
+ instead of sampling an answer from it. The model’s decision distribution is the mixture p θ ​ ( x ) = 𝔼 r ​ u θ ​ ( x , r ) p_{\theta}(x)=\mathbb{E}_{r}u_{\theta}(x,r) ; a single query returns u θ ​ ( x , r ) u_{\theta}(x,r) for one sampled rationale. We use the (shifted, negated) Brier
+score J ⁡ ( u , y ) = 2 ​ u y − ‖ u ‖ 2 = 1 − ‖ u − e y ‖ 2 J(u,y)=2u_{y}-\|u\|^{2}=1-\|u-e_{y}\|^{2} , whose expectation J ⁡ ( u , q ) = 𝔼 Y ∼ q ​ J ​ ( u , Y ) = 2 ​ u ⊤ ​ q − ‖ u ‖ 2 J(u,q)=\mathbb{E}_{Y\sim q}J(u,Y)=2u^{\top}q-\|u\|^{2} is
+uniquely maximized at u = q u=q   [ 2 , 7 ] ; the log score behaves the same way in
+our experiments. 
+ 
+ 
+ 
+ 3 Method 
+
+ 
+ 3.1 What to score: the mixture or each rationale 
+
+ 
+ Proposition 1 (Variance decomposition) . 
+ 
+ For any distribution over rationales and any q q , with p = 𝔼 r ​ u ​ ( r ) p=\mathbb{E}_{r}u(r) , 
+ 
+
+ 
+ 
+ J ⁡ ( p , q ) = 𝔼 r ​ J ​ ( u ⁡ ( r ) , q ) + 𝔼 r ​ ‖ u ⁡ ( r ) − p ‖ 2 . J(p,q)\;=\;\mathbb{E}_{r}\,J\big(u(r),q\big)\;+\;\mathbb{E}_{r}\big\|u(r)-p\big\|^{2}. 
+ 
+ 
+ 
+ 
+ 
+ Proof. 
+ 
+ J ⁡ ( p , q ) − 𝔼 r ​ J ​ ( u ⁡ ( r ) , q ) = 𝔼 r ​ ‖ u ⁡ ( r ) ‖ 2 − ‖ p ‖ 2 = 𝔼 r ​ ‖ u ⁡ ( r ) − p ‖ 2 J(p,q)-\mathbb{E}_{r}J(u(r),q)=\mathbb{E}_{r}\|u(r)\|^{2}-\|p\|^{2}=\mathbb{E}_{r}\|u(r)-p\|^{2} , since J J is affine in u u except for − ‖ u ‖ 2 -\|u\|^{2} .
+∎ 
+ 
+ 
+ 
+ The mixture objective J ⁡ ( p , q ) J(p,q) —the objective behind scoring groups of samples—therefore equals the
+average per-rationale score plus a bonus for rationales that disagree. Nothing in the bonus asks the disagreement to be
+grounded: a policy can collect it by randomizing its conclusions. Two consequences follow. 
+ 
+ 
+ Corollary 1 (RLVR is the mixture objective without its diversity term) . 
+ 
+ If the answer is sampled, u ⁡ ( r ) = e A u(r)=e_{A} with A ∼ p A\sim p , then 𝔼 A ​ J ​ ( e A , q ) = 2 ​ p ⊤ ​ q − 1 = 2 ​ Pr ⁡ ( A = Y ) − 1 \mathbb{E}_{A}J(e_{A},q)=2p^{\top}q-1=2\Pr(A=Y)-1 is the RLVR
+objective and Var = 1 − ‖ p ‖ 2 \mathrm{Var}=1-\|p\|^{2} is the Gini impurity of p p : the calibrated group reward is “RLVR + Gini bonus”.
+With any coefficient λ < 1 \lambda<1 on the bonus the optimum is no longer p = q p=q ; with λ = 0 \lambda=0 (RLVR) it is the mode. 
+ 
+ 
+ 
+ Proposition 2 (Per-rationale objective) . 
+ 
+ Let J λ ​ ( θ ) = 𝔼 x ​ 𝔼 r ​ J ​ ( u θ ​ ( x , r ) , q ⁡ ( x ) ) + λ ​ 𝔼 x ​ Var r ​ ( u θ ) J_{\lambda}(\theta)=\mathbb{E}_{x}\mathbb{E}_{r}J(u_{\theta}(x,r),q(x))+\lambda\,\mathbb{E}_{x}\mathrm{Var}_{r}(u_{\theta}) . If the outcome is independent of
+the model’s own rationale given the question ( Y ⟂ r | x Y\perp r\mid x , true whenever Y Y is produced by the world), then for
+every λ < 1 \lambda<1 the unique maximizer over readouts is u ⁡ ( x , r ) = q ⁡ ( x ) u(x,r)=q(x) for every rationale r r ; for λ = 1 \lambda=1 every
+readout with 𝔼 r ​ u ​ ( x , r ) = q ⁡ ( x ) \mathbb{E}_{r}u(x,r)=q(x) is optimal. 
+ 
+ 
+ 
+ Proof. 
+ 
+ J λ = ( 1 − λ ) ​ 𝔼 r ​ J ​ ( u ⁡ ( r ) , q ) + λ ​ J ​ ( p , q ) J_{\lambda}=(1-\lambda)\mathbb{E}_{r}J(u(r),q)+\lambda J(p,q) by Proposition  1 . Both terms are maximized by
+ u ⁡ ( r ) ≡ q u(r)\equiv q ; the first is strictly concave in each u ⁡ ( r ) u(r) , which gives uniqueness for λ < 1 \lambda<1 .
+∎ 
+ 
+ 
+ 
+ We therefore use the per-rationale objective ( λ = 0 \lambda=0 ): a single query is calibrated at the optimum,
+and the objective no longer pays for disagreement. Rationales still matter—a better rationale lets a
+finite-capacity model compute q ⁡ ( x ) q(x) more accurately—but they are never rewarded for being random. 
+ 
+ 
+ Estimator. 
+
+ 
+ With M M rationales per question and one outcome Y Y , write R i = J ⁡ ( u θ ​ ( x , r i ) , Y ) R_{i}=J(u_{\theta}(x,r_{i}),Y) . The
+gradient of 𝔼 r ​ J \mathbb{E}_{r}J splits into a pathwise part through the readout and a score-function part for the rationales, 
+ 
+
+ 
+ 
+ ∇ ^ = 1 M ​ ∑ i = 1 M ∇ θ R i + 1 M ​ ∑ i = 1 M ( R i − 1 M − 1 ​ ∑ j ≠ i R j ) ​ ∇ θ ​ log ⁡ π θ ​ ( r i ∣ x ) , \widehat{\nabla}=\frac{1}{M}\sum_{i=1}^{M}\nabla_{\theta}R_{i}\;+\;\frac{1}{M}\sum_{i=1}^{M}\Big(R_{i}-\frac{1}{M-1}\sum_{j\neq i}R_{j}\Big)\nabla_{\theta}\log\pi_{\theta}(r_{i}\mid x), 
+ 
+ 
+ with a leave-one-out baseline  [ 10 , 1 ] . The estimator is unbiased; so are its variants with
+a KL penalty or per-rationale costs added as shaping terms, and the Rao-Blackwellized estimator of the mixture
+objective (Appendix  A ). We verified all of them against exact enumeration on tabular models
+(maximum error < 10 − 15 <10^{-15} ). Reading u u instead of sampling the answer is a Rao-Blackwellization of the
+sample-only estimator  [ 11 ] ; with an empty rationale it reduces to training a direct scorer with the
+Brier score. 
+ 
+ 
+ 
+ 
+ 3.2 Two ways the per-rationale objective fails 
+
+ 
+ It switches reasoning off. 
+
+ 
+ Reasoning models conclude their rationales decisively, so u u after a rationale
+is nearly one-hot and the Brier score punishes every confident mistake. Hedging after an empty rationale is
+learned faster than hedging after reasoning, and the policy gradient moves all mass to the empty rationale. On MMLU-Pro
+this happens within about 100 steps (Figure  1 , red): all four rationales become the bare marker and
+the model turns into a direct scorer. A KL anchor to the reasoning
+model ( β = 0.04 \beta=0.04 , blue) prevents the collapse and lets the model learn to hedge after reasoning. 
+ 
+ 
+ 
+ It is drowned by the policy gradient. 
+
+ 
+ Even with the anchor, adding the score-function term to training
+from scratch makes every metric worse than training the readout alone, monotonically in its weight
+(Table  4 ). The gradient norm of the score-function term is 7–12 × \times that of the pathwise term
+(RMS over training), so it dominates Adam’s second-moment estimate: the useful, low-variance readout signal is taken
+in steps sized by the noise. Its direction is also unhelpful early on: while the readout is still miscalibrated, the
+reward mostly teaches rationales to sound certain. 
+ 
+ 
+ Figure 1: The System-One collapse (MMLU-Pro, per-rationale objective, trained end to end). Without a KL anchor
+the four rationales per question become identical and empty after ∼ \sim 100 steps (left: variance of u u across
+rationales) while the readout learns to hedge (right). With a KL anchor the model keeps reasoning and learns to hedge
+after it. The no-KL run was stopped at step 150, after the collapse. 
+ 
+ 
+ 
+ 
+ 3.3 The recipe: calibrate, then reinforce 
+
+ 
+ Algorithm 1 RLCD for a reasoning model (one step; M M rationales for each question in the batch) 
+ 
+ 
+ 1: 
+ 
+ 
+ sample r 1 , … , r M ∼ π θ ( ⋅ ∣ x ) r_{1},\dots,r_{M}\sim\pi_{\theta}(\cdot\mid x) until Answer: ; read u i = u θ ​ ( x , r i ) u_{i}=u_{\theta}(x,r_{i}) ; observe Y Y 
+
+ 
+ 
+ 2: 
+ 
+ 
+ R i ← J ⁡ ( u i , Y ) R_{i}\leftarrow J(u_{i},Y) ⊳ \triangleright any strictly proper score of the read-out distribution
+ 
+ 
+ 
+ 3: 
+ 
+ 
+ if stage 1 (calibrate the decision) then 
+
+ 
+ 
+ 4: 
+ 
+ 
+    ℒ ← − 1 M ∑ i R i \mathcal{L}\leftarrow-\frac{1}{M}\sum_{i}R_{i} ⊳ \triangleright pathwise only: rationales are sampled on-policy but not reinforced
+ 
+ 
+ 
+ 5: 
+ 
+ 
+ else stage 2 (reinforce the reasoning), starting from the stage-1 model θ 1 \theta_{1} 
+
+ 
+ 
+ 6: 
+ 
+ 
+    A i ← 1 M ​ ( R i − β ​ log ⁡ π θ ​ ( r i ) π θ 1 ​ ( r i ) ) − leave-one-out mean A_{i}\leftarrow\frac{1}{M}\big(R_{i}-\beta\log\frac{\pi_{\theta}(r_{i})}{\pi_{\theta_{1}}(r_{i})}\big)-\text{leave-one-out mean} 
+
+ 
+ 
+ 7: 
+ 
+ 
+    ℒ ← − 1 M ∑ i R i − c ∑ i sg ( A i ) log π θ ( r i ∣ x ) \mathcal{L}\leftarrow-\frac{1}{M}\sum_{i}R_{i}-c\sum_{i}\mathrm{sg}(A_{i})\log\pi_{\theta}(r_{i}\mid x) ⊳ \triangleright c = 0.3 c=0.3 , β = 0.04 \beta=0.04 
+ 
+ 
+ 
+ 8: 
+ 
+ 
+ end if 
+ 
+ 
+ 9: 
+ 
+ 
+ update θ \theta with Adam on ℒ \mathcal{L} 
+
+ 
+ 
+ 
+ 
+ Algorithm  1 separates the two roles. Stage 1 trains the decision the model reports after its own reasoning
+with a proper score; it is the pathwise half of the RLCD gradient, i.e. the deterministic policy gradient of the
+proper-score reward with respect to the reported distribution, with the rationale treated as an on-policy latent
+variable. Stage 2 then reinforces the reasoning with the same proper score as reward, a down-weighted
+score-function term, and a KL anchor at the calibrated model, so that the reward is informative and the anchor protects
+what stage 1 learned. Both stages observe exactly the outcome Y Y of each question, like every baseline. 
+ 
+ 
+ 
+ 
+ 4 Experimental setup 
+
+ 
+ Tasks. 
+
+ 
+ MMLU-Pro   [ 18 ] : 10-option questions, a random 4000/500/1500 split of the
+12k-question benchmark (we evaluate on the first 1000 test and 300 dev questions); the task is knowledge-heavy. GSM8K-Verify : a yes/no decision built from
+GSM8K  [ 4 ] —“is this proposed final answer correct?”—where the proposal is a sampled solution
+of Qwen3-0.6B (53% of the proposals are correct on train, 50% on test); train/dev come from GSM8K-train
+(4000/300 used), test = all 1260 GSM8K-test problems with a parsable proposal. Reasoning is essential: on a 400-item
+probe the base model reaches 56% answering directly and 87% after reasoning.
+ ChaosNLI   [ 12 ] : MNLI items with 100 annotator labels each (199 dev, 400 test items); every
+visit to a training item draws one fresh annotator label, and the target is the human label distribution. 
+ 
+ 
+ 
+ Model and methods. 
+
+ 
+ All methods start from Qwen3-1.7B  [ 14 ] in non-thinking mode, use AdamW with
+learning rate 2 ⋅ 10 − 6 2\cdot 10^{-6} , 8 questions and M = 4 M=4 rationales per step, and see the same sequence of questions and
+outcomes for a given seed. SFT+TS : the same model answers directly and is fine-tuned with cross-entropy on the
+label token (400 or 800 steps; 800 steps did not improve on 400 on either task, so we report 400).
+ RFT/STaR+TS   [ 20 ] : rejection-sampling fine-tuning on the trajectories whose sampled answer is
+correct (rationale and answer tokens), with and without the KL anchor. GRPO+TS   [ 15 ] :
+correctness reward, group-normalized advantages, KL anchor β = 0.04 \beta=0.04 . RLCD : stage 1 (400 steps, Brier or
+log score), and stage 2 (400 more steps from the stage-1 checkpoint). All baselines receive the same temperature
+scaling, fitted by grid search on the dev split. 
+ 
+ 
+ 
+ Metrics and statistics. 
+
+ 
+ Accuracy, Brier score, NLL and ECE of the single-query readout after temperature
+scaling; the area under the risk–coverage curve (AURC; items ranked by confidence, risk = error rate); Cov@ ϵ \epsilon ,
+the largest fraction of items, ranked by confidence, whose error rate is at most ϵ \epsilon   [ 6 ] ;
+and the fitted temperature T T ( T ≈ 1 T\approx 1 : calibrated as trained). Everything is averaged over three seeds; tests are
+paired over test items (per-item values averaged over seeds), with 95% bootstrap intervals and two-sided sign-flip
+permutation p p -values for means. ∗ \ast : p < 0.05 p<0.05 , ∗ ⁣ ∗ \ast\ast : p < 0.01 p<0.01 . 
+ 
+ 
+ 
+ 
+ 5 Results 
+
+ 
+ 5.1 Main comparison 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ GSM8K-Verify (reasoning-essential) 
+ 
+ MMLU-Pro (knowledge-heavy) 
+ 
+ Method 
+ Acc ↑ \uparrow 
+ Brier ↓ \downarrow 
+ AURC ↓ \downarrow 
+ Cov@5% ↑ \uparrow 
+ T T 
+ 
+ Acc ↑ \uparrow 
+ Brier ↓ \downarrow 
+ AURC ↓ \downarrow 
+ Cov@20% ↑ \uparrow 
+ T T 
+ 
+ base (zero-shot reasoning) 
+ 84.1 
+ 0.211 
+ 0.073 
+ 14.9 
+ 9.1 
+ 
+ 38.9 
+ 0.786 
+ 0.516 
+ 0.0 
+ 10.9 
+ 
+ SFT + TS (direct answer) 
+ 70.4 ± \pm 0.2 
+ 0.382 ± \pm 0.009 
+ 0.174 ± \pm 0.010 
+ 6.2 ± \pm 2.0 
+ 2.1 
+ 
+ 42.3 ± \pm 0.4 
+ 0.711 ± \pm 0.002 
+ 0.386 ± \pm 0.005 
+ 15.6 ± \pm 0.7 
+ 1.6 
+ 
+ RFT/STaR + TS 
+ 89.0 ± \pm 1.6 
+ 0.207 ± \pm 0.020 
+ 0.103 ± \pm 0.013 
+ 0.9 ± \pm 0.7 
+ 7.3 
+ 
+ 32.7 ± \pm 0.9 
+ 0.830 ± \pm 0.004 
+ 0.619 ± \pm 0.011 
+ 0.0 ± \pm 0.0 
+ 17.6 
+ 
+ RFT/STaR + KL + TS 
+ 91.4 ± \pm 0.5 
+ 0.160 ± \pm 0.006 
+ 0.075 ± \pm 0.010 
+ 11.6 ± \pm 8.1 
+ 6.6 
+ 
+ 40.9 ± \pm 0.6 
+ 0.761 ± \pm 0.006 
+ 0.493 ± \pm 0.008 
+ 0.0 ± \pm 0.0 
+ 11.0 
+ 
+ GRPO + KL + TS 
+ 91.8 ± \pm 0.6 
+ 0.150 ± \pm 0.009 
+ 0.061 ± \pm 0.006 
+ 19.4 ± \pm 7.3 
+ 7.2 
+ 
+ 42.4 ± \pm 0.5 
+ 0.753 ± \pm 0.006 
+ 0.481 ± \pm 0.015 
+ 0.0 ± \pm 0.0 
+ 11.1 
+ 
+ RLCD stage 1, Brier readout 
+ 90.4 ± \pm 2.0 
+ 0.164 ± \pm 0.020 
+ 0.047 ± \pm 0.010 
+ 62.6 ± \pm 21.3 
+ 1.6 
+ 
+ 47.0 ± \pm 1.3 
+ 0.667 ± \pm 0.014 
+ 0.312 ± \pm 0.019 
+ 27.3 ± \pm 2.1 
+ 1.4 
+ 
+ RLCD stage 1, log-score readout 
+ 91.3 ± \pm 0.4 
+ 0.149 ± \pm 0.009 
+ 0.038 ± \pm 0.002 
+ 72.2 ± \pm 7.2 
+ 1.8 
+ 
+ 46.5 ± \pm 0.7 
+ 0.668 ± \pm 0.009 
+ 0.319 ± \pm 0.012 
+ 24.8 ± \pm 1.6 
+ 1.5 
+ 
+ RLCD two-stage (stage 1 + RLCD-RL) 
+ 92.2 ± \pm 0.7 
+ 0.135 ± \pm 0.009 
+ 0.034 ± \pm 0.001 
+ 81.1 ± \pm 7.2 
+ 1.4 
+ 
+ 47.7 ± \pm 2.0 
+ 0.658 ± \pm 0.015 
+ 0.304 ± \pm 0.022 
+ 27.6 ± \pm 3.3 
+ 1.6 
+ 
+ 
+ 
+ Table 1: Single-query decisions after temperature scaling (mean ± \pm s.d. over 3 seeds). Cov@ ϵ \epsilon :
+fraction of test items that can be decided automatically at error rate ≤ ϵ \leq\epsilon (5% for GSM8K-Verify, 20% for
+MMLU-Pro, whose error rates are higher). T T : temperature fitted on dev (1 = calibrated as trained). Best in bold. 
+ 
+ 
+ Figure 2: Risk–coverage of single-query decisions (after temperature scaling, averaged over seeds). Dotted:
+the error budget used for Cov@ ϵ \epsilon in Table  1 . Temperature scaling cannot repair the ranking of
+overconfident models (GRPO, RFT), whose error rate is flat in coverage. 
+ 
+ 
+ Table  1 and Figure  2 summarize the comparison. On GSM8K-Verify, where reasoning is essential,
+SFT+TS reaches only 70.4% accuracy, and two-stage RLCD improves on it by +21.8 points and
+−0.247 Brier. The reasoning-based baselines are accurate but miscalibrated in ranking: after temperature scaling
+GRPO matches RLCD in accuracy (91.8% vs. 92.2%, n.s.) and is close in Brier score (difference
+−0.015, p = 0.09 p=0.09 ), yet its confidence separates right from wrong much worse (AURC 0.061 vs. 0.034,
+paired bootstrap p < 10 − 3 p<10^{-3} ), so at a 5% error budget it
+can decide 19% of the items against 81% for RLCD. RFT behaves like GRPO; with the KL anchor
+it reaches 91.4% accuracy but still decides only 12% of the items at 5% error (two-stage RLCD
+vs. RFT+KL: Brier −0.025, AURC −0.041, p < 0.01 p<0.01 ). The fitted temperatures tell the same story from the
+other side: GRPO and RFT need T ≈ 7 T\approx 7 , RLCD T = 1.4 T=1.4 . 
+ 
+ 
+ On MMLU-Pro every reasoning baseline fails to improve on SFT+TS after temperature scaling, and without the KL anchor
+RFT collapses to empty rationales in all three seeds (32.7% accuracy, below the 38.9% of the base model).
+RLCD improves accuracy by +5.3 points over SFT+TS and by +5.2 over GRPO+TS, with Brier
+−0.053 and −0.095 (all p < 10 − 3 p<10^{-3} ). At a 20% error budget it can decide 28% of the
+items, against 16% for SFT+TS and none for any reasoning baseline, whose confidence is uninformative after
+temperature scaling. Stage 1 alone already carries most of the gain on both tasks; the choice of proper score for the
+readout matters little (Brier vs. log score). 
+ 
+ 
+ 
+ 5.2 What reinforcing the reasoning adds 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ GSM8K-Verify 
+ MMLU-Pro 
+ 
+ Stage-2 continuation (400 steps, same checkpoint) 
+ Δ \Delta Acc 
+ Δ \Delta Brier 
+ Δ \Delta AURC 
+ Δ \Delta Acc 
+ Δ \Delta Brier 
+ Δ \Delta AURC 
+ 
+ 
+ 
+ readout-only continuation 
+ −1.7 ∗∗ 
+ +0.028 ∗∗ 
+ +0.011 ∗ 
+ +0.5 
+ −0.010 
+ −0.011 
+ 
+ anchor only (REINFORCE noise, no reward) 
+ −2.6 ∗∗ 
+ +0.031 ∗∗ 
+ +0.016 ∗∗ 
+ −0.1 
+ +0.002 
+ +0.007 
+ 
+ GRPO (correctness reward) 
+ +1.8 ∗∗ 
+ −0.028 ∗∗ 
+ −0.012 ∗∗ 
+ −1.1 
+ +0.026 ∗∗ 
+ +0.033 ∗∗ 
+ 
+ RLCD-RL (proper-score reward) 
+ +1.8 ∗∗ 
+ −0.029 ∗∗ 
+ −0.013 ∗∗ 
+ +0.6 
+ −0.009 
+ −0.009 
+ 
+ 
+ 
+ Table 2: Stage-2 continuations forked from the same stage-1 checkpoint (3 seeds), change relative to the
+checkpoint (single query, after TS). Anchor only: the same score-function noise and KL anchor as RLCD-RL but no
+outcome reward. 
+ 
+ 
+ Figure 3: Stage-2 reward matters. Brier improvement over continuing to train the readout only, for the same
+400-step budget from the same checkpoint (95% bootstrap intervals over test items, 3 seeds pooled). 
+ 
+ 
+ To isolate stage 2, we saved the stage-1 model for each seed and forked four 400-step continuations from it with the
+same data stream (Table  2 , Figure  3 ). Three findings are consistent across seeds. 
+ 
+ • 
+ 
+ Where reasoning is computation, reinforcing it helps. On GSM8K-Verify, continuing to train the readout
+alone degrades the model, whereas RLCD-RL improves it; against
+the readout-only continuation, RLCD-RL gains +3.5 accuracy points and −0.057 Brier ( p < 10 − 3 p<10^{-3} , all
+three seeds individually significant). 
+ 
+ • 
+ 
+ The outcome reward, not the anchor, does the work. The anchor-only control has the same score-function
+noise and KL anchor but no reward; it is worse than RLCD-RL (GSM8K-Verify +4.4 points, MMLU-Pro Brier
+−0.011, both p < 0.01 p<0.01 ) and unstable across seeds (it collapsed in one of them). 
+ 
+ • 
+ 
+ The reward must be proper. Continuing with GRPO’s correctness reward is as good as RLCD-RL on
+GSM8K-Verify, but on MMLU-Pro, where RL cannot raise accuracy much, it re-inflates the confidence of the calibrated
+readout ( T T from 1.4 to 3.8) and makes Brier score and AURC significantly worse than the checkpoint; RLCD-RL beats it by
++1.8 accuracy points and −0.035 Brier ( p < 10 − 3 p<10^{-3} ). 
+ 
+ 
+ On MMLU-Pro, reinforcing the reasoning with the proper score is neutral on average (difference to the readout-only
+continuation +0.002 Brier, n.s.; the sign varies by seed): the benefit of stage 2 is specific to tasks where
+better reasoning changes the answer. 
+ 
+ 
+ 
+ 5.3 Aleatoric uncertainty: when RL cannot help 
+
+ 
+ 
+ 
+ 
+ 
+ ChaosNLI (100 annotators / item), Qwen3-1.7B 
+ JSD to humans ↓ \downarrow 
+ Majority acc ↑ \uparrow 
+ seeds 
+ rationales 
+ 
+ 
+ 
+ Direct answer, CE on the label stream (SFT) 
+ 0.074 
+ 66.2 
+ 3 
+ — 
+ 
+ Mixture objective λ = 1 \lambda{=}1 , 16-rationale mixture 
+ 0.121 
+ 63.1 
+ 3 
+ degenerate (hits length limit) 
+ 
+ Mixture objective λ = 1 \lambda{=}1 , single rationale 
+ 0.342 
+ 55.4 
+ 3 
+ degenerate 
+ 
+ Mixture objective λ = 1 \lambda{=}1 + KL, mixture 
+ 0.149 
+ 67.8 
+ 1 
+ healthy (48 tokens) 
+ 
+ Per-trace objective λ = 0 \lambda{=}0 , no KL 
+ 0.075 
+ 63.0 
+ 1 
+ empty (System-One) 
+ 
+ 
+ 
+ Table 3: ChaosNLI (400 test items). The target is the distribution of 100 human labels; every method sees one
+fresh annotator label per visit. 
+ 
+ 
+ If q ⁡ ( x ) q(x) is spread because annotators disagree, reasoning cannot reduce the uncertainty, and with an explicit readout
+the RLCD gradient equals the Brier gradient in expectation, so it cannot beat supervised training on the same
+labels. ChaosNLI confirms both halves (Table  3 ). The mixture objective ( λ = 1 \lambda=1 ) calibrates its
+16-sample mixture (JSD 0.121) by making the rationales random—they run to the length limit and a single
+rationale is badly calibrated—as Proposition  1 predicts. The per-rationale objective instead
+discovers that reasoning is useless here and switches it off, reaching the same quality as cross-entropy on direct
+answers (JSD 0.075 vs. 0.074). We regard this as the correct behaviour of a decision
+objective, and as a reason to prefer a fast direct scorer when uncertainty is aleatoric. 
+ 
+ 
+ 
+ 5.4 Ablations 
+
+ 
+ 
+ 
+ 
+ REINFORCE weight c c (from scratch) 
+ Acc ↑ \uparrow 
+ Brier ↓ \downarrow 
+ AURC ↓ \downarrow 
+ rationale tokens 
+ 
+ 
+ 
+ 0 (readout only) 
+ 46.3 
+ 0.676 
+ 0.323 
+ 182 
+ 
+ 0.1 
+ 45.0 
+ 0.677 
+ 0.327 
+ 155 
+ 
+ 0.3 
+ 44.6 
+ 0.694 
+ 0.352 
+ 148 
+ 
+ 1 (unbiased) 
+ 43.7 
+ 0.703 
+ 0.354 
+ 178 
+ 
+ 
+ Table 4: Weight of the score-function term when training from scratch (MMLU-Pro, seed 17, per-rationale
+objective with KL anchor, single query after TS). More policy gradient is monotonically worse; this motivates
+separating the stages. 
+ 
+ 
+ Score-function weight. 
+
+ 
+ Table  4 : when the stages are not separated, every positive weight on
+the score-function term hurts, in line with the gradient-dilution diagnosis of § 3.2 . 
+ 
+ 
+ 
+ Readout warm-up alone is not enough. 
+
+ 
+ Training the readout for 200 steps and then reinforcing for 200 steps
+(both from scratch) ties the readout-only model; the gains of Table  2 require a converged readout. 
+ 
+ 
+ 
+ Who scores the rationale. 
+
+ 
+ Scoring rationales with a frozen copy of the calibrated readout instead of the
+policy’s own (to prevent co-adaptation) was worse on GSM8K-Verify (seed 17: Brier + 0.021 +0.021 , AURC + 0.030 +0.030 ): the reasoning shortened
+and the policy’s own readout became overconfident. 
+ 
+ 
+ 
+ No KL anchor in stage 2. 
+
+ 
+ The reasoning degenerates after ∼ \sim 330 steps (the model stops writing the
+marker and repeats its conclusion to the length limit); the readout-based reward is blind to the format of the
+rationale, so an anchor is necessary. 
+ 
+ 
+ 
+ Explicit-probability RLCD. 
+
+ 
+ For a model without rationales (a direct scorer), RLCD with an explicit
+distribution has the same expected gradient as the Brier loss; on CLINC150 and ChaosNLI it never beat cross-entropy
+(CLINC150 accuracy 94.6% vs. 96.3%), and RLVR on the same models collapsed to the mode. 
+ 
+ 
+ 
+ 
+ 
+ 6 Related work 
+
+ 
+ Calibration of language models. 
+
+ 
+ Post-hoc temperature scaling  [ 8 ] and verbalized or
+sampled confidence  [ 9 , 16 ] calibrate the level of confidence but not its
+ranking; selective prediction  [ 6 ] evaluates exactly the ranking, which is where the methods in
+Table  1 differ most. Training with proper scores  [ 2 , 7 ] is
+standard for classifiers; our contribution is where to apply it in a reasoning model. 
+ 
+ 
+ 
+ RL for reasoning and calibration. 
+
+ 
+ RLVR and GRPO  [ 15 ] optimize the probability of a
+correct sampled answer, which Corollary  1 identifies as the mixture objective without its diversity term;
+REINFORCE with leave-one-out baselines  [ 19 , 10 , 1 ] is our estimator.
+Concurrent work rewards verbalized confidence with the Brier score  [ 5 ] ; we instead score the
+answer distribution the model actually assigns, and analyze group rewards through Proposition  1 . 
+ 
+ 
+ 
+ Rationales as latent variables. 
+
+ 
+ Stage 1 resembles the answer-likelihood term of latent-rationale training
+(TRICE, LaTRO)  [ 13 , 3 ] and STaR  [ 20 ] , which maximize the
+likelihood of the correct answer; the difference is the proper score of the full distribution, which is what makes
+the reported confidence usable. The RFT/STaR baseline in Table  1 shows that likelihood-based cloning of
+correct trajectories inherits the overconfidence of RLVR. 
+ 
+ 
+ 
+ 
+ 7 Limitations 
+
+ 
+ All experiments use a 1.7B model, 400–800 update steps and three seeds; the effects are large relative to the seed
+variance, but larger models and longer training may change the balance between the two stages. GSM8K-Verify is a
+task we constructed from GSM8K with a 0.6B proposer. We compare with Jev only behaviorally (the API is reproduced; the
+training data are not public), and claim nothing about Jev’s internal algorithm. Stage 2 helps on the
+reasoning-essential task and is neutral on the knowledge-heavy one; we do not yet know how to predict its benefit
+without running it. 
+ 
+ 
+ 
+ 8 Conclusion 
+
+ 
+ A working RLCD for reasoning models scores what the model actually decides—the answer distribution after its own
+rationale—with a proper score, first to calibrate that decision and then to reinforce the reasoning that feeds it.
+Scoring groups of samples instead rewards disagreement, and a correctness reward undoes calibration; both are visible in
+one identity. The payoff is not a few points of accuracy but decisions that can be delegated: at the same accuracy as
+GRPO, a single RLCD query knows which of its answers to trust. 
+ 
+ 
+ 
+ References 
+
+ 
+ [1] 
+ A. Ahmadian, C. Cremer, M. Gallé, M. Fadaee, J. Kreutzer, O. Pietquin, A. Üstün, and S. Hooker (2024) 
+ 
+ Back to basics: revisiting REINFORCE-style optimization for learning from human feedback in LLMs .
+ 
+ In Annual Meeting of the Association for Computational Linguistics (ACL) ,
+ 
+ Cited by: §3.1 ,
+ §6 .
+ 
+ [2] 
+ G. W. Brier (1950) 
+ 
+ Verification of forecasts expressed in terms of probability .
+ 
+ Monthly Weather Review 78 ( 1 ), pp. 1–3 .
+ 
+ Cited by: §2 ,
+ §6 .
+ 
+ [3] 
+ H. Chen, Y. Feng, Z. Liu, W. Yao, A. Prabhakar, S. Heinecke, R. Ho, P. Mui, S. Savarese, C. Xiong, and H. Wang (2024) 
+ 
+ Language models are hidden reasoners: unlocking latent reasoning capabilities via self-rewarding .
+ 
+ arXiv preprint arXiv:2411.04282 .
+ 
+ Cited by: §6 .
+ 
+ [4] 
+ K. Cobbe, V. Kosaraju, M. Bavarian, M. Chen, H. Jun, L. Kaiser, M. Plappert, J. Tworek, J. Hilton, R. Nakano, C. Hesse, and J. Schulman (2021) 
+ 
+ Training verifiers to solve math word problems .
+ 
+ arXiv preprint arXiv:2110.14168 .
+ 
+ Cited by: §4 .
+ 
+ [5] 
+ M. Damani, I. Puri, S. Slocum, I. Shenfeld, L. Choshen, Y. Kim, and J. Andreas (2025) 
+ 
+ Beyond binary rewards: training LMs to reason about their uncertainty .
+ 
+ arXiv preprint arXiv:2507.16806 .
+ 
+ Cited by: §6 .
+ 
+ [6] 
+ Y. Geifman and R. El-Yaniv (2017) 
+ 
+ Selective classification for deep neural networks .
+ 
+ In Advances in Neural Information Processing Systems (NeurIPS) ,
+ 
+ Cited by: §4 ,
+ §6 .
+ 
+ [7] 
+ T. Gneiting and A. E. Raftery (2007) 
+ 
+ Strictly proper scoring rules, prediction, and estimation .
+ 
+ Journal of the American Statistical Association 102 ( 477 ), pp. 359–378 .
+ 
+ Cited by: §2 ,
+ §6 .
+ 
+ [8] 
+ C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger (2017) 
+ 
+ On calibration of modern neural networks .
+ 
+ In International Conference on Machine Learning (ICML) ,
+ 
+ Cited by: §1 ,
+ §6 .
+ 
+ [9] 
+ S. Kadavath et al. (2022) 
+ 
+ Language models (mostly) know what they know .
+ 
+ arXiv preprint arXiv:2207.05221 .
+ 
+ Cited by: §6 .
+ 
+ [10] 
+ W. Kool, H. van Hoof, and M. Welling (2019) 
+ 
+ Buy 4 REINFORCE samples, get a baseline for free! .
+ 
+ In ICLR Workshop on Deep Reinforcement Learning Meets Structured Prediction ,
+ 
+ Cited by: §3.1 ,
+ §6 .
+ 
+ [11] 
+ S. Mohamed, M. Rosca, M. Figurnov, and A. Mnih (2020) 
+ 
+ Monte Carlo gradient estimation in machine learning .
+ 
+ Journal of Machine Learning Research 21 ( 132 ), pp. 1–62 .
+ 
+ Cited by: §3.1 .
+ 
+ [12] 
+ Y. Nie, X. Zhou, and M. Bansal (2020) 
+ 
+ What can we learn from collective human opinions on natural language inference data? .
+ 
+ In Conference on Empirical Methods in Natural Language Processing (EMNLP) ,
+ 
+ Cited by: §4 .
+ 
+ [13] 
+ D. Phan, M. D. Hoffman, D. Dohan, S. Douglas, T. A. Le, A. Parisi, P. Sountsov, C. Sutton, S. Vikram, and R. A. Saurous (2023) 
+ 
+ Training chain-of-thought via latent-variable inference .
+ 
+ In Advances in Neural Information Processing Systems (NeurIPS) ,
+ 
+ Cited by: §6 .
+ 
+ [14] 
+ Qwen Team (2025) 
+ 
+ Qwen3 technical report .
+ 
+ arXiv preprint arXiv:2505.09388 .
+ 
+ Cited by: §4 .
+ 
+ [15] 
+ Z. Shao, P. Wang, Q. Zhu, R. Xu, J. Song, M. Zhang, Y. K. Li, Y. Wu, and D. Guo (2024) 
+ 
+ DeepSeekMath: pushing the limits of mathematical reasoning in open language models .
+ 
+ arXiv preprint arXiv:2402.03300 .
+ 
+ Cited by: §1 ,
+ §4 ,
+ §6 .
+ 
+ [16] 
+ K. Tian, E. Mitchell, A. Zhou, A. Sharma, R. Rafailov, H. Yao, C. Finn, and C. D. Manning (2023) 
+ 
+ Just ask for calibration: strategies for eliciting calibrated confidence scores from language models fine-tuned with human feedback .
+ 
+ In Conference on Empirical Methods in Natural Language Processing (EMNLP) ,
+ 
+ Cited by: §6 .
+ 
+ [17] 
+ TypeSafe AI (2026) 
+ 
+ Jev: calibrated decisions for ai agents .
+ 
+ Note: Product documentation, https://typesafe.ai 
+ 
+ Cited by: §1 .
+ 
+ [18] 
+ Y. Wang, X. Ma, G. Zhang, Y. Ni, A. Chandra, S. Guo, W. Ren, A. Arulraj, X. He, Z. Jiang, T. Li, M. Ku, K. Wang, A. Zhuang, R. Fan, X. Yue, and W. Chen (2024) 
+ 
+ MMLU-Pro: a more robust and challenging multi-task language understanding benchmark .
+ 
+ In Advances in Neural Information Processing Systems (NeurIPS) Datasets and Benchmarks Track ,
+ 
+ Cited by: §4 .
+ 
+ [19] 
+ R. J. Williams (1992) 
+ 
+ Simple statistical gradient-following algorithms for connectionist reinforcement learning .
+ 
+ Machine Learning 8 , pp. 229–256 .
+ 
+ Cited by: §6 .
+ 
+ [20] 
+ E. Zelikman, Y. Wu, J. Mu, and N. D. Goodman (2022) 
+ 
+ STaR: bootstrapping reasoning with reasoning .
+ 
+ In Advances in Neural Information Processing Systems (NeurIPS) ,
+ 
+ Cited by: §4 ,
+ §6 .
+ 
+ 
+ 
+ 
+ Appendix A Estimators and their exact checks 
+
+ 
+ Per-rationale objective with shaping. 
+
+ 
+ For per-rationale terms s i s_{i} that depend only on r i r_{i} (and Y Y ),
+e.g. s i = − β M ​ log ⁡ π θ ​ ( r i ) π ref ​ ( r i ) s_{i}=-\frac{\beta}{M}\log\frac{\pi_{\theta}(r_{i})}{\pi_{\mathrm{ref}}(r_{i})} or a length cost, the surrogate 
+ 
+
+ 
+ 
+ ℒ = − 1 M ∑ i R i − ∑ i sg ( R i M + s i − 1 M − 1 ∑ j ≠ i ( R j M + s j ) ) log π θ ( r i ) \mathcal{L}=-\frac{1}{M}\sum_{i}R_{i}-\sum_{i}\mathrm{sg}\Big(\tfrac{R_{i}}{M}+s_{i}-\frac{1}{M-1}\sum_{j\neq i}\big(\tfrac{R_{j}}{M}+s_{j}\big)\Big)\log\pi_{\theta}(r_{i}) 
+ 
+ 
+ has expected gradient − ∇ θ ( 𝔼 r ​ J ​ ( u θ , q ) + 𝔼 r ​ s ) -\nabla_{\theta}\big(\mathbb{E}_{r}J(u_{\theta},q)+\mathbb{E}_{r}s\big) , because each baseline uses only the other,
+independent rationales. 
+ 
+ 
+ 
+ Mixture objective. 
+
+ 
+ J ^ = 2 M ​ ∑ i u i ​ [ Y ] − 1 M ⁡ ( M − 1 ) ​ ∑ i ≠ j u i ⊤ ​ u j \widehat{J}=\frac{2}{M}\sum_{i}u_{i}[Y]-\frac{1}{M(M-1)}\sum_{i\neq j}u_{i}^{\top}u_{j} is unbiased for J ⁡ ( p , q ) J(p,q) because the rationales are independent; its gradient is the pathwise derivative of
+ J ^ \widehat{J} plus, for each rationale, a score-function term whose reward is the part of J ^ \widehat{J} that depends on
+ r i r_{i} , with a baseline that does not. 
+ 
+ 
+ 
+ Checks. 
+
+ 
+ For tabular models ( R ≤ 4 R\leq 4 rationale types,
+ K ≤ 4 K\leq 4 , M ∈ { 3 , 4 } M\in\{3,4\} ) we enumerate all R M R^{M} rationale tuples and all outcomes and compare the expected surrogate
+gradient with the exact gradient of the target: the maximum absolute difference is below 10 − 15 10^{-15} for the mixture
+estimator, the per-rationale estimator, their convex combinations and the shaped versions ( test_rlcd_rb.py ). 
+ 
+ 
+ 
+ 
+ Appendix B Hyperparameters 
+
+ 
+ 
+ 
+ 
+ model 
+ 
+ 
+ Qwen3-1.7B, non-thinking chat template; rationales sampled at temperature 1 (bf16 copy) 
+ 
+ 
+ optimizer 
+ 
+ 
+ AdamW, lr 2 ⋅ 10 − 6 2\cdot 10^{-6} , no weight decay, gradient clipping 1.0, fp32 weights, bf16 autocast 
+ 
+ 
+ batch 
+ 
+ 
+ 8 questions × \times M = 4 M=4 rationales; rationale length ≤ \leq 256 (MMLU-Pro), ≤ \leq 320 (GSM8K-Verify) 
+ 
+ 
+ stage 1 
+ 
+ 
+ 400 steps, per-rationale Brier (or log) score, pathwise gradient only 
+ 
+ 
+ stage 2 
+ 
+ 
+ 400 steps from stage 1, score-function weight c = 0.3 c=0.3 , KL β = 0.04 \beta=0.04 to the stage-1 model 
+ 
+ 
+ GRPO / RFT 
+ 
+ 
+ 400 steps, KL β = 0.04 \beta=0.04 to the base model (RFT also without KL) 
+ 
+ 
+ SFT 
+ 
+ 
+ direct answer, cross-entropy on the option token, 400 or 800 steps 
+ 
+ 
+ evaluation 
+ 
+ 
+ 4 rationales per test question; single query = the first; TS: grid search T ∈ [ 0.1 , 50 ] T\in[0.1,50] , dev NLL 
+ 
+ 
+ 
+ 
+ 
+ 
+ Appendix C Mixture readout 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ GSM8K-Verify 
+ 
+ MMLU-Pro 
+ 
+ Method (mean of u u over 4 rationales) 
+ Acc 
+ Brier 
+ AURC 
+ T T 
+ 
+ Acc 
+ Brier 
+ AURC 
+ T T 
+ 
+ 
+ 
+ base (zero-shot reasoning) 
+ 88.4 
+ 0.181 
+ 0.035 
+ 5.1 
+ 
+ 40.8 
+ 0.758 
+ 0.473 
+ 9.3 
+ 
+ RFT/STaR + TS 
+ 91.7 ± \pm 1.4 
+ 0.139 ± \pm 0.021 
+ 0.034 ± \pm 0.013 
+ 2.5 
+ 
+ 32.7 ± \pm 0.9 
+ 0.830 ± \pm 0.004 
+ 0.619 ± \pm 0.011 
+ 17.6 
+ 
+ RFT/STaR + KL + TS 
+ 93.1 ± \pm 0.4 
+ 0.119 ± \pm 0.003 
+ 0.026 ± \pm 0.003 
+ 3.5 
+ 
+ 42.2 ± \pm 0.7 
+ 0.745 ± \pm 0.005 
+ 0.458 ± \pm 0.008 
+ 9.5 
+ 
+ GRPO + KL + TS 
+ 93.8 ± \pm 0.3 
+ 0.114 ± \pm 0.007 
+ 0.025 ± \pm 0.002 
+ 3.7 
+ 
+ 44.3 ± \pm 0.4 
+ 0.729 ± \pm 0.004 
+ 0.428 ± \pm 0.005 
+ 9.6 
+ 
+ RLCD stage 1, Brier readout 
+ 92.8 ± \pm 2.0 
+ 0.111 ± \pm 0.025 
+ 0.019 ± \pm 0.006 
+ 0.9 
+ 
+ 49.3 ± \pm 1.5 
+ 0.655 ± \pm 0.014 
+ 0.303 ± \pm 0.018 
+ 1.3 
+ 
+ RLCD stage 1, log-score readout 
+ 92.7 ± \pm 0.9 
+ 0.116 ± \pm 0.010 
+ 0.022 ± \pm 0.004 
+ 1.2 
+ 
+ 48.6 ± \pm 1.1 
+ 0.655 ± \pm 0.007 
+ 0.311 ± \pm 0.009 
+ 1.4 
+ 
+ RLCD two-stage (stage 1 + RLCD-RL) 
+ 94.5 ± \pm 0.3 
+ 0.092 ± \pm 0.005 
+ 0.014 ± \pm 0.000 
+ 1.0 
+ 
+ 48.9 ± \pm 2.0 
+ 0.651 ± \pm 0.014 
+ 0.300 ± \pm 0.020 
+ 1.5 
+ 
+ 
+ 
+ 
+ 
+ Averaging the readout over four rationales improves every reasoning method; the ordering of
+Table  1 is unchanged. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Experimental support, please
+ view the build logs 
+ for errors. Generated by
+ 
+ 
+ L
+ A 
+ T
+ E 
+ 
+ xml 
+ 
+ .
+ 
+ 
+ Instructions for reporting errors 
+ We are continuing to improve HTML versions of papers, and your feedback helps enhance accessibility and mobile
+ support. To report errors in the HTML that will help us improve conversion and rendering, choose any of the
+ methods listed below: 
+ 
+ Click the "Report Issue" ( 
+ 
+ ) button, located in the page header. 
+ 
+ Tip: You can select the relevant text first, to include it in your report. 
+ Our team has already identified the following issues . We appreciate your time reviewing and reporting rendering errors we
+ may not have found yet. Your efforts will help us improve the HTML versions for all readers, because disability
+ should not be a barrier to accessing research. Thank you for your continued support in championing open access for
+ all. 
+ Have a free development cycle? Help support accessibility at arXiv! Our collaborators at LaTeXML maintain a list of packages that need conversion , and welcome developer contributions . 
+ 
+ 
+ 
+ 
+ 
+ We gratefully acknowledge support from
+ our major funders ,
+ member institutions , ,
+ and all contributors.
+ 
+ 
+ About 
+ · 
+ Help 
+ · 
+ Contact 
+ · 
+ Subscribe 
+ · 
+ Copyright 
+ · 
+ Privacy 
+ · 
+ Accessibility 
+ · 
+ Operational Status (opens in new tab) 
+ 
+ 
+
+ 
+ Major funding support from 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,44 @@
+protocol_version: 1
+frozen_date: '2026-10-02'
+product: Debt collection
+input_columns: [narrative]
+metadata_columns: [complaint_id, date, product, issue]
+start: '2023-09-01'
+train_end: '2024-06-30'
+validation_end: '2024-09-30'
+primary_future_quarters: [2025Q1, 2025Q2, 2025Q3, 2025Q4, 2026Q1]
+training_label_minimum: 200
+training_label_rule: Include original nonempty labels with at least 200 training narratives; no merging or future-performance selection.
+seed: 20261002
+tfidf:
+  ngram_range: [1, 2]
+  min_df: 3
+  max_df: 1.0
+  max_features: 100000
+  sublinear_tf: true
+  C_candidates: [0.3, 1.0, 3.0]
+  selection_metric: validation_macro_f1
+  max_iter: 500
+thresholds: [0.5, 0.6, 0.7, 0.8, 0.9, 0.95]
+near_duplicates:
+  method: 128-permutation MinHash LSH candidates, exact normalized word 5-shingle Jaccard verification, union-find components
+  lsh_candidate_threshold: 0.7
+  verified_jaccard: 0.85
+  minimum_words: 20
+  normalization: Unicode NFKC, lowercase, punctuation and whitespace normalization; numeric tokens and redaction runs replaced for template matching only.
+  candidate_limit: null
+go_rule:
+  required_passes: 3
+  nontrivial: Not at least 0.97 accuracy AND macro-F1 in every primary future quarter; also report near-perfect accuracy alone as a warning.
+  sufficient_data: At least 200 distinct verified template families per included class in every primary future quarter, and at least 10000 training narratives.
+  meaningful_confidence: At least 5 percentage point accepted-accuracy improvement at 10-90 percent coverage in at least three chronological windows, or at least 2 percentage point temporal accuracy/macro-F1 range, or at least 0.02 ECE/Brier range or 0.05 NLL range.
+  manageable_leakage: At least 50 percent of each primary future cohort remains after removing families seen in training/validation; at least 200 novel families per class/window; narrative-only inputs verified.
+special_warnings:
+  unstable_labels: More than 5 percent future narratives have training-excluded/unseen labels, or an included label disappears in two consecutive primary quarters.
+  template_dominance: More than 50 percent of a primary quarter belongs to families seen in training/validation.
+  literal_solution: A prespecified issue-name rule reaches at least 0.95 accuracy AND macro-F1 in at least four of five primary future quarters.
+  decision: Apply >=3 of 4 exactly; separately report special NO-GO warnings and honor them if triggered, explaining any disagreement with the numerical rule.
+later_availability:
+  q2_rule: Exploratory only if each month has at least 50 percent of the median debt narrative fraction in 2025Q1-2026Q1 and all classes have >=200 distinct families in the quarter.
+  july_rule: Same monthly availability test; exploratory only, never primary.
+  august: Audit only; never normal model evaluation.

@@ -1,0 +1,26 @@
+{
+  "included": [
+    "Attempts to collect debt not owed",
+    "Communication tactics",
+    "Electronic communications",
+    "False statements or representation",
+    "Threatened to contact someone or share information improperly",
+    "Took or threatened to take negative or legal action",
+    "Written notification about debt"
+  ],
+  "new_after_training": [],
+  "absent_by_period": {
+    "2024Q4": [],
+    "2025Q1": [],
+    "2025Q2": [],
+    "2025Q3": [],
+    "2025Q4": [],
+    "2026-07": [],
+    "2026Q1": [],
+    "2026Q2": [],
+    "train": [],
+    "validation": []
+  },
+  "renaming": "No automatic equivalence inferred; new strings are reported, never silently merged.",
+  "exact_groups_with_conflicting_labels": 229
+}

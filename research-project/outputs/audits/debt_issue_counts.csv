@@ -1,0 +1,11 @@
+period,Attempts to collect debt not owed,Communication tactics,Electronic communications,False statements or representation,Threatened to contact someone or share information improperly,Took or threatened to take negative or legal action,Written notification about debt
+2024Q4,8648,937,345,2811,224,1695,3717
+2025Q1,11390,1348,553,3590,321,1990,3767
+2025Q2,11686,1277,557,3279,344,1826,7879
+2025Q3,13919,1368,584,4076,363,2058,7734
+2025Q4,8777,1028,526,3088,314,2159,4808
+2026-07,1250,137,72,359,35,193,681
+2026Q1,10576,897,474,2665,290,1767,3346
+2026Q2,8574,862,376,2498,229,1742,3182
+train,20389,2522,724,3047,617,3530,15664
+validation,8320,928,298,1469,197,1320,4669

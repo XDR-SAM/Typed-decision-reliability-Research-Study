@@ -1,0 +1,20 @@
+{
+  "verdict": "GO",
+  "numerical_rule_result": "GO",
+  "passed": 4,
+  "conditions": [
+    true,
+    true,
+    true,
+    true
+  ],
+  "special_warnings": [],
+  "confidence_useful_windows": 8,
+  "ranges": {
+    "accuracy": 0.08585395137267376,
+    "macro_f1": 0.04513308597126675,
+    "ece": 0.04605714675665419,
+    "brier": 0.0779249997154039,
+    "nll": 0.18210442872680344
+  }
+}

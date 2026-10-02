@@ -1,0 +1,20 @@
+{
+  "complete": true,
+  "stage": "before model fitting",
+  "records": 222885,
+  "availability": {
+    "reference_median_fraction": 0.3678400954653938,
+    "q2_eligible_exploratory": true,
+    "july_eligible_exploratory": false,
+    "august_eligible": false,
+    "note": "Availability heuristics are not proof of missing-at-random publication. Earlier cohorts also show selection shifts."
+  },
+  "required_audits": [
+    "monthly/quarterly availability",
+    "labels and counts",
+    "lengths",
+    "exact duplicates",
+    "MinHash verified families",
+    "chronological splits"
+  ]
+}

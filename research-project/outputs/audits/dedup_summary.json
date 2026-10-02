@@ -1,0 +1,16 @@
+{
+  "records": 222885,
+  "exact_unique": 167154,
+  "normalized_unique": 164029,
+  "families": 149793,
+  "repeated_families": 10977,
+  "cross_period_families": 1120,
+  "rows_in_cross_period_families": 49594,
+  "conflicting_label_families": 767,
+  "canonical_duplicate_links": 3125,
+  "verified_near_links": 14236,
+  "lsh_candidates": 719956,
+  "short_texts_not_lsh": 6961,
+  "elapsed_seconds": 122.60660195350647,
+  "limitations": "LSH probabilistic recall; lexical near duplicates only. Transitive connected components may link endpoint pairs below .85. No author identity available."
+}

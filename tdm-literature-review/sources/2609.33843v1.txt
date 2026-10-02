@@ -1,0 +1,2929 @@
+ 
+ 
+ 
+ Laya as a Typed Probabilistic Assessor:An Independent Reproduction and a Preregistered Study ofCalibration and Selective Escalation 
+ 
+ 
+ 
+ 
+ 
+ 
+ // Restore the saved color scheme preference, or
+ // enact the browser preference if "automatic", 
+ // without expecting DOM load to have completed.
+ //
+ // Also restore any saved readingmode and ToC display preferences.
+ function initializeReadingPreferences() {
+ let saved_theme = localStorage.getItem("ar5iv_theme") || "automatic";
+ if (saved_theme === "automatic") {
+ if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+ saved_theme = "dark";
+ }
+ }
+ if (saved_theme == "dark") {
+ document.documentElement.setAttribute("data-theme", "dark");
+ } else {
+ document.documentElement.setAttribute("data-theme", "light");
+ }
+
+ const tocDisplay = localStorage.getItem('arxiv_html_paper_toc_display');
+ if (tocDisplay) {
+ document.documentElement.setAttribute("data-toc-display", tocDisplay);
+ }
+ const readingMode = localStorage.getItem('arxiv_html_paper_reading_mode');
+ if (readingMode) {
+ document.documentElement.setAttribute("data-reading-mode", readingMode);
+ }
+ // Pre-apply spinout-banner dismissal here, before the banner paints, so it
+ // never flashes in only to be hidden later by the deferred arxiv-header.js.
+ // Key matches arxiv-header.js: "arxiv-banner-dismissed:" + data-banner-name.
+ if (localStorage.getItem('arxiv-banner-dismissed:spinout-nonprofit')) {
+ document.documentElement.setAttribute("data-banner-dismissed", "");
+ }
+ }
+ // Run as soon as JS starts, to minimize repainting
+ initializeReadingPreferences();
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /* Banner pre-dismissal (set above before paint -> no flash-then-hide) and
+ reading-mode chrome hiding. */
+ html[data-banner-dismissed] .ds-announcement { display: none; }
+ html[data-reading-mode="enabled"] .ds-announcement,
+ html[data-reading-mode="enabled"] .ds-site-footer { display: none; }
+ /* Keep the announcement text dark on the Open-Blue band in both colour themes
+ (otherwise it inherits the paper's warm-wash text in dark mode and washes out). */
+ .ds-announcement-text { color: var(--arxiv-ink, #1c1a17); }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Report GitHub Issue 
+ × 
+ 
+
+ 
+ Title: 
+ 
+
+ Content selection saved. Describe the issue below: 
+
+ Description: 
+ 
+ 
+
+ 
+ Submit without GitHub 
+ Submit in GitHub 
+ 
+ 
+ 
+ 
+ arXiv is now an independent nonprofit! 
+ Learn more 
+ × 
+ 
+
+ 
+ 
+ 
+ Back to arXiv 
+ 
+ 
+ 
+ 
+ Why HTML? 
+ 
+ 
+ 
+ 
+ Report Issue 
+ 
+ 
+ 
+ 
+ 
+ 
+ Back to Abstract 
+ 
+ 
+ 
+ 
+ 
+ 
+ Download PDF 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Abstract 
+ 1 Introduction 
+ 
+ Contributions. 
+ 
+ 2 Related work 
+ 
+ Reference-based encoder assessment. 
+ Confidence-gated cascades. 
+ Fine-grained verification. 
+ Calibration and selective prediction measurement. 
+ 
+ 3 Setup 
+ 
+ 3.1 Model 
+ 3.2 Benchmark and the teacher-label caveat 
+ 3.3 Split design (Track A and Track B) 
+ 3.4 Comparators 
+ 3.5 Metrics 
+ 3.6 Uncertainty quantification and multiplicity 
+ 3.7 Preregistration and test-set exposure 
+ 
+ 4 Reproduction of the released checkpoint (E1) 
+ 
+ 4.1 Headline metrics match the card, except soft accuracy 
+ 
+ Open reproducibility finding 1, narrowed twice: soft accuracy does not
+reproduce; precision, backend, and the released harness range are ruled out. 
+ 
+ 4.2 The shipped checkpoint is under-confident, not over-confident 
+ 4.3 The temperature clamp is a no-op on this benchmark 
+ 4.4 Supplementary measured statistics and latency 
+ 4.5 Released artifact 
+ 
+ 5 Accuracy and probability quality across comparators (E2–E3) 
+ 
+ The RLCD recipe on a ModernBERT-base encoder does not reach the dataset
+card’s specialist row. 
+ 
+ 6 Calibration (E4) 
+ 
+ Most of the card’s miscalibration is removable by one disjointly fitted
+scalar, and the shipped override is directionally backwards. 
+ The frozen selection rule picked an overfit calibrator, on both tracks. 
+ 
+ 7 Selective escalation (E5) and cost (E6) 
+ 
+ Operating point on eval (all measured , single
+frozen pass, 200 cases / 1,000 decisions). 
+ Why the frozen gate missed (exploratory, post hoc). 
+ Case-level gating collapses. 
+ High-confidence errors in security and invoice decisions. 
+ Cost and latency (E6). 
+ 
+ 8 Robustness (E7), ablations (E8), and the Track B replication 
+ 
+ Option-order permutations. 
+ Surface perturbations (substitute for paraphrase; deviation D2). 
+ Missing evidence lowers confidence. 
+ Label shift and option-count stress. 
+ Ablations (E8; stored eval records only, no new forwards). 
+ 8.1 The Track B clean replication and the price of contamination 
+ 
+ 9 External validity (E9) 
+ 
+ 9.1 An exploratory out-of-distribution probe (E10) 
+ 
+ 10 Discussion 
+ 
+ Benchmark circularity, and what 0.767 0.767 can and cannot mean. 
+ Direction of miscalibration is an operational quantity. 
+ Procedure-level failures the preregistration recorded. 
+ Where a compact typed assessor is the right tool. 
+ 
+ 11 Limitations 
+ 12 Ethics and responsible use 
+ 13 Independence statement 
+ 14 Reproducibility statement 
+ References 
+ A Preregistration document 
+ B Ancillary files and the per-decision prediction artifact 
+ C Deviations ledger 
+ D Execution timeline 
+ E Confirmatory test family 
+ 
+ 
+ 
+ 
+ 
+ License: arXiv.org perpetual non-exclusive license
+ 
+ 
+arXiv:2609.33843v1 [cs.AI] 27 Sep 2026 
+ 
+ 
+ Laya as a Typed Probabilistic Assessor:
+ An Independent Reproduction and a Preregistered Study of
+ Calibration and Selective Escalation 
+ 
+ 
+ Gowthamkumar Nandakishore
+ 
+ September 2026 
+
+ Abstract 
+ 
+ The shipped Laya Typed-Decisions checkpoint, a 421M-parameter ModernBERT-large
+assessor that answers typed choice / noul / score questions
+over workflow state, is uniformly under -confident. The signed
+confidence–accuracy gap is − 0.214 -0.214 , every occupied reliability bin’s accuracy
+exceeds its confidence, and that sign uniformity collapses every binned ECE variant
+to the same value, 0.214 0.214 . The card frames the risk as over-confidence; the
+measured direction is the opposite, and the direction decides which way a
+confidence-gated cascade fails. A single disjointly fitted temperature
+( T = 0.469 T{=}0.469 , sharpening) removes most of the miscalibration (held-out ECE 0.204 → 0.037 0.204\to 0.037 ) and outperforms the shipped per-option-count table. The frozen
+selection rule instead chose isotonic regression, which overfit and failed its
+held-out NLL contrast on both tracks, so hypothesis H2 is not supported. Re-running the released
+checkpoint on its full official test split reproduces the card’s headline accuracy
+( 0.767 0.767 vs. 0.766 0.766 ). The retrospective E1 reproduction preceded the analysis
+freeze; E2–E8 were prospectively preregistered, and 20 of 22 executed confirmatory
+tests reject under Benjamini–Hochberg FDR at q = 0.05 q{=}0.05 (two descoped). The frozen
+gate beats random escalation but misses its 10 % 10\% accepted-set error target on
+both tracks, an exploratory out-of-distribution probe finds no zero-shot transfer
+(accuracy 0.617 0.617 ), and every score measures agreement with a synthetic teacher
+whose self-agreement ceiling ( 0.735 0.735 ) the specialist exceeds. Per-decision
+predictions, run manifests, and the frozen preregistration are in the
+ancillary files.
+The author has no affiliation with the model’s publisher, the dataset’s
+publisher, or TypeSafe (§ 13 ). 
+ 
+ 
+ 
+ Keywords: typed decisions; language-model evaluation; assessor;
+calibration; selective prediction; reproducibility; preregistration 
+ 
+ 
+ 1 Introduction 
+
+ 
+ Automated assessment increasingly routes real decisions, such as whether an agent
+trace needs human review, whether an invoice is paid or held, and whether a security
+alert is closed or contained. A typed decision interface serves this setting directly. The model
+receives one piece of unstructured state and several typed questions, and returns a
+probability distribution over each question’s label space rather than free text. This
+differs from reference-based answer grading, where a candidate is compared with a
+supplied reference ( Gisserot-Boukhlef et al., 2026 ) , and from general verification, where a solution
+or trajectory receives a graded quality score ( Kwok et al., 2026 ) . It is closest in
+interface to decision-only judging services ( Li et al., 2026 ) 1 1 
+ 1 
+ 
+ 
+ 
+ Li et al. (2026) 
+evaluate the commercial TypeSafe JEV service as a black box; that study is
+independent of TypeSafe and of this work. , but the artifact studied
+here is small, open-weight, and local. 
+ 
+ 
+ The gap this paper addresses is the distance between a reported benchmark accuracy and a
+deployable confidence signal. The public model card for Laya Typed-Decisions reports
+ 0.766 0.766 accuracy on its benchmark’s test split ( reported , model
+card 2 2 
+ 2 
+ 
+ 
+ 
+ https://huggingface.co/convaiinnovations/laya-typed-decisions ,
+accessed 2026-09-26; revision 1a793eb5 . ). Yet the same
+card instructs users to treat the checkpoint’s confidence as uncalibrated, and its
+shipped temperature configuration is known to be misconfigured: the temperatures
+fitted during training used a slice of the training data ( reported , model
+card), and they are overridden at inference by an inherited per-option-count
+table whose out-of-range choice:11+ entry is clamped by laya 
+0.3.20 ( measured ). Whether such an artifact can act as a trustworthy
+first-stage assessor (accepting decisions when confident and escalating when unsure,
+as Li et al. (2026) frame it for a proprietary hosted judge) is an empirical question
+that its card does not answer. 
+ 
+ 
+ This is an independent study. The author has no affiliation with Convai
+Innovations, which publishes the model, its base model, and the laya 
+package; with the LocalLLaMA organization, which publishes the benchmark; or
+with TypeSafe (§ 13 ). What the study supplies is a frozen protocol,
+frozen thresholds, and per-decision artifacts that let anyone check or extend
+the numbers. A previously
+circulated draft of this work was a protocol-only manuscript that proposed the
+evaluation and reported no measurements. This version executes that protocol in two
+registers. The reproduction (E1) ran first and is retrospective, predating the
+preregistration under the plan’s fit-nothing exemption. The plan was then
+frozen, and every prospectively frozen analysis (E2–E8) executed against the
+frozen thresholds; only those analyses are claimed as preregistered.
+§ 3.7 states the timing, including the acceptance-gate item it fails,
+and Appendix  D gives the full execution timeline. The one descoped
+component is the external-validity set (E9; § 9 ). 
+ 
+ 
+ Contributions. 
+
+ 
+ 
+ 1. 
+ 
+ A decomposition of the card’s miscalibration (E4). The shipped
+checkpoint is uniformly under-confident (signed gap − 0.214 -0.214 ), not over-confident as
+the card’s guidance implies; one disjointly fitted temperature removes almost all of
+it (held-out ECE 0.204 → 0.037 0.204\to 0.037 ), and the fitted temperature sharpens 
+( T = 0.47 T{=}0.47 ) where the shipped override softens ( T = 1.25 T{=}1.25 – 1.98 1.98 ). The
+inherited configuration is directionally backwards on this benchmark. 
+ 
+ 2. 
+ 
+ An escalation analysis with explicit scope limits (E5–E6). No
+runnable strong judge exists in this study’s environment (an author-directed
+constraint in the frozen plan), so cascade end-to-end accuracy is reported only as an
+ oracle-escalation upper bound with the escalation target’s accuracy and cost
+as explicit symbolic parameters, alongside a random-escalation control at matched
+rate. The confidence signal does real work (E1t/E2t, + 6.5 +6.5 / + 7.6 +7.6 accepted-set
+accuracy points over random escalation, both FDR-significant), yet the frozen gate
+misses its 10 % 10\% error target out-of-sample and passes confidently wrong security
+decisions (§ 7 ). The proprietary JEV service is never run (no API access
+exists) and appears only as third-party context with its source’s own disclaimer. 
+ 
+ 3. 
+ 
+ A preregistered analysis protocol, frozen after the reproduction and
+before all fitting. 
+All thresholds, temperature-fitting procedures, split assignments, confidence
+statistics, hypothesis operationalizations, and a 24-test false-discovery-rate
+family were frozen (2026-09-26, 15:50 UTC) before
+any fitting touched the test split, and the frozen choices were then followed even
+where they hurt; the frozen method-selection rule picked an overfit calibrator on
+both tracks (§ 6 ). The design
+separates a split-half protocol on the released checkpoint (Track A) from a clean
+re-training replication (Track B), because the released checkpoint’s calibration
+data is contaminated by construction (§ 3.3 ). 
+ 
+ 4. 
+ 
+ An independent reproduction of the released checkpoint (E1). We
+re-run it on all 400 test cases and report every headline metric against
+the card’s reported values with 95% BCa confidence intervals from a case-level 
+cluster bootstrap (the 2,000 decisions are five-per-case and correlated;
+decision-level intervals would be too narrow, Appendix  E ). Soft accuracy is the one headline
+metric that fails to reproduce ( 0.509 0.509 vs. 0.471 0.471 ; CI excludes the reported
+value) and is recorded as an open reproducibility finding (§ 4 ). We
+release the per-decision prediction artifact (2,000 rows); the model card
+publishes no per-decision record behind its headline numbers. Per-decision
+artifacts for every headline run are released as well. 
+ 
+ 5. 
+ 
+ A clean replication that prices contamination (Track B). Re-training
+from the pinned base with the card’s recipe, on case-level splits, on one
+Apple-silicon device, reproduces test accuracy within noise ( 0.771 0.771 vs. 0.767 0.767 ;
+paired p = 0.57 p{=}0.57 ). Its cleanly calibrated identity configuration already has
+ECE 0.151 0.151 vs. the released 0.214 0.214 , while a probe that refits temperatures on
+trained-on items degrades held-out ECE 3.7 × 3.7\times ( 0.024 → 0.087 0.024\to 0.087 ), a direct
+measurement of what the card’s contaminated calibration protocol costs
+(§ 8 ). 
+ 
+ 
+ 
+ 
+ 
+ 
+ 2 Related work 
+
+ 
+ Reference-based encoder assessment. 
+
+ 
+ Gisserot-Boukhlef et al. (2026) show across 36 models and 15 tasks that lexical answer matching
+correlates poorly with human judgment, and train an encoder (EuroBERT-210M;
+ Boizard et al., 2025 ) on question–candidate–reference triplets to judge correctness
+in reference-based settings. Two of their findings frame our study. Their
+encoder’s soft probabilities are usably calibrated after a single temperature
+( τ = 1.75 \tau{=}1.75 ). And their cost-effective fallback cascade , regex
+grading first with the encoder only where regex fails, cuts total compute roughly
+ 5 × 5\times when regex fails on 20% of items ( third-party ; their benchmarks). Laya
+Typed-Decisions descends from the same encoder lineage (it is a ModernBERT-large
+checkpoint; Warner et al., 2024 ), but its task is not reference-based; the benchmark
+supplies no reference answers, so BERT-as-a-Judge is not runnable here and none of its
+numbers can be compared to ours (preregistration §0.2). 
+ 
+ 
+ 
+ Confidence-gated cascades. 
+
+ 
+ Selective prediction descends from the reject option ( Chow, 1970 ) through
+selective deep networks ( Geifman and El-Yaniv, 2017 ) . For language models, FrugalGPT sequences
+cheaper models before expensive ones ( Chen et al., 2024 ) , and
+ Jitkrittum et al. (2023) characterize when confidence-based deferral is sufficient in
+principle. Closest to us, JEV-as-a-Judge ( Li et al., 2026 ) studies a
+decision-only judge whose maximum label probability gates escalation to a stronger
+generative judge. Their frozen cascade at threshold 0.9 0.9 accepts 53.7 % 53.7\% of items and
+retains ∼ 99 % {\sim}99\% of the strong judge’s accuracy at ∼ 57 {\sim}57 – 62 % 62\% of its fee
+( third-party ; their benchmarks). Three facts matter for reading this paper against
+theirs. JEV is a proprietary hosted service evaluated as a black box; its
+benchmarks are five public judge suites, none of them the four workflow domains
+studied here; and its authors have never evaluated it on those domains .
+We run nothing against JEV (no API access exists; the frozen plan forbids any JEV
+run or estimate) and make no head-to-head claim. 
+ 
+ 
+ 
+ Fine-grained verification. 
+
+ 
+ LLM-as-a-Verifier ( Kwok et al., 2026 ) computes continuous quality scores as expectations
+over scoring-token logits and scales verification along granularity, repetition, and
+criteria decomposition, reporting state-of-the-art results on agentic benchmarks
+(Terminal-Bench V2 86.5 % 86.5\% , SWE-Bench Verified 78.2 % 78.2\% , RoboRewardBench 87.4 % 87.4\% ,
+MedAgentBench 73.3 % 73.3\% ; third-party ). Laya’s interface is materially different (a trained
+encoder emitting distributions over typed label spaces rather than
+scoring-token readout from a generative model), but the shared lesson is that
+probability shape beyond the argmax carries the operational signal. 
+ 
+ 
+ 
+ Calibration and selective prediction measurement. 
+
+ 
+ Modern networks are often miscalibrated and temperature scaling is the standard
+post-hoc remedy ( Guo et al., 2017 ) . Binned ECE is a biased estimator; bin placement
+changes the number ( Nixon et al., 2019 ; Roelofs et al., 2022 ) , and recalibrated models can be less
+calibrated than they report ( Kumar et al., 2019 ) . We therefore report an ECE family (equal-width at several
+bin counts, equal-mass, classwise, and a signed confidence–accuracy gap) with proper
+scoring rules ( Gneiting and Raftery, 2007 ) rather than a single ECE. Judge-style evaluators
+also carry presentation biases, in particular position and order sensitivity
+ ( Zheng et al., 2023 ; Zheng et al., 2024 ; Pezeshkpour and Hruschka, 2024 ) , which motivates the
+frozen robustness suite (E7). On
+statistics, we follow bootstrap practice for clustered data
+ ( Efron and Tibshirani, 1993 ; Davison and Hinkley, 1997 ) , Benjamini–Hochberg FDR control ( Benjamini and Hochberg, 1995 ) ,
+and preregistration norms ( Nosek et al., 2018 ) . 
+ 
+ 
+ 
+ 
+ 3 Setup 
+
+ 
+ 3.1 Model 
+
+ 
+ Laya Typed-Decisions is a 421M-parameter typed-decision checkpoint built on
+ModernBERT-large ( Warner et al., 2024 ) , released by Convai Innovations
+(footnote  2 ). It answers three primitives: choice 
+(distribution over N N labels), noul (probability a statement is true), and
+ score (distribution over ordered rubric levels plus an expected score). Per
+its card ( reported ), it was fine-tuned from the convaiinnovations/laya base with
+an RLCD-style recipe: the policy emits a distribution over typed options, and
+exploration adds zero-mean Gaussian noise to logits ( σ \sigma annealed
+ → 0.1 0.4\!\to\!0.1 ). The reward
+is a strictly proper scoring rule (log plus 0.75 ⋅ 0.75\cdot spherical, plus a ranked
+probability score term for ordinal score questions); updates are REINFORCE
+with a group-mean baseline plus soft cross-entropy against teacher distributions. At
+inference the shipped configuration applies a per-option-count temperature table
+( choice:3-5 = 1.760 =1.760 , noul:2 = 1.983 =1.983 , score:3-5 = 1.251 =1.251 ,
+…; measured , read from the pinned checkpoint) which overrides per-type
+temperatures fitted during training, temperatures that were themselves fitted on a
+slice of the training data ( reported , model card). The card’s own
+instruction is to treat shipped confidence as uncalibrated. We evaluate the checkpoint
+exactly as shipped, bug and all, through laya 0.3.20 predict_batch . 
+ 
+ 
+ 
+ 3.2 Benchmark and the teacher-label caveat 
+
+ 
+ The Typed Decisions benchmark 3 3 
+ 3 
+ 
+ 
+ 
+ https://huggingface.co/datasets/LocalLLaMA/typed-decisions ,
+accessed 2026-09-26; revision f7a2487e . The dataset is independent of, and
+unaffiliated with, TypeSafe. The LocalLLaMA organization on Hugging Face that
+publishes it is distinct from the Reddit community of the same
+name. has four workflow subsets
+( agent_trace_observability , customer_service ,
+ invoice_processing , security_incidents ), each with 300 train and
+100 test cases; every case asks five typed questions over one shared state, giving
+6,000 train and 2,000 test decisions. Option criteria descriptions are
+part of the input. Gold labels are the mean of three samples from a teacher
+endpoint (roughly 4B-class capability, temperature 0.7; reported , dataset card); a
+ label_agreement field records how much the samples disagreed. 
+ 
+ 
+ Three dataset-card reference points ( reported ) anchor interpretation: a majority
+baseline scores 0.520 0.520 (on the combined 1,600 cases), a model with perfect knowledge
+of the latent generating factors scores 0.704 0.704 , and teacher self-agreement ,
+a fresh teacher sample scored against gold built from the others, scores 0.735 0.735 .
+The card’s own reading is that “a score much above 0.75 means a model has learned the
+teacher’s quirks rather than the task.” Agreement with a teacher is not correctness
+ ( Gudibande et al., 2023 ) ; the dataset card gives a concrete example where the teacher
+missed a duplicate invoice. Every number in this paper measures teacher agreement on
+synthetic cases, and § 10 returns to what that does and does not
+support. The card also separates specialist models (fitted on these four
+workflows) from generalist ones (zero-shot on unseen schemas) and warns the two
+are not comparable rows; we preserve that grouping everywhere. 
+ 
+ 
+ 
+ 3.3 Split design (Track A and Track B) 
+
+ 
+ The released checkpoint was fine-tuned on all 1,200 training cases, so any
+temperature or threshold fitted on training data is contaminated, the
+defect its card admits. The frozen design therefore runs two
+tracks and reports both. 
+ 
+ 
+ Track A (split-half test protocol; released checkpoint). The 400 official
+test cases are partitioned at case level, stratified by workflow (50/50 per workflow),
+into calib (200 cases, 1,000 decisions) and eval (200 cases,
+1,000 decisions), with generator and seed fixed in the preregistration (NumPy PCG64,
+seed 20260926; ID lists in track_a_split.json , SHA-256
+ 7719b147… ). Every temperature and threshold is fitted on calib 
+only; all Track A headline results are reported on eval only. eval 
+results are not directly comparable to the card’s 2,000-decision figures (half the
+sample); the full-400 reproduction (E1) is reported separately and labeled as such,
+not as a calibrated result. 
+ 
+ 
+ Track B (clean replication). We fine-tune our own specialist from the pinned
+ laya base model with the card’s RLCD recipe (§ 3.1 ),
+splitting the 1,200 training cases at case level into 960 fine-tune / 240 validation
+(stratified, seed 20260926). Calibration and cascade thresholds are fitted only on the
+240 validation cases; the 400-case test split is evaluated exactly once. Track A
+answers whether the released artifact can be used responsibly today; Track B answers
+whether the method works when the protocol is clean. Hypotheses H2/H3 are primarily
+tested on Track B. 
+ 
+ 
+ 
+ 3.4 Comparators 
+
+ 
+ The preregistration (its §0, an author-directed amendment recorded before the freeze)
+restricts execution to models runnable on the local machine. The frozen measured 
+comparator set: 
+ 
+ • 
+ 
+ Laya Typed-Decisions, released (Track A); 
+ 
+ • 
+ 
+ our Track B replication; 
+ 
+ • 
+ 
+ the laya base checkpoint zero-shot under the same question
+contract (card reports 0.362 0.362 ; reported , to verify); 
+ 
+ • 
+ 
+ laya-multilingual (mmBERT-base, 322M; its card notes no fitted
+temperatures at all); 
+ 
+ • 
+ 
+ a ModernBERT-base specialist trained by us with the Track B recipe (the
+dataset card lists its own frozen-encoder specialist at 0.646 0.646 ; reported ); 
+ 
+ • 
+ 
+ trivial baselines: majority class per question, uniform, training-set
+prior (model card reports majority 0.461 0.461 and random 0.318 0.318 ; dataset card
+reports uniform 0.308 0.308 and prior 0.470 0.470 on its own scoring; all reported ); 
+ 
+ • 
+ 
+ the teacher self-agreement ceiling, recomputed from the dataset’s
+three-sample fields (card reports 0.735 0.735 ; reported ). 
+ 
+ 
+ The same directive dropped any API generative judge and any local ∼ {\sim} 8B
+generative judge.
+Consequently no runnable escalation target exists , with the consequences for
+E5/E6 spelled out in § 7 . Comparators are grouped by task access and
+training exposure in every table; a workflow specialist and a zero-shot generalist are
+never ranked as interchangeable rows. 
+ 
+ 
+ JEV, third-party only. The dataset card’s maintainers measured TypeSafe JEV
+1.13.0 through its public API on 2026-09-18 (all 400 test cases): accuracy 0.727 0.727 ,
+soft accuracy 0.580 0.580 , Brier 0.148 0.148 , ECE 0.144 0.144 (signed over-confidence + 0.023 +0.023 ),
+score MAE 0.391 0.391 , p50 latency 710 ms/case, end-to-end through the public API, one
+request at a time ( third-party ; footnote  3 ). This is the only JEV
+latency figure verifiable at the pinned dataset-card revision; it is quoted with
+that measurement’s own scope and makes no intrinsic inference-time claim.
+The Laya model card quotes JEV comparison figures with an explicit disclaimer, which
+we adopt: these numbers were not measured in this work; prompts, pipeline, and
+sample handling differ; no superiority claim in either direction is made from them . JEV nearly saturates this
+benchmark ( 0.727 0.727 against the teacher self-agreement ceiling, per the dataset
+card), which further limits what any comparison could show.
+The same card, at the pinned revision, also lists a hosted zero-shot model,
+meraGPT Decider 1, at 0.768 0.768 accuracy, Brier 0.052 0.052 , and score MAE 0.219 0.219 
+( third-party ; the card’s own measurement dated 2026-09-22), above both JEV and the
+teacher self-agreement ceiling. It is not run here (no API access) and appears
+only as third-party context under the same disclaimer. 
+ 
+ 
+ 
+ 3.5 Metrics 
+
+ 
+ All metric definitions are frozen in code ( metrics.py ; the metric code and
+its unit tests are in the ancillary files). The 42 unit tests comprise 41 against
+hand-computed cases plus one cross-check against the shipped
+ laya.common.ece_score ; 36 existed at the freeze and six were added with
+the ECE sweep \mathrm{ECE}_{\mathrm{sweep}} implementation under deviation D1. Metric
+definitions are pinned to laya/common.py in the laya 0.3.20 PyPI
+package and to the card’s published evaluation
+conventions. For decision i i with predicted distribution p p and
+teacher distribution g g over K K options: 
+ 
+ • 
+ 
+ Accuracy : 𝟏 [ arg max k p k = arg max k g k ] \mathbf{1}[\arg\max_{k}p_{k}=\arg\max_{k}g_{k}] , averaged
+over decisions; gold argmax follows the teacher-majority rule of the fine-tuning
+notebook linked from the model card (footnote  2 ), “the
+notebook” hereafter. 
+ 
+ • 
+ 
+ Macro-F1 : per-class F 1 = 2 ​ TP / ( 2 ​ TP + FP + FN ) F_{1}=2\,\mathrm{TP}/(2\,\mathrm{TP}+\mathrm{FP}+\mathrm{FN}) over option positions, unweighted mean. 
+ 
+ • 
+ 
+ Soft accuracy : ∑ k p k ​ g k \sum_{k}p_{k}g_{k} after the notebook’s 10 − 6 10^{-6} 
+missing-key floor and renormalization, averaged over choice and
+ noul decisions only ( n = 1,200 n{=}1{,}200 of 2,000); the notebook’s
+ score arm never contributes. This scope is extracted from the card’s own
+code; the card’s 0.471 0.471 is this quantity. 
+ 
+ • 
+ 
+ Brier : ∑ k ( p k − y k ) 2 \sum_{k}(p_{k}-y_{k})^{2} averaged over decisions. The card’s
+ 0.062 0.062 takes y y to be the teacher’s soft distribution and averages over
+ choice + noul only (verified against the notebook’s code); we
+compute both this form and the one-hot-gold form. The frozen plan
+misattributed the card’s figure to the one-hot form; deviation D6
+(Appendix  C ) records the correction, which changes no measured
+value. 
+ 
+ • 
+ 
+ NLL : − mean ⁡ log ⁡ max ⁡ ( p gold , 10 − 12 ) -\operatorname{mean}\log\max(p_{\text{gold}},10^{-12}) . 
+ 
+ • 
+ 
+ RPS (ordinal score questions):
+ ∑ k ( CDF p ​ ( k ) − CDF y ​ ( k ) ) 2 / ( K − 1 ) \sum_{k}(\mathrm{CDF}_{p}(k)-\mathrm{CDF}_{y}(k))^{2}/(K-1) , matching the training
+reward’s form. 
+ 
+ • 
+ 
+ ECE family : the card’s convention as frozen (10 equal-width bins;
+first bin closed at the bottom, others ( lo , hi ] (\mathrm{lo},\mathrm{hi}] ; empty bins
+skipped; mass-weighted) for card comparability. Also equal-width with
+ M ∈ { 10 , 15 , 20 } M\in\{10,15,20\} , of which M = 15 M{=}15 is the frozen confirmatory endpoint
+(a draft mislabeling is reconciled as deviation D7, Appendix  C ,
+with no numeric effect);
+equal-mass (adaptive) binning ( Nixon et al., 2019 ) ; and classwise calibration error
+over option positions. The signed gap = = mean confidence − - accuracy
+shows the direction ECE hides. ECE sweep \mathrm{ECE}_{\mathrm{sweep}} 
+ ( Roelofs et al., 2022 ) is in the frozen family; its unit-tested implementation landed
+slightly after the E4 calib extraction began (deviation D1,
+Appendix  C ) and it is reported wherever the ECE family appears. 
+ 
+ • 
+ 
+ Error-detection AUROC/AUPRC : errors as the positive class, score
+ − q -q where q = max k ⁡ p k q=\max_{k}p_{k} ; plus AURC for selective prediction. 
+ 
+ 
+ The frozen confidence statistic is q = max k ⁡ p k q=\max_{k}p_{k} of the post-calibration
+distribution; entropy, margin, and ordinal variance are secondary ablations only. 
+ 
+ 
+ 
+ 3.6 Uncertainty quantification and multiplicity 
+
+ 
+ The 2,000 test decisions sit in 400 case clusters (five decisions per case, same
+document and context), so decisions are not independent. Every confidence interval in
+this paper is a case-level cluster bootstrap : resample cases with
+replacement, keep each case’s five decisions together, n boot = 10,000 n_{\mathrm{boot}}=10{,}000 ,
+seed 0; BCa intervals primary for single-quantity metrics, percentile as robustness
+check ( Efron and Tibshirani, 1993 ; Davison and Hinkley, 1997 ) . Model comparisons use paired differences on
+identical resampled case sets; paired-difference intervals are percentile (BCa on a
+difference needs a combined jackknife and was not preregistered for the paired case).
+Bootstrap p-values use the finite-sample add-one convention ( b + 1 ) / ( B + 1 ) (b{+}1)/(B{+}1) , doubled
+for two-sided tests, so zero exceedances in B = 10,000 B{=}10{,}000 resamples is reported as
+ p ≤ 10 − 4 p\leq 10^{-4} (one-sided) or p ≤ 2 × 10 − 4 p\leq 2{\times}10^{-4} (two-sided), the resolution
+limit instead of zero. Naive i.i.d. decision-level intervals appear only in a
+frozen appendix contrast (Figure  8 ). Confirmatory inference is
+limited to a frozen family of 24 tests with Benjamini–Hochberg FDR control at
+ q = 0.05 q=0.05 ( Benjamini and Hochberg, 1995 ) ; everything else is exploratory and labeled as such.
+Under the preregistration’s §0.a scope amendment, the two external-validity family
+members (F1t/F2t) could not execute in this version and are reported as not executed;
+the BH denominator conservatively remains the full family size of 24 (equivalent to
+assigning them p = 1 p{=}1 ). Twenty of the 22 executed tests reject
+(Appendix  E ). 
+ 
+ 
+ 
+ 3.7 Preregistration and test-set exposure 
+
+ 
+ The analysis plan was frozen on 2026-09-26 at 15:50 UTC, before any fitting touched
+the test split ( Nosek et al., 2018 ) ; the frozen document is released verbatim as an
+ancillary file and its SHA-256 is listed in anc/README.txt . Timestamps are
+taken from the run manifests, which are also released. The freeze time itself is
+the author’s own statement; the frozen document dates its own authorization to
+21:16 IST (15:46 UTC) on 2026-09-26, and the first post-freeze manifest is
+timestamped 15:51:06 UTC,
+which brackets it. E1
+predates the freeze. The preregistration (its §2) quotes the plan clause that
+exempts the reproduction because it fits nothing (no temperature,
+threshold, prompt, or model choice was informed by test labels). But the same plan’s
+higher-priority integrity rule, that the official test split is opened only after
+all choices are frozen, and its acceptance-gate wording (preregistration frozen
+before the first test evaluation) admit no exemption. The two plan clauses conflict; the
+conflict was resolved in favor of running E1 first, so E1 and H1 are retrospective,
+only E2–E8 are prospectively preregistered, and the acceptance gate’s timing item is
+recorded as a disclosed failure in gate.json .
+Post-freeze test-set exposure, exhaustively: 
+ 
+ • 
+ 
+ one accidental partial smoke re-run of the exempt E1 pipeline (logged;
+Appendix  C ); 
+ 
+ • 
+ 
+ the calib fitting pass (E4); 
+ 
+ • 
+ 
+ two failed E4 attempts at 16:05:29 and 16:05:59 UTC (Python exceptions;
+manifested; read calib cases before failing); 
+ 
+ • 
+ 
+ the single frozen eval pass (E5–E6); 
+ 
+ • 
+ 
+ Track B’s single 400-case test pass; 
+ 
+ • 
+ 
+ one full-400 pass per frozen comparator (each exactly once, manifested); 
+ 
+ • 
+ 
+ E7’s perturbation forwards, which run on calib cases only; 
+ 
+ • 
+ 
+ the 2026-09-27 fp32/CPU rerun of all 400 test cases (fits nothing;
+deviation D10, Appendix  C ); 
+ 
+ • 
+ 
+ the 2026-09-27 version-bisection reruns of all 400 test cases, one per
+evaluated laya release (0.3.3 and 0.3.20), plus one single-case API
+schema check under 0.3.3 (all fit nothing; deviation D11). 
+ 
+ 
+ E8 consumes only
+records stored by the single eval pass; no new eval forwards occurred
+after step 8. Hypothesis H1’s numerical criterion ( | Δ | ≤ 0.02 |\Delta|\leq 0.02 ) was articulated
+after E1 ran and is therefore a post-hoc reporting structure for E1 rather than a
+preregistered prediction; H2–H4 and all thresholds were frozen before any
+ calib / eval or Track B access. Every raw-logit extraction used by
+E4/E5 was cross-checked against the E1 predict_batch predictions
+(2,000/2,000 decisions, max probability difference 1.2 × 10 − 4 1.2\times 10^{-4} , within the
+stored files’ 4-decimal rounding). 
+ 
+ 
+ 
+ 
+ 4 Reproduction of the released checkpoint (E1) 
+
+ 
+ E1 runs the released checkpoint, as shipped (including the inherited
+ temperature_by_options override), on all 400 test cases / 2,000 decisions:
+ laya 0.3.20 predict_batch , one case per call, max sequence length
+1024, batch size 1, Apple M5 Max (64 GB, mps ), Python 3.12.14, torch 2.14.0,
+transformers 5.17.0. Every number labeled measured below comes from the logged,
+manifested run whose artifacts are released in the ancillary files; reported numbers
+are transcribed from the model card (footnote  2 ). Nothing was tuned
+toward the reported values. 
+ 
+ 
+ 
+ 
+ 
+ Metric 
+ Card ( reported ) 
+ Ours ( measured ) 
+ Δ \Delta 
+ 95% CI (BCa, measured ) 
+ 
+ 
+ 
+ Accuracy (all, n = 2000 n{=}2000 ) 
+ 0.766 
+ 0.7670 
+ + 0.0010 +0.0010 
+ [ 0.7455 , 0.7870 ] [0.7455,0.7870] 
+ 
+ Soft accuracy (ch+no, n = 1200 n{=}1200 ) 
+ 0.471 
+ 0.5086 
+ + 0.0376 +0.0376 
+ [ 0.4987 , 0.5196 ] [0.4987,0.5196] 
+ 
+ Brier vs. teacher (ch+no) 
+ 0.062 
+ 0.0658 
+ + 0.0038 +0.0038 
+ [ 0.0610 , 0.0716 ] [0.0610,0.0716] 
+ 
+ ECE (card conv., 10 bins) 
+ 0.213 
+ 0.2142 
+ + 0.0012 +0.0012 
+ [ 0.1954 , 0.2328 ] [0.1954,0.2328] 
+ 
+ Score MAE ( score , n = 800 n{=}800 ) 
+ 0.242 
+ 0.2424 
+ + 0.0004 +0.0004 
+ [ 0.2272 , 0.2580 ] [0.2272,0.2580] 
+ 
+ 
+ Table 1: E1 headline reproduction (T1). reported = transcribed from the model
+card (accessed 2026-09-26); measured = this work’s logged run (manifest
+ 20260926T120855Z ). Δ \Delta = measured − - 
+reported. Intervals: case-level cluster bootstrap (400 clusters, n boot = 10,000 n_{\mathrm{boot}}=10{,}000 , BCa). “ch+no” = choice + noul scope, which is the card’s
+own scope for those metrics (§ 3.5 ). 
+ 
+ 
+ 
+ 
+ 
+ Slice 
+ Card ( reported ) 
+ measured 
+ Δ \Delta 
+ 95% CI (BCa, measured ) 
+ n n 
+ 
+ agent_trace_observability 
+ 0.730 
+ 0.7300 
+ 0.0000 0.0000 
+ [ 0.6800 , 0.7740 ] [0.6800,\ 0.7740] 
+ 500 
+ 
+ customer_service 
+ 0.764 
+ 0.7660 
+ + 0.0020 +0.0020 
+ [ 0.7206 , 0.8058 ] [0.7206,\ 0.8058] 
+ 500 
+ 
+ invoice_processing 
+ 0.804 
+ 0.8060 
+ + 0.0020 +0.0020 
+ [ 0.7660 , 0.8380 ] [0.7660,\ 0.8380] 
+ 500 
+ 
+ security_incidents 
+ 0.766 
+ 0.7660 
+ 0.0000 0.0000 
+ [ 0.7260 , 0.8000 ] [0.7260,\ 0.8000] 
+ 500 
+ 
+ noul accuracy 
+ 0.857 
+ 0.8583 
+ + 0.0013 +0.0013 
+ n/a 
+ 600 
+ 
+ choice accuracy 
+ 0.733 
+ 0.7333 
+ + 0.0003 +0.0003 
+ n/a 
+ 600 
+ 
+ score accuracy 
+ 0.723 
+ 0.7238 
+ + 0.0008 +0.0008 
+ n/a 
+ 800 
+ 
+ noul ECE 
+ 0.192 
+ 0.1938 
+ + 0.0018 +0.0018 
+ n/a 
+ 600 
+ 
+ choice ECE 
+ 0.255 
+ 0.2548 
+ − 0.0002 -0.0002 
+ n/a 
+ 600 
+ 
+ score ECE 
+ 0.199 
+ 0.1991 
+ + 0.0001 +0.0001 
+ n/a 
+ 800 
+ 
+ 
+ Table 2: E1 per-workflow and per-primitive reproduction. Same provenance and
+interval conventions as Table  1 . Note that choice ECE ( 0.255 0.255 ) is
+ worse than the aggregate ECE ( 0.214 0.214 ); the aggregate flatters the model’s most
+error-prone primitive. 
+ 
+ 
+ 4.1 Headline metrics match the card, except soft accuracy 
+
+ 
+ Accuracy, Brier, ECE, score MAE, all four per-workflow accuracies, and all six
+per-primitive statistics reproduce the card within + 0.004 +0.004 
+(Tables  1 – 2 ); the argmax pipeline therefore matches the card’s, and H1 is supported on those metrics under the (post-hoc,
+§ 3.7 ) | Δ | ≤ 0.02 |\Delta|\leq 0.02 criterion. Candidate failure causes
+named in the frozen plan for investigation (tokenizer version, batch-size padding effects,
+option-count clamping) were not pursued further for these metrics because the
+deltas were trivial. 
+ 
+ 
+ Open reproducibility finding 1, narrowed twice: soft accuracy does not
+reproduce; precision, backend, and the released harness range are ruled out. 
+
+ 
+ Measured 0.5086 0.5086 [ 0.4987 , 0.5196 ] [0.4987,0.5196] against a reported 0.471 0.471 . The interval
+excludes the reported value, so this is a pipeline difference rather than sampling noise.
+Because accuracy, ECE, and Brier all reproduce closely, the predicted distributions
+must be close to the card’s; a distribution slightly more concentrated on the
+teacher’s mode raises ∑ k p k ​ g k \sum_{k}p_{k}g_{k} while barely moving ∑ k ( p k − g k ) 2 \sum_{k}(p_{k}-g_{k})^{2} or
+max-probability calibration. Two exploratory reruns of the same 2,000 decisions
+narrow the cause. An fp32/CPU rerun (deviation D10; artifact
+ e1_fp32_cpu_probe.json ) reproduces the canonical run (F16 weights
+under bf16 autocast on MPS) almost
+exactly (soft accuracy 0.5087 0.5087 ; maximum per-decision probability difference
+ 0.0079 0.0079 ; 4 argmax flips of 2,000), ruling out numeric precision and the MPS
+backend. A version bisection of the laya inference harness then reran the
+decisions in one fresh virtual environment per release (deviation D11; artifacts
+ e1_version_probe_*.json ). Torch and transformers were pinned to the
+canonical versions in every environment. laya 0.3.20 reproduces the
+canonical run byte-identically at the stored 4-decimal rounding (maximum
+probability difference 0.0 0.0 ). laya 0.3.3, the lower endpoint of the
+planned bisection range
+(released 2026-09-19, single-state predict API), measures soft
+accuracy 0.5087 0.5087 . The two endpoints agree, so under the pre-stated rule no
+intermediate release was bisected: every released harness version from 0.3.3 to
+0.3.20 is ruled out. What remains is the card-side pipeline itself (its exact
+package pins are not recoverable from the card): either its unreleased or
+pre-0.3.3-era evaluation code or a different data state produced 0.471 0.471 . The
+finding stays open, narrowed to the card side, with the per-decision files
+released so the card’s maintainers can close it. 
+ 
+ 
+ 
+ 
+ 4.2 The shipped checkpoint is under-confident, not over-confident 
+
+ 
+ Figure 1: F1 ( measured ). Per-primitive reliability diagrams for the released
+checkpoint on the full official test split (E1; 2,000 decisions; Apple M5 Max,
+MPS). Confidence is q = max k ⁡ p k q=\max_{k}p_{k} of the shipped
+(post-temperature) distribution; binning is 15 equal-width bins (the frozen
+confirmatory convention; on this run every binned ECE variant, including the card’s
+10-bin convention, collapses to the same value; only non-empty bins drawn; per-bin
+decision counts annotated). Every occupied
+bin in every primitive lies above the diagonal; the shipped checkpoint is
+uniformly under-confident. Recomputed per-primitive ECEs from the released
+per-decision artifact match the logged E1 metrics exactly. 
+ 
+ 
+ The signed calibration gap is − 0.2142 -0.2142 ( measured ), mean confidence 0.553 0.553 against
+accuracy 0.767 0.767 . Figure  1 shows that every occupied reliability bin,
+in every primitive, sits above the diagonal (per-bin gaps − 0.065 -0.065 to − 0.275 -0.275 over
+1,767 distinct confidence values). This explains an otherwise puzzling measurement.
+The entire binned-ECE family collapses to a single value, 0.21423 0.21423 , for equal-width
+binning at M ∈ { 10 , 15 , 20 } M\in\{10,15,20\} and equal-mass binning ( measured ); when every
+bin’s gap has the same sign, mass-weighted binned ECE reduces to
+ | mean confidence − accuracy | |\text{mean confidence}-\text{accuracy}| regardless of binning scheme, a known
+failure mode of reading a single binned ECE ( Nixon et al., 2019 ; Roelofs et al., 2022 ; Kumar et al., 2019 ) . 
+ 
+ 
+ The direction also contradicts the card’s framing. The card instructs users
+to treat the checkpoint’s confidence as uncalibrated (guidance written around its
+known temperature-configuration defect), and its comparison table reads as an
+over-confidence concern; the dataset card separately reports JEV’s signed gap as
+over-confident ( + 0.023 +0.023 ; third-party ). The shipped Laya checkpoint measured here errs in
+the opposite direction. The inherited override applies only softening
+temperatures on this benchmark (all used buckets > 1 >1 : 1.760 1.760 , 1.983 1.983 , 1.251 1.251 ;
+ measured ), which divide the logits and depress q q uniformly. The magnitude of the
+card’s ECE ( 0.213 0.213 ) is real, but its sign, on the shipped artifact, is
+under-confidence. Whether the raw pre-temperature logits are over-confident,
+i.e. how much of it is configuration artifact versus model, is
+the frozen E4 question (§ 6 ).
+For cascade deployment the direction
+matters. Uniform under-confidence inflates escalation rates (costly) rather than
+concealing errors (unsafe); the measured operating consequences appear in § 7 . 
+ 
+ 
+ 
+ 4.3 The temperature clamp is a no-op on this benchmark 
+
+ 
+ The shipped override contains one out-of-range entry ( choice:11+ = 0.1006 =0.1006 ,
+which laya 0.3.20 clamps to 0.5 0.5 ; measured ). No test-split choice question
+has more than 5 options, so that bucket is never selected, and every bucket that is
+used is inside the clamp range ( measured ; clamp changes no used bucket). Running
+through predict_batch therefore reproduces the raw shipped configuration
+exactly here; the well-known choice:11+ sharpening bug does not drive
+the card’s headline ECE, and would only bite deployments with > > 10-option questions. 
+ 
+ 
+ 
+ 4.4 Supplementary measured statistics and latency 
+
+ 
+ On the full split ( measured , exploratory): NLL 0.7069 0.7069 ( ϵ = 10 − 12 \epsilon=10^{-12} );
+macro-F1 0.7499 0.7499 ; RPS on score questions 0.0795 0.0795 against one-hot gold and
+ 0.0156 0.0156 against the teacher distribution; error-detection AUROC 0.7584 0.7584 and AUPRC
+ 0.4423 0.4423 (errors positive, score − q -q ). For context only, Li et al. (2026) report JEV
+error-detection AUROC of 0.869 / 0.745 / 0.863 0.869/0.745/0.863 on their three benchmarks and
+near-chance 0.518 0.518 on reference-free prose ( third-party ; different tasks, so no comparison is drawn).
+Whether 0.758 0.758 is enough ranking signal for a useful cascade here is measured in
+§ 7 . 
+ 
+ 
+ Latency ( measured , this hardware; the card’s T4 figures are on different hardware): batch size
+1, first 3 cases discarded as warm-up; per-case p50/p90/p99 = 95.9 / 124.1 / 195.4 =95.9/124.1/195.4  ms
+(five decisions per case; p50 per decision 19.2 19.2  ms; 54.3 54.3 decisions/s). A batched
+throughput sweep measured 51.9 / 42.9 / 37.8 / 38.7 51.9/42.9/37.8/38.7 decisions/s at batch sizes
+ 1 / 8 / 32 / 64 1/8/32/64 ; batching does not improve throughput on this MPS path (an
+unexplained, hardware-specific observation reported as-is; the card’s T4 claim of
+103–332 questions/s batched is reported and untested here). 
+ 
+ 
+ 
+ 4.5 Released artifact 
+
+ 
+ E1’s per-decision predictions are released as
+ released_full_test.jsonl (2,000 rows; schema in
+Appendix  B ); the model card publishes no per-decision record
+behind its headline numbers, so this artifact makes the card’s headline
+independently re-analyzable, including every analysis in this paper, without
+model access. Canonical copies of all E1 artifacts are in the ancillary files. 
+ 
+ 
+ 
+ 
+ 5 Accuracy and probability quality across comparators (E2–E3) 
+
+ 
+ All comparators of § 3.4 were scored on the full 400-case test split,
+each exactly once, each with a run manifest; Table  3 groups them by task
+access and training exposure, per the dataset card’s own discipline. Trivial baselines
+are fitted on the 1,200 training cases only. Figure  2 shows the
+per-workflow reproduction with clustered intervals. 
+ 
+ 
+ 
+ 
+ 
+ Group 
+ Model 
+ Acc. ( measured ) 
+ NLL 
+ ECE 15 
+ 95% BCa CI (acc.) 
+ 
+ specialist 
+ Laya Typed-Decisions (released) 
+ 0.7670 
+ 0.7069 
+ 0.2142 
+ [ 0.7455 , 0.7870 ] [0.7455,0.7870] 
+ 
+ Laya Track B replication (ours) 
+ 0.7710 
+ 0.6271 
+ 0.1509 
+ [ 0.7495 , 0.7905 ] [0.7495,0.7905] 
+ 
+ ModernBERT-base specialist (ours) 
+ 0.5425 
+ 0.9736 
+ 0.0728 
+ [ 0.5145 , 0.5685 ] [0.5145,0.5685] 
+ 
+ generalist, zero-shot 
+ laya base 
+ 0.3630 
+ 1.3311 
+ 0.1731 
+ [ 0.3385 , 0.3875 ] [0.3385,0.3875] 
+ 
+ laya-multilingual 
+ 0.3495 
+ 1.8616 
+ 0.3159 
+ [ 0.3270 , 0.3717 ] [0.3270,0.3717] 
+ 
+ trivial (fit on train) 
+ majority per question 
+ 0.4835 
+ 14.27 
+ 0.5165 
+ [ 0.4585 , 0.5070 ] [0.4585,0.5070] 
+ 
+ training-set prior 
+ 0.4785 
+ 1.0344 
+ 0.0336 
+ [ 0.4505 , 0.5045 ] [0.4505,0.5045] 
+ 
+ uniform (analytic expectation) 
+ 0.3175 
+ 1.2118 
+ 0.0000 
+ [ 0.3147 , 0.3202 ] [0.3147,0.3202] 
+ 
+ reference 
+ teacher self-agreement (recomputed) 
+ 0.594 0.594 floor – 0.865 0.865 estimate; card: 0.735 0.735 ( reported ) 
+ 
+ TypeSafe JEV 1.13.0 
+ 0.727 0.727 ( third-party ; different pipeline; no comparison claimed) 
+ 
+ meraGPT Decider 1 
+ 0.768 0.768 ( third-party ; card’s measurement; no comparison) 
+ 
+ 
+ Table 3: Comparator results on the full official test split (T3). All
+ measured rows are this work’s logged runs, 2,000 decisions each, accuracy CIs from
+case-level cluster bootstrap (BCa, n boot = 10,000 n_{\mathrm{boot}}{=}10{,}000 ). NLL uses the
+one-hot gold argmax; the majority baseline’s NLL is degenerate by construction
+(near-one-hot predictions). Specialists and zero-shot generalists are not 
+comparable rows (dataset-card discipline). The teacher ceiling is recomputed from the
+shipped label_agreement fields, which record agreement but not the three raw
+samples; the strict all-agree rate ( 0.594 0.594 , measured ) is a floor, and assuming every
+disagreement is a 2–1 split gives 0.865 0.865 ( measured ); the card’s 0.735 0.735 ( reported ) lies
+inside this bracket and could not be recomputed exactly without the raw samples. 
+ 
+ 
+ Figure 2: F5 ( measured ). Per-workflow E1 accuracy, measured (BCa 95%
+case-cluster intervals) vs. card-reported points. All four workflows reproduce within
+ 0.002 0.002 . 
+ 
+ 
+ The zero-shot generalists confirm their cards (all measured ).
+The laya base measures 0.3630 0.3630 against a reported 0.362 0.362 , and
+ laya-multilingual ( 0.3495 0.3495 ), which ships no fitted temperatures at all, has
+the worst calibration in the table (ECE 0.316 0.316 ); it sits below the majority baseline
+on accuracy, consistent with these schemas being unseen. The trivial baselines
+measure within 0.023 0.023 of their card values (majority 0.4835 0.4835 vs. reported 0.461 0.461 
+and prior 0.4785 0.4785 vs. 0.470 0.470 , both slightly above; uniform 0.3175 0.3175 vs. random
+ 0.318 0.318 , slightly below). The first two
+plausibly differ by fitting split and tie-breaking convention, and are reported as our
+own measured definitions (majority/prior per (workflow, question) over training gold).
+The specialist–teacher gap is the dominant structure. Both large-encoder
+specialists sit at the teacher’s own self-agreement region, at least 0.28 0.28 above the
+strongest non-specialist row (majority, 0.4835 0.4835 ) and up to 0.45 0.45 above the weakest
+(uniform, 0.3175 0.3175 ). The interesting differences among them are in
+probability quality (NLL, ECE) rather than accuracy, which is where the released
+checkpoint’s inherited configuration hurts it (Track B’s clean identity beats it by 0.080 0.080 NLL and 0.063 0.063 
+ECE at indistinguishable accuracy; § 8 ). 
+ 
+ 
+ The RLCD recipe on a ModernBERT-base encoder does not reach the dataset
+card’s specialist row. 
+
+ 
+ Our ModernBERT-base specialist, trained with the same RLCD
+recipe, splits, and epoch budget as Track B and differing only in the encoder,
+measures 0.5425 0.5425 [ 0.5145 , 0.5685 ] [0.5145,0.5685] , below the 0.646 0.646 the dataset card reports
+( reported ) for its ModernBERT-base specialist; the interval excludes the reported
+value. The two rows are not the same experiment. The card’s row is a
+frozen-encoder Adaptive Classifier (one classifier per question, mean pooling, 30
+epochs; configuration published on the card and tuned on a held-out quarter of
+the training split), while ours fine-tunes the full encoder with the RLCD recipe.
+The gap therefore measures a training-method difference on a 149M-parameter
+encoder, and no reproducibility conclusion is drawn from it (Limitations,
+item 11). Under matched training the run still measures the encoder-capacity gap
+cleanly, 0.23 0.23 accuracy (paired Δ = − 0.2245 \Delta=-0.2245 , p ≤ 2 × 10 − 4 p\leq 2{\times}10^{-4} )
+between ModernBERT-base and the large-encoder specialists. 
+ 
+ 
+ E3’s interval discipline matters at this sample size. The case-cluster BCa interval on
+ eval winner accuracy is ∼ 1.19 × {\sim}1.19\times wider than the naive i.i.d. decision-level interval ( measured ; Figure  8 , Appendix  E );
+decision-level resampling would have overstated precision throughout. 
+ 
+ 
+ 
+ 
+ 6 Calibration (E4) 
+
+ 
+ Six pre-specified methods were fitted on Track A calib (200 cases, 1,000
+decisions; and independently on Track B’s 240-case validation split), never on
+ eval or Track B test. The six methods: 
+ 
+ 1. 
+ 
+ identity, the shipped configuration including the inherited override,
+exactly as executed by laya 0.3.20; 
+ 
+ 2. 
+ 
+ single temperature; 
+ 
+ 3. 
+ 
+ per-primitive temperature (three parameters); 
+ 
+ 4. 
+ 
+ per-option-count temperature (the shipped configuration’s own
+parameterization, refitted properly); 
+ 
+ 5. 
+ 
+ vector scaling on the choice head; 
+ 
+ 6. 
+ 
+ isotonic regression (per-(primitive, position), one-vs-rest,
+renormalized). 
+ 
+ 
+ Temperatures minimize NLL on
+the fitting split; the frozen selection rule picks the method with lowest fitting-split
+NLL. Table  4 reports both splits; Figure  1 (§ 4 )
+shows the identity reliability diagrams this section repairs. 
+ 
+ 
+ 
+ 
+ 
+ 
+ calib (fit split) 
+ eval (held out, single frozen pass) 
+ 
+ Method 
+ NLL 
+ ECE 15 
+ NLL [95% BCa] 
+ ECE 15 [95% BCa] 
+ Acc. 
+ AURC 
+ 
+ 
+ 
+ identity (shipped) 
+ 0.7111 
+ 0.2250 
+ 0.7027 [ 0.676 , 0.731 ] [0.676,0.731] 
+ 0.2035 [ 0.174 , 0.230 ] [0.174,0.230] 
+ 0.762 
+ 0.0996 
+ 
+ single temperature 
+ 0.5195 
+ 0.0228 
+ 0.5364 [ 0.487 , 0.598 ] [0.487,0.598] 
+ 0.0372 [ 0.020 , 0.043 ] [0.020,0.043] 
+ 0.762 
+ 0.0938 
+ 
+ per-primitive 
+ 0.5170 
+ 0.0226 
+ 0.5352 [ 0.485 , 0.597 ] [0.485,0.597] 
+ 0.0398 [ 0.014 , 0.047 ] [0.014,0.047] 
+ 0.762 
+ 0.0923 
+ 
+ per-option-count 
+ 0.5170 
+ 0.0226 
+ 0.5352 [ 0.485 , 0.597 ] [0.485,0.597] 
+ 0.0398 [ 0.014 , 0.047 ] [0.014,0.047] 
+ 0.762 
+ 0.0923 
+ 
+ vector ( choice ) 
+ 0.5071 
+ 0.0239 
+ 0.5346 [ 0.484 , 0.598 ] [0.484,0.598] 
+ 0.0314 [ 0.015 , 0.035 ] [0.015,0.035] 
+ 0.764 
+ 0.0938 
+ 
+ isotonic ( frozen winner ) 
+ 0.4463 
+ 0.0419 
+ 0.7738 [ 0.626 , 1.030 ] [0.626,1.030] 
+ 0.0505 [ 0.028 , 0.066 ] [0.028,0.066] 
+ 0.764 
+ 0.0993 
+ 
+ 
+ Table 4: Calibration methods, Track A (T4). All measured . Fitted on
+ calib only; eval touched exactly once with all methods frozen.
+Accuracy is invariant under (1)–(4) by construction (temperature preserves argmax);
+isotonic and vector scaling can change it and do, trivially ( + 0.002 +0.002 ). Bold marks the
+frozen selection rule’s choice (lowest calib NLL), which has the
+ worst held-out NLL in the table, worse than the uncalibrated identity. Fitted
+parameters: single T = 0.469 T=0.469 ; per-primitive T = ( 0.539 , 0.431 , 0.412 ) T=(0.539,0.431,0.412) for
+( choice , score , noul ); the per-option-count method
+collapses to per-primitive because the benchmark occupies only one bucket per
+primitive (all choice at k ≤ 5 k\leq 5 ). Per-method Brier and error-detection
+AUROC with intervals are in anc/metrics/e5_e6_eval.json . 
+ 
+ 
+ Most of the card’s miscalibration is removable by one disjointly fitted
+scalar, and the shipped override is directionally backwards. 
+
+ 
+ One
+disjointly fitted scalar takes
+held-out ECE 15 from 0.2035 0.2035 to 0.0372 0.0372 and NLL from 0.7027 0.7027 to 0.5364 0.5364 
+(A2/B2: Δ \Delta NLL − 0.166 -0.166 [ − 0.198 , − 0.131 ] [-0.198,-0.131] , Δ \Delta ECE − 0.166 -0.166 
+ [ − 0.191 , − 0.107 ] [-0.191,-0.107] , both p ≤ 2 × 10 − 4 p\leq 2{\times}10^{-4} , FDR-significant). The fitted temperature is
+ T = 0.469 < 1 T=0.469<1 ; the logits need sharpening . The shipped configuration divides
+logits by T ∈ [ 1.25 , 1.98 ] T\in[1.25,1.98] , softening, which is the wrong direction on this
+benchmark and mechanically explains the direction § 4.2 measured. Per-primitive temperatures ( 0.41 0.41 – 0.54 0.54 ) buy almost nothing over the
+single scalar ( Δ \Delta NLL − 0.0012 -0.0012 on eval ), and the per-option-count
+parameterization, the shipped configuration’s own functional form, is
+ identical to per-primitive here because the benchmark’s fixed schemas occupy
+one option-count bucket per primitive. The shipped six-entry temperature table (of
+twelve possible buckets), including the
+clamped choice:11+ entry, cannot even be exercised by the benchmark that
+motivated it. 
+ 
+ 
+ 
+ The frozen selection rule picked an overfit calibrator, on both tracks. 
+
+ 
+ The frozen rule (lowest fitting-split NLL) selected isotonic regression, whose
+ 6 6 – 28 28 interpolation knots per (primitive, position) curve (median 21) won calib NLL
+by a wide margin ( 0.446 0.446 vs. 0.520 0.520 ) and then failed to transfer. Held-out NLL is
+ 0.7738 0.7738 , above identity , with a CI spanning [ 0.626 , 1.030 ] [0.626,1.030] (the instability
+signature of near-zero fitted probabilities meeting held-out one-hot targets). Its
+confirmatory NLL contrast A6 does not reject ( Δ = + 0.071 \Delta=+0.071 
+ [ − 0.087 , + 0.263 ] [-0.087,+0.263] , p = 0.446 p=0.446 ), one of only two failures in the 22-test executed
+family. The same rule picked isotonic on Track B’s independent validation split and
+its NLL contrast failed there too (C6, p = 0.108 p=0.108 ; § 8 ), so this is a
+replicated property of the selection rule at n = 200 n=200 – 240 240 fitting cases rather
+than one unlucky split. Because H2 was operationalized as “the selected method improves
+held-out NLL and ECE,” H2 is formally not supported on either track , even
+though every temperature-family method (A2–A5, B2–B5, C2–C5, D2–D5) rejects
+decisively and isotonic’s own ECE contrast (B6/D6) rejects as well. The hypothesis
+failed under its frozen operationalization. A
+selection-by-NLL rule at this sample size prefers expressive monotone fits that do not
+generalize in NLL. We do not substitute a post-hoc winner; all downstream frozen
+analyses (E5) use isotonic as selected. 
+ 
+ 
+ This also answers § 4.2 ; the residual miscalibration after one
+scalar is ∼ 0.02 {\sim}0.02 – 0.04 0.04 ECE, an operational statement about repairability
+rather than a unique model-versus-configuration decomposition. The
+error-detection AUROC moves only from 0.766 0.766 (identity) to 0.780 0.780 (single
+temperature) on eval ; calibration reshapes confidence values but barely
+changes their ranking , which is what § 7 gates on. 
+ 
+ 
+ 
+ 
+ 7 Selective escalation (E5) and cost (E6) 
+
+ 
+ Protocol as frozen (preregistration §0/§5). Confidence is q = max k ⁡ p k q=\max_{k}p_{k} after the
+selected calibration (isotonic, as selected; § 6 ). Gating accepts a
+decision when q ≥ τ q\geq\tau ; τ ∗ \tau^{*} was chosen on calib from the
+frozen twelve-point grid as the smallest value with accepted-set error
+ ≤ 0.10 \leq 0.10 , then frozen before the single eval pass. On calib this
+gave τ dec ∗ = 0.70 \tau^{*}_{\mathrm{dec}}=0.70 (coverage 0.644 0.644 , accepted error 0.0916 0.0916 ) and
+ τ case ∗ = 0.80 \tau^{*}_{\mathrm{case}}=0.80 (a case escalates if any of its five
+decisions falls below τ \tau ; coverage on calib already only 0.050 0.050 ).
+Because no runnable escalation target exists in this study (§ 3.4 ),
+end-to-end accuracy is reported only as the symbolic form
+ c ⋅ a + ( 1 − c ) ​ a T c\cdot a+(1-c)\,a_{T} and its oracle bound ( a T = 1 a_{T}=1 ); E6 cost likewise as
+ c L + ( 1 − c ) ​ c T c_{L}+(1-c)\,c_{T} with c T c_{T} symbolic. 
+ 
+ 
+ Operating point on eval (all measured , single
+frozen pass, 200 cases / 1,000 decisions). 
+
+ 
+ Decision-level gating at τ ∗ = 0.70 \tau^{*}=0.70 : coverage
+ 0.672 0.672 [ 0.637 , 0.704 ] [0.637,0.704] , accepted-set accuracy 0.8601 0.8601 [ 0.831 , 0.886 ] [0.831,0.886] ,
+oracle-bounded end-to-end accuracy 0.906 0.906 [ 0.885 , 0.923 ] [0.885,0.923] , escalation rate 0.328 0.328 .
+ The frozen gate misses its target out-of-sample. Accepted-set error is
+ 0.1399 0.1399 against the frozen 0.10 0.10 ; the calib -feasible threshold
+did not transfer ( 0.0916 → 0.1399 0.0916\to 0.1399 ), a 53 % 53\% relative degradation. H3(a) therefore
+fails on Track A (and, independently, on Track B: 0.0866 → 0.1028 0.0866\to 0.1028 ;
+§ 8 ). H3(b), that the confidence signal beats random escalation at matched
+rate, holds decisively: E1t Δ = + 0.0646 \Delta=+0.0646 [ 0.0502 , 0.0785 ] [0.0502,0.0785] , one-sided
+ p ≤ 10 − 4 p\leq 10^{-4} , FDR-significant. So the signal is real but the frozen threshold’s error
+guarantee is not; a deployment would need to re-validate τ \tau on fresh data rather
+than trust a 200-case fit. Accuracy at fixed coverage (winner confidence ranking):
+ 0.800 0.800 at 90 % 90\% , 0.839 0.839 at 75 % 75\% , 0.908 0.908 at 50 % 50\% , 0.976 0.976 at 25 % 25\% , from
+ 0.764 0.764 at full coverage; AURC 0.0993 0.0993 (winner) vs. 0.0996 0.0996 (identity),
+consistent with § 6 ; calibration barely changes the ranking. 
+ 
+ 
+ 
+ Why the frozen gate missed (exploratory, post hoc). 
+
+ 
+ A decomposition of the stored per-decision records (deviation D9,
+Appendix  C ; artifact e11_tau_decomposition.json )
+shows the miss was built in at fitting time. Under the identity ranking, which no
+calibration map fitted on calib can change, accepted-set error at matched
+coverage 0.644 0.644 is 0.143 0.143 on calib against 0.127 0.127 on eval , so
+the held-out half is not harder. Under the isotonic ranking the same comparison
+reads 0.092 0.092 against 0.130 0.130 , an in-sample optimism of 0.051 0.051 on calib .
+The mechanism is that the calibrator and the threshold were fitted on the same
+1,000 decisions, and isotonic’s in-sample fit sinks its own training errors below
+the gate. The one-parameter single-temperature calibrator, which cannot re-rank
+decisions within a primitive, lands at the target out of sample ( τ = 0.75 \tau=0.75 :
+ calib 0.094 0.094 , eval 0.100 0.100 at coverage 0.598 0.598 ). A counterfactual
+rule that requires the 95% upper confidence bound on calib accepted error
+to clear the target picks τ = 0.80 \tau=0.80 under both a Wilson bound ( 0.086 0.086 ) and a
+case-cluster bootstrap 95th percentile ( 0.082 0.082 ), delivering 0.101 0.101 at coverage
+ 0.534 0.534 on eval . The frozen point-estimate rule’s τ ∗ = 0.70 \tau^{*}=0.70 had a
+ calib Wilson upper bound of 0.116 0.116 , already above the target it was meant
+to guarantee. 
+ 
+ 
+ 
+ Case-level gating collapses. 
+
+ 
+ At τ case ∗ = 0.80 \tau^{*}_{\mathrm{case}}=0.80 ,
+requiring all five decisions confident leaves coverage 0.055 0.055 [ 0.025 , 0.085 ] [0.025,0.085] 
+(eleven accepted cases), with accepted-set accuracy 0.8545 0.8545 (error 0.145 0.145 , also
+missing target) and no significant advantage over random case escalation (E1t case
+variant: Δ = + 0.005 \Delta=+0.005 , p = 0.075 p=0.075 ; secondary, outside the confirmatory family).
+The all-five-confident requirement is too conservative to be useful at these
+confidence levels; decision-level gating is the only viable mode measured here. 
+ 
+ 
+ Figure 3: F2 ( measured ). Risk–coverage on Track A eval , shipped
+identity vs. frozen winner confidence, random-escalation reference line, the frozen
+ τ ∗ \tau^{*} operating point (star), and the frozen 0.10 0.10 error target (dashed).
+The operating point sits visibly above the target line. 
+ 
+ 
+ Figure 4: F3 ( measured ). Accuracy by confidence bucket on eval 
+with case-clustered intervals. Ordering is monotone above q ≥ 0.5 q\geq 0.5 except a flat
+step at [ 0.5 , 0.6 ) [0.5,0.6) vs. [ 0.4 , 0.5 ) [0.4,0.5) ( 0.476 0.476 vs. 0.480 0.480 , n = 124 n=124 vs. 25 25 ). 
+ 
+ 
+ Figure 5: F4 ( measured /symbolic). Oracle-bounded end-to-end accuracy and the
+symbolic cost form c L + ( 1 − c ) ​ c T c_{L}+(1-c)\,c_{T} across the τ \tau grid; the bound is labeled a
+bound. 
+ 
+ 
+ 
+ High-confidence errors in security and invoice decisions. 
+
+ 
+ Among
+ accepted decisions at τ ∗ = 0.70 \tau^{*}=0.70 on eval ,
+ security_incidents has 26 26 errors in 177 177 accepted decisions
+( 14.7 % 14.7\% ) and invoice_processing 16 / 187 16/187 ( 8.6 % 8.6\% ). The single most
+confident security error is instructive: case security_incidents_000043 ,
+severity ( score ), predicted 3 3 at calibrated confidence 1.0 1.0 against a
+ unanimous teacher gold of 4 4 ( label_agreement records no split,
+ruling out a teacher-ambiguity artifact). The top invoice errors are mostly
+teacher-split cases, ambiguous items the gate should have escalated. A cascade whose accepted set contains
+confidence- 1.0 1.0 security misclassifications is not made safe by an 86 % 86\% average.
+Isotonic’s saturating upper knots (which map high raw confidence to exactly 1.0 1.0 )
+make the top of the confidence scale uninformative, an argument for the temperature
+family on operational grounds even before A6’s statistical failure. 
+ 
+ 
+ 
+ Cost and latency (E6). 
+
+ 
+ Latency and throughput are the canonical E1
+measurements of § 4 (this hardware only; a step-8 re-measurement that ran
+concurrently with Track B training measured p50 204 204  ms and is superseded as
+contended, Appendix  C ).
+Cascade cost per decision is c L + ( 1 − c ) ​ c T c_{L}+(1-c)\,c_{T} with measured
+ c L ≈ 18.4 c_{L}\approx 18.4  ms/decision amortized (batch 1, 2,000 2{,}000 decisions in 36.8 36.8  s)
+and c T c_{T} symbolic; at the frozen operating point the escalation term is
+ 0.328 ​ c T 0.328\,c_{T} . Third-party cascade economics in adjacent settings appear in
+§ 2 ; no comparison to them is claimed. 
+ 
+ 
+ 
+ 
+ 8 Robustness (E7), ablations (E8), and the Track B replication 
+
+ 
+ All E7 perturbations ran on calib cases only (no eval exposure;
+ calib is itself half of the official test split, per the exposure ledger in
+§ 3.7 ); everything in this section is exploratory under the frozen plan except the
+Track B family rows (C/D/E2t), which are confirmatory. All numbers measured . 
+ 
+ 
+ Option-order permutations. 
+
+ 
+ Across four seeded permutations of every
+ choice decision’s option order ( 300 300 decisions × \times 4 runs), 6.75 % 6.75\% of
+predictions flip; accuracy ranges 0.727 0.727 – 0.763 0.763 across runs against 0.747 0.747 
+original. The predicted-position histogram is flat over positions 0 0 – 3 3 
+( 287 / 291 / 243 / 293 287/291/243/293 ) with position 4 at 86 86 , but position 4 exists only for k = 5 k=5 
+questions, so the small count reflects option-count composition rather than avoidance. This
+is far milder than the option-position pathologies documented for generative LLM
+judges ( Zheng et al., 2024 ; Pezeshkpour and Hruschka, 2024 ; Wang et al., 2024 ) ; a typed encoder head appears structurally less
+order-sensitive, though 6.75 % 6.75\% of flips is not zero and would touch
+ ∼ 20 {\sim}20 decisions per 400-case batch. 
+ 
+ 
+ 
+ Surface perturbations (substitute for paraphrase; deviation D2). 
+
+ 
+ The
+planned paraphrase test named no runnable paraphraser, so two deterministic
+surface transforms substitute, and are labeled as such. Lowercasing with punctuation
+stripped flips 1.7 % 1.7\% of predictions (accuracy 0.772 → 0.770 0.772\to 0.770 ); a neutral prefix
+flips 1.4 % 1.4\% ( → 0.777 \to 0.777 ). Mean confidence shifts are < 0.003 {<}0.003 . This tests
+format brittleness only, not semantic robustness; no paraphrase claim is
+made. 
+ 
+ 
+ 
+ Missing evidence lowers confidence. 
+
+ 
+ Dropping a
+load-bearing state field before re-scoring changes 49 49 – 66 % 66\% of that workflow’s
+predictions and cuts its accuracy roughly in half (e.g. customer_service:thread : flip rate 0.656 0.656 , accuracy 0.800 → 0.332 0.800\to 0.332 ;
+ security_incidents:alert : 0.508 0.508 , → 0.500 \to 0.500 ;
+ invoice_processing:invoice : 0.492 0.492 , → 0.476 \to 0.476 ;
+ agent_trace_observability:trace_summary : 0.572 0.572 , → 0.324 \to 0.324 ). The
+assessor-relevant finding is the confidence direction. For every load-bearing field
+the mean confidence drops (e.g. − 0.113 -0.113 for thread , − 0.058 -0.058 for
+ trace_summary ), i.e. the model becomes less confident when evidence is
+missing, which is the gate behavior a cascade needs.
+Peripheral fields ( orders , constraints ) flip ≤ 5 % {\leq}5\% with
+negligible shifts. Figure  7 shows all fields. 
+ 
+ 
+ 
+ Label shift and option-count stress. 
+
+ 
+ Importance-reweighting calib 
+to a uniform gold-label distribution per (workflow, question) drops accuracy from
+ 0.772 0.772 to 0.688 0.688 ; roughly 0.08 0.08 of headline accuracy rides on the benchmark’s
+skewed label priors. Synthetic single-question retrieval probes at
+ k ∈ { 5 , 10 , 20 , 30 } k\in\{5,10,20,30\} options all score 100 % 100\% ( 40 40 probes each; trivial by design,
+not comparable to benchmark accuracy). They confirm the only live site of the
+shipped choice:11+ clamp; at k ≥ 11 k\geq 11 the raw temperature 0.1006 0.1006 is
+clamped to 0.5 0.5 , and mean probe confidence jumps to 0.97 0.97 / 0.94 0.94 . The clamp
+region is exactly where the configuration sharpens most aggressively, on the least
+tested inputs. 
+ 
+ 
+ Figure 6: F6 ( measured ). Accuracy by permutation run and
+predicted-position histogram. 
+ 
+ 
+ Figure 7: F7 ( measured ). Per-field flip rates and
+mean confidence shifts under field removal; load-bearing fields (annotated) reduce
+confidence, the correct direction for a cascade. 
+ 
+ 
+ 
+ Ablations (E8; stored eval records only, no new forwards). 
+
+ 
+ The
+calibration × \times cascade 2 × 2 2\times 2 shows the interaction that matters. Gating
+ shipped confidences at τ = 0.70 \tau=0.70 accepts only 18.8 % 18.8\% of decisions (at
+ 0.995 0.995 accepted accuracy) because under-confident scores rarely clear the bar, while
+the calibrated pipeline accepts 67.2 % 67.2\% at 0.860 0.860 ; calibration is what makes the
+gate’s coverage usable at all. Among confidence statistics at matched 67.2 % 67.2\% 
+coverage, negative entropy edges out max-probability ( 0.8661 0.8661 vs. 0.8601 0.8601 accepted
+accuracy) and margin trails ( 0.8542 0.8542 ); ordinal variance on score decisions
+only is worst ( 0.8290 0.8290 ). Per primitive, isotonic repairs ECE 15 from
+ 0.238 / 0.193 / 0.186 0.238/0.193/0.186 to 0.066 / 0.035 / 0.063 0.066/0.035/0.063 ( choice / noul / score )
+with accuracy essentially unchanged. The naive-vs-cluster interval contrast is
+case-cluster BCa width 0.064 0.064 vs. naive i.i.d. 0.054 0.054 , ratio 1.185 1.185 
+(Figure  8 ). 
+ 
+ 
+ 
+ 8.1 The Track B clean replication and the price of contamination 
+
+ 
+ Track B retrains from the pinned laya base with the card’s RLCD recipe on
+case-level splits ( 960 960 fine-tune / 240 240 validation cases, seed 20260926 20260926 ; one
+Apple-silicon device), then touches the 400-case test split exactly once with its own
+independently frozen pipeline (validation-fitted methods; winner again isotonic;
+ τ dec ∗ = 0.75 \tau^{*}_{\mathrm{dec}}=0.75 ). The identity configuration is the trained
+checkpoint’s own per-type temperatures, fitted on the 240 validation cases during
+training ( 1.145 1.145 , 1.122 1.122 , 1.197 1.197 for choice , score ,
+ noul ; run manifest), and methods (2)–(6) are fitted on top of it. 
+ 
+ 
+ Replication. Test accuracy 0.7710 0.7710 [ 0.7495 , 0.7905 ] [0.7495,0.7905] vs. the released
+checkpoint’s 0.7670 0.7670 ; paired case-level difference + 0.0040 +0.0040 
+ [ − 0.009 , + 0.017 ] [-0.009,+0.017] , p = 0.568 p=0.568 ; the card’s training recipe replicates within noise
+under a cleaner protocol, on different hardware, with case-level splits. But the
+ identity configurations differ sharply in probability quality. Track B’s
+validation-fitted temperatures give test NLL 0.6271 0.6271 vs. 0.7069 0.7069 and ECE 15 
+ 0.1509 0.1509 vs. 0.2142 0.2142 (paired Δ \Delta NLL − 0.0798 -0.0798 [ − 0.089 , − 0.070 ] [-0.089,-0.070] ,
+ Δ \Delta ECE − 0.0634 -0.0634 [ − 0.075 , − 0.048 ] [-0.075,-0.048] , both p ≤ 2 × 10 − 4 p\leq 2{\times}10^{-4} ). Same recipe,
+same accuracy, but this cross-checkpoint contrast alone cannot isolate the cause;
+Track B also carries newly trained weights, a different optimization trajectory, and
+different hardware. The calibration-protocol attribution rests on the within-Track-B
+contamination probe below, which holds the weights fixed. 
+ 
+ 
+ The selection-rule failure replicates. Track B’s frozen rule again picked
+isotonic (validation NLL 0.489 0.489 vs. 0.560 0.560 single-temperature), and again the
+held-out NLL contrast failed (C6: Δ = − 0.046 \Delta=-0.046 [ − 0.094 , + 0.012 ] [-0.094,+0.012] , p = 0.108 p=0.108 )
+while every temperature-family contrast (C2–C5, D2–D6) rejected at
+ p ≤ 2 × 10 − 4 p\leq 2{\times}10^{-4} .
+Track B’s cascade also repeats Track A’s pattern. The frozen
+ τ dec ∗ = 0.75 \tau^{*}_{\mathrm{dec}}=0.75 (validation accepted error 0.0866 0.0866 ) misses the
+target on test ( 0.1028 0.1028 ; coverage 0.5835 0.5835 [ 0.557 , 0.609 ] [0.557,0.609] , accepted accuracy
+ 0.8972 0.8972 [ 0.876 , 0.914 ] [0.876,0.914] ), and beats random escalation decisively (E2t:
+ Δ = + 0.0757 \Delta=+0.0757 [ 0.0661 , 0.0851 ] [0.0661,0.0851] , one-sided p ≤ 10 − 4 p\leq 10^{-4} ). The two tracks,
+with independent fitting splits, recorded the same two qualitative failures, which
+places both in the frozen procedure at this sample size rather than in either
+split. The § 7 decomposition holds in the same direction here
+(validation 0.0866 → 0.0866\to test 0.1028 0.1028 ; single-temperature gating on test reaches
+ 0.105 0.105 at τ = 0.70 \tau=0.70 ; deviation D9). 
+ 
+ 
+ Contamination probe. Refitting per-primitive temperatures on 400 400 decisions
+the model trained on (the released checkpoint’s own protocol, per the
+fine-tuning notebook linked from the model card) yields temperatures
+ ( 0.400 , 0.309 , 0.219 ) (0.400,0.309,0.219) vs. the clean
+validation’s ( 0.582 , 0.541 , 0.638 ) (0.582,0.541,0.638) ; training-set confidence looks sharper than it
+is, so the fit sharpens beyond what held-out data supports. Held-out test ECE 15 degrades from 0.0236 0.0236 (clean fit) to
+ 0.0873 0.0873 (contaminated fit), a 3.7 × 3.7\times inflation at identical accuracy. This is an
+upper-bound probe (the notebook’s actual holdout was item-level within partially seen
+cases, between these regimes), but it measures the mechanism and its direction
+directly. 
+ 
+ 
+ 
+ 
+ 9 External validity (E9) 
+
+ 
+ 
+ 
+ [DESCOPED: preregistration §0.a: no external-set results will be reported
+in this version. Conclusions are restricted to the synthetic benchmark.] 
+ 
+ 
+ 
+ The pre-freeze experiment plan (not released; summarized in the preregistration’s
+§0.a) specified an external set of 120 independently sourced, human-adjudicated
+cases (two blinded annotators, third-adjudicator protocol, chance-corrected agreement
+reporting). The preregistration’s §0.a amendment records that no annotator pool
+exists for this version and exercises the plan’s stated fallback (its §3.3, option
+3): state so “plainly” and restrict every conclusion to the synthetic benchmark
+(the word is the plan’s).
+We do that; no numbers from the planned external set exist, and the
+two external-validity members of the confirmatory family (F1t/F2t; hypothesis H4)
+are reported as not executed (Appendix  E ). What follows in
+§ 9.1 is a separate, post-registration exploratory probe and is no
+substitute for that set. 
+ 
+ 
+ 9.1 An exploratory out-of-distribution probe (E10) 
+
+ 
+ Because the planned external set is descoped, we ran one post-registration
+exploratory probe of our own, labeled as such on every artifact and never entering
+the confirmatory family (H4 remains untested; F1t/F2t remain not executed). The probe
+asks whether the released checkpoint (F16 weights) transfers zero-shot to evidence-grounded
+claim verification over documents from its own four workflow domains. We authored a
+corpus of 24 fictional workflow documents (six per domain, 150–192 words each) and
+120 typed claims about them, balanced 60 supported / 60 not-supported across six
+claim types (paraphrase, inference, number, entity, contradiction, unverifiable; 20
+each), with verbatim evidence spans recorded for every verifiable claim and a
+validator script enforcing the corpus constraints. The harness is standard
+retrieval-augmented noul querying (sentence-aware ∼ 55 {\sim}55 -word chunks,
+MiniLM-L6-v2 embeddings, cosine top- k = 5 k{=}5 , one yes/no question per claim through
+ predict_batch ), with document-level cluster bootstrap intervals. All
+ measured , exploratory. 
+ 
+ 
+ The checkpoint does not transfer. Accuracy is 0.617 0.617 [ 0.533 , 0.683 ] [0.533,0.683] (balanced
+accuracy the same), against 0.858 0.858 ( measured ) on the benchmark’s own in-distribution
+ noul decisions, a drop of roughly 0.24 0.24 . The two
+ noul tasks are related but not identical, so the delta is a directional
+signal rather than a like-for-like measurement. One in three unsupported claims is accepted (false
+acceptance 0.333 0.333 [ 0.218 , 0.439 ] [0.218,0.439] ). Confidence barely ranks the errors: AUROC
+ 0.589 0.589 [ 0.495 , 0.683 ] [0.495,0.683] , and the confidence distribution compresses below
+ ∼ 0.77 {\sim}0.77 , so the frozen gating rule is infeasible on this set. No
+grid threshold reaches the 0.10 0.10 error target at nonzero coverage, and coverage
+dies before error improves (at τ = 0.65 \tau=0.65 : coverage 0.175 0.175 , accepted error still
+ 0.238 0.238 ). Per claim type, contradiction ( 0.750 0.750 ) and number ( 0.700 0.700 ) are detected best;
+entity swaps and one-step inference sit at chance ( 0.500 0.500 each), the failures most
+dangerous for evidence checking. Retrieval is not the whole explanation (evidence
+recall@5 is 0.84 0.84 ). 
+ 
+ 
+ On this probe’s evidence, the in-distribution results of
+§ 5 – 8 are properties of the
+benchmark match, and nothing in this paper licenses deploying this checkpoint as a
+claim verifier or on any distribution it was not fine-tuned for. This probe is our
+own design and instrumentation end to end (corpus, claims, validator, harness); its
+corpus, per-decision predictions, validation record, and results are in the
+ancillary files ( anc/e10/ ). 
+ 
+ 
+ 
+ 
+ 10 Discussion 
+
+ 
+ Benchmark circularity, and what 0.767 0.767 can and cannot mean. 
+
+ 
+ The measured accuracy ( 0.767 0.767 ; measured ) sits above the teacher’s own
+self-agreement ceiling ( 0.735 0.735 ; reported ) and well above the perfect-factor-knowledge
+reference ( 0.704 0.704 ; reported ). The dataset card’s own interpretation rule says scores
+much above ∼ 0.75 {\sim}0.75 indicate a model has learned the teacher’s idiosyncrasies
+rather than the task. The correct reading of E1 is therefore that a
+421M specialist fine-tuned on these four workflows saturates agreement with a noisy
+synthetic teacher on held-out cases from the same generator; no “beats the
+teacher” reading survives that ceiling. Teacher agreement is not
+correctness ( Gudibande et al., 2023 ) ; a model can be penalized for being right where
+the teacher is wrong.
+This is also why no superiority claim over JEV is available from any table here. The
+third-party JEV row ( 0.727 0.727 ; third-party ) was produced by a different party under different
+prompts and pipeline on a benchmark whose ceiling is 0.735 0.735 . The specialist/generalist
+grouping makes the rows non-comparable by the dataset card’s own discipline.
+A zero-shot hosted model on the same card also clears the ceiling ( 0.768 0.768 ;
+ third-party ), so the ceiling is a reading rule for a specialist fitted to this teacher
+rather than a hard cap on any model; the claim here concerns only what the
+specialist’s score can mean. 
+ 
+ 
+ 
+ Direction of miscalibration is an operational quantity. 
+
+ 
+ Two checkpoints with ECE 0.21 0.21 can fail in
+opposite directions. An over-confident assessor silently passes errors through a
+cascade gate, while an under-confident one escalates too much and erodes the cost
+case. The shipped Laya artifact is the second kind (§ 4.2 ), with the
+mechanism measured in § 6 . After proper calibration the signed gap flips
+to slightly positive ( + 0.028 +0.028 for the single temperature and + 0.033 +0.033 for
+the selected isotonic map on eval ), mild over-confidence, which
+is the regime in which the E5 gate under-delivers. Direction of
+miscalibration, not its magnitude, determines which cascade failure mode a deployment
+gets, and the threshold was chosen on the calibrator’s own fitting data, so its
+in-sample accepted-set error understated the held-out error (the § 7 
+decomposition). 
+ 
+ 
+ 
+ Procedure-level failures the preregistration recorded. 
+
+ 
+ One frozen design choice produced both recorded failures. The calibrator and the
+threshold were fitted on the same split, under an NLL-based selection rule that
+favors expressive calibrators, so the selected isotonic map overfit (A6/C6). The
+same in-sample optimism let τ ∗ \tau^{*} clear a target it could not hold out of
+sample (H3a; decomposition in § 7 ). Without preregistration both
+would have been silently “fixed” (swap in the vector method, nudge τ \tau to
+ 0.75 0.75 ) and the paper would have reported only successes. The recorded failures
+measure the generalization gap of the procedure , which is what a
+practitioner reusing this recipe on their own
+200-case calibration set needs to know ( Nosek et al., 2018 ) . The reusable lesson is to
+cross-fit (fit the calibrator on one half of the fitting split, choose τ \tau on
+the other) or to select τ \tau by an upper confidence bound on the fitting-split
+error. 
+ 
+ 
+ 
+ Where a compact typed assessor is the right tool. 
+
+ 
+ The measured operating point, ∼ 19 {\sim}19  ms per decision at batch 1 on a
+laptop-class accelerator with full distribution outputs ( measured ; § 4 ),
+is the argument for the interface. It is local, auditable, and cheap enough to run on
+every decision, with typed label spaces fixed by the workflow. Published cascades in adjacent settings
+ ( Li et al., 2026 ; Gisserot-Boukhlef et al., 2026 ; Chen et al., 2024 ; Jitkrittum et al., 2023 ) suggest such a first
+stage can carry most of a workload when its confidence orders its errors , and
+that thresholds must be validated locally. This study now has the measured version of that advice. The
+confidence signal beat random escalation at matched rate on both tracks, and
+calibration is what made the gate’s coverage usable at all (E8).
+In-distribution, the measured
+posture is that a compact typed assessor plus one fitted temperature is a useful
+triage stage at roughly two-thirds coverage. That holds provided the error target is
+treated as an estimate to monitor, not a guarantee, and the accepted set is audited
+(§ 7 ). Out of distribution, the exploratory probe measured no transfer
+(§ 9.1 ); nothing in this paper counters that. 
+ 
+ 
+ 
+ 
+ 11 Limitations 
+
+ 
+ 
+ 1. 
+ 
+ Single checkpoint, single configuration. One released artifact at one
+pinned revision, as shipped; no model-family sweep, no seed variation. 
+ 
+ 2. 
+ 
+ Synthetic, teacher-labeled benchmark. Gold is the mean of three
+samples from one ∼ {\sim} 4B-class teacher; every metric is agreement with that
+teacher rather than correctness ( Gudibande et al., 2023 ) ; cases are template-generated,
+with no fielded deployment behind them. 
+ 
+ 3. 
+ 
+ No compute-matched architectural comparison. Comparators differ in
+size, training exposure, and interface; grouping by task access mitigates but does
+not remove this. 
+ 
+ 4. 
+ 
+ No TypeSafe JEV access. All JEV figures are third-party on different
+pipelines and samples; nothing here supports a head-to-head ranking in either
+direction. 
+ 
+ 5. 
+ 
+ No preregistered external validity set in this version (descoped;
+§ 9 ); every confirmatory conclusion is restricted to the synthetic
+benchmark, and H4 goes untested. The E10 probe (§ 9.1 ) is exploratory,
+post-registration, self-authored (120 claims, 24 documents), and its claims are
+correspondingly weak, a transfer-failure signal rather than a measurement of
+external validity. 
+ 
+ 6. 
+ 
+ No independent annotator pool. The external-set annotation protocol
+(two blinded annotators, adjudication, agreement statistics) exists only in the
+unreleased pre-freeze plan; no human adjudication of any model output occurred
+in this version. 
+ 
+ 7. 
+ 
+ Single hardware configuration. Apple M5 Max / MPS; latency and
+throughput are not comparable to the card’s T4 numbers or to any served deployment,
+and the observed non-monotonic batching behavior is unexplained. 
+ 
+ 8. 
+ 
+ Track A’s fitting data is structurally contaminated. The released
+checkpoint saw all 1,200 training cases, so Track A’s calib is carved
+from the test split as mitigation; only Track B is clean end-to-end. 
+ 
+ 9. 
+ 
+ Small fitting and evaluation splits. Track A fits on 200 cases and
+evaluates on 200; both replicated frozen-procedure failures (isotonic selection,
+ τ ∗ \tau^{*} transfer) are properties at this sample size and may vanish with
+more fitting data. Conversely, the τ \tau miss means the study cannot certify any
+error target at n = 200 n=200 , and the exploratory decomposition in § 7 
+traces that miss to in-sample optimism of the same-split fit (deviation D9). 
+ 
+ 10. 
+ 
+ Soft accuracy did not reproduce. It measures
+ 0.509 0.509 against a reported 0.471 0.471 with a CI excluding the reported value; an
+fp32/CPU rerun rules out precision and backend (deviation D10), a version
+bisection rules out every released harness version from 0.3.3 to 0.3.20
+(deviation D11), and what remains, the card-side evaluation pipeline or data
+state, is not recoverable from the card (§ 4 ). 
+ 
+ 11. 
+ 
+ The ModernBERT-base comparator uses a different recipe from the
+card’s row. Our RLCD-trained specialist measures 0.5425 0.5425 against the dataset
+card’s frozen-encoder Adaptive-Classifier specialist at 0.646 0.646 ; the training
+methods differ, so the row is a recipe comparison, not a reproduction of the
+card’s experiment (§ 5 ). 
+ 
+ 12. 
+ 
+ Shipped confidence carries a known configuration defect (a
+training-slice temperature fit, reported on the model card, overridden by an
+inherited table whose out-of-range entry laya 0.3.20 clamps; measured ),
+the card says to treat it as uncalibrated, and choice -primitive
+ECE ( 0.255 0.255 ) is worse than the aggregate ( 0.214 0.214 ); the headline calibration
+number flatters the weakest primitive. 
+ 
+ 13. 
+ 
+ E1 predates the preregistration (exempt because it fits nothing),
+so H1’s numerical criterion is a post-hoc reporting structure, and the E1-derived
+under-confidence observation informed the framing of the frozen E4 questions. 
+ 
+ 14. 
+ 
+ The paraphrase test was substituted (deviation D2); the surface
+transforms that ran test format brittleness only, and semantic paraphrase robustness
+is unmeasured. 
+ 
+ 15. 
+ 
+ E7’s option-count probes are synthetic retrieval tasks , trivial by
+construction; they locate where the shipped clamp is live but say nothing about accuracy
+at high option counts on real questions. 
+ 
+ 16. 
+ 
+ Latency/throughput are single-machine numbers. One planned
+re-measurement was invalidated by resource contention with concurrent training and
+is superseded by the uncontended E1 measurement (Appendix  C ). 
+ 
+ 
+ 
+ 
+ 
+ 12 Ethics and responsible use 
+
+ 
+ The four workflows include payment release and security containment. Nothing in this
+paper supports using this checkpoint, or any assessor, as the sole arbiter of
+such decisions. The confidence signal is measurably miscalibrated as shipped, the
+calibrated cascade still missed its frozen error target on both tracks, and the
+accepted set contained high-confidence security errors (§ 7 ). The
+defensible deployment posture remains decision support with human accountability,
+thresholds validated locally on the deployment’s own distribution, and periodic
+re-checks. The benchmark is synthetic (no personal data,
+no human subjects); the planned external-set collection, when it happens, will
+carry its own annotation-ethics protocol. The dataset is Apache-2.0; model and
+code artifacts are used under their published terms; no credentials or account
+metadata appear in the released artifacts. 
+ 
+ 
+ 
+ 13 Independence statement 
+
+ 
+ The author has no affiliation with, funding from, or financial interest in
+Convai Innovations (publisher of the model, its base model, and the
+ laya package), the LocalLLaMA Hugging Face organization (publisher of
+the benchmark), or TypeSafe. E1 is an independent reproduction. The study’s
+integrity measures are: the analysis plan was frozen before any fitting touched
+the test split (§ 3.7 ); the acceptance gate’s one timing failure is
+disclosed in gate.json ; results unfavorable and favorable to the
+artifact are reported with the same prominence; per-decision artifacts for every
+headline run are released so any party can recompute every number. 
+ 
+ 
+ 
+ 14 Reproducibility statement 
+
+ 
+ All artifacts are pinned by immutable revision, and every run writes a JSON manifest
+(source-tree content hash, HF revision SHAs, package versions, hardware, batch size,
+seed, wall-clock, exact CLI invocation). Pins: 
+ 
+ • 
+ 
+ model convaiinnovations/laya-typed-decisions at revision
+ 1a793eb568e6718f15941d08f85432581df534e3 
+(weights SHA-256 4fa56de7… ); 
+ 
+ • 
+ 
+ dataset LocalLLaMA/typed-decisions at revision
+ f7a2487edd7a043a5441a5e9ccc7fe5ddbd9ebe8 ; 
+ 
+ • 
+ 
+ base model convaiinnovations/laya at revision 55cf4c4e… ; 
+ 
+ • 
+ 
+ harness laya 0.3.20, Python 3.12.14, torch 2.14.0,
+transformers 5.17.0, USE_TF=0 ; Apple M5 Max, 64 GB, mps . 
+ 
+ 
+ The analysis plan was frozen on 2026-09-26 at 15:50 UTC, before any fitting touched
+the test split; the frozen document is released verbatim as an ancillary file and
+its SHA-256 is listed in anc/README.txt . Timestamps are taken from the run
+manifests, which are also released. The canonical E1 artifacts (the metrics JSON,
+the 2,000-row per-decision prediction file, and the run manifest
+ 20260926T120855Z ) are in the ancillary files, alongside
+ gate.json , the pass/fail record of the preregistration’s acceptance gate
+(its prereg-timing item is recorded as a disclosed failure; § 3.7 ),
+and anc/README.txt , which lists the SHA-256 digest of every ancillary
+file. The Track A split
+file’s SHA-256 ( 7719b147… ) is recorded in the preregistration; cluster
+bootstrap uses n boot = 10,000 n_{\mathrm{boot}}=10{,}000 , seed 0; Track A/B split seed 20260926;
+Track B trains from the pinned convaiinnovations/laya base, and the
+ModernBERT-base specialist pins answerdotai/ModernBERT-base at revision
+ 8949b909… (all in pins.json ).
+In the ancillary files: per-decision predictions for every run (released full test,
+both Track A halves, Track B test, both zero-shot comparators), pins.json 
+with checksums, run manifests, the metric suite with its unit tests, and the frozen
+preregistration document. 
+ 
+ 
+ 
+ Acknowledgements and AI-assistance disclosure 
+
+ 
+ This manuscript and its evaluation harness were prepared with substantial assistance
+from large language models, used for literature synthesis, drafting, and code; the
+study design constraints, integrity rules, and authorization decisions are the
+author’s. The experiments were executed by LLM agents on 2026-09-26, with
+exploratory reruns on 2026-09-27, under the author’s direction; the author reviewed every reported number
+against the released artifacts. The two internal adversarial reviews of
+Appendix  D were produced by two LLM systems; their
+full reports are retained privately by the author.
+Every measured number originates from a logged run whose manifest is in the
+ancillary files; every reported or third-party number is attributed to its
+public source with access date; and every bibliography entry was verified against its
+primary record (arXiv or publisher metadata) on 2026-09-26 before inclusion. The
+author reviewed the manuscript and takes responsibility for its content. This
+disclosure is retained in view of arXiv’s policy on undisclosed
+LLM-generated content and hallucinated references. Appendix  D 
+records how the study was executed, including the role of LLM agents and the
+internal adversarial reviews that preceded this version. 
+ 
+ 
+ 
+ References 
+
+ 
+ 
+ Benjamini and Hochberg (1995) 
+ 
+Yoav Benjamini and Yosef Hochberg.
+
+ 
+ Controlling the false discovery rate: A practical and powerful approach to multiple testing.
+
+ 
+ Journal of the Royal Statistical Society: Series B , 57(1):289–300, 1995.
+
+ 
+ 
+ Boizard et al. (2025) 
+ 
+Nicolas Boizard, Hippolyte Gisserot-Boukhlef, Duarte M. Alves, André Martins, Ayoub Hammal, Caio Corro, Céline Hudelot, Emmanuel Malherbe, Etienne Malaboeuf, Fanny Jourdan, Gabriel Hautreux, João Alves, Kevin El Haddad, Manuel Faysse, Maxime Peyrard, Nuno M. Guerreiro, Patrick Fernandes, Ricardo Rei, and Pierre Colombo.
+
+ 
+ EuroBERT: Scaling multilingual encoders for European languages, 2025.
+
+ 
+ arXiv:2503.05500.
+
+ 
+ 
+ Chen et al. (2024) 
+ 
+Lingjiao Chen, Matei Zaharia, and James Zou.
+
+ 
+ FrugalGPT: How to use large language models while reducing cost and improving performance.
+
+ 
+ Transactions on Machine Learning Research , 2024.
+
+ 
+ 
+ Chow (1970) 
+ 
+C. K. Chow.
+
+ 
+ On optimum recognition error and reject tradeoff.
+
+ 
+ IEEE Transactions on Information Theory , 16(1):41–46, 1970.
+
+ 
+ 
+ Davison and Hinkley (1997) 
+ 
+Anthony C. Davison and David V. Hinkley.
+
+ 
+ Bootstrap Methods and their Application .
+
+ 
+ Cambridge University Press, 1997.
+
+ 
+ 
+ Efron and Tibshirani (1993) 
+ 
+Bradley Efron and Robert J. Tibshirani.
+
+ 
+ An Introduction to the Bootstrap .
+
+ 
+ Chapman & Hall, 1993.
+
+ 
+ 
+ Geifman and El-Yaniv (2017) 
+ 
+Yonatan Geifman and Ran El-Yaniv.
+
+ 
+ Selective classification for deep neural networks.
+
+ 
+ In Advances in Neural Information Processing Systems 30 , 2017.
+
+ 
+ 
+ Gisserot-Boukhlef et al. (2026) 
+ 
+Hippolyte Gisserot-Boukhlef, Nicolas Boizard, Emmanuel Malherbe, Céline Hudelot, and Pierre Colombo.
+
+ 
+ BERT-as-a-Judge: A robust alternative to lexical methods for efficient reference-based LLM evaluation.
+
+ 
+ In Proceedings of the Conference on Language Modeling (COLM) , 2026.
+
+ 
+ Camera-ready (arXiv:2604.09497v2, 20 July 2026).
+
+ 
+ 
+ Gneiting and Raftery (2007) 
+ 
+Tilmann Gneiting and Adrian E. Raftery.
+
+ 
+ Strictly proper scoring rules, prediction, and estimation.
+
+ 
+ Journal of the American Statistical Association , 102(477):359–378, 2007.
+
+ 
+ 
+ Gudibande et al. (2023) 
+ 
+Arnav Gudibande, Eric Wallace, Charlie Snell, Xinyang Geng, Hao Liu, Pieter Abbeel, Sergey Levine, and Dawn Song.
+
+ 
+ The false promise of imitating proprietary LLMs, 2023.
+
+ 
+ arXiv preprint arXiv:2305.15717.
+
+ 
+ 
+ Guo et al. (2017) 
+ 
+Chuan Guo, Geoff Pleiss, Yu Sun, and Kilian Q. Weinberger.
+
+ 
+ On calibration of modern neural networks.
+
+ 
+ In Proceedings of the 34th International Conference on Machine Learning , 2017.
+
+ 
+ 
+ Jitkrittum et al. (2023) 
+ 
+Wittawat Jitkrittum, Neha Gupta, Aditya Krishna Menon, Harikrishna Narasimhan, Ankit Singh Rawat, and Sanjiv Kumar.
+
+ 
+ When does confidence-based cascade deferral suffice?
+
+ 
+ In Advances in Neural Information Processing Systems 36 , 2023.
+
+ 
+ 
+ Kumar et al. (2019) 
+ 
+Ananya Kumar, Percy Liang, and Tengyu Ma.
+
+ 
+ Verified uncertainty calibration.
+
+ 
+ In Advances in Neural Information Processing Systems 32 , 2019.
+
+ 
+ 
+ Kwok et al. (2026) 
+ 
+Jacky Kwok, Shulu Li, Pranav Atreya, Yuejiang Liu, Yixing Jiang, Chelsea Finn, Marco Pavone, Ion Stoica, and Azalia Mirhoseini.
+
+ 
+ LLM-as-a-Verifier: A general-purpose verification framework, 2026.
+
+ 
+ arXiv:2607.05391v2.
+
+ 
+ 
+ Li et al. (2026) 
+ 
+Yubo Li, Yidi Miao, Ramayya Krishnan, and Rema Padman.
+
+ 
+ JEV-as-a-Judge: Accept when confident, escalate when unsure, 2026.
+
+ 
+ arXiv:2609.26550v1, 22 September 2026.
+
+ 
+ 
+ Nixon et al. (2019) 
+ 
+Jeremy Nixon, Mike Dusenberry, Ghassen Jerfel, Timothy Nguyen, Jeremiah Liu, Linchuan Zhang, and Dustin Tran.
+
+ 
+ Measuring calibration in deep learning.
+
+ 
+ In CVPR Workshops , 2019.
+
+ 
+ 
+ Nosek et al. (2018) 
+ 
+Brian A. Nosek, Charles R. Ebersole, Alexander C. DeHaven, and David T. Mellor.
+
+ 
+ The preregistration revolution.
+
+ 
+ Proceedings of the National Academy of Sciences , 115(11):2600–2606, 2018.
+
+ 
+ 
+ Pezeshkpour and Hruschka (2024) 
+ 
+Pouya Pezeshkpour and Estevam Hruschka.
+
+ 
+ Large language models sensitivity to the order of options in multiple-choice questions.
+
+ 
+ In Findings of the Association for Computational Linguistics: NAACL 2024 , 2024.
+
+ 
+ 
+ Roelofs et al. (2022) 
+ 
+Rebecca Roelofs, Nicholas Cain, Jonathon Shlens, and Michael C. Mozer.
+
+ 
+ Mitigating bias in calibration error estimation.
+
+ 
+ In Proceedings of the 25th International Conference on Artificial Intelligence and Statistics (AISTATS) , 2022.
+
+ 
+ 
+ Wang et al. (2024) 
+ 
+Peiyi Wang, Lei Li, Liang Chen, Zefan Cai, Dawei Zhu, Binghuai Lin, Yunbo Cao, Lingpeng Kong, Qi Liu, Tianyu Liu, and Zhifang Sui.
+
+ 
+ Large language models are not fair evaluators.
+
+ 
+ In Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) , 2024.
+
+ 
+ 
+ Warner et al. (2024) 
+ 
+Benjamin Warner, Antoine Chaffin, Benjamin Clavié, Orion Weller, Oskar Hallström, Said Taghadouini, Alexis Gallagher, Raja Biswas, Faisal Ladhak, Tom Aarsen, Nathan Cooper, Griffin Adams, Jeremy Howard, and Iacopo Poli.
+
+ 
+ Smarter, better, faster, longer: A modern bidirectional encoder for fast, memory efficient, and long context finetuning and inference, 2024.
+
+ 
+ arXiv:2412.13663 (ModernBERT).
+
+ 
+ 
+ Zheng et al. (2024) 
+ 
+Chujie Zheng, Hao Zhou, Fandong Meng, Jie Zhou, and Minlie Huang.
+
+ 
+ Large language models are not robust multiple choice selectors.
+
+ 
+ In The Twelfth International Conference on Learning Representations , 2024.
+
+ 
+ 
+ Zheng et al. (2023) 
+ 
+Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan Zhuang, Zhanghao Wu, Yonghao Zhuang, Zi Lin, Zhuohan Li, Dacheng Li, Eric P. Xing, Hao Zhang, Joseph E. Gonzalez, and Ion Stoica.
+
+ 
+ Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena.
+
+ 
+ In Advances in Neural Information Processing Systems 36, Datasets and Benchmarks Track , 2023.
+
+ 
+ 
+ 
+ 
+ 
+ Appendix A Preregistration document 
+
+ 
+ The frozen preregistration (frozen 2026-09-26, 15:50 UTC)
+specifies: the frozen artifact pins; the Track A calib / eval case-ID
+lists (seed 20260926) and Track B 960/240 split; the confidence statistic; the
+ τ \tau grid, error target ( 0.10 0.10 ), and selection rule; the six calibration methods
+and the NLL selection rule; the exact metric definitions (frozen in code with unit
+tests); the bootstrap and BCa/FDR specification; hypothesis operationalizations for
+H1–H4; the 24-test confirmatory family; the amended local-only comparator set and
+oracle-escalation reporting convention; the descoping of the external set; and the
+deviations protocol. [The preregistration file is reproduced verbatim as an
+ancillary file in the submission tarball; it is summarized rather than inlined here
+to keep the main text within page limits.] 
+ 
+ 
+ 
+ Appendix B Ancillary files and the per-decision prediction artifact 
+
+ 
+ released_full_test.jsonl (in anc/predictions/ ) contains
+one JSON object per decision, 2,000 rows, with fields: case_id ,
+ workflow , question_id , primitive , n_options ,
+ gold_argmax , gold_distribution , pred_argmax ,
+ pred_distribution , max_prob , correct ,
+ latency_ms , and provenance (constant "measured" ). The
+completed study adds, with the identical schema: released_calib_half.jsonl 
+and released_eval_half.jsonl (Track A halves, raw-logit path),
+ replication_test.jsonl (Track B’s single test pass),
+ specialist_base_test.jsonl (ModernBERT-base specialist’s single test pass),
+ base_full_test.jsonl and multilingual_full_test.jsonl (zero-shot
+comparators), and the exploratory probe reruns
+ e1_fp32_cpu_probe.jsonl , e1_version_probe_0_3_20.jsonl ,
+and e1_version_probe_0_3_3.jsonl (deviations D10 and D11).
+Per-decision JSONs of the frozen-pipeline eval and Track B
+gating decisions ( e5_eval_decisions.json ,
+ track_b_test_decisions.json , e4_calib_decisions.json , with
+ specialist_base_test_decisions.json and
+ track_b_validation_decisions.json ) are in anc/metrics/ . 
+ 
+ 
+ The full ancillary set is: anc/preregistration.md (the frozen plan,
+verbatim); anc/gate.json ; anc/pins.json ; the two split files
+( track_a_split.json , track_b_split.json ); the three frozen
+calibration pipelines ( frozen_pipeline.json ,
+ track_b_frozen_pipeline.json ,
+ specialist_base_frozen_pipeline.json ); the frozen metric suite with its
+unit tests ( metrics.py , test_metrics.py );
+ anc/manifests/ (every run manifest, plus the environment pip freeze);
+ anc/predictions/ (the JSONL files above); anc/metrics/ (every
+canonical metric JSON); anc/e10/ (the exploratory probe’s corpus,
+per-decision predictions, validation record, and results); and
+ anc/README.txt , which lists the SHA-256 digest of every ancillary file.
+The run manifests are released with the author’s private source identifiers
+removed; no measured field is altered. 
+ 
+ 
+ 
+ Appendix C Deviations ledger 
+
+ 
+ Per the preregistration’s deviations protocol, all post-freeze deviations are
+recorded here. Recorded to date: 
+ 
+ 1. 
+ 
+ 2026-09-26, ∼ {\sim} 15:51 UTC (minutes after the freeze): a
+100-case smoke re-run of the exempt E1 pipeline overwrote the on-disk 
+copies of the E1 metrics and prediction files. The canonical E1 artifacts are the
+full-400-case versions released in the ancillary files; no analysis uses the
+smoke run. It fits nothing, but it re-read 100 test cases after test-set closure
+and is logged for the exposure ledger. The freeze time is the author’s own
+statement, bracketed as stated in § 3.7 . 
+ 
+ 2. 
+ 
+ D1: ECE sweep \mathrm{ECE}_{\mathrm{sweep}} added after the E4
+ calib run started. The frozen metric suite named the monotonic
+sweep ECE ( Roelofs et al., 2022 ) but the implementation (with unit tests) landed after
+the E4 calib extraction had begun. It was computed from the stored records;
+no frozen decision (winner, τ ∗ \tau^{*} ) depends on it. 
+ 
+ 3. 
+ 
+ D2: paraphrase test substituted. The preregistration named no
+runnable paraphraser and none was available under the study’s local-only
+constraint; two deterministic surface transforms (lowercase/no-punctuation, neutral
+prefix) ran instead and are labeled as substitutes wherever they appear
+(§ 8 ). No semantic-paraphrase claim is made. 
+ 
+ 4. 
+ 
+ D3: canonical E1 artifact restoration. After the smoke-run
+overwrite (entry 1), the on-disk E1 files were restored from the canonical E1
+files before any E2–E8 analysis and both Track A halves re-verified
+against the restored file (2,000/2,000 decisions). The 2,000/2,000 cross-check is recomputable from anc/predictions/ ,
+checking released_calib_half.jsonl and
+ released_eval_half.jsonl against released_full_test.jsonl .
+The stored raw_logit_verification blocks record the earlier 225- and
+275-row checks against the smoke file. 
+ 
+ 5. 
+ 
+ D4: step-8 latency re-measurement contended. The E6 latency run
+executed while Track B training occupied the same accelerator (p50 204 204  ms vs. 95.9 95.9  ms uncontended); it is retained in the artifact but superseded in the paper
+by the canonical, uncontended E1 measurement, labeled as such (§ 7 ). 
+ 
+ 6. 
+ 
+ D5: post-registration exploratory experiment added (E10). The
+out-of-distribution claim-verification probe of § 9.1 was designed and run
+after the freeze. It touches no benchmark split, enters no confirmatory test, and is
+labeled exploratory on every artifact; it is logged here because it is a
+post-registration addition to the study’s scope. 
+ 
+ 7. 
+ 
+ D6: correction of a frozen misstatement (Brier target convention). 
+The frozen plan (§8) attributed the card’s 0.062 0.062 Brier to the one-hot form;
+verification against the code of the fine-tuning notebook linked from the model
+card shows it is the vs-teacher form
+(one-hot measures ≈ 0.37 {\approx}0.37 , vs-teacher 0.0658 0.0658 ). The paper reports the
+correct convention (Table  1 ); no measured value, selection, or test
+changes; the frozen document is not edited, and this entry is the correction of
+record. 
+ 
+ 8. 
+ 
+ D7: card-ECE bin-convention reconciliation. The preregistration
+froze the card-comparability ECE at 10 bins; manuscript drafts (and one artifact
+key, ece_card_M15 ) described it as 15 bins. The paper now uses the
+frozen 10-bin definition for “card convention” and labels equal-width M = 15 M{=}15 as
+the frozen confirmatory endpoint. Numerically invisible on E1; uniform
+under-confidence collapses every binned variant to 0.21423 0.21423 
+(§ 4.2 ); no confirmatory test is affected (the family was always
+defined on equal-width M = 15 M{=}15 ). 
+ 
+ 9. 
+ 
+ D8: p-value convention correction. The preregistration (§9) froze
+the raw tail-fraction formula p = 2 ​ min ⁡ ( P ⁡ ( Δ ∗ ≤ 0 ) , P ⁡ ( Δ ∗ ≥ 0 ) ) p=2\min(P(\Delta^{*}\leq 0),P(\Delta^{*}\geq 0)) 
+(one-sided where specified), which encodes zero exceedances in 10,000 10{,}000 resamples
+as p = 0 p=0 . At round-1 review this was replaced by the finite-sample add-one
+convention ( b + 1 ) / ( B + 1 ) (b{+}1)/(B{+}1) , doubled for two-sided tests (§ 3.6 ).
+ fdr_family_v2.json stores the corrected values with the raw tail
+fractions preserved per row ( p_raw ); the original
+ fdr_family.json is retained unchanged; BH recomputed from the corrected
+p-values changes no decision (20 of 22 executed tests reject; A6 and C6 still fail). 
+ 
+ 10. 
+ 
+ D9: post-hoc decomposition of the τ ∗ \tau^{*} miss (2026-09-27). 
+An exploratory analysis added at external review, released as
+ e11_tau_decomposition.json , recomputes
+accepted-set error at matched coverage under the identity and isotonic rankings,
+sweeps the frozen τ \tau grid under the single-temperature calibrator, and
+evaluates a counterfactual upper-confidence-bound selection rule. Inputs are stored
+records and grid rows only, all in the ancillary files; no model
+forwards ran, and Track B’s validation side uses stored grid-row aggregates (its
+per-decision records were produced afterwards; D10). No frozen number, verdict,
+threshold, or table changes; the analysis is labeled exploratory and post hoc
+where it appears (§ 7 ). 
+ 
+ 11. 
+ 
+ D10: fp32/CPU probe and Track B validation records (2026-09-27). 
+Two additions at external review, neither changing a frozen number. (i) An
+exploratory fp32/CPU rerun of the 2,000 E1 decisions
+( e1_fp32_cpu_probe.json plus a per-decision file; canonical E1
+artifacts untouched) reproduces the canonical run, F16 weights under bf16
+autocast on MPS (soft accuracy 0.5087 0.5087 
+vs. 0.5086 0.5086 ; max probability difference 0.0079 0.0079 ; 4 argmax flips), ruling out
+precision and backend (§ 4 ). A planned second leg on hosted T4
+hardware could not be run from this environment. (ii) Track B validation
+per-decision records ( track_b_validation_decisions.json ), from a
+forward pass on the 240 validation cases only with the frozen calibration
+parameters reapplied; a sanity gate confirmed the winner’s records reproduce the
+stored τ ∗ \tau^{*} grid row exactly ( n = 704 n=704 , accepted error 0.0866 0.0866 ), and the
+test set was not touched. These records postdate the D9 analysis. 
+ 
+ 12. 
+ 
+ D11: laya version bisection of the soft-accuracy
+discrepancy (2026-09-27). Exploratory reruns of the 2,000 E1 decisions in one
+fresh virtual environment per laya release, on the canonical backend
+(MPS) with torch 2.14.0 and transformers 5.17.0 pinned, so only the harness
+version varies (artifacts e1_version_probe_*.json with per-decision
+files and one manifest per run; canonical artifacts untouched; fits nothing).
+Release 0.3.20 reproduces the canonical run with maximum probability difference
+ 0.0 0.0 at the stored rounding; release 0.3.3 (single-state predict API,
+run through a batch-of-one adapter after the first attempt failed on the missing
+ predict_batch method, manifested) measures soft accuracy 0.5087 0.5087 with
+4 argmax flips (it differs from the canonical run on the same 1,923 decisions
+as the fp32/CPU probe, with the same four flips and the same maximum probability
+difference of 0.0079 0.0079 ; 1,910 of the 1,923 difference vectors are
+digit-identical at the files’ stored precision, consistent with 0.3.3 running
+without autocast). The endpoints agree, so per the pre-stated rule no intermediate
+release was run; the released 0.3.3–0.3.20 harness range is ruled out as the
+cause (§ 4 ). 
+ 
+ 
+ One provenance note: track_b_split.json was written by the training
+driver about two minutes after the training manifest opened; the split is
+deterministic from seed 20260926 and its contents match the preregistration’s
+description. 
+ 
+ 
+ The third-party out-of-distribution report the preregistration anticipated citing
+is omitted from this version; § 9.1 stands on the exploratory probe
+alone. 
+ 
+ 
+ 
+ Appendix D Execution timeline 
+
+ 
+ The study was executed on one machine (Apple M5 Max), in one automated session on
+2026-09-26 and exploratory reruns on 2026-09-27,
+with LLM agents carrying out the frozen protocol under the author’s direction.
+Every timestamp below is UTC, on 2026-09-26 unless dated otherwise, and comes from
+a run manifest released in the ancillary files. Events without a manifest of their
+own (the freeze, the review rounds) are listed in order without a
+seconds-precision timestamp. 
+ 
+ • 
+ 
+ 09:25:49 environment pinned ( pins.json : model, dataset,
+and base-model revisions with checksums; package versions). 
+ 
+ • 
+ 
+ 12:08:55 canonical E1 reproduction run (400 cases, 2,000
+decisions; ∼ 6.4 {\sim}6.4 minutes wall clock). 
+ 
+ • 
+ 
+ 15:50 preregistration freeze (the frozen document is released
+verbatim as an ancillary file). 
+ 
+ • 
+ 
+ 15:51:06 accidental partial E1 smoke re-run (exposure-ledger entry
+1, Appendix  C ). 
+ 
+ • 
+ 
+ 15:58:58 Track B training start ( ∼ 50.8 {\sim}50.8 minutes); E2–E8
+extraction and fitting ran concurrently on the same machine, which is what
+invalidated the step-8 latency re-measurement (deviation D4). 
+ 
+ • 
+ 
+ 16:06:19 E4 fitting on calib ; 16:13:45 trivial
+comparators; 16:20:05 the single frozen eval pass (E5/E6,
+ ∼ 8.0 {\sim}8.0 minutes). 
+ 
+ • 
+ 
+ 16:29:13–16:35 E10 probe, zero-shot comparator passes, and E7/E8
+robustness runs. 
+ 
+ • 
+ 
+ 16:50:59 ModernBERT-base specialist training ( ∼ 23.4 {\sim}23.4 
+minutes); 16:54:20 Track B single test pass; 17:14:53 specialist
+single test pass. 
+ 
+ • 
+ 
+ 17:36:41 acceptance gate first evaluated ( gate.json );
+results locked the same evening. 
+ 
+ • 
+ 
+ 2026-09-26, evening two rounds of internal review fixes applied. 
+ 
+ • 
+ 
+ 2026-09-27, morning external-review revision and author-metadata
+fixes applied. 
+ 
+ • 
+ 
+ 2026-09-27, 08:53:09 fp32/CPU rerun of all 400 test cases
+(deviation D10); 09:04:18 Track B validation-records pass (240
+validation cases; D10). 
+ 
+ • 
+ 
+ 2026-09-27, 12:39:38 and 12:46:09 version-bisection
+reruns of all 400 test cases ( laya 0.3.20 and 0.3.3; deviation D11; a
+failed 0.3.3 attempt at 12:44:27 is manifested). 
+ 
+ • 
+ 
+ 2026-09-27 final internal review fixes applied and this version
+prepared. 
+ 
+ 
+ The two rounds of internal review were adversarial reviews produced by two LLM
+systems; their full reports are retained
+privately by the author. The present revision responds to an
+external review received after the first preprint version and was prepared on
+2026-09-27; it changes framing, attribution, and prose, changes no frozen number,
+and adds the exploratory analyses recorded as deviations D9, D10, and D11. 
+ 
+ 
+ 
+ Appendix E Confirmatory test family 
+
+ 
+ The frozen family (Benjamini–Hochberg FDR at q = 0.05 q=0.05 ; 24 tests): A2–A6
+and B2–B6: Track A eval paired differences in NLL and in equal-width
+ M = 15 M{=}15 ECE for each calibration method versus identity (two-sided). C2–C6 and
+D2–D6: the same on Track B’s test run. E1t/E2t: oracle-scored cascade accuracy
+versus oracle-scored random escalation at matched rate on Track A eval and
+Track B respectively (one-sided). F1t/F2t: external-versus-in-distribution
+differences in accuracy and ECE (two-sided; not executed in this version ,
+external set descoped, § 9 ; conservatively kept in the BH denominator,
+ m = 24 m=24 ). All other analyses are exploratory and are labeled as such wherever they
+appear. Table  5 gives every executed outcome (all measured ); 20 of 22
+executed tests reject. P-values carry the add-one correction of § 3.6 ;
+ fdr_family_v2.json stores the corrected values with raw tail fractions
+preserved per row, and recomputing BH from them changes no decision (the original
+ fdr_family.json is retained unchanged). 
+ 
+ 
+ 
+ 
+ 
+ ID 
+ Contrast (vs. identity unless noted) 
+ Δ \Delta 
+ p p 
+ BH outcome 
+ 
+ 
+ 
+ A2/B2 
+ eval NLL / ECE, single temp. 
+ − 0.166 -0.166 / − 0.166 -0.166 
+ ≤ 2 × 10 − 4 {\leq}2{\times}10^{-4} / ≤ 2 × 10 − 4 {\leq}2{\times}10^{-4} 
+ reject / reject 
+ 
+ A3/B3 
+ eval NLL / ECE, per-primitive 
+ − 0.167 -0.167 / − 0.164 -0.164 
+ ≤ 2 × 10 − 4 {\leq}2{\times}10^{-4} / ≤ 2 × 10 − 4 {\leq}2{\times}10^{-4} 
+ reject / reject 
+ 
+ A4/B4 
+ eval NLL / ECE, per-option-count 
+ − 0.167 -0.167 / − 0.164 -0.164 
+ ≤ 2 × 10 − 4 {\leq}2{\times}10^{-4} / ≤ 2 × 10 − 4 {\leq}2{\times}10^{-4} 
+ reject / reject 
+ 
+ A5/B5 
+ eval NLL / ECE, vector 
+ − 0.168 -0.168 / − 0.172 -0.172 
+ ≤ 2 × 10 − 4 {\leq}2{\times}10^{-4} / ≤ 2 × 10 − 4 {\leq}2{\times}10^{-4} 
+ reject / reject 
+ 
+ A6/B6 
+ eval NLL / ECE, isotonic (winner) 
+ + 0.071 +0.071 / − 0.153 -0.153 
+ 0.446 0.446 / ≤ 2 × 10 − 4 {\leq}2{\times}10^{-4} 
+ fail / reject 
+ 
+ C2/D2 
+ Track B NLL / ECE, single temp. 
+ − 0.097 -0.097 / − 0.129 -0.129 
+ ≤ 2 × 10 − 4 {\leq}2{\times}10^{-4} / ≤ 2 × 10 − 4 {\leq}2{\times}10^{-4} 
+ reject / reject 
+ 
+ C3/D3 
+ Track B NLL / ECE, per-primitive 
+ − 0.096 -0.096 / − 0.127 -0.127 
+ ≤ 2 × 10 − 4 {\leq}2{\times}10^{-4} / ≤ 2 × 10 − 4 {\leq}2{\times}10^{-4} 
+ reject / reject 
+ 
+ C4/D4 
+ Track B NLL / ECE, per-option-count 
+ − 0.096 -0.096 / − 0.127 -0.127 
+ ≤ 2 × 10 − 4 {\leq}2{\times}10^{-4} / ≤ 2 × 10 − 4 {\leq}2{\times}10^{-4} 
+ reject / reject 
+ 
+ C5/D5 
+ Track B NLL / ECE, vector 
+ − 0.086 -0.086 / − 0.133 -0.133 
+ ≤ 2 × 10 − 4 {\leq}2{\times}10^{-4} / ≤ 2 × 10 − 4 {\leq}2{\times}10^{-4} 
+ reject / reject 
+ 
+ C6/D6 
+ Track B NLL / ECE, isotonic (winner) 
+ − 0.046 -0.046 / − 0.127 -0.127 
+ 0.108 0.108 / ≤ 2 × 10 − 4 {\leq}2{\times}10^{-4} 
+ fail / reject 
+ 
+ E1t 
+ eval cascade vs. random escalation 
+ + 0.0646 +0.0646 
+ ≤ 10 − 4 {\leq}10^{-4} 
+ reject 
+ 
+ E2t 
+ Track B cascade vs. random escalation 
+ + 0.0757 +0.0757 
+ ≤ 10 − 4 {\leq}10^{-4} 
+ reject 
+ 
+ F1t/F2t 
+ external set (descoped) 
+ n/a 
+ not executed 
+ not executed 
+ 
+ 
+ Table 5: Confirmatory family outcomes ( measured ; BH-FDR q = 0.05 q{=}0.05 , m = 24 m{=}24 ).
+Paired case-cluster bootstrap deltas; p ≤ 2 × 10 − 4 p\leq 2{\times}10^{-4} (two-sided) and
+ p ≤ 10 − 4 p\leq 10^{-4} (one-sided, E1t/E2t) are add-one-corrected bounds,
+ ( b + 1 ) / ( B + 1 ) (b{+}1)/(B{+}1) with b = 0 b{=}0 exceedances in B = 10,000 B{=}10{,}000 resamples (the
+resolution limit). Hypothesis verdicts as operationalized: H1 supported
+except soft accuracy (§ 4 ); H2 not supported on either track (the
+frozen selection rule’s winner fails its NLL contrast; A6, C6); H3 partially
+supported on both tracks (b: better-than-random gating holds, E1t/E2t; a: the 0.10 0.10 
+error target fails out-of-sample); H4 not tested (descoped). 
+ 
+ 
+ Figure 8: F8 ( measured , appendix). Naive i.i.d. decision-level vs. case-cluster bootstrap interval widths on eval headline metrics. On winner
+accuracy the clustered interval is 1.185 × 1.185\times wider; decision-level resampling
+understates uncertainty on this five-decisions-per-case benchmark. (Clustered
+intervals are BCa, naive are percentile, so the one reversal (isotonic ECE) may
+reflect the interval method rather than clustering.) 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ Experimental support, please
+ view the build logs 
+ for errors. Generated by
+ 
+ 
+ L
+ A 
+ T
+ E 
+ 
+ xml 
+ 
+ .
+ 
+ 
+ Instructions for reporting errors 
+ We are continuing to improve HTML versions of papers, and your feedback helps enhance accessibility and mobile
+ support. To report errors in the HTML that will help us improve conversion and rendering, choose any of the
+ methods listed below: 
+ 
+ Click the "Report Issue" ( 
+ 
+ ) button, located in the page header. 
+ 
+ Tip: You can select the relevant text first, to include it in your report. 
+ Our team has already identified the following issues . We appreciate your time reviewing and reporting rendering errors we
+ may not have found yet. Your efforts will help us improve the HTML versions for all readers, because disability
+ should not be a barrier to accessing research. Thank you for your continued support in championing open access for
+ all. 
+ Have a free development cycle? Help support accessibility at arXiv! Our collaborators at LaTeXML maintain a list of packages that need conversion , and welcome developer contributions . 
+ 
+ 
+ 
+ 
+ 
+ We gratefully acknowledge support from
+ our major funders ,
+ member institutions , ,
+ and all contributors.
+ 
+ 
+ About 
+ · 
+ Help 
+ · 
+ Contact 
+ · 
+ Subscribe 
+ · 
+ Copyright 
+ · 
+ Privacy 
+ · 
+ Accessibility 
+ · 
+ Operational Status (opens in new tab) 
+ 
+ 
+
+ 
+ Major funding support from 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

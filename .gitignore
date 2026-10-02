@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.mplcache/
+.release-assets/
+tdm-literature-review/sources/*.zip

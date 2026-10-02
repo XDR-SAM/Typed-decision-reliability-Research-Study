@@ -1,0 +1,1313 @@
+CONSUMER RESPONSE  |  AUGUST 2023
+Consumer Financial 
+Protection Bureau 
+Consumer complaint form 
+product and issue options
+This document lists the products, sub-products, issues, and sub-issues available on the consumer 
+complaint form beginning August 24, 2023.
+Effective Date: August 24, 2023
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS II TABLE OF CONTENTS
+Auto debt ................................................................................................................... 13
+Credit card debt ........................................................................................................13
+Federal student loan debt .......................................................................................13
+Medical debt ............................................................................................................. 13
+Mortgage debt ..........................................................................................................13
+Payday loan debt ...................................................................................................... 13
+Private student loan debt ........................................................................................ 13
+Rental debt (added)  .................................................................................................13
+Telecommunications debt (added) ........................................................................ 13
+Other debt .................................................................................................................13
+I do not know  ............................................................................................................ 13
+Debt or credit management (added) ........................................................................ 15
+Credit repair services (moved) ................................................................................ 15
+Debt settlement (moved) .........................................................................................15
+Mortgage modification or foreclosure avoidance (added) .................................15
+Student loan debt relief (added) .............................................................................16
+Background .................................................................................................................... 1
+Key and definitions ........................................................................................................ 1
+Summary .........................................................................................................................2
+Checking or savings account  .......................................................................................3
+CD .................................................................................................................................3
+Checking account .......................................................................................................4
+Other banking product or service  ............................................................................4
+Savings account .......................................................................................................... 4
+Credit card (split) ........................................................................................................... 6
+General-purpose credit card or charge card ..........................................................6
+Store credit card ......................................................................................................... 6
+Credit reporting or other personal consumer reports (revised) ...............................9
+Credit reporting ..........................................................................................................9
+Other personal consumer report ............................................................................11
+Debt collection .............................................................................................................13
+Table of contents
+This table of contents lists the products and sub-products available on the consumer complaint form beginning August 2023. To 
+view issue and sub-issue options, navigate to the product or sub-product pages listed below. 
+Money transfer, virtual currency, or money service .................................................17
+Domestic (US) money transfer .................................................................................17
+International money transfer (remittance) ..............................................................17
+Virtual currency ..........................................................................................................17
+Check cashing service ...............................................................................................17
+Foreign currency exchange .....................................................................................18
+Mobile or digital wallet ............................................................................................ 18
+Money order, traveler’s check or cashier’s check (moved) .................................. 19
+Mortgage ......................................................................................................................20
+Conventional home mortgage ................................................................................ 20
+FHA mortgage .......................................................................................................... 20
+Home equity loan or line of credit (HELOC) ..........................................................20
+Manufactured home loan (added) ......................................................................... 20
+Reverse mortgage ....................................................................................................20
+USDA mortgage (added) .........................................................................................20
+VA mortgage .............................................................................................................21
+Other type of mortgage  .......................................................................................... 21
+Payday loan, title loan, personal loan, or advance loan (revised) ...........................22
+Installment loan .........................................................................................................22
+Payday loan ................................................................................................................22
+Pawn loan ...................................................................................................................23
+Personal line of credit ...............................................................................................23
+Title loan .................................................................................................................... 24
+Earned wage access (added) .................................................................................. 24
+Tax refund anticipation loan or check (moved) .....................................................25
+Other advances of future income (added) ............................................................25
+Prepaid card (split) .......................................................................................................26
+General-purpose prepaid card (moved) ................................................................26
+Gift card (moved) ...................................................................................................... 26
+Government benefit card (moved) ......................................................................... 26
+Payroll card (moved) .................................................................................................26
+Student prepaid card (moved) ................................................................................ 26
+Student loan ................................................................................................................. 28
+Federal student loan ................................................................................................ 28
+Private student loan ..................................................................................................30
+Vehicle loan or lease ....................................................................................................32
+Loan ............................................................................................................................32
+Lease ...........................................................................................................................34
+Appendix A: revised, moved, split, and removed values ...................................... 36
+Appendix B: added values ..........................................................................................40
+TABLE OF CONTENTS CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 1 INTRODUCTION
+Background
+In August 2023, the CFPB updated the form consumers 
+use to submit complaints about financial products and 
+services based on feedback collected from stakeholders 
+and consumers over the last five years through the 
+Paperwork Reduction Act process. This document highlights 
+improvements including changes to certain products, 
+sub-products, issues, and sub-issues; as well as some 
+reorganization, language revisions, additions, and removals. 
+The Consumer Complaint Database shows each consumer’s 
+original product, sub-product, issue, and sub-issue selections 
+consistent with the options available on the form at the time 
+the consumer submitted the complaint. Refer to the CFPB’s 
+April 2017 list of products, sub-products, issues, and sub-
+issues for complaints submitted prior to August 24, 2023.
+Key and definitions
+The key below can be used to understand where changes 
+occurred and the type of change.
+Key
+added – a new value that was not previously on the form
+revised – an existing value’s wording changed
+moved – an existing value was moved to a new place on the form (ex. an existing 
+sub-product is under a newly split product)
+split – an existing value was split from another value but is not new on the form
+removed – a value that no longer exists on the form 
+Note: These only appear in Appendix A
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 2 
+Summary
+The majority of changes were either updates to the organization of products and issues or wording changes to make the issues 
+easier for consumers to understand. 
+Here are a few highlights:
+SUMMARY
+Products
+ § split the product “Credit card or prepaid card” into two products – “Credit card” and 
+“Prepaid card”
+ § moved “Credit repair services” under the new added product, “Debt or credit 
+management”
+ § revised the product “Payday loan, title loan, or personal loan” to include advance  
+loan resulting in an expanded product of “Payday loan, title loan, personal loan, or 
+advance loan
+Sub-products
+ § added and moved sub-products to make it more intuitive for consumers to find the  
+sub-product identified in their complaint
+ § revised “Refund anticipation check” to “Tax refund anticipation loan or check” and 
+moved under the “Payday loan, title loan, personal loan, or advance loan” product
+ § added “Manufactured home loan” and “USDA mortgage” sub-products under existing 
+“Mortgage” product
+Sub-issues
+ § added sub-issues under existing issues under the “Mortgage” product
+ § moved all issues related to “General-purpose prepaid card,” “Gift card,” “Government 
+benefit card,” “Payroll card,” and “Student prepaid card” sub-products under “Prepaid 
+card” product
+ § revised sub-issues that mention “fraud” or “scam” to be clearer
+ § moved “Lender trying to repossess or disable the vehicle” and “Loan balance remaining 
+after the vehicle is repossessed and sold” under “Repossession” issue under “Vehicle 
+loan or lease” sub-products
+Issues
+ § revised “Problem with a credit reporting company’s investigation into an existing 
+problem” issue to “Problem with a company’s investigation into an existing problem” 
+issue under sub-products under the “Credit reporting or other personal consumer 
+reports” product
+ § revised “Fraud or scam” issue to “Didn’t provide services promised” under “Credit 
+repair services” and “Debt settlement” sub-products under “Debt or credit 
+management” product
+The following pages detail the products, sub-products, issues, and sub-issues available for consumers beginning August 2023. For more detailed information on August 2023 changes to 
+the form, including a condensed list of all additions by Product, view the Appendices.  
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 3 
+Sub-product Issue Sub-issue
+CD 
+(Certificate of Deposit)
+ § Opening an account  ° Unable to open an account
+ ° Account opened without my consent or knowledge (revised) 
+ ° Didn’t receive terms that were advertised 
+ ° Confusing or missing disclosures (including the fine print that 
+explains rights and responsibilities)
+ § Managing an account (deposits, withdrawals, errors, problem 
+accessing account, fees) 
+ ° Deposits or withdrawals (availability or access to deposited 
+funds, account freezes, transaction holds) 
+ ° Banking errors (interest rate calculations, errors  
+crediting account) 
+ ° Problem accessing account (online or mobile access, receiving 
+the periodic billing statement) 
+ ° Problem with fees or penalties 
+ ° Problem with renewal 
+ ° Funds not handled or disbursed as instructed
+ § Closing an account  ° Can’t close your account 
+ ° Company closed your account 
+ ° Fees charged for closing account 
+ ° Funds not received from closed account
+ § Problem with credit report or credit score*
+Checking or savings account 
+(certificate of deposit (CD), checking account, savings account, other) 
+* Selecting “Problem with credit report or credit score” will take the consumer to the credit reporting product.
+CHECKING OR SAVINGS ACCOUNT
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 4 CHECKING OR SAVINGS ACCOUNT
+Sub-product Issue Sub-issue
+Checking account 
+(debit card, ATM card, checks)
+Other banking product or service
+Savings account
+ § Opening an account  ° Unable to open an account 
+ ° Account opened without my consent or knowledge (revised)
+ ° Didn’t receive terms that were advertised 
+ ° Confusing or missing disclosures (including the fine print that 
+explains rights and responsibilities)
+ § Managing an account (deposits, withdrawals, using ATM card, 
+making or receiving payments, cashing a check)
+ ° Deposits and withdrawals (access deposited funds, account 
+freezes, garnishments, transaction holds) 
+ ° Problem making or receiving payments (bill pay, mobile or 
+online payments, bank offsets, transaction holds) 
+ ° Banking errors (interest rate calculations, errors  
+crediting account) 
+ ° Cashing a check 
+ ° Problem using a debit or ATM card (unauthorized card use, 
+fees, disputed transaction) 
+ ° Funds not handled or disbursed as instructed 
+ ° Problem accessing account (online or mobile access, receiving 
+the periodic billing statement) 
+ ° Fee problem
+ § Closing an account  ° Can’t close your account 
+ ° Company closed your account 
+ ° Fees charged for closing account 
+ ° Funds not received from closed account
+Checking or savings account
+(certificate of deposit (CD), checking account, savings account, other) 
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 5 CHECKING OR SAVINGS ACCOUNT
+Sub-product Issue Sub-issue
+Checking account (continued)
+(debit card, ATM card, checks)
+Other banking product or service
+Savings account
+ § Problem caused by your funds being low (overdraft and  
+other fees)
+ ° Overdrafts and overdraft fees 
+ ° Non-sufficient funds and associated fees 
+ ° Late or other fees 
+ ° Bounced checks or returned payments 
+ § Problem with a lender or other company charging your account  ° Transaction was not authorized 
+ ° Can’t stop withdrawals from your account 
+ ° Money was taken from your account on the wrong day or for the 
+wrong amount
+ § Problem with credit report or credit score* 
+* Selecting “Problem with credit report or credit score” will take the consumer to the credit reporting product.
+Checking or savings account
+(certificate of deposit (CD), checking account, savings account, other) 
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 6 
+Sub-product Issue Sub-issue
+General-purpose credit card or charge card 
+(can use anywhere credit cards are accepted)
+Store credit card 
+(can only use at a specific store or chain  
+of stores)
+ § Getting a credit card (problem during application process, 
+opened without my knowledge, replacement card) 
+ ° Application denied 
+ ° Delay in processing application 
+ ° Sent card you never applied for 
+ ° Card opened without my consent or knowledge (revised)
+ ° Problem getting a working replacement card
+ § Advertising and marketing, including promotional offers 
+(confusing or misleading advertising, didn’t receive advertised 
+interest rate)
+ ° Didn’t receive advertised or promotional terms (different 
+interest rate, length of promotional offer was shorter  
+than advertised) 
+ ° Confusing or misleading advertising about the credit card 
+(terms weren’t clear, couldn’t find important information on  
+the disclosure) 
+ § Trouble using your card (making purchases, credit limit)  ° Can’t use card to make purchases 
+ ° Credit card company won’t increase or decrease your  
+credit limit 
+ ° Account sold or transferred to another company 
+ § Fees or interest  ° Unexpected increase in interest rate 
+ ° Charged too much interest 
+ ° Problem with fees (late fee, over limit fee, annual fee, balance 
+transfer fee, cash advance fee, application fee)
+Credit card (split)
+(general-purpose or charge card, store credit card)
+CREDIT CARD
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 7 
+Sub-product Issue Sub-issue
+General-purpose credit card or charge card 
+(continued) 
+(can use anywhere credit cards are accepted)
+Store credit card 
+(can only use at a specific store or chain  
+of stores)
+ § Problem with a purchase shown on your statement (billing 
+dispute, transaction issue)
+ ° Card was charged for something you did not purchase with the 
+card (charges made without your permission) 
+ ° Credit card company isn’t resolving a dispute about a purchase 
+on your statement (billing dispute, dispute resolution process) 
+ ° Overcharged for something you did purchase with the card 
+ § Problem when making payments  ° Problem during payment process (not applied fast enough, not 
+applied in way you expected, didn’t go through) 
+ ° You never received your bill or did not know a payment was due 
+ § Struggling to pay your bill (bankruptcy, forbearance)  ° Filed for bankruptcy 
+ ° Problem lowering your monthly payments 
+ ° Credit card company won’t work with you while you’re going 
+through financial hardship (won’t negotiate lower fees, lower 
+interest rate, lower monthly payment, or postpone payments) 
+ § Closing your account  ° Can’t close your account 
+ ° Company closed your account
+Credit card (split) 
+(general-purpose or charge card, store credit card)
+CREDIT CARD
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 8 
+Sub-product Issue Sub-issue
+General-purpose credit card or charge card 
+(continued) 
+(can use anywhere credit cards are accepted)
+Store credit card 
+(can only use at a specific store or chain  
+of stores)
+ § Other features, terms, or problems (rewards program, 
+arbitration, convenience checks, cash advance, balance 
+transfer, privacy issues)
+ ° Problem with rewards from credit card (miles, points, cash back) 
+ ° Credit card company forcing arbitration
+ ° Problem with customer service 
+ ° Add-on products and services (credit monitoring, disability 
+insurance, card protection) 
+ ° Privacy issues
+ ° Problem with convenience check
+ ° Problem with cash advances 
+ ° Problem with balance transfer
+ ° Other problem 
+ § Problem with credit report or credit score*
+* Selecting “Problem with credit report or credit score” will take the consumer to the credit reporting product.
+Credit card (split) 
+(general-purpose or charge card, store credit card)
+CREDIT CARD
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 9 
+Sub-product Issue Sub-issue
+Credit reporting  § Incorrect information on your report (account or personal 
+information incorrect, information not mine)
+ ° Information belongs to someone else (identity theft, error)
+ ° Information is missing that should be on the report (address, 
+missing credit card or loan)
+ ° Account information incorrect (loan balance, payment amount)
+ ° Account status incorrect (showing open account as closed, 
+showing delinquent account when it’s not)
+ ° Personal information incorrect (wrong date of birth, address,  
+or name)
+ ° Public record information inaccurate (bankruptcy, judgment, 
+liens, criminal record)
+ ° Old information reappears or never goes away
+ § Problem with a company’s investigation into an existing 
+problem (revised)
+ ° Investigation took more than 30 days
+ ° Was not notified of investigation status or results 
+ ° Their investigation did not fix an error on your report 
+ ° Difficulty submitting a dispute or getting information about a 
+dispute over the phone 
+ ° Problem with personal statement of dispute (explaining why 
+you disagree with a lender’s decision after an investigation)
+Credit reporting or other personal consumer reports (revised) 
+(background checks, employment, or tenant screening) 
+CREDIT REPORTING, OR OTHER PERSONAL CONSUMER REPORTS
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 10 
+Sub-product Issue Sub-issue
+Credit reporting (continued)  § Improper use of your report (shared without consent, credit 
+inquiries from unknown sources)
+ ° Reporting company used your report improperly (obtained or 
+used for purposes that aren’t allowed by law) 
+ ° Received unsolicited financial product or insurance offers after 
+opting out 
+ ° Report provided to employer without your written authorization 
+ ° Credit inquiries on your report that you don’t recognize
+ § Unable to get your credit report or credit score  ° Problem getting your free annual credit report
+ ° Other problem getting your report or credit score 
+ § Credit monitoring or identity theft protection services (billing 
+dispute, unwanted marketing, problem canceling account)
+ ° Problem canceling credit monitoring or identify theft 
+protection service 
+ ° Billing dispute for services 
+ ° Received unwanted marketing or advertising 
+ ° Problem with product or service terms changing 
+ ° Didn’t receive services that were advertised
+ § Problem with fraud alerts or security freezes (initial 90-day, 
+trouble placing or extending a freeze, extended, active duty)
+Credit reporting or other personal consumer reports (revised)
+(background checks, employment, or tenant screening) 
+CREDIT REPORTING, OR OTHER PERSONAL CONSUMER REPORTS
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 11 
+Sub-product Issue Sub-issue
+Other personal consumer report
+(background checks, employment, or  
+tenant screening)
+ § Incorrect information on your report (account information 
+incorrect, information not mine, personal information incorrect)
+ ° Information belongs to someone else (identity theft, error) 
+ ° Information that should be on the report is missing (address, 
+personal information) 
+ ° Information is incorrect (employer names, rental history dates, 
+account history) 
+ ° Personal information incorrect (wrong date of birth, address) 
+ ° Public record information inaccurate (bankruptcy, judgment, 
+lien, criminal record) 
+ ° Old information reappears or never goes away 
+ § Problem with a company’s investigation into an existing issue  ° Investigation took more than 30 days
+ ° Was not notified of investigation status or results 
+ ° Their investigation did not fix an error on your report 
+ ° Difficulty submitting a dispute or getting information about a 
+dispute over the phone 
+ ° Problem with personal statement of dispute (explaining why 
+you disagree with a lender’s decision after an investigation)
+ § Improper use of your report (shared without consent, credit 
+inquiries from unknown sources)
+ ° Reporting company used your report improperly (obtained or 
+used for purposes that aren’t allowed by law) 
+ ° Received unsolicited financial product or insurance offers after 
+opting out 
+ ° Report provided to employer without your written authorization 
+Credit reporting or other personal consumer reports (revised) 
+(background checks, employment, or tenant screening) 
+CREDIT REPORTING, OR OTHER PERSONAL CONSUMER REPORTS
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 12 
+Sub-product Issue Sub-issue
+Other personal consumer report (continued)
+(background checks, employment, or  
+tenant screening)
+ § Identity theft protection or other monitoring services (billing 
+dispute, unwanted marketing, problem canceling account)
+ ° Problem canceling credit monitoring or identify theft 
+protection service 
+ ° Billing dispute for services 
+ ° Received unwanted marketing or advertising 
+ ° Problem with product or service terms changing 
+ ° Didn’t receive services that were advertised
+Credit reporting or other personal consumer reports (revised) 
+(background checks, employment, or tenant screening) 
+CREDIT REPORTING, OR OTHER PERSONAL CONSUMER REPORTS
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 13 
+Sub-product Issue Sub-issue
+Auto debt
+Credit card debt
+Federal student loan debt
+Medical debt
+Mortgage debt
+Payday loan debt
+Private student loan debt
+Rental debt (added) 
+(a debt collector trying to collect for a landlord 
+or property manager) 
+Telecommunications debt (added)
+(a debt collector trying to collect for a telecom 
+bill, such as an internet, cable, or phone bill) 
+Other debt 
+(such as health club membership, utilities)
+I do not know 
+ § Communication tactics (repeated phone calls, used abusive 
+language)
+ ° Frequent or repeated calls 
+ ° Called before 8am or after 9pm 
+ ° Used obscene, profane, or other abusive language 
+ ° You told them to stop contacting you, but they keep trying
+ § Attempts to collect debt not owed (debt was paid, discharged 
+in bankruptcy, result of identity theft, was owed by a deceased 
+family member)
+ ° Debt was already discharged in bankruptcy and is no  
+longer owed 
+ ° Debt was result of identity theft 
+ ° Debt was paid 
+ ° Debt is not yours 
+ § Written notification about debt (didn’t receive, didn’t know you 
+could dispute debt)
+ ° Didn’t receive notice of right to dispute 
+ ° Didn’t receive enough information to verify debt 
+ ° Notification didn’t disclose it was an attempt to collect a debt 
+ § False statements or representation (trying to collect wrong 
+amount, impersonated lawyer or government official)
+ ° Attempted to collect wrong amount
+ ° Impersonated attorney, law enforcement, or  
+government official 
+ ° Indicated you were committing crime by not paying debt 
+ ° Told you not to respond to a lawsuit they filed against you 
+(which could mean you lose the lawsuit by default)
+Debt collection
+DEBT COLLECTION
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 14 
+Sub-product Issue Sub-issue
+Auto debt (continued)
+Credit card debt
+Federal student loan debt
+Medical debt
+Mortgage debt
+Payday loan debt
+Private student loan debt
+Rental debt (added)
+(a debt collector trying to collect for a landlord 
+or property manager) 
+Telecommunications debt (added)
+(a debt collector trying to collect for a telecom 
+bill, such as an internet, cable, or phone bill) 
+Other debt 
+(such as health club membership, utilities)
+I do not know
+ § Threatened to contact someone or share information 
+improperly (contacted employer, contacted you after you asked 
+them not to)
+ ° Contacted you after you asked them to stop 
+ ° Contacted your employer 
+ ° Contacted you instead of your attorney 
+ ° Talked to a third-party about your debt (commanding officer, 
+relative, neighbor, landlord) 
+ § Took or threatened to take negative or legal action (threatened 
+to sue, arrest you, seize property, deport you, collect exempt 
+funds, damage your credit)
+ ° Threatened to arrest you or take you to jail if you do not pay 
+ ° Threatened to sue you for very old debt 
+ ° Sued you without properly notifying you of lawsuit 
+ ° Sued you in a state where you do not live or did not sign for  
+the debt 
+ ° Threatened or suggested your credit would be damaged 
+ ° Collected or attempted to collect exempt funds (Social Security, 
+disability benefits)
+ ° Seized or attempted to seize your property 
+ ° Threatened to turn you in to immigration or deport you
+ § Electronic communications  
+(text message, email, social media) (added)
+ ° Frequent or repeated messages (added)
+ ° Contacted before 8am or after 9pm (added)
+ ° You told them to stop contacting you, but they keep trying 
+(added)
+ ° Used obscene, profane, or other abusive language (added)
+DEBT COLLECTION
+Debt collection
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 15 
+Sub-product Issue Sub-issue
+Credit repair services (moved) 
+(services for improving your credit score)
+ § Confusing or misleading advertising or marketing (moved)
+ § Problem with customer service (moved)
+ § Confusing or missing disclosures (including the fine print that 
+explains rights and responsibilities) (moved)
+ § Charged up-front or unexpected fees (revised)
+ § Didn’t provide services promised (revised)
+Debt settlement (moved) 
+(services for reducing your debt balance on 
+things like credit cards or medical debt)
+ § Confusing or misleading advertising or marketing (moved)
+ § Problem with customer service (moved)
+ § Confusing or missing disclosures (including the fine print that 
+explains rights and responsibilities) (moved)
+ § Charged up-front or unexpected fees (revised)
+ § Didn’t provide services promised (revised)
+ § Unauthorized withdrawals or charges (added)
+Mortgage modification or foreclosure 
+avoidance (added)
+(services for negotiating with your  
+mortgage servicer) 
+ § Confusing or misleading advertising or marketing (added) 
+ § Problem with customer service (added)
+ § Confusing or missing disclosures (including the fine print that 
+explains rights and responsibilities) (added)
+ § Charged up-front or unexpected fees (added)
+ § Didn’t provide services promised (added)
+ § Unauthorized withdrawals or charges (added)
+Debt or credit management (added) 
+(a third-party service you used to modify credit terms or avoid foreclosure) 
+DEBT OR CREDIT MANAGEMENT
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 16 DEBT OR CREDIT MANAGEMENT
+Sub-product Issue Sub-issue
+Student loan debt relief (added)
+(services for reducing or eliminating your 
+student loans) 
+ § Confusing or misleading advertising or marketing (including 
+misrepresenting affiliation with my student loan servicer or the 
+Department of Education or misrepresenting amount of payment 
+reduction or forgiveness) (added)
+ § Confusing or missing disclosures (including the fine print that 
+explains rights and responsibilities) (added)
+ § Charged up-front or unexpected fees (added)
+ § Didn’t provide services promised (added)
+ § Unauthorized withdrawals or charges (added)
+Debt or credit management (added) 
+(a third-party service you used to modify credit terms or avoid foreclosure) 
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 17 
+Sub-product Issue Sub-issue
+Domestic (US) money transfer
+International money transfer (remittance)
+Virtual currency
+(service to transfer, track, store, and send money 
+over the internet)
+ § Money was not available when promised 
+ § Wrong amount charged or received (transfer amounts, fees, 
+exchange rates, taxes) 
+ § Confusing or missing disclosures (including the fine print that 
+explains rights and responsibilities)
+ §  Other transaction problem (unauthorized transaction, 
+cancellation, refund) 
+ § Other service problem (advertising or marketing, pricing, 
+privacy) 
+ § Unexpected or other fees 
+ § Fraud or scam 
+Check cashing service
+ (a company that cashes a check for a fee)
+ § Confusing or misleading advertising or marketing 
+ § Problem with customer service 
+ § Confusing or missing disclosures (including the fine print that 
+explains rights and responsibilities) 
+ § Unexpected or other fees 
+ § Fraud or scam 
+Money transfer, virtual currency, or money service 
+(check cashing service, domestic (US) money transfer, foreign currency exchange, international 
+money transfer, mobile or digital wallet, money order/cashier’s/traveler’s check)
+MONEY TRANSFER, VIRTUAL CURRENCY, OR MONEY SERVICE
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS  18 
+Money transfer, virtual currency, or money service 
+(check cashing service, domestic (US) money transfer, foreign currency exchange, international 
+money transfer, mobile or digital wallet, money order/cashier’s/traveler’s check)
+MONEY TRANSFER, VIRTUAL CURRENCY, OR MONEY SERVICE
+Sub-product Issue Sub-issue
+Foreign currency exchange
+(transactions that convert money from one 
+country’s currency to another’s)
+§ Confusing or misleading advertising or marketing
+§ Incorrect exchange rate
+§ Problem with customer service
+§ Confusing or missing disclosures (including the fine print that
+explains rights and responsibilities)
+§ Unexpected or other fees
+§ Fraud or scam
+Mobile or digital wallet 
+(online or digital account used to send payments 
+or make purchases from a digital device like a 
+smartphone or computer)
+§ Managing, opening, or closing your mobile wallet account
+§ Unauthorized transactions or other transaction problem
+§ Problem adding money
+§ Trouble accessing funds in your mobile or digital wallet (added)
+§ Overdraft, savings, or rewards features
+§ Confusing or misleading advertising or marketing
+§ Confusing or missing disclosures (including the fine print that
+explains rights and responsibilities)
+§ Unexpected or other fees
+§ Fraud or scam
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS  19 
+Money transfer, virtual currency, or money service 
+(check cashing service, domestic (US) money transfer, foreign currency exchange, international 
+money transfer, mobile or digital wallet, money order/cashier’s/traveler’s check)
+MONEY TRANSFER, VIRTUAL CURRENCY, OR MONEY SERVICE
+Sub-product Issue Sub-issue
+Money order, traveler’s check or cashier’s 
+check (moved)
+(a check with guaranteed funds from a bank or 
+other financial institution)
+§ Confusing or misleading advertising or marketing
+§ Lost or stolen money order
+§ Problem with customer service
+§ Confusing or missing disclosures (including the fine print that
+explains rights and responsibilities)
+§ Unexpected or other fees
+§ Fraud or scam
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS  20 
+Mortgage 
+(conventional home, FHA, home equity loan or line of credit (HELOC), manufactured home loan, reverse, USDA, VA, other)
+Sub-product Issue Sub-issue
+Conventional home mortgage
+(this covers most mortgage loans that are not an 
+FHA, VA, or USDA loan) 
+FHA mortgage 
+(the Federal Housing Administration (FHA), 
+insures the loan so a lender can offer a loan with 
+more flexible standards)
+Home equity loan or line of credit (HELOC)
+(a loan or line of credit that allows you to borrow 
+money using the equity in your home  
+as collateral) 
+Manufactured home loan (added) 
+(loans for a mobile or manufactured home, 
+including chattel loans)
+Reverse mortgage 
+(a Home Equity Conversion Mortgage (HECM), 
+the most common type of reverse mortgage, 
+is a special type of home loan for homeowners 
+who are 62 and older)
+USDA mortgage (added)
+(loans from the Department of Agriculture 
+focused on rural areas)
+Mortgage sub-products continue on next page. 
+§ Applying for a mortgage or refinancing an existing mortgage
+(application, credit decision, underwriting)
+ ° Changes in loan terms during the application process (added)
+ ° Negative impact of inaccurate appraisal (added)
+ ° Confusing or misleading advertising or marketing (added)
+ ° Loan estimate or other related disclosures (added)
+ ° Application denials (added)
+ ° Fees or costs during the application process (added)
+ ° Delays in the application process (added)
+ ° Trying to communicate with the company to fix an issue with the 
+application process (added)
+§ Closing on a mortgage (closing process, confusing or missing
+disclosures, cost)
+ ° Changes in loan terms during or after closing (added)
+ ° Closing disclosure or other related disclosures (added)
+ ° Fees or costs after closing (added)
+ ° Delays with the closing process (added)
+ ° Trying to communicate with the company to fix an issue with the 
+loan closing (added)
+ ° Setting up an escrow account for taxes and insurance (added)
+Mortgage sub-products continue on next page. All issues listed are applicable to all mortgage sub-products.
+MORTGAGE
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS  21 MORTGAGE
+* Selecting “Problem with credit report or credit score” will take the consumer to the credit reporting product.
+Sub-product Issue Sub-issue
+Mortgages (continued) 
+VA mortgage 
+(loans from the Department of Veterans Affairs 
+(VA) for servicemembers, veterans, and  
+their families)
+Other type of mortgage 
+(such as Property Assessed Clean Energy 
+(PACE), equity share, rent-to-own, etc.)
+§ Trouble during payment process (Managing your loan, issues
+such as making payments, escrow accounts, and paying off
+your loan)
+ ° Escrow, taxes, or insurance (added)  
+ ° Loan sold or transferred to another company (added)
+ ° Private mortgage insurance (PMI) (added)
+ ° Payment process (payment not applied fast enough, not 
+applied in a way you expected, did not go through) (added)
+ ° Fees charged (added)
+ ° Interest rate (added)
+ ° Paying off the loan (added)
+ ° Lien release (added)
+ ° Trying to communicate with the company to fix an issue while 
+managing or servicing your loan (added)
+§ Struggling to pay mortgage (issues when your loan is or
+is about to become delinquent such as loan modification,
+foreclosure, forbearance)
+ ° Applying for or obtaining a modification, forbearance plan, 
+short sale, or deed-in-lieu (problem lowering your monthly 
+payment) (added)
+ ° An existing modification, forbearance plan, short sale, or other 
+loss mitigation relief (added)
+ ° Foreclosure (added)
+ ° Trying to communicate with the company to fix an issue 
+related to modification, forbearance, short sale, deed-in-lieu, 
+bankruptcy, or foreclosure (added)
+§ Problem with credit report or credit score*
+Mortgage
+(conventional home, FHA, home equity loan or line of credit (HELOC), manufactured home loan, reverse, USDA, VA, other)
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS  22 PAYDAY LOAN, TITLE LOAN, PERSONAL LOAN, OR ADVANCE LOAN
+Sub-product Issue Sub-issue
+Installment loan 
+(loan due in multiple installments, such as 
+consolidation, point of sale, buy now pay later, 
+rent-to-own, and medical procedure loans)
+§ Getting the loan (confusing advertising or marketing,
+credit denied)
+§ Problem when making payments (billing, privacy issues)
+§ Struggling to pay your loan (payment plan, repossession,
+bankruptcy)
+§ Problem with the payoff process at the end of the loan
+(refinancing, extending loan)
+§ Charged fees or interest you didn’t expect
+§ Problem with additional add-on products or services
+§ Problem with credit report or credit score*
+Payday loan 
+(short-term loan, typically due on paydays)
+§ Charged fees or interest you didn’t expect
+§ Can’t stop withdrawals from your bank account
+§ Received a loan you didn’t apply for
+§ Was approved for a loan, but didn’t receive the money
+§ Money was taken from your bank account on the wrong day or
+for the wrong amount
+§ Loan payment wasn’t credited to your account
+§ Can’t contact lender or servicer
+§ Struggling to pay your loan (payment plan, repossession,
+bankruptcy)
+§ Problem with the payoff process at the end of the loan
+(refinancing, extending loan)
+§ Problem with credit report or credit score*
+* Selecting “Problem with credit report or credit score” will take the consumer to the credit reporting product.
+Payday loan, title loan, personal loan, or advance loan (revised) 
+(installment, pawn loan, or personal line of credit) 
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS  23 PAYDAY LOAN, TITLE LOAN, PERSONAL LOAN, OR ADVANCE LOAN
+Sub-product Issue Sub-issue
+Pawn loan
+(a cash loan obtained by temporarily trading 
+an item of value; the item is returned when the 
+loan, interest, and fees are paid)
+§ Charged fees or interest you didn’t expect
+§ Received a loan you didn’t apply for
+§ Was approved for a loan, but didn’t receive the money
+§ Can’t contact lender or servicer
+§ Property was sold
+§ Property was damaged or destroyed property
+§ Problem with credit report or credit score*
+Personal line of credit
+(usually offered with a credit limit, that 
+you can access from time to time, with 
+scheduled payments)
+§ Getting a line of credit (confusing advertising or marketing,
+credit denied)
+§ Problem when making payments (billing, privacy issues)
+§ Struggling to pay your loan (payment plan, repossession,
+bankruptcy)
+§ Problem with the payoff process at the end of the loan
+(refinancing, extending loan)
+§ Charged fees or interest you didn’t expect
+§ Problem with additional add-on products or services
+§ Problem with cash advance
+§ Credit limit changed
+§ Problem with credit report or credit score*
+* Selecting “Problem with credit report or credit score” will take the consumer to the credit reporting product.
+Payday loan, title loan, personal loan, or advance loan (revised) 
+(installment, pawn loan, or personal line of credit) 
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 24 PAYDAY LOAN, TITLE LOAN, PERSONAL LOAN, OR ADVANCE LOAN
+Sub-product Issue Sub-issue
+Title loan
+(a cash loan obtained by temporarily trading the 
+title of a vehicle; the title is returned when the 
+loan, interest, and fees are paid)
+ § Charged fees or interest you didn’t expect 
+ § Can’t stop withdrawals from your bank account 
+ § Received a loan you didn’t apply for 
+ § Was approved for a loan, but didn’t receive money 
+ § Money was taken from your bank account on the wrong day or 
+for the wrong amount 
+ § Loan payment wasn’t credited to your account 
+ § Can’t contact lender or servicer 
+ § Struggling to pay your loan (payment plan, repossession, 
+bankruptcy) 
+ § Problem with the payoff process at the end of the loan 
+(refinancing, extending loan) 
+ § Vehicle was repossessed or sold the vehicle 
+ § Vehicle was damaged or destroyed the vehicle 
+ § Problem with credit report or credit score* 
+Earned wage access (added)  § Confusing or misleading advertising or marketing (added) 
+ § Confusing or missing disclosures (added)
+ § Unexpected fees (added)
+ § Problems receiving the advance (added)
+ § Issues with repayment (added)
+Payday loan, title loan, personal loan, or advance loan (revised)
+(installment, pawn loan, or personal line of credit) 
+* Selecting “Problem with credit report or credit score” will take the consumer to the credit reporting product.
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS  25 
+Sub-product Issue Sub-issue
+Tax refund anticipation loan or check 
+(moved) 
+(paid to you by a bank or a company in the 
+amount of your expected tax refund)
+§ Confusing or misleading advertising or marketing (moved)
+§ Confusing or missing disclosures (moved)
+§ Unexpected fees (moved)
+§ Problems receiving the advance (added)
+§ Issues with repayment (added)
+§ Lost or stolen refund (moved)
+§ Problem with customer service (moved)
+Other advances of future income (added) 
+(payouts from a legal settlement, inheritance 
+proceeds, pension payments, or payments from 
+a victim compensation fund, etc.)
+§ Confusing or misleading advertising or marketing (added)
+§ Confusing or missing disclosures (added)
+§ Unexpected fees (added)
+§ Problems receiving the advance (added)
+§ Issues with repayment (added)
+Payday loan, title loan, personal loan, or advance loan (revised) 
+(installment, pawn loan, or personal line of credit) 
+PAYDAY LOAN, TITLE LOAN, PERSONAL LOAN, OR ADVANCE LOAN
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 26 
+Sub-product Issue Sub-issue
+General-purpose prepaid card (moved)
+(can use anywhere; often sold at stores) 
+ 
+Gift card (moved)
+(can use at a particular store or chain of stores) 
+Government benefit card (moved)
+(used to access government benefits or funds 
+such as unemployment insurance, Social 
+Security, child support, or release funds) 
+Payroll card (moved)
+(provided by your employer to receive your 
+salary or wages) 
+Student prepaid card (moved)
+(prepaid card that is linked to your school 
+account or student ID that may be used to pay 
+for books, meals or tuition)
+ § Problem getting a card or closing an account (moved)  ° Trouble getting, activating, or registering a card (moved)
+ ° Trouble closing card (includes problem getting the remaining 
+balance on the card) (moved)
+ ° Trouble getting a working replacement card (moved) 
+ ° Don’t want a card provided by your employer or the 
+government (moved)
+ § Unexpected or other fees (moved)
+ § Problem with a purchase or transfer (moved)  ° Charged for a purchase or transfer you did not make with the 
+card (charges made without your permission) (moved)
+ ° Overcharged for a purchase or transfer you did make with the 
+card (moved)
+ ° Card company isn’t resolving a dispute about a purchase or 
+transfer (moved)
+Prepaid card (split) 
+(general-purpose prepaid card, gift card, government benefit card, payroll card, student prepaid card)
+PREPAID CARD
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 27 
+Sub-product Issue Sub-issue
+General-purpose prepaid card (moved) 
+(continued) 
+(can use anywhere; often sold at stores) 
+ 
+Gift card (moved)
+(can use at a particular store or chain of stores) 
+Government benefit card (moved)
+(used to access government benefits or funds 
+such as unemployment insurance, Social 
+Security, child support, or release funds) 
+Payroll card (moved)
+(provided by your employer to receive your 
+salary or wages) 
+Student prepaid card (moved)
+(prepaid card that is linked to your school 
+account or student ID that may be used to pay 
+for books, meals or tuition)
+ § Trouble using the card (moved)  ° Trouble getting information about the card (balance, terms) 
+(moved)
+ ° Trouble using the card to spend money in a store or online 
+(moved)
+ ° Trouble using the card to pay a bill (moved)
+ ° Trouble using the card to send money to another person 
+(friend, relative) (moved)
+ ° Problem with a check written from your prepaid card account 
+(moved)
+ ° Problem using the card to withdraw money from an ATM 
+(moved)
+ ° Problem with direct deposit (moved)
+ ° Problem adding money (moved)
+ § Problem with overdraft (moved)  ° Was signed up for overdraft on card, but don’t want to be 
+(moved) 
+ ° Overdraft charges (moved)
+ § Advertising (moved)  ° Confusing or misleading advertising about the card (moved)
+ ° Changes in terms from what was offered or advertised  (moved)
+Prepaid card (split) 
+(general-purpose prepaid card, gift card, government benefit card, payroll card, student prepaid card)
+PREPAID CARD
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS  28 
+Sub-product Issue Sub-issue
+Federal student loan 
+(Loans made by the federal government, such as 
+Direct Consolidation, Direct Subsidized Stafford, 
+Direct Unsubsidized Stafford, Parent PLUS, 
+Graduate PLUS, Federal Family Educational Loan 
+FFEL, and Perkins loans)
+§ Getting a loan (denied loan, confusing advertising or
+marketing, high-pressure sales tactics, financial aid services,
+recruiting, opened without my knowledge)*
+§ Dealing with your lender or servicer (making payments, getting
+information about your loan, managing your account)
+ ° Trouble with how payments are being handled 
+ ° Don’t agree with the fees charged 
+ ° Received bad information about your loan (incorrect, 
+incomplete, or inaccurate information) 
+ ° Need information about your loan balance or loan terms 
+ ° Keep getting calls about your loan 
+ ° Problem with customer service 
+ ° Co-signer (release, communications) (added)
+Student loan 
+(federal student loan, private student loan) 
+*    I f a consumer selects this issue, they are informed that their complaint cannot be processed and must contact the Department of Education.
+This value will not appear in the Consumer Complaint Database.
+STUDENT LOAN
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 29 STUDENT LOAN
+Sub-product Issue Sub-issue
+Federal student loan (continued)  § Struggling to repay your loan (payment plan, deferment, 
+forbearance, forgiveness, bankruptcy)
+ ° Problem lowering your monthly payments 
+ ° Can’t temporarily delay making payments (deferment, 
+forbearance)
+ ° Can’t get other flexible options for repaying your loan 
+ ° Problem with your payment plan (such as Standard payment 
+plan, Graduated payment plan, Pay As You Earn, Revised Pay 
+As you Earn, Income-based repayment, Income-contingent 
+repayment) (added)
+ ° Problem with forgiveness, cancellation, or discharge (Such as 
+public service loan forgiveness (PSLF), teacher loan forgiveness, 
+bankruptcy, disability, borrower defense to repayment) (added)
+ ° Bankruptcy (added)
+ § Problem with credit report or credit score* 
+* Selecting “Problem with credit report or credit score” will take the consumer to the credit reporting product.
+Student loan 
+(federal student loan, private student loan) 
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS  30 STUDENT LOAN
+Sub-product Issue Sub-issue
+Private student loan
+(Non-federal loans made by a lender such as a 
+bank, credit union, state-affiliated lender, school, 
+or other company, such as fixed or variable 
+rate private student loans, money owed to your 
+school, or income shared agreement)
+§ Getting a loan (denied loan, confusing advertising or
+marketing, high-pressure sales tactics, financial aid services,
+recruiting, opened without my knowledge)
+ ° Denied loan
+ ° Qualified for a better loan than the one offered
+ ° Confusing or misleading advertising
+ ° Problem with the interest rate
+ ° Problem with signing the paperwork
+ ° Loan opened without my consent or knowledge (revised)
+ ° Changes in terms mid-deal or after closing (added)
+ ° High pressure sales tactics or recruiting ( added)
+ ° Issues with financial aid services (added)
+§ Dealing with your lender or servicer (making payments, getting
+information about your loan, managing your account)
+ ° Trouble with how payments are being handled 
+ ° Don’t agree with the fees charged 
+ ° Received bad information about your loan (incorrect, 
+incomplete, or inaccurate information) 
+ ° Need information about your loan balance or loan terms 
+ ° Keep getting calls about your loan 
+ ° Problem with customer service 
+ ° Co-signer (release, communications) (added)
+Student loan 
+(federal student loan, private student loan) 
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS  31 
+Sub-product Issue Sub-issue
+Private student loan (continued) § Struggling to repay your loan (payment plan, deferment,
+forbearance, bankruptcy)
+ ° Problem lowering your monthly payments 
+ ° Can’t temporarily delay making payments (deferment, 
+forbearance)
+ ° Can’t get other flexible options for repaying your loan
+ ° Bankruptcy (added)  
+§ Issue where my lender is my school (institutional loans or fees,
+transcript or diploma withheld) (added)
+ ° Issues with fees connected to the loan (added)
+ ° Cannot graduate, receive diploma, or get transcript due to 
+money owed (added)
+§ Issue with income share agreement (credit products where
+consumers finance their education in exchange for payments
+based on a percentage of their income) (added)
+ ° Marketing or disclosure issues (added) 
+ ° Payment issues (added)
+ ° Billing or statement issues (such as fees) (added)
+ ° Dealing with provider of income share agreement (added)
+§ Problem with credit report or credit score*
+Student loan 
+(federal student loan, private student loan) 
+* Selecting “Problem with credit report or credit score” will take the consumer to the credit reporting product.
+STUDENT LOAN
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS  32 
+Vehicle loan or lease
+Sub-product Issue Sub-issue
+Loan § Getting a loan or lease (denied loan, confusing advertising
+or marketing, high-pressure sales tactics, opened without
+my knowledge)
+ ° Confusing or misleading advertising or marketing 
+ ° High-pressure sales tactics 
+ ° Credit denial 
+ ° Problem with additional add-on products or services purchased 
+with the loan (pressured to buy products you did not want) 
+ ° Changes in terms mid-deal or after closing 
+ ° Problem with signing the paperwork 
+ ° Problem with a trade-in 
+ ° Loan opened without my consent or knowledge (revised)
+ ° Did not receive car title (added)
+§ Managing the loan or lease (billing, extra fees, transferring
+loan, additional products related to the loan)
+ ° Billing problem (payments are not applied correctly, incorrect 
+information on statement) 
+ ° Problem with fees charged 
+ ° Problem with the interest rate 
+ ° Loan sold or transferred to another company 
+ ° Problem with additional products or services purchased with the 
+loan (never received benefit or unable to cancel) 
+§ Struggling to pay your loan (payment plan, bankruptcy)  ° Denied request to lower payments (due to financial hardship, 
+military deployment, or other qualifying circumstances) 
+ ° Problem after you declared or threatened to declare bankruptcy 
+VEHICLE LOAN OR LEASE
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS  33 VEHICLE LOAN OR LEASE
+Sub-product Issue Sub-issue
+Loan (continued) § Problems at the end of the loan or lease (title, refinancing,
+extending a lease)
+ ° Problem with paying off the loan 
+ ° Problem related to refinancing 
+ ° Unable to receive car title or other problem after the loan is paid off 
+ ° Problem while selling or giving up the vehicle
+§ Repossession (added)  ° Lender trying to repossess or disable the vehicle (moved) 
+ ° Loan balance remaining after the vehicle is repossessed 
+and sold (moved)
+ ° Notice to repossess (added)
+ ° Company explaining amount owed (added)
+ ° Company communicating payment assistance or payment 
+extension options (added)
+ ° Voluntary repossession (added)
+ ° Damage caused or loss of personal items in vehicle during the 
+actual repossession (added)
+ ° Account reinstatement or redemption after repossession (added)
+ ° Deficiency balance after repossession (added)
+§ Problem with credit report or credit score*
+* Selecting “Problem with credit report or credit score” will take the consumer to the credit reporting product.
+Vehicle loan or lease 
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS  34 VEHICLE LOAN OR LEASE
+Sub-product Issue Sub-issue
+Lease § Getting a loan or lease (denied loan, confusing advertising
+or marketing, high-pressure sales tactics, opened without
+my knowledge)
+ ° Confusing or misleading advertising or marketing 
+ ° High-pressure sales tactics 
+ ° Credit denial 
+ ° Problem with additional add-on products or services purchased 
+with the loan 
+ ° Changes in terms mid-deal or after closing 
+ ° Problem with signing the paperwork 
+ ° Problem with a trade-in 
+ ° Loan opened without my consent or knowledge (revised)
+§ Managing the loan or lease (billing, extra fees, transferring
+loan, additional products related to the loan)
+ ° Billing problem (payments are not applied correctly, incorrect 
+information on statement) 
+ ° Problem with fees charged 
+ ° Problem with the interest rate 
+ ° Loan sold or transferred to another company 
+ ° Problem with additional products or services purchased with the 
+loan (GAP insurance, extended warranty) 
+§ Struggling to pay your loan (payment plan, bankruptcy)  ° Denied request to lower payments (due to financial hardship, 
+military deployment, or other qualifying circumstances) 
+ ° Problem after you declared or threatened to declare bankruptcy 
+Vehicle loan or lease 
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS  35 VEHICLE LOAN OR LEASE
+Sub-product Issue Sub-issue
+Lease (continued) § Problems at the end of the loan or lease (title, refinancing,
+extending a lease)
+ ° Problem with paying off the loan 
+ ° Problem related to refinancing 
+ ° Unable to receive car title or other problem after the loan is paid off 
+ ° Problem while selling or giving up the vehicle 
+ ° Termination fees or other problem when ending the lease early 
+ ° Problem when attempting to purchase vehicle at the end of the lease 
+ ° Problem extending the lease 
+ ° Excess mileage, damage, or wear fees, or other problem after the 
+lease is finished
+§ Repossession (added)  ° Lender trying to repossess or disable the vehicle (moved)
+ ° Loan balance remaining after the vehicle is repossessed and sold 
+(moved)
+ ° Notice to repossess (added) 
+ ° Company explaining amount owed (added)
+ ° Company communicating payment assistance or payment (added) 
+extension options (added)
+ ° Voluntary repossession (added)
+ ° Damage caused or loss of personal items in vehicle during the 
+actual repossession (added)
+ ° Account reinstatement or redemption after repossession (added)
+ ° Deficiency balance after repossession (added)
+§ Problem with credit report or credit score*
+Vehicle loan or lease 
+* Selecting “Problem with credit report or credit score” will take the consumer to the credit reporting product.
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS  36 
+Appendix A: revised, moved, split, and removed values
+This supplemental section provides greater detail about values marked as revised, moved, or split in the body of the 
+document. It also shows values that were removed as of August 2023.
+This section does not include additional details about values marked as added in the body of the document as they will 
+not have corresponding values or locations prior to August 2023. To view a list of values marked as added by Product 
+see Appendix B.
+Checking or savings account
+§ All sub-products for “Checking or savings account” have an issue of “Opening an account”. Under this issue, there was a sub-issue, “Account opened as a result of fraud”.
+This value has been revised. (revised)
+Value before August 2023 Value after August 2023
+Account opened as a result of fraud Account opened without my consent or knowledge
+Credit card
+§ The product “Credit card or prepaid” card was split into two separate products labeled “Credit card” and “Prepaid card”. All credit card sub-products, issues, and
+sub-issues remain under the product “Credit card”. (split)
+ °  A ll prepaid card related sub-products, issues, and sub-issues were moved under the product “Prepaid card” ( See also Prepaid Card below). (moved)
+§ All sub-products for “Credit card” have an issue of “Getting a credit card”. Under this issue, there was a sub-issue, “Card opened as a result of fraud”. This value has
+been revised. (revised)
+Value before August 2023 Value after August 2023
+Card opened as a result of fraud Card opened without my consent or knowledge
+APPENDIX A: REVISED, MOVED, SPLIT, AND REMOVED VALUES
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS  37 APPENDIX A: REVISED, MOVED, SPLIT, AND REMOVED VALUES
+Credit reporting or other personal consumer reports
+§ The product “Credit reporting, credit repair services, or other personal consumer reports” was revised to “Credit reporting or other personal consumer reports”. (revised)
+ °  T his is due to the sub-product of “Credit repair services” being moved to the new product “Debt or credit management” ( See also Debt or credit management below).
+All other sub-products, issues, and sub-issues remain under the product “Credit reporting or other personal consumer reports”. (moved)
+§ The issue “Problem with a credit reporting company’s investigation into an existing problem” was under the sub-product “Credit reporting”. This value has been revised. (revised)
+Value before August 2023 Value after August 2023
+Problem with a credit reporting company’s 
+investigation into an existing problem
+Problem with a company’s investigation into an 
+existing problem
+Debt or credit management 
+§ The sub-product “Credit repair services” was moved under this product from the legacy product “Credit reporting, credit repair services, or other personal
+consumer reports”. (moved)
+§ The sub-product “Debt settlement” was moved under this product from the product “Money transfer, virtual currency, or money service”. (moved)
+§ The issue “Unexpected or other fees” was under the sub-products “Credit repair services” and “Debt settlement”. This value has been revised. (revised)
+Value before August 2023 Value after August 2023
+Unexpected or other fees Charged upfront or unexpected fees
+Appendix A: revised, moved, split, and removed values
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS  38 APPENDIX A: REVISED, MOVED, SPLIT, AND REMOVED VALUES
+§ The issue “Excessive fees” was removed under the sub-product “Credit repair services”. (removed)
+§ The issue “Fraud or scam” was under the sub-products “Credit repair services” and “Debt settlement”. This value has been revised. (revised)
+Value before August 2023 Value after August 2023
+Fraud or scam Didn’t provide services promised
+Money transfer, virtual currency, or money service 
+§ The sub-product “Refund anticipation check” was moved and revised to “Tax refund anticipation loan or check”. It is now offered as a sub-product under the product
+“Payday loan, title loan, personal loan, or advance loan” (See also Payday loan, title loan, personal loan, or advance loan below). (moved)
+§ Two sub-products were merged into one sub-product. The sub-product “Money order” was merged with “Traveler’s check or cashier’s check” to create a sub-product 
+labeled “Money order, traveler’s check or cashier’s check”. Both “Money order” and “Traveler’s check or cashier’s check” shared the same issues. These issue values have 
+not been revised. (moved)
+§ The sub-product “Debt settlement” was moved from this product to the new product “Debt or credit management” (See also Debt or credit management above). (moved)
+Payday loan, title loan, personal loan, or advance loan
+§ The product “Payday loan, personal loan, or title loan” was revised to “Payday loan, title loan, personal loan, or advance loan” due to new sub-products offered under
+this product. (revised)
+§ The sub-product “Refund anticipation check” was moved and revised to “Tax refund anticipation loan or check” and is offered as a sub-product under this product. (moved)
+Prepaid card
+§ The product “Credit card or prepaid” card was split into two separate products labeled “Credit card” and “Prepaid card”. All prepaid card related sub-products, issues, and
+sub-issues were moved under the product “Prepaid card”. (moved)
+All credit card sub-products, issues, and sub-issues remain under the product “Credit card” ( See also Credit Card above).
+Appendix A: revised, moved, split, and removed values
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 39 APPENDIX A: REVISED, MOVED, SPLIT, AND REMOVED VALUES
+Student loan
+ § The sub-issue “Fraudulent loan” was under the sub-product “Private student loan” and issue “Getting a loan”. This value has been revised. (revised)
+Value before August 2023 Value after August 2023
+Fraudulent loan Loan opened without my consent or knowledge
+Vehicle loan or lease
+ § The sub-issue “Fraudulent loan” was under the sub-products “Loan” and “Lease” and issue “Getting a loan or lease”. This value has been revised. (revised)
+Value before August 2023 Value after August 2023
+Fraudulent loan Loan opened without my consent or knowledge
+ § The sub-issue “Lender trying to repossess or disable the vehicle” was under both sub-products and the issue “Struggling to pay your loan”. This value was moved under 
+the new issue for “Repossession”. (moved)
+ § The sub-issue “Loan balance remaining after the vehicle is repossessed and sold” was under both sub-products and the issue “Struggling to pay your loan”. This value 
+was moved under the new issue for “Repossession”. (moved)
+Appendix A: revised, moved, split, and removed values
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 40 APPENDIX B: ADDED VALUES
+Appendix B: added values
+This supplemental section provides a single, condensed list of all values marked as added by Product in the body of  
+the document.
+Checking or savings account
+ § Sub-products: None
+ § Issues: None
+ § Sub-issues: None
+Credit card
+ § Sub-products: None
+ § Issues: None 
+ § Sub-issues: None
+Credit reporting or other personal consumer reports
+ § Sub-products: None
+ § Issues: None
+ § Sub-issues: None
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 41 APPENDIX B: ADDED VALUES
+Appendix B: added values
+Debt collection
+ § Sub-products: 
+ °  “Rental debt” and “Telecommunications debt”. (added) 
+ § Issues:
+ °  ”Electronic communications” issue under sub-products.  (added)  
+ § Sub-issues: “Frequent or repeated messages,” Contacted before 8am or after 9pm,” “You told them to stop contacting you, but they keep trying,” and “Used obscene, 
+profane, or other abusive language” sub-issues under “Electronic communications” issue. (added) 
+Debt or credit management (added) 
+ § Sub-products: 
+ ° “Mortgage modification or foreclosure avoidance” and “Student loan debt relief”. (added) 
+ § Issues:
+ ° “Unauthorized withdrawals or charges” issue under “Debt settlement,” “Mortgage modification or foreclosure avoidance,” and “Student loan debt relief” sub-products. 
+(added)
+ ° “Charged up-front or unexpected fees,” “Confusing or misleading advertising or marketing,” “Confusing or missing disclosures,” and “Didn’t provide services 
+promised” under “Mortgage modification or foreclosure avoidance” and “Student loan debt relief” sub-products. (added)  
+ ° “Problem with customer service” issue under “Mortgage modification or foreclosure avoidance” sub-product. (added)
+ § Sub-issues: None
+Money transfer, virtual currency, or money service
+ § Sub-products: None
+ § Issues:
+ ° “Trouble accessing funds in your mobile or digital wallet” issue under “Mobile or digital wallet” sub-product. (added) 
+ § Sub-issues: None
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 42 APPENDIX B: ADDED VALUES
+Mortgage
+ § Sub-products: 
+ ° “Manufactured home loan” and “USDA mortgage”. (added)  
+ § Issues: None
+ § Sub-issues: 
+ ° “Application denials,” “Changes in loan terms during the application process,” “Negative impact of inaccurate appraisal,” “Confusing or misleading advertising 
+or marketing,” “Loan estimate or other related disclosures,” “Fees or costs during the application process,” “Delays in the application process,” and “Trying to 
+communicate with the company to fix an issue with the application process” sub-issues under “Applying for a mortgage or refinancing an existing mortgage” issue. 
+(added) 
+ ° “Changes in loan terms during or after closing,” “Closing disclosure or other related disclosures,” “Fees or costs after closing,” “Delays with the closing process,” 
+“Trying to communicate with the company to fix an issue with the loan closing,” and “Setting up an escrow account for taxes and insurance” sub-issues under “Closing 
+on a mortgage” issue. (added) 
+ ° “Escrow, taxes, or insurance,” “Loan sold or transferred to another company,” “Private mortgage insurance (PMI),” “Payment process,” “Fees charged,” “Interest rate,” 
+“Paying off the loan,” “Lien release,” and “Trying to communicate with the company to fix an issue while managing or servicing your loan” sub-issues under “Trouble 
+during payment process” issue. (added) 
+ ° “Applying for or obtaining a modification, forbearance plan, short sale, or deed-in-lieu,” “An existing modification, forbearance plan, short sale, or other loss mitigation 
+relief,” “Foreclosure,” and “Trying to communicate with the company to fix an issue related to modification, forbearance, short sale, deed-in-lieu, bankruptcy, or 
+foreclosure” sub-issues under “Struggling to pay mortgage”. (added) 
+Payday loan, title loan, personal loan, or advance loan
+ § Sub-products: 
+ ° “Earned wage access” and “Other advances of future income”. (added) 
+ § Issues:
+ ° “Problems receiving the advance,” and “Issues with repayment” issues under new “Earned wage access,” “Tax refund anticipation loan or check,” and “Other advances 
+of future income” sub-products. (added) 
+ ° “Confusing or misleading advertising or marketing,” “Confusing or missing disclosures,” and “Unexpected fees” issues under new “Earned wage access” and “Other 
+advances of future income” sub-products. (added) 
+Appendix B: added values
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 43 APPENDIX B: ADDED VALUES
+ § Sub-issues: None
+Prepaid card
+ § Sub-products: None
+ § Issues: None
+ § Sub-issues: None
+Student Loan
+ § Sub-products: None
+ § Issues:
+ ° “Issue where my lender is my school” and “Issue with income share agreement” issues under “Private student loan” sub-product. (added)
+ § Sub-issues: 
+ ° “Co-signer” sub-issue under “Dealing with your lender or servicer” issue under both “Federal student loan” and “Private student loan” sub-products. (added)
+ ° “Bankruptcy” sub-issue under “Struggling to repay your loan” issue under both “Federal student loan” and “Private student loan” sub-products. (added)
+ ° “Problem with your payment plan” and “Problem with forgiveness, cancellation, or discharge” sub-issues under “Struggling to repay your loan” issue under “Federal 
+student loan” sub-product. (added)
+ ° “Changes in terms mid-deal or after closing,” “High pressure sales tactics or recruiting,” and “Issues with financial aid services” sub-issues under “Getting a loan” issue 
+under “Private student loan” sub-product. (added)
+ ° “Issues with fees connected to the loan” and “Cannot graduate, receive diploma, or get transcript due to money owed” sub-issues under “Issue where my lender is my 
+school” issue under “Private student loan” sub-product. (added)
+ ° “Marketing or disclosure issues,” “Payment issues,” “Billing or statement issues,” and “Dealing with provider of income share agreement” sub-issues under “Issue with 
+income share agreement” issue under “Private student loan” sub-product. (added)
+Appendix B: added values
+CONSUMER COMPLAINT FORM PRODUCT AND ISSUE OPTIONS 44 APPENDIX B: ADDED VALUES
+Vehicle loan or lease
+ § Sub-products: None
+ § Issues:
+ ° “Repossession” under “Loan” and “Lease” sub-products. (added)  
+ § Sub-issues:
+ ° “Did not receive car title” sub-issue under “Getting a loan or lease” issue under “Loan” sub-product. (added) 
+ ° “Notice to repossess,” “Company explaining amount owed,” “Company communicating payment assistance or payment extension options,” “Voluntary repossession,” 
+“Damage caused or loss of personal items in vehicle during the actual repossession,” “Account reinstatement or redemption after repossession,” and “Deficiency 
+balance after repossession” sub-issues under “Repossession” issue under “Loan” and “Lease” sub-products. (added) 
+Appendix B: added values

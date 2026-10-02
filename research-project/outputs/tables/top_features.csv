@@ -1,0 +1,176 @@
+issue,feature,coefficient
+Attempts to collect debt not owed,paid,5.525768939526261
+Attempts to collect debt not owed,identity,4.765649884775673
+Attempts to collect debt not owed,discharged,4.548904527071847
+Attempts to collect debt not owed,mine,4.534971127365787
+Attempts to collect debt not owed,theft,4.315405286990379
+Attempts to collect debt not owed,not mine,4.218149119160197
+Attempts to collect debt not owed,fraudulent,3.98892107064099
+Attempts to collect debt not owed,was paid,3.9656677137777443
+Attempts to collect debt not owed,fraud,3.755140395184332
+Attempts to collect debt not owed,opened,3.470882183877926
+Attempts to collect debt not owed,bankruptcy,3.115889817174971
+Attempts to collect debt not owed,have never,3.0906099996915977
+Attempts to collect debt not owed,identity theft,3.0579936407191686
+Attempts to collect debt not owed,00,2.9013773832131506
+Attempts to collect debt not owed,police,2.8307683555177077
+Attempts to collect debt not owed,already paid,2.7804424827317966
+Attempts to collect debt not owed,used,2.74143129258486
+Attempts to collect debt not owed,ftc,2.658255223759519
+Attempts to collect debt not owed,is fraudulent,2.6473301774737665
+Attempts to collect debt not owed,police report,2.624117878187032
+Attempts to collect debt not owed,owe,2.485352283508593
+Attempts to collect debt not owed,owed by,2.4339293340945005
+Attempts to collect debt not owed,in full,2.3596530204507977
+Attempts to collect debt not owed,responsible,2.3392468963471615
+Attempts to collect debt not owed,remove,2.3208223218668405
+Communication tactics,calls,9.33662759976681
+Communication tactics,call,6.163424494004913
+Communication tactics,calling,5.964365444965089
+Communication tactics,day,4.135096500354992
+Communication tactics,times,4.0453554724330205
+Communication tactics,repeatedly,3.85795953889276
+Communication tactics,called me,3.56953880355163
+Communication tactics,daily,3.412506607757905
+Communication tactics,called,3.199730653886839
+Communication tactics,language,3.0096361721412164
+Communication tactics,abusive,2.9686198872243854
+Communication tactics,call me,2.8065433874187984
+Communication tactics,times day,2.749786509572134
+Communication tactics,phone,2.5524598022039604
+Communication tactics,the calls,2.5491632390705994
+Communication tactics,repeated,2.376890667791331
+Communication tactics,work,2.3599735755652733
+Communication tactics,calling me,2.335416961553715
+Communication tactics,cease all,2.334992482227943
+Communication tactics,them,2.244311514313976
+Communication tactics,cease,2.241268428400661
+Communication tactics,every,2.236392442699648
+Communication tactics,im,2.1915836943527993
+Communication tactics,week,2.1820663113843644
+Communication tactics,to cease,2.1745648544827882
+Electronic communications,text,8.33021088909321
+Electronic communications,email,6.860312971764714
+Electronic communications,emails,6.727580526527831
+Electronic communications,texts,4.009927947392907
+Electronic communications,messages,3.291746269612327
+Electronic communications,text message,2.8451508829593686
+Electronic communications,texting,2.835705320093854
+Electronic communications,message,2.816835131309265
+Electronic communications,text messages,2.7263492132781324
+Electronic communications,stop,2.6533530558387186
+Electronic communications,unsubscribe,2.509676946934033
+Electronic communications,emailed,2.4041186549795417
+Electronic communications,an email,2.277188939144573
+Electronic communications,emailing,2.186630864741665
+Electronic communications,emails from,2.1644616087589412
+Electronic communications,harassment,2.1454562412067064
+Electronic communications,llc,2.1067347256776796
+Electronic communications,to stop,2.0518051722744115
+Electronic communications,texting me,2.0223781661270093
+Electronic communications,texted,2.014173611460331
+Electronic communications,of communication,1.9528495246641329
+Electronic communications,email and,1.8670802853799349
+Electronic communications,resurgent,1.8359495013140505
+Electronic communications,text me,1.8186448950639849
+Electronic communications,private,1.731637565392378
+False statements or representation,amount,6.3607010790271294
+False statements or representation,false,4.621129216911449
+False statements or representation,incorrect,4.140591120837188
+False statements or representation,wrong,3.2934227586287723
+False statements or representation,00,3.2683950633351087
+False statements or representation,interest,2.8347573993338084
+False statements or representation,statements,2.7786094139222515
+False statements or representation,amounts,2.7102376452663073
+False statements or representation,is incorrect,2.6072304937143733
+False statements or representation,attorneys,2.539013961100059
+False statements or representation,move out,2.4650561590476845
+False statements or representation,falsely,2.434714488508684
+False statements or representation,charges,2.345681564620336
+False statements or representation,representing,2.221065196196647
+False statements or representation,move,2.1795279623660897
+False statements or representation,the balance,2.122832964263776
+False statements or representation,correct,2.090100482635414
+False statements or representation,would,2.0830501760522924
+False statements or representation,balance,2.0735183175385763
+False statements or representation,attorney,2.0387751859621934
+False statements or representation,itemized,2.0259806310373394
+False statements or representation,of account,1.9883052524529943
+False statements or representation,owed,1.9850235301335206
+False statements or representation,lying,1.971500976212576
+False statements or representation,different,1.962999429542786
+Threatened to contact someone or share information improperly,employer,5.658277786171073
+Threatened to contact someone or share information improperly,contacted my,4.642590561964881
+Threatened to contact someone or share information improperly,my employer,4.601601289344506
+Threatened to contact someone or share information improperly,contact,3.0720982481858954
+Threatened to contact someone or share information improperly,shared,2.9366351954417294
+Threatened to contact someone or share information improperly,called my,2.85349372280831
+Threatened to contact someone or share information improperly,personal,2.757969574788339
+Threatened to contact someone or share information improperly,him,2.6262651473104666
+Threatened to contact someone or share information improperly,information,2.524791089808375
+Threatened to contact someone or share information improperly,my,2.489554789361243
+Threatened to contact someone or share information improperly,call my,2.4596311938071698
+Threatened to contact someone or share information improperly,mother,2.4441096861993605
+Threatened to contact someone or share information improperly,family,2.283963184332494
+Threatened to contact someone or share information improperly,calling,2.2807530509507736
+Threatened to contact someone or share information improperly,contacted,2.2659684618938325
+Threatened to contact someone or share information improperly,relatives,2.2304220783704483
+Threatened to contact someone or share information improperly,father,2.1780512876299953
+Threatened to contact someone or share information improperly,party,2.152014685958223
+Threatened to contact someone or share information improperly,calls after,2.098422194071869
+Threatened to contact someone or share information improperly,information about,2.0898474794602526
+Threatened to contact someone or share information improperly,called,2.0882758876263945
+Threatened to contact someone or share information improperly,her,2.0607394115621154
+Threatened to contact someone or share information improperly,about,2.051422068029064
+Threatened to contact someone or share information improperly,asked,2.0393247580863614
+Threatened to contact someone or share information improperly,my mother,2.002001621496578
+Took or threatened to take negative or legal action,threatening,5.871016673391787
+Took or threatened to take negative or legal action,threatened,5.765515807298028
+Took or threatened to take negative or legal action,sued,5.256634135856357
+Took or threatened to take negative or legal action,court,4.528060796579978
+Took or threatened to take negative or legal action,threats,4.42204337376136
+Took or threatened to take negative or legal action,lawsuit,4.065160258268138
+Took or threatened to take negative or legal action,sue,3.9649119791230385
+Took or threatened to take negative or legal action,damaged,3.543831903375618
+Took or threatened to take negative or legal action,to sue,3.534679765347118
+Took or threatened to take negative or legal action,property,3.5290285148837417
+Took or threatened to take negative or legal action,sue me,3.3611131034531363
+Took or threatened to take negative or legal action,against me,3.2767990326946377
+Took or threatened to take negative or legal action,old,3.2091558232814035
+Took or threatened to take negative or legal action,threaten,3.1594228736103864
+Took or threatened to take negative or legal action,garnishment,3.064794106886039
+Took or threatened to take negative or legal action,credit,3.0139985943353
+Took or threatened to take negative or legal action,legal,2.868738200358151
+Took or threatened to take negative or legal action,my property,2.8260799356428103
+Took or threatened to take negative or legal action,damage,2.815585821432689
+Took or threatened to take negative or legal action,if did,2.722606936575591
+Took or threatened to take negative or legal action,threatened to,2.608363655214153
+Took or threatened to take negative or legal action,damaging,2.584110255928238
+Took or threatened to take negative or legal action,judgement,2.5692125411571687
+Took or threatened to take negative or legal action,garnish,2.569052120453586
+Took or threatened to take negative or legal action,firm,2.55326209044251
+Written notification about debt,to dispute,4.130309893800164
+Written notification about debt,notification,4.1198257082799925
+Written notification about debt,never received,4.051583453026883
+Written notification about debt,accounts,3.9975173480943478
+Written notification about debt,never,3.7428728162503653
+Written notification about debt,dispute,3.7043860872767147
+Written notification about debt,was never,3.581697504462576
+Written notification about debt,fraudulent accounts,3.4994638254813966
+Written notification about debt,received,3.4216546956163927
+Written notification about debt,notice,3.380696558840297
+Written notification about debt,late,3.36128304834885
+Written notification about debt,letter,2.985926580123703
+Written notification about debt,receive,2.9713149316167726
+Written notification about debt,your bureau,2.941624459614046
+Written notification about debt,validate,2.922808108139536
+Written notification about debt,opportunity to,2.866442126910646
+Written notification about debt,credit report,2.8017210693551
+Written notification about debt,opportunity,2.720532900896653
+Written notification about debt,written,2.7100245522186914
+Written notification about debt,address,2.7078920957255397
+Written notification about debt,verification,2.6876154523024294
+Written notification about debt,request,2.6805020612729114
+Written notification about debt,no information,2.6604728051338413
+Written notification about debt,communication from,2.654741608136429
+Written notification about debt,notification of,2.604649844220903

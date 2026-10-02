@@ -1,0 +1,5 @@
+Condition,Result,Evidence
+1. Non-trivial task,PASS,Future accuracy 47.4%–56.0%; macro-F1 0.349–0.394.
+2. Sufficient future data,PASS,"Minimum 281 distinct families per class/primary quarter; 34,343 exact-deduplicated training rows."
+3. Temporal/confidence behavior,PASS,"Useful confidence separation in 8 windows; future accuracy range 8.6%, ECE range 0.046."
+4. Manageable leakage,PASS,Historical family exposure at most 13.8%; minimum 281 novel families per class/primary quarter. Narrative-only tests passed.

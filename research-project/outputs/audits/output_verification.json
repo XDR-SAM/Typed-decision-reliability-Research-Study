@@ -1,0 +1,63 @@
+{
+  "prediction_checks": [
+    {
+      "period": "validation",
+      "n": 17201,
+      "probability_sum_check": true,
+      "accuracy_recomputed": true,
+      "nll_recomputed": true
+    },
+    {
+      "period": "2024Q4",
+      "n": 18377,
+      "probability_sum_check": true,
+      "accuracy_recomputed": true,
+      "nll_recomputed": true
+    },
+    {
+      "period": "2025Q1",
+      "n": 22959,
+      "probability_sum_check": true,
+      "accuracy_recomputed": true,
+      "nll_recomputed": true
+    },
+    {
+      "period": "2025Q2",
+      "n": 26848,
+      "probability_sum_check": true,
+      "accuracy_recomputed": true,
+      "nll_recomputed": true
+    },
+    {
+      "period": "2025Q3",
+      "n": 30102,
+      "probability_sum_check": true,
+      "accuracy_recomputed": true,
+      "nll_recomputed": true
+    },
+    {
+      "period": "2025Q4",
+      "n": 20700,
+      "probability_sum_check": true,
+      "accuracy_recomputed": true,
+      "nll_recomputed": true
+    },
+    {
+      "period": "2026Q1",
+      "n": 20015,
+      "probability_sum_check": true,
+      "accuracy_recomputed": true,
+      "nll_recomputed": true
+    },
+    {
+      "period": "2026Q2",
+      "n": 17463,
+      "probability_sum_check": true,
+      "accuracy_recomputed": true,
+      "nll_recomputed": true
+    }
+  ],
+  "manifest_files": 19,
+  "source_sizes_verified": true,
+  "all_checks_passed": true
+}

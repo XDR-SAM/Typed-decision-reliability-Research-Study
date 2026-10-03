@@ -1,0 +1,15 @@
+{
+  "all_token_id_semantics_identical": true,
+  "vocabulary_entries": 50368,
+  "vocabulary_mismatches": [],
+  "bpe_merge_rules_identical": true,
+  "added_token_definitions_identical": true,
+  "normalizer_identical": true,
+  "pre_tokenizer_identical": true,
+  "post_processor_identical": true,
+  "decoder_identical": true,
+  "files": {
+    "laya_tokenizer.json": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30",
+    "modernbert_tokenizer.json": "9fd55248d51d33976b324fc11592e28071da7d41e0e9401dfb7082e30574b7b1"
+  }
+}

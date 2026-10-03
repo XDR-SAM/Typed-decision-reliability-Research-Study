@@ -1,0 +1,72 @@
+[
+  {
+    "optimizer_updates_this_process": 1,
+    "elapsed_after_first_update_seconds": 0.0,
+    "seconds_per_update": null,
+    "global_examples_per_second": null,
+    "training_only_remaining_hours_estimate": null,
+    "estimate_excludes_validation_checkpoint_io": true,
+    "peak_allocated_bytes_rank0": 9813636096,
+    "peak_reserved_bytes_rank0": 10255073280,
+    "current_learning_rates": [
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "optimizer_updates_this_process": 10,
+    "elapsed_after_first_update_seconds": 59.73246580900013,
+    "seconds_per_update": 5.576617417571437,
+    "global_examples_per_second": 11.476491071153916,
+    "training_only_remaining_hours_estimate": 3.3118911218799254,
+    "estimate_excludes_validation_checkpoint_io": true,
+    "peak_allocated_bytes_rank0": 10031801344,
+    "peak_reserved_bytes_rank0": 10557063168,
+    "current_learning_rates": [
+      2.1484375e-06,
+      8.59375e-06
+    ]
+  },
+  {
+    "optimizer_updates_this_process": 20,
+    "elapsed_after_first_update_seconds": 114.51658235900004,
+    "seconds_per_update": 5.5188493219411745,
+    "global_examples_per_second": 11.596620285601299,
+    "training_only_remaining_hours_estimate": 3.26225315474745,
+    "estimate_excludes_validation_checkpoint_io": true,
+    "peak_allocated_bytes_rank0": 10031801344,
+    "peak_reserved_bytes_rank0": 10567548928,
+    "current_learning_rates": [
+      4.101562500000001e-06,
+      1.6406250000000002e-05
+    ]
+  },
+  {
+    "optimizer_updates_this_process": 30,
+    "elapsed_after_first_update_seconds": 169.28733675900003,
+    "seconds_per_update": 5.503377513814813,
+    "global_examples_per_second": 11.629222207516106,
+    "training_only_remaining_hours_estimate": 3.237820437294382,
+    "estimate_excludes_validation_checkpoint_io": true,
+    "peak_allocated_bytes_rank0": 10031801344,
+    "peak_reserved_bytes_rank0": 10567548928,
+    "current_learning_rates": [
+      6.054687500000001e-06,
+      2.4218750000000003e-05
+    ]
+  },
+  {
+    "optimizer_updates_this_process": 40,
+    "elapsed_after_first_update_seconds": 224.24126263300013,
+    "seconds_per_update": 5.501219425594596,
+    "global_examples_per_second": 11.633784266491533,
+    "training_only_remaining_hours_estimate": 3.221269596987058,
+    "estimate_excludes_validation_checkpoint_io": true,
+    "peak_allocated_bytes_rank0": 10031801344,
+    "peak_reserved_bytes_rank0": 10580131840,
+    "current_learning_rates": [
+      8.0078125e-06,
+      3.203125e-05
+    ]
+  }
+]

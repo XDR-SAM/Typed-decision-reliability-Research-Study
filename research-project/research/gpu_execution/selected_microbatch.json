@@ -1,0 +1,6 @@
+{
+  "micro_batch": 4,
+  "accumulation": 8,
+  "global_batch": 64,
+  "future_neural_results_observed": false
+}

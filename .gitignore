@@ -9,3 +9,4 @@ research-project/outputs/neural/
 research-project/outputs/neural_preparation/**/rows.jsonl.gz
 research-project/outputs/neural_preparation/**/train.jsonl.gz
 research-project/outputs/neural_preparation/**/validation.jsonl.gz
+research-project/outputs/gpu_execution/
